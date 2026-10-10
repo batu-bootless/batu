@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="627" viewBox="0 0 1200 627">
+<rect width="1200" height="627" fill="#f5f8fc"/>
+<rect x="0" y="0" width="14" height="627" fill="#1767a8"/>
+<text x="64" y="78" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" letter-spacing="3" fill="#1767a8">BİLİM • KİMYA • ARAŞTIRMA</text>
+<text x="64" y="155" font-family="Arial,Helvetica,sans-serif" font-size="50" font-weight="700" fill="#132b45">Bilim, birlikte gelişir.</text>
+<text x="64" y="205" font-family="Arial,Helvetica,sans-serif" font-size="25" fill="#52677c">Bilgiyi paylaş, soruları büyüt, öğrenmeye devam et.</text>
+<rect x="64" y="260" width="1072" height="210" rx="22" fill="#ffffff" stroke="#d6e2ed" stroke-width="2"/>
+<circle cx="142" cy="333" r="30" fill="#e3eff9"/><path d="M127 333 L138 344 L159 320" fill="none" stroke="#1767a8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="195" y="327" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="700" fill="#132b45">Bu paylaşım faydalı olduysa</text>
+<text x="195" y="370" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="700" fill="#1767a8">destek için BEĞEN 👍</text>
+<text x="195" y="415" font-family="Arial,Helvetica,sans-serif" font-size="20" fill="#52677c">If you found this useful, please leave a like to support more science content.</text>
+<path d="M1010 395 C1080 430 1110 490 1100 540" fill="none" stroke="#1767a8" stroke-width="10" stroke-linecap="round"/>
+<path d="M1072 522 L1100 552 L1120 515" fill="none" stroke="#1767a8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="64" y="510" width="500" height="58" rx="29" fill="#1767a8"/>
+<text x="314" y="547" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" fill="#ffffff">@batu.targay</text>
+<text x="1136" y="600" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#52677c">Okuduğun için teşekkürler • Thanks for reading</text>
+</svg>
