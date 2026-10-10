@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="627" viewBox="0 0 1200 627">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061a2b"/><stop offset=".55" stop-color="#0b3550"/><stop offset="1" stop-color="#e9f7ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8be5ff"/><stop offset="1" stop-color="#25aee8"/></linearGradient>
+ <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e8fbff" stop-opacity=".92"/><stop offset="1" stop-color="#26b8ef" stop-opacity=".42"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+ <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#d6f4ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="627" fill="url(#bg)"/><rect width="1200" height="627" fill="url(#grid)"/>
+<circle cx="1000" cy="110" r="190" fill="#5fd6ff" opacity=".18" filter="url(#blur)"/><circle cx="80" cy="580" r="180" fill="#28b5e9" opacity=".15" filter="url(#blur)"/>
+<!-- right-side glassware -->
+<g opacity=".92" stroke="#d9f7ff" stroke-width="3" fill="none">
+ <path d="M875 115h72v22l-12 22v154q0 25-25 25t-25-25V159l-10-22z" fill="#b7eeff" fill-opacity=".12"/>
+ <path d="M885 242h53v68q0 19-26 19t-27-19z" fill="url(#glass)" stroke="none"/>
+ <path d="M1000 175h30v15l-8 15v102q0 18-17 18t-17-18V205l-8-15v-15z" fill="#b7eeff" fill-opacity=".12"/>
+ <path d="M994 260h26v48q0 14-13 14t-13-14z" fill="url(#glass)" stroke="none"/>
+ <path d="M1080 215h26v13l-6 12v78q0 17-14 17t-14-17v-78l-6-12v-13z" fill="#b7eeff" fill-opacity=".12"/>
+ <path d="M1075 274h26v43q0 13-13 13t-13-13z" fill="url(#glass)" stroke="none"/>
+</g>
+<g stroke="#9deaff" stroke-width="2" fill="none" opacity=".7"><path d="M855 145l-24-18m30 37h-22m170 32h-20m112 31h-18"/><circle cx="827" cy="121" r="4" fill="#9deaff"/><circle cx="978" cy="185" r="4" fill="#9deaff"/></g>
+<!-- header tag -->
+<rect x="58" y="42" width="190" height="40" rx="20" fill="#ffffff" fill-opacity=".08" stroke="#8bdfff" stroke-opacity=".65"/>
+<circle cx="80" cy="62" r="11" fill="none" stroke="#a9eaff" stroke-width="1.8"/><path d="M73 68q7-10 14 0" fill="none" stroke="#a9eaff" stroke-width="1.8"/>
+<text x="101" y="68" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="600" fill="#f3fbff">@batu.targay</text>
+<text x="58" y="153" font-family="Arial,Helvetica,sans-serif" font-size="43" font-weight="700" fill="#ffffff">Araştırma sorusunu</text>
+<text x="58" y="205" font-family="Arial,Helvetica,sans-serif" font-size="43" font-weight="700" fill="url(#cyan)">ölçülebilir hâle getirmek</text>
+<text x="61" y="244" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="#dceefa">İyi bir araştırma sorusu; net, ölçülebilir ve test edilebilir olmalıdır.</text>
+<!-- workflow cards -->
+<g font-family="Arial,Helvetica,sans-serif">
+ <g transform="translate(58 282)"><rect width="175" height="190" rx="18" fill="#ffffff" fill-opacity=".075" stroke="#a3e7ff" stroke-opacity=".45"/><circle cx="38" cy="42" r="23" fill="#24b7ed" fill-opacity=".14" stroke="#72dcff" stroke-width="2"/><path d="M38 28v17m-8-6a8 8 0 1 1 16 0c0 5-4 6-4 11h-8c0-5-4-6-4-11m5 17h6" fill="none" stroke="#b8efff" stroke-width="2" stroke-linecap="round"/><text x="20" y="91" font-size="15" font-weight="700" fill="#8fe4ff">01 / SORU</text><text x="20" y="120" font-size="16" font-weight="700" fill="#fff">Problemi</text><text x="20" y="141" font-size="16" font-weight="700" fill="#fff">tanımla</text><text x="20" y="167" font-size="12" fill="#d7eaf4">Ne öğrenmek istiyorsun?</text></g>
+ <g transform="translate(247 282)"><rect width="175" height="190" rx="18" fill="#ffffff" fill-opacity=".075" stroke="#a3e7ff" stroke-opacity=".45"/><circle cx="38" cy="42" r="23" fill="#24b7ed" fill-opacity=".14" stroke="#72dcff" stroke-width="2"/><rect x="29" y="28" width="18" height="26" rx="2" fill="none" stroke="#b8efff" stroke-width="2"/><path d="M33 25h10v6H33zM33 37l3 3 6-6M33 46l3 3 6-6" fill="none" stroke="#b8efff" stroke-width="2"/><text x="20" y="91" font-size="15" font-weight="700" fill="#8fe4ff">02 / DEĞİŞKEN</text><text x="20" y="120" font-size="16" font-weight="700" fill="#fff">Ölçülebilir</text><text x="20" y="141" font-size="16" font-weight="700" fill="#fff">parametre seç</text><text x="20" y="167" font-size="12" fill="#d7eaf4">pH · süre · derişim</text></g>
+ <g transform="translate(436 282)"><rect width="175" height="190" rx="18" fill="#ffffff" fill-opacity=".075" stroke="#a3e7ff" stroke-opacity=".45"/><circle cx="38" cy="42" r="23" fill="#24b7ed" fill-opacity=".14" stroke="#72dcff" stroke-width="2"/><path d="M31 26h14v5l-3 5v17q0 5-4 5t-4-5V36l-3-5z" fill="none" stroke="#b8efff" stroke-width="2"/><path d="M34 44h8v8q0 4-4 4t-4-4z" fill="#40c9f5"/><text x="20" y="91" font-size="15" font-weight="700" fill="#8fe4ff">03 / YÖNTEM</text><text x="20" y="120" font-size="16" font-weight="700" fill="#fff">Uygun deney</text><text x="20" y="141" font-size="16" font-weight="700" fill="#fff">tasarımı kur</text><text x="20" y="167" font-size="12" fill="#d7eaf4">Kontrolleri sabit tut</text></g>
+ <g transform="translate(625 282)"><rect width="175" height="190" rx="18" fill="#ffffff" fill-opacity=".075" stroke="#a3e7ff" stroke-opacity=".45"/><circle cx="38" cy="42" r="23" fill="#24b7ed" fill-opacity=".14" stroke="#72dcff" stroke-width="2"/><path d="M26 53V42h7v11m4 0V33h7v20m4 0V27h7v26" fill="none" stroke="#b8efff" stroke-width="2.5" stroke-linecap="round"/><text x="20" y="91" font-size="15" font-weight="700" fill="#8fe4ff">04 / VERİ</text><text x="20" y="120" font-size="16" font-weight="700" fill="#fff">Sonuçları</text><text x="20" y="141" font-size="16" font-weight="700" fill="#fff">analiz et</text><text x="20" y="167" font-size="12" fill="#d7eaf4">Birim ve belirsizlik ekle</text></g>
+</g>
+<!-- right panel -->
+<rect x="825" y="372" width="320" height="170" rx="20" fill="#f4fbff" fill-opacity=".95"/>
+<text x="850" y="407" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="#092b43">Araştırma kontrol listesi</text>
+<g font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#163f59">
+ <circle cx="855" cy="435" r="8" fill="#20a9dc"/><path d="M851 435l3 3 6-7" fill="none" stroke="#fff" stroke-width="2"/><text x="875" y="440">Net (Clear)</text>
+ <circle cx="855" cy="462" r="8" fill="#20a9dc"/><path d="M851 462l3 3 6-7" fill="none" stroke="#fff" stroke-width="2"/><text x="875" y="467">Ölçülebilir (Measurable)</text>
+ <circle cx="855" cy="489" r="8" fill="#20a9dc"/><path d="M851 489l3 3 6-7" fill="none" stroke="#fff" stroke-width="2"/><text x="875" y="494">Test edilebilir (Testable)</text>
+ <circle cx="855" cy="516" r="8" fill="#20a9dc"/><path d="M851 516l3 3 6-7" fill="none" stroke="#fff" stroke-width="2"/><text x="875" y="521">Anlamlı ve özgün</text>
+</g>
+<path d="M58 510H790" stroke="#8ddfff" stroke-opacity=".4"/>
+<text x="58" y="548" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" fill="#a5eaff">KİMYA  •  ARAŞTIRMA  •  DENEY  •  VERİ ANALİZİ</text>
+<text x="58" y="584" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#c6deeb">Bir fikri, test edilebilir bir araştırma planına dönüştür.</text>
+<text x="1140" y="589" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#092d46">@batu.targay</text>
+</svg>
