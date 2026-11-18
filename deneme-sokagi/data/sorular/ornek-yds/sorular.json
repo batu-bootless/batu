@@ -2,7 +2,7 @@
  {
   "id": "ornek-yds-t01-s01",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 1,
@@ -36,7 +36,7 @@
  {
   "id": "ornek-yds-t01-s02",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 2,
@@ -70,7 +70,7 @@
  {
   "id": "ornek-yds-t01-s03",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 3,
@@ -104,7 +104,7 @@
  {
   "id": "ornek-yds-t01-s04",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 4,
@@ -138,7 +138,7 @@
  {
   "id": "ornek-yds-t01-s05",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 5,
@@ -172,7 +172,7 @@
  {
   "id": "ornek-yds-t01-s06",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 6,
@@ -206,7 +206,7 @@
  {
   "id": "ornek-yds-t01-s07",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 7,
@@ -240,7 +240,7 @@
  {
   "id": "ornek-yds-t01-s08",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 8,
@@ -274,7 +274,7 @@
  {
   "id": "ornek-yds-t01-s09",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 9,
@@ -308,7 +308,7 @@
  {
   "id": "ornek-yds-t01-s10",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 10,
@@ -342,7 +342,7 @@
  {
   "id": "ornek-yds-t01-s11",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 11,
@@ -376,7 +376,7 @@
  {
   "id": "ornek-yds-t01-s12",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 12,
@@ -410,7 +410,7 @@
  {
   "id": "ornek-yds-t01-s13",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 13,
@@ -444,7 +444,7 @@
  {
   "id": "ornek-yds-t01-s14",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 14,
@@ -478,7 +478,7 @@
  {
   "id": "ornek-yds-t01-s15",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 15,
@@ -512,7 +512,7 @@
  {
   "id": "ornek-yds-t01-s16",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 16,
@@ -546,7 +546,7 @@
  {
   "id": "ornek-yds-t01-s17",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 17,
@@ -580,7 +580,7 @@
  {
   "id": "ornek-yds-t01-s18",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 18,
@@ -614,7 +614,7 @@
  {
   "id": "ornek-yds-t01-s19",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 19,
@@ -648,7 +648,7 @@
  {
   "id": "ornek-yds-t01-s20",
   "kaynak": "ornek-yds",
-  "kaynak_ad": "Örnek YDS Denemesi 1",
+  "kaynak_ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
   "sinav": "YDS",
   "test": 1,
   "no": 20,

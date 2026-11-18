@@ -58,6 +58,15 @@
 .ts-q.img .ts-qc img { display: block; width: 100%; height: auto; }
 .ts-code { margin-top: 4.3mm; text-align: right; font: 400 8.1pt/1.2 "DS Head", sans-serif; color: var(--ts-code); }
 
+/* ---- section instructions, passages, dialogues ---- */
+.ts-yon { margin: 0 2.8mm 3.2mm 0; padding: 1.3mm 2mm; border: 0.3mm solid #000; font: 700 6.6pt/1.35 "DS Text", Arial, sans-serif; }
+.ts-yon b { color: var(--ts-magenta); }
+.ts-passage { margin: 0 2.8mm 3.4mm 0; font-size: 6.4pt; line-height: 1.4; text-align: justify; }
+.ts-passage p { margin: 0; }
+.ts-passage b { font-weight: 700; white-space: nowrap; }
+.ts-unit { break-inside: avoid; }
+.ts-dlg { line-height: 1.5; text-align: left; }
+
 /* ---- answer key ---- */
 .ts-key { break-inside: avoid; margin-top: 1mm; }
 .ts-key h4 { margin: 0 0 2mm; height: 6.2mm; display: flex; align-items: center; padding-left: 1.6mm; border-radius: 1.5mm 0 0 1.5mm;

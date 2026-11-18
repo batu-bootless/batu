@@ -168,7 +168,11 @@
   }
   // One question shape for the player: built-in sample questions and bank questions.
   const qItem = (q, i) => q && { s: q.s, t: q.t, o: q.o, a: q.a, sol: q.sol || [], ref: { q: i } };
-  const bankItem = (b) => b && { s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [], a: b.cevap ? L5.indexOf(b.cevap) : null, sol: [], konu: b.konu, ref: { bank: b.id } };
+  const bankItem = (b) => b && {
+    s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [],
+    a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, yon: b.yonerge,
+    passage: b.grup && BANK.gruplar && BANK.gruplar[b.grup] ? BANK.gruplar[b.grup].metin : null, ref: { bank: b.id },
+  };
   const wq = (w) => (w.bank ? bankItem(BANK.byId[w.bank]) : qItem(QUESTIONS[w.q], w.q));
   const minutesFor = (n) => Math.max(5, Math.round(n * 1.5));
 
@@ -240,7 +244,20 @@
   const EXAM_POOLS = { YKS: ['TYT', 'AYT'], YDS: ['YDS'], 'YÖKDİL': ['YÖKDİL', 'YDS'], LGS: ['LGS'], KPSS: ['KPSS'], ALES: ['ALES'], DGS: ['DGS'], TUS: ['TUS'], DUS: ['DUS'], HMGS: ['HMGS'], 'MSÜ': ['MSÜ', 'TYT'], 'MEB-AGS': ['MEB-AGS'] };
   const poolSinav = () => EXAM_POOLS[user.exam] || [user.exam];
   const srcOrder = (q) => BANK.kaynaklar.findIndex((k) => k.id === q.kaynak);
-  const poolQs = () => BANK.sorular.filter((q) => poolSinav().includes(q.sinav)).sort((a, b) => srcOrder(a) - srcOrder(b) || a.sira - b.sira);
+  const srcRank = (q) => ((BANK.src[q.kaynak] || {}).tur === 'deneme' ? 1000 : 0) + srcOrder(q);
+  const poolQs = () => BANK.sorular.filter((q) => poolSinav().includes(q.sinav)).sort((a, b) => srcRank(a) - srcRank(b) || a.sira - b.sira);
+  // Questions that share a passage (cloze, reading) are taken together or not at all.
+  function pickQuestions(fresh, n) {
+    const out = [], done = new Set();
+    for (const q of fresh) {
+      if (out.length >= n) break;
+      if (done.has(q.id)) continue;
+      const unit = q.grup ? fresh.filter((x) => x.grup === q.grup) : [q];
+      unit.forEach((x) => done.add(x.id));
+      if (out.length + unit.length <= n) out.push(...unit);
+    }
+    return out;
+  }
   const dkFor = (qs) => Math.max(5, Math.round(qs.reduce((a, q) => a + ((BANK.src[q.kaynak] || {}).dk_soru || 1.5), 0)));
   const pad2 = (n) => String(n).padStart(2, '0');
 
@@ -880,8 +897,9 @@
     $$('[data-make]').forEach((x) => x.addEventListener('click', () => createTest(x.dataset.make)));
   }
   function createTest(action) {
-    const qs = poolQs().filter((q) => !isSeen(q.id)).slice(0, state.b.adet);
-    if (!qs.length) return toast('Yeni soru kalmadı');
+    const qs = pickQuestions(poolQs().filter((q) => !isSeen(q.id)), state.b.adet);
+    if (!qs.length) return toast('Bu sayıda soruya uyan yeni soru yok; paragraf soruları bölünmeden verilir. Sayıyı artırmayı dene.');
+    if (qs.length < state.b.adet) toast(`Paragraf soruları bölünmediği için test ${qs.length} soru oldu.`);
     const konular = [...new Set(qs.map((q) => q.konu))];
     const test = {
       id: 'yt-' + uid(), no: nextTestNo(), mod: 'gorsel',
@@ -1002,7 +1020,7 @@
     if (!k) return;
     const qs = BANK.sorular.filter((q) => q.kaynak === id && !isSeen(q.id)).sort((a, b) => a.sira - b.sira);
     if (!qs.length) return toast('Bu denemenin tüm sorularını gördün');
-    markUsed(qs.map((q) => q.id));
+    // Questions count as seen once the deneme is finished; closing it early keeps them available.
     openPlayer(qs.map(bankItem), k.ad, Math.round(qs.length * k.dk_soru) * 60, {
       mode: 'gorsel',
       onFinish: (r) => {
@@ -1013,7 +1031,6 @@
         if (['denemeler', 'genel'].includes(routeKey())) render(false);
       },
     });
-    if (routeKey() === 'denemeler') render(false);
   }
   function saveMini(r) {
     saveHistory({ ad: 'Mini TYT Denemesi', tur: 'Mini', soru: QUESTIONS.length, D: r.D, Y: r.Y, B: r.B, net: r.net });
@@ -1213,7 +1230,7 @@
     const st = { cur: 0, ans: qs.map(() => null), flag: qs.map(() => false), left: seconds, timer: null, done: false, wrong: [] };
     const root = $('#modalRoot');
     const lastFocus = document.activeElement;
-    root.innerHTML = `<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="plTitle">
+    root.innerHTML = `<div class="modal-back"><div class="modal player" role="dialog" aria-modal="true" aria-labelledby="plTitle">
       <div class="pl-head"><div><h2 id="plTitle">${esc(title)}</h2><p>${qs.length} soru · ${Math.round(seconds / 60)} dakika · Net = D − Y/4</p></div>
         <span class="timer" id="plTimer">${icon('clock')}<span>00:00</span></span>
         <button class="icon-btn" data-pl="close" aria-label="Kapat">${icon('x')}</button></div>
@@ -1230,10 +1247,11 @@
     $('#plTimer span').textContent = fmtT(st.left);
     st.timer = setInterval(tick, 1000);
     const asImage = (q) => mode === 'gorsel' && q.img;
+    const lead = (q) => `${q.yon ? `<p class="pl-yon">${esc(q.yon)}</p>` : ''}${q.passage ? `<div class="pl-passage">${esc(q.passage).replace(/\((\d+)\) ----/g, (m, n) => (+n === q.no ? '<mark>----</mark>' : '----'))}</div>` : ''}`;
     const body = (q) => {
       if (asImage(q)) return `<img class="pl-img" src="${esc(q.img)}" alt="Soru ${st.cur + 1}">`;
       if (q.fig) return `${q.ust ? `<p class="pl-text">${esc(q.ust)}</p>` : ''}<img class="pl-fig" src="${esc(q.fig)}" alt="Şekil">${q.alt ? `<p class="pl-text">${esc(q.alt)}</p>` : ''}`;
-      return `<p class="pl-text">${esc(q.t)}</p>`;
+      return lead(q) + (q.t ? `<p class="pl-text">${esc(q.t)}</p>` : '<p class="pl-text muted">Paragrafta işaretli boşluğa gelecek seçeneği bul.</p>');
     };
 
     function draw() {
@@ -1249,11 +1267,13 @@
           <div class="optik">${qs.map((_, qi) => `<div class="optik-row${qi === st.cur ? ' cur' : ''}${st.flag[qi] ? ' flag' : ''}"><button class="n" data-go="${qi}" aria-label="Soru ${qi + 1}">${qi + 1}</button>${L5.map((l, li) => `<button class="bub${st.ans[qi] === li ? ' on' : ''}" data-bub="${qi}-${li}" aria-label="Soru ${qi + 1} şık ${l}">${l}</button>`).join('')}</div>`).join('')}</div>
           <div class="optik-legend"><span><i style="--c:var(--text)"></i>Cevaplandı: ${answered}</span><span><i style="--c:var(--warn)"></i>İşaretli: ${st.flag.filter(Boolean).length}</span><span><i style="--c:var(--faint)"></i>Boş: ${n - answered}</span></div>
         </aside></div>
-        <div class="pl-foot"><button class="btn ${st.flag[st.cur] ? 'flagged' : 'btn-ghost'} btn-sm" data-pl="flag">${icon('flag')} ${st.flag[st.cur] ? 'İşareti kaldır' : 'Sonra bak'}</button><span class="spacer"></span>
-          <button class="btn btn-ghost btn-sm" data-pl="prev" ${st.cur === 0 ? 'disabled' : ''}>${icon('back')} Önceki</button>
+        <div class="pl-foot"><button class="btn ${st.flag[st.cur] ? 'flagged' : 'btn-ghost'} btn-sm" data-pl="flag" aria-label="${st.flag[st.cur] ? 'İşareti kaldır' : 'Sonra bak'}">${icon('flag')} <span class="pl-lbl">${st.flag[st.cur] ? 'İşareti kaldır' : 'Sonra bak'}</span></button><span class="spacer"></span>
+          <button class="btn btn-ghost btn-sm" data-pl="prev" aria-label="Önceki" ${st.cur === 0 ? 'disabled' : ''}>${icon('back')} <span class="pl-lbl">Önceki</span></button>
           ${st.cur < n - 1 ? `<button class="btn btn-blue btn-sm" data-pl="next">Sonraki ${icon('arrow')}</button>` : ''}
           <button class="btn btn-yellow btn-sm" data-pl="finish">Testi bitir</button></div>`;
+      keepRowVisible();
     }
+    const keepRowVisible = () => { const row = $('.optik-row.cur', root); if (row) row.scrollIntoView({ block: 'nearest' }); };
     const pick = (qi, li) => { st.ans[qi] = st.ans[qi] === li ? null : li; draw(); };
     const confirmBar = (msg, yes, yesTxt) => {
       $('#plConfirm').innerHTML = `<div class="confirm-bar"><b>${msg}</b><button class="btn btn-ghost btn-sm" data-pl="cancel">Devam et</button><button class="btn btn-yellow btn-sm" data-pl="${yes}">${yesTxt}</button></div>`;
@@ -1277,7 +1297,7 @@
           <p>${qs.length} sorunun ${D} tanesini doğru yanıtladın. Süre: ${fmtT(seconds - Math.max(0, st.left))}</p>
           <div class="res-stats"><div class="g"><small>Doğru</small><b>${D}</b></div><div class="b"><small>Yanlış</small><b>${Y}</b></div><div><small>Boş</small><b>${B}</b></div><div><small>Net</small><b>${fmt(net)}</b></div></div>
           ${U ? `<p class="small muted" style="margin-top:8px">${U} sorunun kaynağında cevap anahtarı olmadığı için puanlanmadı.</p>` : ''}</div></div>
-        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${q.sol.length ? q.sol.map(esc).join('<br>') : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
+        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t || `${q.konu || 'Paragraf'} · boşluk`)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${q.sol.length ? q.sol.map(esc).join('<br>') : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
       </div>`;
       const oldFoot = $('.pl-foot', root); if (oldFoot) oldFoot.remove();
       main.insertAdjacentHTML('afterend', `<div class="pl-foot"><span class="small muted">${opts.onFinish ? 'Sonucun kaydedildi.' : 'Sonuçlar örnek panelde kaydedilmez.'}</span><span class="spacer"></span>${st.wrong.length ? '<button class="btn btn-soft btn-sm" data-pl="to-notebook">Yanlış ve boşları deftere ekle</button>' : ''}<button class="btn btn-blue btn-sm" data-pl="close-now">Panele dön</button></div>`);

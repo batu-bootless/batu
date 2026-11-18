@@ -1,8 +1,8 @@
 {
  "id": "ornek-yds",
- "ad": "Örnek YDS Denemesi 1",
+ "ad": "Deneme Sokağı YDS Kelime ve Dil Bilgisi",
  "sinav": "YDS",
- "tur": "deneme",
+ "tur": "banka",
  "kod_on": "YD",
  "dk_soru": 2.25
 }

@@ -37,7 +37,32 @@ bankası (`olustur.py`) ve YDS denemesi (`olustur_yds.py`); PDF'e çevirmek içi
 Filigran kaldırma yoktur: filigran kaynağın sahibini gösterir. Kendi kaynağınızın filigransız
 aslını kullanın.
 
-## 2. Deneme Sokağı PDF'i — `yaprak-test-pdf.js`
+## 2. Yazılmış soruları ekleme — `soru_ekle.py`
+
+PDF'ten çıkarmadan, metin olarak yazılmış özgün soruları bankaya ekler. Soru dosyaları `icerik/`
+altında durur; her dosya bir Python betiğidir ve çalıştırılınca aynı adlı JSON'u üretir.
+
+```bash
+python3 icerik/yds_deneme_1.py                       # → icerik/yds-deneme-1.json
+python3 tools/soru_ekle.py icerik/yds-deneme-1.json  # → data/sorular/ds-yds-1/ + soru-bankasi.{json,js}
+```
+
+JSON biçimi: `kaynak` (id, ad, sinav, `tur: banka|deneme`, ders, `kod_on`, `dk_soru`), `gruplar`
+(paragraf metinleri; boşluklar `(17) ----` biçiminde) ve `sorular` (no, konu, yonerge, grup, metin,
+5 seçenek, cevap, cozum). Araç her soruda 5 farklı seçenek, A–E cevap ve paragrafın var olduğunu denetler;
+künyeleri `soru_cikar.py` ile aynı kuralla verir.
+
+Paragrafa bağlı sorular (cloze test, okuma) panelde de PDF'te de paragraflarıyla birlikte gelir ve
+yaprak testte **bölünmez**: bir paragrafın soruları ya hepsi birlikte teste girer ya hiç girmez.
+Her bölümün başında yönerge kutusu (ör. "17 – 26: For these questions, …") basılır.
+
+`icerik/yds_deneme_1.py` — **Deneme Sokağı YDS Denemesi 1**: 80 özgün soru, yaygın YDS dağılımı
+(1–6 kelime, 7–16 dil bilgisi, 17–26 cloze test, 27–36 cümle tamamlama, 37–42 çeviri, 43–62 okuma,
+63–68 diyalog, 69–74 anlamca en yakın cümle, 75–80 anlam bütünlüğünü bozan cümle). Her sorunun Türkçe
+çözümü vardır; cevaplar A–E'ye eşit dağılır (her harf 16). Yayına almadan önce bir İngilizce öğretmeninin
+okuması önerilir. Örnek PDF: `ornekler/ds-yds-denemesi-1.pdf`.
+
+## 3. Deneme Sokağı PDF'i — `yaprak-test-pdf.js`
 
 `sablon/yaprak-test.html` şablonuyla A4, iki sütunlu, soru bankası dizilimli PDF üretir: ilk sayfada gri
 başlık bandı (logo, SORU BANKASI, konu çubuğu, TEST rozeti), sütunlar arasında dikey site adresli çizgi,
@@ -51,8 +76,8 @@ node tools/yaprak-test-pdf.js --test test.json --out test.pdf   # paneldeki test
 ```
 
 Seçenekler: `--kaynak <id>`, `--adet N`, `--mod gorsel|metin`, `--baslik "…"`, `--no N`,
-`--karistir`, `--cevapsiz`. Panelde aynı şablon "Önizle" ve "PDF / Yazdır" ile kullanılır.
+`--ust "DENEME SINAVI"` (bant başlığı), `--karistir`, `--cevapsiz`. Panelde aynı şablon "Önizle" ve "PDF / Yazdır" ile kullanılır.
 
-## 3. Şablon kontrolü — `sablon-kontrol.js`
+## 4. Şablon kontrolü — `sablon-kontrol.js`
 
 `node tools/sablon-kontrol.js` şablonun 19 ölçüsünü referans PDF'le karşılaştırır (±0,6 mm).

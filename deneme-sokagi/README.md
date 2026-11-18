@@ -11,13 +11,17 @@ tarayıcıda) açın.
 
 ## Yaprak test, soru bankası ve PDF şablonu
 - `sablon/` — Deneme Sokağı yaprak test şablonu (A4, iki sütun, soru bankası dizilimi)
-- `data/` — soru bankası (`tools/soru_cikar.py` ile PDF'ten çıkarılır)
+- `data/` — soru bankası (`tools/soru_cikar.py` ile PDF'ten çıkarılır, `tools/soru_ekle.py` ile yazılı sorulardan eklenir)
+- `icerik/` — Deneme Sokağı için yazılmış özgün sorular (ör. 80 soruluk YDS Denemesi 1)
 - `tools/` — soru çıkarma ve PDF üretme araçları (ayrıntılar: `tools/README.md`)
 - `ornekler/` — şablonla üretilmiş örnek PDF'ler
 
 ## Soru havuzu kuralları
 - Yaprak test oluştururken kullanıcı yalnızca **soru sayısını** seçer, sonra **Çöz** ya da **PDF indir**.
-- Sorular kullanıcının hedef sınavının havuzundan (Ayarlar → Hedef sınav), kaynaktaki sırayla gelir.
+- Sorular kullanıcının hedef sınavının havuzundan (Ayarlar → Hedef sınav), kaynaktaki sırayla gelir;
+  önce soru bankaları, sonra deneme kaynakları kullanılır (yaprak testler bir denemeyi erken tüketmesin diye).
+- Paragrafa bağlı sorular (cloze, okuma) bölünmez: paragrafın tüm soruları birlikte gelir.
+- Bir deneme, **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
 - Bir kullanıcıya verilmiş (teste eklenmiş, denemede gösterilmiş) ya da çözülmüş soru ona **bir daha gösterilmez**.
   Demo modunda bu kayıt tarayıcıda tutulur; canlı sistemde kullanıcı hesabına bağlanmalıdır.
 - Genel Bakış'taki **Geçmiş** kartı en son çözülen, oluşturulan ve indirilen testleri gösterir.

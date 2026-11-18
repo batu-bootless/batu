@@ -1,0 +1,1382 @@
+{
+ "kaynak": {
+  "id": "ds-yds-1",
+  "ad": "Deneme Sokağı YDS Denemesi 1",
+  "sinav": "YDS",
+  "tur": "deneme",
+  "ders": "İngilizce",
+  "kod_on": "YD",
+  "dk_soru": 2.25
+ },
+ "gruplar": {
+  "cloze-a": "Honeybees play a vital role in agriculture, (17) ---- roughly one third of the food crops we eat. In recent decades, however, beekeepers in many countries (18) ---- unusually high losses of their colonies. Scientists have identified several factors behind this decline, (19) ---- pesticide use, parasites and the loss of wild flowers. (20) ----, they still disagree about which of these factors is the most important. Protecting bees will therefore require coordinated action by farmers and governments, as well as changes in the way land (21) ----.",
+  "cloze-b": "Sleep is not simply a period of rest; it is an active state (22) ---- the brain carries out essential maintenance. During deep sleep, for example, waste products that build up during the day (23) ---- from the brain more efficiently. Researchers have also found that sleep helps to strengthen memories, (24) ---- explains why people who sleep well after learning something new tend to recall it better. Despite this, many adults regularly get less sleep than they need, (25) ---- because of long working hours or the use of electronic devices late at night. Experts recommend that adults aim for seven to nine hours a night, although individual needs may (26) ---- considerably.",
+  "okuma-1": "Cities are often several degrees warmer than the surrounding countryside, a phenomenon known as the urban heat island effect. The main reason is that materials such as asphalt and concrete absorb heat during the day and release it slowly at night. In addition, cities have fewer trees and less vegetation, which would otherwise cool the air through evaporation. Waste heat from cars, air conditioners and factories adds to the problem. The effect is not merely uncomfortable; during heatwaves it can be deadly, particularly for elderly people and those with heart conditions. Fortunately, there are practical ways to reduce it. Painting roofs white, for example, reflects sunlight instead of absorbing it, while planting trees provides both shade and cooling. Some cities have also begun to replace traditional pavements with materials that allow water to soak into the ground, which helps to keep surfaces cooler.",
+  "okuma-2": "Octopuses are widely regarded as the most intelligent invertebrates. They can solve puzzles, open jars to reach food and even escape from tanks in aquariums. What makes this intelligence remarkable is that it evolved independently from that of mammals and birds. The last common ancestor of octopuses and humans was a simple worm-like creature that lived more than 500 million years ago. Unlike vertebrates, octopuses have most of their neurons not in their brain but in their eight arms, which can taste, touch and even make some decisions on their own. Researchers believe that this unusual nervous system may have developed because octopuses need to control flexible bodies with no bones. However, their intelligence comes with a surprising limitation: most species live for only one to two years, which means they have little time to learn from experience.",
+  "okuma-3": "The placebo effect occurs when a patient's condition improves after receiving a treatment that has no active ingredients, such as a sugar pill. For a long time, doctors viewed this effect as a nuisance that made it harder to test new drugs. In clinical trials, a new medicine must perform better than a placebo before it can be approved, because some patients in the placebo group almost always report feeling better. More recently, however, scientists have started to study the placebo effect as a phenomenon in its own right. Brain imaging studies show that expecting relief can trigger the release of natural painkillers in the brain. Interestingly, the effect seems to be stronger when the treatment looks more serious: injections tend to work better than pills, and two pills work better than one. Some researchers now wonder whether doctors could use these findings to improve the care they provide without deceiving their patients.",
+  "okuma-4": "Before 2020, working from home was a privilege enjoyed by a relatively small number of employees. The pandemic changed this almost overnight, as millions of office workers were sent home and companies discovered that many jobs could be done remotely. Surveys suggest that most employees now value the flexibility of working from home at least part of the time, mainly because it saves them the time and cost of commuting. Employers' views are more mixed. While some report higher productivity and lower office costs, others worry that remote work weakens team spirit and makes it harder to train new staff. As a result, many organisations have adopted a hybrid model, in which employees spend some days in the office and others at home. Whether this compromise will last is still unclear, but it seems unlikely that the traditional five-day office week will return for everyone.",
+  "okuma-5": "Coffee is thought to have originated in Ethiopia, where, according to a popular legend, a goat herder noticed that his animals became unusually energetic after eating the berries of a certain plant. Whether or not the story is true, by the fifteenth century coffee was being grown in Yemen, and from there it spread throughout the Middle East. Coffee houses soon became important social centres where people met to talk, listen to music and discuss the news. In the seventeenth century, coffee reached Europe, where it was at first regarded with suspicion; some critics even called it a dangerous drink. Nevertheless, its popularity grew rapidly, and coffee houses in cities such as London and Vienna became places where merchants, writers and scientists exchanged ideas. Today, coffee is one of the most widely traded agricultural products in the world, grown in more than seventy countries."
+ },
+ "sorular": [
+  {
+   "no": 1,
+   "bolum": "kelime",
+   "konu": "Kelime Bilgisi",
+   "yonerge": "For these questions, choose the best word or expression to fill the space.",
+   "grup": null,
+   "metin": "The new policy is intended to ---- the financial burden on low-income families by expanding access to free childcare.",
+   "secenekler": [
+    "aggravate",
+    "conceal",
+    "imitate",
+    "postpone",
+    "alleviate"
+   ],
+   "cevap": "E",
+   "cozum": "alleviate = hafifletmek. Politikanın amacı ücretsiz çocuk bakımıyla mali yükü azaltmaktır."
+  },
+  {
+   "no": 2,
+   "bolum": "kelime",
+   "konu": "Kelime Bilgisi",
+   "yonerge": "For these questions, choose the best word or expression to fill the space.",
+   "grup": null,
+   "metin": "Although the two species look remarkably similar, genetic analysis has revealed that they are only ---- related.",
+   "secenekler": [
+    "deliberately",
+    "abundantly",
+    "reluctantly",
+    "distantly",
+    "fluently"
+   ],
+   "cevap": "D",
+   "cozum": "\"Although … similar\" zıtlığı, türlerin ancak uzaktan (distantly) akraba olduğunu gösterir."
+  },
+  {
+   "no": 3,
+   "bolum": "kelime",
+   "konu": "Kelime Bilgisi",
+   "yonerge": "For these questions, choose the best word or expression to fill the space.",
+   "grup": null,
+   "metin": "Early detection is ---- for successful treatment, since most cancers are far easier to cure before they spread.",
+   "secenekler": [
+    "trivial",
+    "obsolete",
+    "hostile",
+    "crucial",
+    "ambiguous"
+   ],
+   "cevap": "D",
+   "cozum": "crucial = hayati önemde. Erken teşhis, kanser yayılmadan tedavi için kritiktir."
+  },
+  {
+   "no": 4,
+   "bolum": "kelime",
+   "konu": "Kelime Bilgisi",
+   "yonerge": "For these questions, choose the best word or expression to fill the space.",
+   "grup": null,
+   "metin": "Engineers had to ---- the original design several times after tests showed that the bridge could not withstand strong winds.",
+   "secenekler": [
+    "modify",
+    "admire",
+    "inherit",
+    "exaggerate",
+    "celebrate"
+   ],
+   "cevap": "A",
+   "cozum": "modify = değiştirmek. Testler köprünün rüzgâra dayanamadığını gösterince tasarım değiştirilmiştir."
+  },
+  {
+   "no": 5,
+   "bolum": "kelime",
+   "konu": "Kelime Bilgisi",
+   "yonerge": "For these questions, choose the best word or expression to fill the space.",
+   "grup": null,
+   "metin": "Negotiations between the two companies ---- after neither side was willing to compromise on the price.",
+   "secenekler": [
+    "took up",
+    "gave away",
+    "looked after",
+    "set off",
+    "broke down"
+   ],
+   "cevap": "E",
+   "cozum": "break down = (görüşme) çıkmaza girmek, başarısız olmak. Taraflar uzlaşmayınca görüşmeler çöker."
+  },
+  {
+   "no": 6,
+   "bolum": "kelime",
+   "konu": "Kelime Bilgisi",
+   "yonerge": "For these questions, choose the best word or expression to fill the space.",
+   "grup": null,
+   "metin": "The museum's director has ---- a plan to make the collection accessible online to students around the world.",
+   "secenekler": [
+    "put up with",
+    "run out of",
+    "taken after",
+    "come up with",
+    "looked down on"
+   ],
+   "cevap": "D",
+   "cozum": "come up with = (fikir, plan) bulmak, ortaya atmak."
+  },
+  {
+   "no": 7,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "By the end of this decade, scientists hope they ---- a reliable method for predicting earthquakes.",
+   "secenekler": [
+    "had developed",
+    "have been developing",
+    "will have developed",
+    "were developing",
+    "develop"
+   ],
+   "cevap": "C",
+   "cozum": "\"By the end of this decade\" gelecekte bir noktaya kadar tamamlanacak eylemi gösterir: Future Perfect."
+  },
+  {
+   "no": 8,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "The ancient manuscripts ---- in a cave in 1947 ---- among the most important archaeological finds of the twentieth century.",
+   "secenekler": [
+    "discovering / were considered",
+    "were discovered / considered",
+    "having discovered / have considered",
+    "discovered / are considered",
+    "to be discovered / had considered"
+   ],
+   "cevap": "D",
+   "cozum": "İlk boşluk kısaltılmış edilgen sıfat cümleciği (which were discovered), ikincisi cümlenin edilgen yüklemi (are considered)."
+  },
+  {
+   "no": 9,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "Had the government acted sooner, the economic crisis ---- so severe.",
+   "secenekler": [
+    "will not be",
+    "had not been",
+    "would not have been",
+    "has not been",
+    "is not"
+   ],
+   "cevap": "C",
+   "cozum": "\"Had … acted\" devrik 3. tip koşul cümlesidir; sonuç kısmı would not have been olur."
+  },
+  {
+   "no": 10,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "Students are not allowed to use their phones during the exam, ---- are they permitted to leave the room before the first hour.",
+   "secenekler": [
+    "so",
+    "either",
+    "or",
+    "unless",
+    "nor"
+   ],
+   "cevap": "E",
+   "cozum": "Olumsuz bir cümleden sonra ikinci olumsuz bilgi \"nor + devrik yapı\" ile eklenir."
+  },
+  {
+   "no": 11,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "It is essential ---- the samples at a low temperature, or they will lose their chemical properties.",
+   "secenekler": [
+    "storing",
+    "stored",
+    "to store",
+    "store",
+    "having stored"
+   ],
+   "cevap": "C",
+   "cozum": "\"It is essential\" kalıbından sonra mastar (to + V1) gelir."
+  },
+  {
+   "no": 12,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "---- the heavy rain, the marathon went ahead as planned, and over ten thousand runners took part.",
+   "secenekler": [
+    "Although",
+    "Because of",
+    "Unless",
+    "Despite",
+    "In case of"
+   ],
+   "cevap": "D",
+   "cozum": "İsimden önce zıtlık bildiren edat gerekir: despite. Although cümle alır; because of anlamca uymaz."
+  },
+  {
+   "no": 13,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "The report, ---- findings were published last week, suggests that air pollution is responsible for millions of deaths each year.",
+   "secenekler": [
+    "which",
+    "that",
+    "whose",
+    "whom",
+    "where"
+   ],
+   "cevap": "C",
+   "cozum": "\"findings\" raporun bulgularıdır; iyelik bildiren ilgi zamiri whose kullanılır."
+  },
+  {
+   "no": 14,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "Neither the manager nor the employees ---- aware of the changes to the schedule until the morning of the event.",
+   "secenekler": [
+    "were",
+    "was",
+    "has been",
+    "is",
+    "being"
+   ],
+   "cevap": "A",
+   "cozum": "Neither … nor yapısında fiil yakın özneye (employees, çoğul) uyar ve cümle geçmiş zamandadır: were."
+  },
+  {
+   "no": 15,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "The longer you delay starting the project, ---- it will be to finish it on time.",
+   "secenekler": [
+    "harder",
+    "the harder",
+    "the hardest",
+    "as hard",
+    "so hard"
+   ],
+   "cevap": "B",
+   "cozum": "\"The + comparative …, the + comparative\" (ne kadar … o kadar) yapısı."
+  },
+  {
+   "no": 16,
+   "bolum": "dilbilgisi",
+   "konu": "Dil Bilgisi",
+   "yonerge": "For these questions, choose the best word(s) or expression(s) to fill the space(s).",
+   "grup": null,
+   "metin": "Some animals are able to survive extreme cold ---- producing natural chemicals that prevent ice from forming in their cells.",
+   "secenekler": [
+    "with",
+    "by",
+    "for",
+    "on",
+    "at"
+   ],
+   "cevap": "B",
+   "cozum": "Yöntem bildiren \"by + V-ing\" (… yaparak) yapısı."
+  },
+  {
+   "no": 17,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-a",
+   "metin": "",
+   "secenekler": [
+    "pollinated",
+    "having been pollinated",
+    "to be pollinated",
+    "pollinating",
+    "pollinate"
+   ],
+   "cevap": "D",
+   "cozum": "Arılar ürünleri tozlaştırır; etken anlamlı sıfat-fiil (V-ing): pollinating."
+  },
+  {
+   "no": 18,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-a",
+   "metin": "",
+   "secenekler": [
+    "had reported",
+    "will have reported",
+    "are being reported",
+    "have reported",
+    "had been reporting"
+   ],
+   "cevap": "D",
+   "cozum": "\"In recent decades\" günümüze uzanan bir süreci gösterir: Present Perfect."
+  },
+  {
+   "no": 19,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-a",
+   "metin": "",
+   "secenekler": [
+    "instead of",
+    "regardless of",
+    "rather than",
+    "including",
+    "in spite of"
+   ],
+   "cevap": "D",
+   "cozum": "Ardından gelenler sayılan etkenlerin örnekleridir: including."
+  },
+  {
+   "no": 20,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-a",
+   "metin": "",
+   "secenekler": [
+    "However",
+    "Therefore",
+    "Similarly",
+    "For instance",
+    "As a result"
+   ],
+   "cevap": "A",
+   "cozum": "Etkenler belirlenmiş ama hangisinin en önemli olduğu tartışmalıdır: zıtlık bağlacı however."
+  },
+  {
+   "no": 21,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-a",
+   "metin": "",
+   "secenekler": [
+    "manages",
+    "has managed",
+    "managing",
+    "to manage",
+    "is managed"
+   ],
+   "cevap": "E",
+   "cozum": "Arazi yönetilir; edilgen yapı gerekir: is managed."
+  },
+  {
+   "no": 22,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-b",
+   "metin": "",
+   "secenekler": [
+    "which",
+    "during which",
+    "whose",
+    "what",
+    "unless"
+   ],
+   "cevap": "B",
+   "cozum": "\"an active state\" sırasında beyin bakım yapar: during which (= during that state)."
+  },
+  {
+   "no": 23,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-b",
+   "metin": "",
+   "secenekler": [
+    "remove",
+    "have removed",
+    "are removed",
+    "removing",
+    "to remove"
+   ],
+   "cevap": "C",
+   "cozum": "Atıklar beyinden temizlenir; remove geçişli fiildir ve burada edilgen olmalıdır."
+  },
+  {
+   "no": 24,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-b",
+   "metin": "",
+   "secenekler": [
+    "which",
+    "that",
+    "what",
+    "it",
+    "whose"
+   ],
+   "cevap": "A",
+   "cozum": "Virgülden sonra önceki cümlenin tamamını niteleyen ilgi zamiri which kullanılır."
+  },
+  {
+   "no": 25,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-b",
+   "metin": "",
+   "secenekler": [
+    "mainly",
+    "hardly",
+    "barely",
+    "scarcely",
+    "seldom"
+   ],
+   "cevap": "A",
+   "cozum": "Az uyumanın başlıca nedenleri sayılıyor: mainly. Diğerleri olumsuz anlam taşır."
+  },
+  {
+   "no": 26,
+   "bolum": "cloze",
+   "konu": "Cloze Test",
+   "yonerge": "For these questions, choose the best word or expression to fill the spaces in the passage.",
+   "grup": "cloze-b",
+   "metin": "",
+   "secenekler": [
+    "resemble",
+    "consist",
+    "resolve",
+    "vary",
+    "deserve"
+   ],
+   "cevap": "D",
+   "cozum": "Bireysel ihtiyaçlar önemli ölçüde değişebilir: vary."
+  },
+  {
+   "no": 27,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "Unless the city invests in public transport, ----.",
+   "secenekler": [
+    "traffic congestion will continue to get worse",
+    "more people have started cycling to work",
+    "the new metro line was opened ahead of schedule",
+    "car ownership had already fallen sharply",
+    "residents would have supported the plan"
+   ],
+   "cevap": "A",
+   "cozum": "Unless + geniş zaman, gelecek zamanlı bir sonuç ister; anlamca da trafiğin kötüleşmesi uyar."
+  },
+  {
+   "no": 28,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "----, the number of international students in the country has risen steadily.",
+   "secenekler": [
+    "Before universities raise their fees next year",
+    "Unless the government changes its policy",
+    "As soon as the new campus opens",
+    "If the exchange rate had remained stable",
+    "Since the visa rules were relaxed in 2015"
+   ],
+   "cevap": "E",
+   "cozum": "Present Perfect ana cümle \"since + geçmiş zaman\" ile başlangıç noktası ister."
+  },
+  {
+   "no": 29,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "Although electric cars produce no exhaust emissions, ----.",
+   "secenekler": [
+    "the electricity used to charge them is often generated from fossil fuels",
+    "they are becoming increasingly popular among young drivers",
+    "governments offer tax incentives to buyers",
+    "they help to reduce air pollution in cities",
+    "charging stations have become more common"
+   ],
+   "cevap": "A",
+   "cozum": "Although zıtlık ister: egzoz salımı yok ama elektrik çoğu zaman fosil yakıttan üretilir."
+  },
+  {
+   "no": 30,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "The vaccine was not made available to the public ----.",
+   "secenekler": [
+    "because it has been tested on thousands of volunteers",
+    "so that scientists will analyse the results",
+    "as long as the trials are completed next year",
+    "until it had passed three stages of clinical trials",
+    "which is why it is now sold in every pharmacy"
+   ],
+   "cevap": "D",
+   "cozum": "\"not … until\" (… -ene kadar değil) ve geçmişte önceki eylem (had passed) uyumu."
+  },
+  {
+   "no": 31,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "So many people applied for the course ----.",
+   "secenekler": [
+    "unless the deadline is extended next month",
+    "that the university had to open two additional classes",
+    "as if it were compulsory",
+    "until the registration closes next week",
+    "whether or not they had studied before"
+   ],
+   "cevap": "B",
+   "cozum": "\"so many … that\" sonuç bildirir: başvuru o kadar çoktu ki iki sınıf daha açıldı."
+  },
+  {
+   "no": 32,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "----, the researchers were able to identify the gene responsible for the disease.",
+   "secenekler": [
+    "By comparing the DNA of hundreds of patients",
+    "Unless they receive additional funding",
+    "As long as the study continues",
+    "In case the results are confirmed",
+    "Whereas earlier studies will be repeated"
+   ],
+   "cevap": "A",
+   "cozum": "Geni nasıl bulduklarını anlatan yöntem ifadesi: by + V-ing."
+  },
+  {
+   "no": 33,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "Many coastal towns depend heavily on tourism, ----.",
+   "secenekler": [
+    "unless visitors had stayed longer",
+    "which makes them vulnerable to economic downturns",
+    "so that local fishing has declined",
+    "as though the beaches were closed",
+    "even if the summer season will be shorter"
+   ],
+   "cevap": "B",
+   "cozum": "Turizme bağımlılığın sonucu: which (önceki cümleyi niteler) ekonomik krizlere karşı kırılganlık."
+  },
+  {
+   "no": 34,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "If you had read the instructions carefully, ----.",
+   "secenekler": [
+    "you would not have made so many mistakes",
+    "you will finish the task on time",
+    "you can ask the teacher for help",
+    "you had completed the form correctly",
+    "you will have understood the questions"
+   ],
+   "cevap": "A",
+   "cozum": "3. tip koşul: If + had V3 → would (not) have V3."
+  },
+  {
+   "no": 35,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "Just as the invention of printing transformed the spread of knowledge, ----.",
+   "secenekler": [
+    "books were expensive and difficult to produce",
+    "the internet has changed the way information is shared today",
+    "many people could not read in the fifteenth century",
+    "the printing press was invented in Germany",
+    "libraries were mostly found in monasteries"
+   ],
+   "cevap": "B",
+   "cozum": "\"Just as\" benzetme kurar: matbaa bilgiyi dönüştürdüğü gibi internet de paylaşımı değiştirdi."
+  },
+  {
+   "no": 36,
+   "bolum": "tamamlama",
+   "konu": "Cümle Tamamlama",
+   "yonerge": "For these questions, choose the best option to complete the given sentence.",
+   "grup": null,
+   "metin": "The company decided to delay the launch of its new phone ----.",
+   "secenekler": [
+    "as soon as sales have increased",
+    "so that customers will buy it immediately",
+    "after engineers discovered a serious problem with the battery",
+    "unless the price had been lower",
+    "whether it sells well or not"
+   ],
+   "cevap": "C",
+   "cozum": "Ertelemenin mantıklı nedeni bataryada sorun bulunmasıdır; zaman uyumu da doğrudur."
+  },
+  {
+   "no": 37,
+   "bolum": "ceviri_it",
+   "konu": "Çeviri (İngilizce–Türkçe)",
+   "yonerge": "For these questions, choose the most accurate Turkish translation of the sentence in English.",
+   "grup": null,
+   "metin": "Climate change is expected to increase the frequency of extreme weather events such as floods and droughts.",
+   "secenekler": [
+    "İklim değişikliği, sel ve kuraklık gibi aşırı hava olaylarının şiddetini azaltacaktır.",
+    "Sel ve kuraklık gibi aşırı hava olayları, iklim değişikliğinin en önemli nedenidir.",
+    "İklim değişikliğinin sel ve kuraklıkları artırdığı uzun zamandır bilinmektedir.",
+    "Aşırı hava olaylarının sıklığı artarsa iklim değişikliği daha da hızlanabilir.",
+    "İklim değişikliğinin, sel ve kuraklık gibi aşırı hava olaylarının sıklığını artırması beklenmektedir."
+   ],
+   "cevap": "E",
+   "cozum": "\"is expected to increase\" = artırması beklenmektedir; \"frequency\" = sıklık."
+  },
+  {
+   "no": 38,
+   "bolum": "ceviri_it",
+   "konu": "Çeviri (İngilizce–Türkçe)",
+   "yonerge": "For these questions, choose the most accurate Turkish translation of the sentence in English.",
+   "grup": null,
+   "metin": "Although the treatment has been used for decades, scientists still do not fully understand how it works.",
+   "secenekler": [
+    "Bilim insanları bu tedavinin nasıl işe yaradığını onlarca yıl önce keşfetmiştir.",
+    "Bu tedavi, nasıl işe yaradığı tam olarak anlaşılana kadar kullanılmayacaktır.",
+    "Bu tedavi onlarca yıldır kullanılmasına rağmen bilim insanları onun nasıl işe yaradığını hâlâ tam olarak anlayamamıştır.",
+    "Bilim insanları, onlarca yıldır kullanılan bu tedaviyi artık önermemektedir.",
+    "Tedavinin nasıl işe yaradığı anlaşılmadığı için onlarca yıldır kullanılmamaktadır."
+   ],
+   "cevap": "C",
+   "cozum": "\"Although\" = -e rağmen; \"still do not fully understand\" = hâlâ tam olarak anlayamamak."
+  },
+  {
+   "no": 39,
+   "bolum": "ceviri_it",
+   "konu": "Çeviri (İngilizce–Türkçe)",
+   "yonerge": "For these questions, choose the most accurate Turkish translation of the sentence in English.",
+   "grup": null,
+   "metin": "The more time children spend reading, the larger their vocabulary tends to become.",
+   "secenekler": [
+    "Çocukların kelime dağarcığı, okumaya ayırdıkları zamandan bağımsız olarak gelişir.",
+    "Kelime dağarcığı geniş olan çocuklar okumaya daha fazla zaman ayırır.",
+    "Çocuklar okumaya ne kadar çok zaman ayırırsa kelime dağarcıkları da o kadar genişleme eğilimindedir.",
+    "Çocuklar okumaya daha az zaman ayırdıkça kelime dağarcıkları genişler.",
+    "Okumaya zaman ayıran çocukların kelime dağarcığı her zaman en geniş olanıdır."
+   ],
+   "cevap": "C",
+   "cozum": "\"The more …, the larger …\" = ne kadar çok …, o kadar …; \"tends to\" = eğilimindedir."
+  },
+  {
+   "no": 40,
+   "bolum": "ceviri_ti",
+   "konu": "Çeviri (Türkçe–İngilizce)",
+   "yonerge": "For these questions, choose the most accurate English translation of the sentence in Turkish.",
+   "grup": null,
+   "metin": "Şirket, maliyetleri düşürmek amacıyla üretimin bir kısmını başka bir ülkeye taşımaya karar verdi.",
+   "secenekler": [
+    "The company moved all of its production abroad because its costs had risen sharply.",
+    "In order to reduce costs, the company decided not to move its production to another country.",
+    "Moving production to another country has helped the company reduce its costs.",
+    "The company is considering reducing its production costs in another country.",
+    "The company decided to move part of its production to another country in order to reduce costs."
+   ],
+   "cevap": "E",
+   "cozum": "\"bir kısmını\" = part of; \"amacıyla\" = in order to; \"karar verdi\" = decided."
+  },
+  {
+   "no": 41,
+   "bolum": "ceviri_ti",
+   "konu": "Çeviri (Türkçe–İngilizce)",
+   "yonerge": "For these questions, choose the most accurate English translation of the sentence in Turkish.",
+   "grup": null,
+   "metin": "Uzmanlara göre düzenli egzersiz, yalnızca fiziksel sağlığı değil ruh sağlığını da iyileştirir.",
+   "secenekler": [
+    "Experts claim that regular exercise improves physical health rather than mental health.",
+    "According to experts, regular exercise improves not only physical health but also mental health.",
+    "According to experts, mental health is more important than physical health.",
+    "Experts say that only physical health can be improved by regular exercise.",
+    "Regular exercise, according to some experts, may harm mental health."
+   ],
+   "cevap": "B",
+   "cozum": "\"yalnızca … değil … de\" = not only … but also."
+  },
+  {
+   "no": 42,
+   "bolum": "ceviri_ti",
+   "konu": "Çeviri (Türkçe–İngilizce)",
+   "yonerge": "For these questions, choose the most accurate English translation of the sentence in Turkish.",
+   "grup": null,
+   "metin": "Araştırmacılar, eski haritaları inceleyerek kıyı şeridinin son iki yüzyılda nasıl değiştiğini ortaya koydu.",
+   "secenekler": [
+    "By examining old maps, researchers revealed how the coastline had changed over the last two centuries.",
+    "Researchers drew new maps to show how the coastline will change over the next two centuries.",
+    "Old maps reveal that the coastline has not changed for two hundred years.",
+    "Researchers examined how old maps had been drawn over the last two centuries.",
+    "The coastline changed so much that researchers could not use the old maps."
+   ],
+   "cevap": "A",
+   "cozum": "\"inceleyerek\" = by examining; \"ortaya koydu\" = revealed; \"son iki yüzyılda\" = over the last two centuries."
+  },
+  {
+   "no": 43,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-1",
+   "metin": "According to the passage, one reason cities are warmer than the countryside is that ----.",
+   "secenekler": [
+    "the countryside receives less sunlight than cities",
+    "cities are usually located at lower altitudes",
+    "rural areas have more factories and cars",
+    "white roofs absorb most of the sunlight",
+    "building materials store heat during the day and release it at night"
+   ],
+   "cevap": "E",
+   "cozum": "Parçada asfalt ve betonun gündüz ısıyı emip gece yavaşça bıraktığı söyleniyor."
+  },
+  {
+   "no": 44,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-1",
+   "metin": "It is stated in the passage that the urban heat island effect ----.",
+   "secenekler": [
+    "mainly affects young people",
+    "has no impact on people's health",
+    "can be dangerous for vulnerable groups during heatwaves",
+    "only occurs during the winter months",
+    "cannot be reduced by practical measures"
+   ],
+   "cevap": "C",
+   "cozum": "Sıcak hava dalgalarında özellikle yaşlılar ve kalp hastaları için ölümcül olabileceği belirtiliyor."
+  },
+  {
+   "no": 45,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-1",
+   "metin": "The word \"otherwise\" in the passage is closest in meaning to ----.",
+   "secenekler": [
+    "therefore",
+    "in different circumstances",
+    "similarly",
+    "fortunately",
+    "rarely"
+   ],
+   "cevap": "B",
+   "cozum": "\"which would otherwise cool the air\" = (ağaçlar olsaydı) aksi hâlde havayı serinletecek bitki örtüsü."
+  },
+  {
+   "no": 46,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-1",
+   "metin": "Which of the following is NOT mentioned in the passage as a way to reduce the effect?",
+   "secenekler": [
+    "Painting roofs white",
+    "Planting trees",
+    "Using materials that let water soak into the ground",
+    "Installing more air conditioners",
+    "Replacing traditional pavements"
+   ],
+   "cevap": "D",
+   "cozum": "Klimalar etkiyi azaltan değil, artıran unsurlar arasında sayılıyor."
+  },
+  {
+   "no": 47,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-2",
+   "metin": "The passage mainly discusses ----.",
+   "secenekler": [
+    "the evolution of worm-like creatures",
+    "the intelligence of octopuses and its unusual characteristics",
+    "how aquariums prevent animals from escaping",
+    "the life cycle of mammals and birds",
+    "why invertebrates have short lives"
+   ],
+   "cevap": "B",
+   "cozum": "Parçanın tamamı ahtapot zekâsını ve onun alışılmadık özelliklerini anlatıyor."
+  },
+  {
+   "no": 48,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-2",
+   "metin": "According to the passage, octopus intelligence is remarkable because ----.",
+   "secenekler": [
+    "octopuses learn faster than any vertebrate",
+    "it developed separately from that of mammals and birds",
+    "it was inherited directly from humans' ancestors",
+    "octopuses have larger brains than birds",
+    "it depends entirely on their brain"
+   ],
+   "cevap": "B",
+   "cozum": "\"it evolved independently from that of mammals and birds\" ifadesi doğrudan bunu söylüyor."
+  },
+  {
+   "no": 49,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-2",
+   "metin": "It can be understood from the passage that an octopus's arms ----.",
+   "secenekler": [
+    "contain fewer neurons than its brain",
+    "are capable of acting partly on their own",
+    "are supported by a flexible skeleton",
+    "cannot sense taste",
+    "have no role in decision-making"
+   ],
+   "cevap": "B",
+   "cozum": "Kolların tat alabildiği, dokunabildiği ve bazı kararları kendi başına verebildiği söyleniyor."
+  },
+  {
+   "no": 50,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-2",
+   "metin": "According to the passage, the short lifespan of most octopus species ----.",
+   "secenekler": [
+    "explains why they evolved a nervous system in their arms",
+    "makes them more intelligent than vertebrates",
+    "allows them to escape from aquariums",
+    "is the result of their flexible bodies",
+    "limits the time they have to learn from experience"
+   ],
+   "cevap": "E",
+   "cozum": "Son cümle: kısa ömür, deneyimden öğrenmeye çok az zaman bırakır."
+  },
+  {
+   "no": 51,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-3",
+   "metin": "According to the passage, in clinical trials a new medicine ----.",
+   "secenekler": [
+    "is always tested without a placebo group",
+    "has to be more effective than a placebo to be approved",
+    "must contain no active ingredients",
+    "is approved if patients report feeling better",
+    "is compared only with other new medicines"
+   ],
+   "cevap": "B",
+   "cozum": "\"a new medicine must perform better than a placebo before it can be approved\""
+  },
+  {
+   "no": 52,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-3",
+   "metin": "It is stated in the passage that brain imaging studies have shown that ----.",
+   "secenekler": [
+    "sugar pills contain small amounts of painkillers",
+    "the placebo effect only occurs in patients receiving injections",
+    "doctors can no longer use placebos",
+    "patients who deceive doctors feel better",
+    "expecting relief can cause the brain to release natural painkillers"
+   ],
+   "cevap": "E",
+   "cozum": "Beyin görüntüleme çalışmaları rahatlama beklentisinin doğal ağrı kesicileri tetiklediğini gösteriyor."
+  },
+  {
+   "no": 53,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-3",
+   "metin": "Which of the following can be inferred from the passage about the placebo effect?",
+   "secenekler": [
+    "It has been proven to cure serious diseases.",
+    "Doctors have always considered it useful.",
+    "The appearance of a treatment can influence how effective it seems.",
+    "It is weaker when patients take more pills.",
+    "It occurs only when patients are deceived."
+   ],
+   "cevap": "C",
+   "cozum": "İğnenin haptan, iki hapın tek haptan daha etkili görünmesi tedavinin görünüşünün önemli olduğunu gösterir."
+  },
+  {
+   "no": 54,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-3",
+   "metin": "The author's attitude toward the placebo effect can best be described as ----.",
+   "secenekler": [
+    "completely dismissive",
+    "strongly critical of doctors",
+    "interested and open to its possible uses",
+    "fearful of its dangers",
+    "indifferent to new research"
+   ],
+   "cevap": "C",
+   "cozum": "Yazar etkiyi merakla ele alıyor ve olası faydalı kullanımlarını tartışıyor."
+  },
+  {
+   "no": 55,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-4",
+   "metin": "According to the passage, before 2020 ----.",
+   "secenekler": [
+    "most office jobs were done remotely",
+    "companies preferred employees to work from home",
+    "hybrid models were the most common arrangement",
+    "only a limited number of employees could work from home",
+    "employers worried about team spirit"
+   ],
+   "cevap": "D",
+   "cozum": "\"working from home was a privilege enjoyed by a relatively small number of employees\""
+  },
+  {
+   "no": 56,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-4",
+   "metin": "The main reason employees value working from home is that ----.",
+   "secenekler": [
+    "it improves team spirit",
+    "it makes training easier",
+    "their employers pay them more",
+    "they can work longer hours",
+    "it saves them commuting time and costs"
+   ],
+   "cevap": "E",
+   "cozum": "\"mainly because it saves them the time and cost of commuting\""
+  },
+  {
+   "no": 57,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-4",
+   "metin": "It is stated in the passage that some employers are concerned that remote work ----.",
+   "secenekler": [
+    "increases office costs",
+    "reduces employees' flexibility",
+    "leads to longer commutes",
+    "is available to too few workers",
+    "makes it more difficult to train new staff"
+   ],
+   "cevap": "E",
+   "cozum": "\"others worry that remote work … makes it harder to train new staff\""
+  },
+  {
+   "no": 58,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-4",
+   "metin": "The author believes that ----.",
+   "secenekler": [
+    "the five-day office week is unlikely to return for all workers",
+    "the hybrid model will definitely become permanent",
+    "remote work will soon be banned",
+    "all employers prefer remote work",
+    "working from home reduces productivity in every case"
+   ],
+   "cevap": "A",
+   "cozum": "Son cümle: geleneksel beş günlük ofis haftasının herkes için geri dönmesi olası görünmüyor."
+  },
+  {
+   "no": 59,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-5",
+   "metin": "According to the legend mentioned in the passage, coffee was discovered when ----.",
+   "secenekler": [
+    "merchants brought it from Yemen to Ethiopia",
+    "scientists in Vienna tested a new drink",
+    "critics warned that it was dangerous",
+    "a herder noticed the effect of the berries on his goats",
+    "a coffee house opened in London"
+   ],
+   "cevap": "D",
+   "cozum": "Efsaneye göre keçi çobanı, meyveleri yiyen keçilerinin enerjik olduğunu fark etmiştir."
+  },
+  {
+   "no": 60,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-5",
+   "metin": "It can be understood from the passage that coffee houses in the Middle East ----.",
+   "secenekler": [
+    "were banned in the fifteenth century",
+    "served as places for social interaction",
+    "were mainly used by scientists",
+    "sold only Ethiopian coffee",
+    "were regarded with suspicion by critics"
+   ],
+   "cevap": "B",
+   "cozum": "Kahvehaneler insanların sohbet edip müzik dinlediği, haberleri konuştuğu sosyal merkezlerdi."
+  },
+  {
+   "no": 61,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-5",
+   "metin": "According to the passage, when coffee first arrived in Europe ----.",
+   "secenekler": [
+    "some people were suspicious of it",
+    "it was immediately popular with all critics",
+    "it was grown in London and Vienna",
+    "it was cheaper than in the Middle East",
+    "it replaced tea as the main drink"
+   ],
+   "cevap": "A",
+   "cozum": "\"it was at first regarded with suspicion\""
+  },
+  {
+   "no": 62,
+   "bolum": "okuma",
+   "konu": "Okuma",
+   "yonerge": "For these questions, answer the questions according to the passage.",
+   "grup": "okuma-5",
+   "metin": "Which of the following is true according to the passage?",
+   "secenekler": [
+    "Coffee is now cultivated in more than seventy countries.",
+    "The legend of the goat herder has been proven true.",
+    "Coffee reached Europe before the Middle East.",
+    "Coffee houses in Europe were places only for merchants.",
+    "Yemen was the first country to trade coffee with Ethiopia."
+   ],
+   "cevap": "A",
+   "cozum": "Son cümle: kahve bugün yetmişten fazla ülkede yetiştiriliyor."
+  },
+  {
+   "no": 63,
+   "bolum": "diyalog",
+   "konu": "Diyalog Tamamlama",
+   "yonerge": "For these questions, choose the most appropriate option to complete the dialogue.",
+   "grup": null,
+   "metin": "Emma: I've been offered a job in another city, but I'm not sure whether to accept it.\nTom: ----\nEmma: The salary is much better, but I would have to leave all my friends behind.",
+   "secenekler": [
+    "When did you start working at your current company?",
+    "I moved to this city three years ago.",
+    "What are the advantages and disadvantages of moving?",
+    "Have you already signed the contract?",
+    "Congratulations on your promotion!"
+   ],
+   "cevap": "C",
+   "cozum": "Emma'nın cevabı bir artı (maaş) ve bir eksi (arkadaşlar) sayıyor; soru da bunu sormalı."
+  },
+  {
+   "no": 64,
+   "bolum": "diyalog",
+   "konu": "Diyalog Tamamlama",
+   "yonerge": "For these questions, choose the most appropriate option to complete the dialogue.",
+   "grup": null,
+   "metin": "Customer: Excuse me, I bought this jacket last week, but the zip broke the first time I wore it.\nAssistant: ----\nCustomer: Yes, here it is. I paid by credit card.",
+   "secenekler": [
+    "I'm sorry about that. Do you have your receipt?",
+    "This jacket is very popular this season.",
+    "Would you like to try it in a larger size?",
+    "We are closing in ten minutes.",
+    "Did you wash it at a high temperature?"
+   ],
+   "cevap": "A",
+   "cozum": "\"Yes, here it is. I paid by credit card.\" fiş istendiğini gösteriyor."
+  },
+  {
+   "no": 65,
+   "bolum": "diyalog",
+   "konu": "Diyalog Tamamlama",
+   "yonerge": "For these questions, choose the most appropriate option to complete the dialogue.",
+   "grup": null,
+   "metin": "Student: Professor, could I have a few more days to finish my essay?\nProfessor: ----\nStudent: I had the flu last week and couldn't work at all.",
+   "secenekler": [
+    "The essay should be about two thousand words long.",
+    "You can submit it by email.",
+    "Is there a particular reason you need an extension?",
+    "I've already marked the other students' essays.",
+    "Your last essay was excellent."
+   ],
+   "cevap": "C",
+   "cozum": "Öğrenci bir neden açıklıyor; profesör ek süre isteğinin nedenini sormalı."
+  },
+  {
+   "no": 66,
+   "bolum": "diyalog",
+   "konu": "Diyalog Tamamlama",
+   "yonerge": "For these questions, choose the most appropriate option to complete the dialogue.",
+   "grup": null,
+   "metin": "Sarah: I can't believe how expensive concert tickets have become.\nMike: I know. ----\nSarah: Exactly. Most students simply can't afford to go anymore.",
+   "secenekler": [
+    "I'd rather stay at home and listen to music.",
+    "The band is going on tour next summer.",
+    "I bought my ticket online yesterday.",
+    "Prices have almost doubled in the last few years.",
+    "The concert was cancelled because of the rain."
+   ],
+   "cevap": "D",
+   "cozum": "Sarah \"Exactly\" diyerek fiyat artışı fikrini onaylıyor."
+  },
+  {
+   "no": 67,
+   "bolum": "diyalog",
+   "konu": "Diyalog Tamamlama",
+   "yonerge": "For these questions, choose the most appropriate option to complete the dialogue.",
+   "grup": null,
+   "metin": "Doctor: How long have you had this pain in your back?\nPatient: ----\nDoctor: In that case, I'd like you to have an X-ray to make sure nothing is broken.",
+   "secenekler": [
+    "I usually take a painkiller when it hurts.",
+    "I've never had any problems with my health.",
+    "My father had the same problem.",
+    "I'd prefer not to take any medicine.",
+    "Since I fell off my bike about two weeks ago."
+   ],
+   "cevap": "E",
+   "cozum": "Doktor süreyi soruyor ve kırık ihtimaline göre röntgen istiyor: düşmeden beri."
+  },
+  {
+   "no": 68,
+   "bolum": "diyalog",
+   "konu": "Diyalog Tamamlama",
+   "yonerge": "For these questions, choose the most appropriate option to complete the dialogue.",
+   "grup": null,
+   "metin": "Anna: Did you hear that the library is going to stay open until midnight during the exam period?\nBen: ----\nAnna: Yes, the announcement was on the university website this morning.",
+   "secenekler": [
+    "I usually study at home in the evenings.",
+    "The library has a great collection of books.",
+    "I hope the exams will be easy this year.",
+    "Really? Are you sure about that?",
+    "Why did they close the library early?"
+   ],
+   "cevap": "D",
+   "cozum": "Anna \"Yes\" diyerek haberin kaynağını veriyor; Ben emin olup olmadığını sormuş olmalı."
+  },
+  {
+   "no": 69,
+   "bolum": "yakin",
+   "konu": "Anlamca En Yakın Cümle",
+   "yonerge": "For these questions, choose the sentence that is closest in meaning to the given sentence.",
+   "grup": null,
+   "metin": "The project would not have been completed on time without the help of volunteers.",
+   "secenekler": [
+    "The volunteers were unable to help because the project had already been completed.",
+    "It was thanks to the volunteers' help that the project was finished on time.",
+    "Although volunteers helped, the project was not finished on time.",
+    "The project was completed on time, but the volunteers did not take part in it.",
+    "Volunteers will be needed if the project is to be completed on time."
+   ],
+   "cevap": "B",
+   "cozum": "Gönüllüler olmasaydı proje zamanında bitmezdi = gönüllüler sayesinde zamanında bitti."
+  },
+  {
+   "no": 70,
+   "bolum": "yakin",
+   "konu": "Anlamca En Yakın Cümle",
+   "yonerge": "For these questions, choose the sentence that is closest in meaning to the given sentence.",
+   "grup": null,
+   "metin": "No sooner had the meeting started than the fire alarm went off.",
+   "secenekler": [
+    "The fire alarm went off immediately after the meeting had started.",
+    "The meeting was cancelled because the fire alarm went off.",
+    "The fire alarm had gone off before the meeting started.",
+    "The meeting started late because of a problem with the fire alarm.",
+    "Nobody heard the fire alarm during the meeting."
+   ],
+   "cevap": "A",
+   "cozum": "\"No sooner … than\" = … -er -mez."
+  },
+  {
+   "no": 71,
+   "bolum": "yakin",
+   "konu": "Anlamca En Yakın Cümle",
+   "yonerge": "For these questions, choose the sentence that is closest in meaning to the given sentence.",
+   "grup": null,
+   "metin": "It is unlikely that the price of oil will fall significantly in the near future.",
+   "secenekler": [
+    "Oil prices are certain to rise sharply next year.",
+    "The price of oil has fallen significantly in recent months.",
+    "Experts disagree about why oil prices have fallen.",
+    "Oil prices will fall slightly but then rise again.",
+    "The price of oil probably won't drop much in the near future."
+   ],
+   "cevap": "E",
+   "cozum": "\"It is unlikely that … will fall significantly\" = muhtemelen çok düşmeyecek."
+  },
+  {
+   "no": 72,
+   "bolum": "yakin",
+   "konu": "Anlamca En Yakın Cümle",
+   "yonerge": "For these questions, choose the sentence that is closest in meaning to the given sentence.",
+   "grup": null,
+   "metin": "Despite having lived in Spain for ten years, he still finds it difficult to speak Spanish fluently.",
+   "secenekler": [
+    "Since he has lived in Spain for ten years, he speaks Spanish fluently.",
+    "He moved to Spain ten years ago in order to learn to speak Spanish fluently.",
+    "He found Spanish difficult, so he left Spain after ten years.",
+    "Living in Spain for ten years made it easy for him to speak Spanish.",
+    "Although he has lived in Spain for ten years, speaking Spanish fluently is still hard for him."
+   ],
+   "cevap": "E",
+   "cozum": "Zıtlık korunmalı: on yıldır İspanya'da yaşamasına rağmen akıcı konuşmak hâlâ zor."
+  },
+  {
+   "no": 73,
+   "bolum": "yakin",
+   "konu": "Anlamca En Yakın Cümle",
+   "yonerge": "For these questions, choose the sentence that is closest in meaning to the given sentence.",
+   "grup": null,
+   "metin": "The museum is so popular that visitors are advised to book their tickets in advance.",
+   "secenekler": [
+    "Visitors who book tickets in advance are not allowed to enter the museum.",
+    "The museum is not very popular, so tickets are always available.",
+    "Because the museum attracts so many visitors, people are recommended to buy tickets beforehand.",
+    "Although the museum is popular, there is no need to book tickets.",
+    "Tickets for the museum can only be bought on the day of the visit."
+   ],
+   "cevap": "C",
+   "cozum": "Sebep-sonuç aynı: müze çok popüler olduğu için önceden bilet alınması öneriliyor."
+  },
+  {
+   "no": 74,
+   "bolum": "yakin",
+   "konu": "Anlamca En Yakın Cümle",
+   "yonerge": "For these questions, choose the sentence that is closest in meaning to the given sentence.",
+   "grup": null,
+   "metin": "Had she known about the traffic, she would have left home earlier.",
+   "secenekler": [
+    "She didn't leave home earlier because she wasn't aware of the traffic.",
+    "She left home early because she knew about the traffic.",
+    "She knew about the traffic but decided to leave home later.",
+    "If there is traffic, she will leave home earlier.",
+    "She always leaves home early to avoid the traffic."
+   ],
+   "cevap": "A",
+   "cozum": "Devrik 3. tip koşul geçmişteki gerçeğin tersini anlatır: trafiği bilmiyordu, erken çıkmadı."
+  },
+  {
+   "no": 75,
+   "bolum": "bozan",
+   "konu": "Anlam Bütünlüğünü Bozan Cümle",
+   "yonerge": "For these questions, choose the irrelevant sentence in the passage.",
+   "grup": null,
+   "metin": "(I) Bamboo is one of the fastest-growing plants in the world, with some species growing almost a metre in a single day. (II) Because of its strength and flexibility, it has been used as a building material in Asia for thousands of years. (III) Pandas, which feed almost entirely on bamboo, are found in the mountains of central China. (IV) Today, bamboo is increasingly used to make floors, furniture and even bicycles. (V) As it grows quickly and requires little water, it is considered a more sustainable material than many types of wood.",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "C",
+   "cozum": "Parça bambunun malzeme olarak kullanımını anlatıyor; pandaların yaşadığı yer konu dışıdır."
+  },
+  {
+   "no": 76,
+   "bolum": "bozan",
+   "konu": "Anlam Bütünlüğünü Bozan Cümle",
+   "yonerge": "For these questions, choose the irrelevant sentence in the passage.",
+   "grup": null,
+   "metin": "(I) Recycling plastic is more difficult than many people assume. (II) Plastic was first produced on a large scale in the 1950s. (III) There are many different types of plastic, and most of them cannot be recycled together. (IV) Even when plastic is collected separately, it is often contaminated with food or other materials. (V) As a result, only a small proportion of the plastic we throw away is actually turned into new products.",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "B",
+   "cozum": "Parça geri dönüşümün zorluğunu anlatıyor; plastiğin tarihçesi konu dışıdır."
+  },
+  {
+   "no": 77,
+   "bolum": "bozan",
+   "konu": "Anlam Bütünlüğünü Bozan Cümle",
+   "yonerge": "For these questions, choose the irrelevant sentence in the passage.",
+   "grup": null,
+   "metin": "(I) Volcanic eruptions can have effects far beyond the area around the volcano. (II) Large eruptions release huge amounts of ash and gases into the upper atmosphere. (III) These particles can block sunlight and lower global temperatures for several years. (IV) In 1816, for example, after a major eruption in Indonesia, Europe experienced a \"year without a summer\". (V) Many tourists visit volcanoes each year to enjoy the spectacular scenery.",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "E",
+   "cozum": "Parça patlamaların küresel etkisini anlatıyor; turistik ziyaretler konu dışıdır."
+  },
+  {
+   "no": 78,
+   "bolum": "bozan",
+   "konu": "Anlam Bütünlüğünü Bozan Cümle",
+   "yonerge": "For these questions, choose the irrelevant sentence in the passage.",
+   "grup": null,
+   "metin": "(I) Learning a musical instrument has benefits that go beyond music itself. (II) Studies show that children who play an instrument often perform better in mathematics. (III) Practising regularly also teaches patience and self-discipline. (IV) The piano was invented in Italy in the early eighteenth century. (V) Furthermore, playing in a group helps young people develop social skills.",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "D",
+   "cozum": "Parça enstrüman çalmanın faydalarını sıralıyor; piyanonun icadı konu dışıdır."
+  },
+  {
+   "no": 79,
+   "bolum": "bozan",
+   "konu": "Anlam Bütünlüğünü Bozan Cümle",
+   "yonerge": "For these questions, choose the irrelevant sentence in the passage.",
+   "grup": null,
+   "metin": "(I) Sleepwalking is more common in children than in adults. (II) It usually happens during the deepest stage of sleep, in the first few hours of the night. (III) Many people find it easier to fall asleep after drinking a glass of warm milk. (IV) Most children who sleepwalk grow out of it by the time they reach their teenage years. (V) In adults, however, it is sometimes linked to stress or certain medicines.",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "C",
+   "cozum": "Parça uyurgezerliği anlatıyor; sıcak sütle uykuya dalmak konu dışıdır."
+  },
+  {
+   "no": 80,
+   "bolum": "bozan",
+   "konu": "Anlam Bütünlüğünü Bozan Cümle",
+   "yonerge": "For these questions, choose the irrelevant sentence in the passage.",
+   "grup": null,
+   "metin": "(I) The Silk Road was a network of trade routes connecting China with the Mediterranean. (II) Silk is produced by silkworms, which feed on the leaves of mulberry trees. (III) Along these routes, merchants exchanged not only silk but also spices, metals and precious stones. (IV) Ideas, religions and technologies also travelled along the Silk Road. (V) As a result, it played a major role in shaping the cultures of the regions it connected.",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "B",
+   "cozum": "Parça İpek Yolu'nun ticari ve kültürel rolünü anlatıyor; ipeğin üretimi konu dışıdır."
+  }
+ ]
+}

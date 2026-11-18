@@ -362,21 +362,26 @@ def write_outputs(kaynak_id, questions, meta):
 td img{{max-width:380px;border:1px solid #e3e9f1}}td.n{{font-weight:700;width:60px}}img.fig{{max-width:300px}}small{{color:#5f6e80;font-weight:400}}</style></head>
 <body><h1>{html.escape(kaynak_id)} · {len(questions)} soru</h1><p>Sol: kırpılmış görsel · Sağ: metin olarak çıkarılan hâl</p><table>{rows}</table></body></html>''', encoding='utf-8')
 
-    # merge every source into one bank for the panel
-    all_q = []
-    for f in sorted((ROOT / 'data' / 'sorular').glob('*/sorular.json')):
-        all_q.extend(json.loads(f.read_text(encoding='utf-8')))
-    sources = {}
+    return merge_bank()
+
+
+def merge_bank():
+    """Merge every source in data/sorular/ into data/soru-bankasi.{json,js} (the panel reads the .js)."""
+    all_q, gruplar, sources = [], {}, {}
+    for d in sorted(p for p in (ROOT / 'data' / 'sorular').iterdir() if (p / 'sorular.json').exists()):
+        all_q.extend(json.loads((d / 'sorular.json').read_text(encoding='utf-8')))
+        if (d / 'gruplar.json').exists():
+            gruplar.update(json.loads((d / 'gruplar.json').read_text(encoding='utf-8')))
     for q in all_q:
         if q['kaynak'] not in sources:
             mf = ROOT / 'data' / 'sorular' / q['kaynak'] / 'kaynak.json'
             m = json.loads(mf.read_text(encoding='utf-8')) if mf.exists() else {}
-            sources[q['kaynak']] = {'id': q['kaynak'], 'ad': q['kaynak_ad'], 'sinav': q['sinav'], 'tur': m.get('tur', 'banka'), 'dk_soru': m.get('dk_soru', 1.5), 'soru': 0}
+            sources[q['kaynak']] = {'id': q['kaynak'], 'ad': m.get('ad', q['kaynak_ad']), 'sinav': q['sinav'], 'tur': m.get('tur', 'banka'), 'dk_soru': m.get('dk_soru', 1.5), 'soru': 0}
         sources[q['kaynak']]['soru'] += 1
-    bank = {'surum': 1, 'kaynaklar': list(sources.values()), 'sorular': all_q}
+    bank = {'surum': 2, 'kaynaklar': list(sources.values()), 'gruplar': gruplar, 'sorular': all_q}
     data = json.dumps(bank, ensure_ascii=False)
     (ROOT / 'data' / 'soru-bankasi.json').write_text(data, encoding='utf-8')
-    (ROOT / 'data' / 'soru-bankasi.js').write_text('/* tools/soru_cikar.py tarafından üretildi — elle düzenlemeyin */\nwindow.DS_SORU_BANKASI = ' + data + ';\n', encoding='utf-8')
+    (ROOT / 'data' / 'soru-bankasi.js').write_text('/* tools/soru_cikar.py ve tools/soru_ekle.py tarafından üretildi — elle düzenlemeyin */\nwindow.DS_SORU_BANKASI = ' + data + ';\n', encoding='utf-8')
     return len(all_q)
 
 

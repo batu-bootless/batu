@@ -34,6 +34,10 @@
   function stemHtml(text) {
     const t = String(text || '').trim();
     if (!t) return '';
+    if (t.includes('\n')) {
+      return `<p class="ts-dlg">${t.split('\n').map((ln) => { const m = ln.match(/^([^:]{1,24}):\s*(.*)$/); return m ? `<b>${esc(m[1])}:</b> ${esc(m[2])}` : esc(ln); }).join('<br>')}</p>`;
+    }
+    if (/----/.test(t)) return `<p class="stem-b">${esc(t)}</p>`;
     const parts = t.split(/(?<=[.!?…:])\s+(?=[A-ZÇĞİÖŞÜ0-9"“(])/);
     if (parts.length > 1 && /\?$/.test(parts[parts.length - 1])) {
       return `<p>${esc(parts.slice(0, -1).join(' '))}</p><p class="stem-b">${esc(parts[parts.length - 1])}</p>`;
@@ -57,6 +61,24 @@
       content += optsHtml(q.secenekler);
     }
     el.innerHTML = `<div class="ts-qn">${n}.</div><div class="ts-qc">${content}</div><div class="ts-code">[#${esc(code(q))}]</div>`;
+    return el;
+  }
+
+  // "1–6: For these questions, …" box at the start of each section.
+  function yonergeEl(a, b, text) {
+    const el = document.createElement('div');
+    el.className = 'ts-yon';
+    el.innerHTML = `<b>${a === b ? a : `${a} – ${b}`}:</b> ${esc(text)}`;
+    return el;
+  }
+  // Passage for cloze / reading questions; "(17) ----" blanks get this test's question numbers.
+  function passageEl(text, gid, qs, numOf) {
+    const el = document.createElement('div');
+    el.className = 'ts-passage';
+    el.innerHTML = `<p>${esc(text).replace(/\((\d+)\) ----/g, (m, n) => {
+      const q = qs.find((x) => x.grup === gid && String(x.no) === n);
+      return q ? `<b>(${numOf[q.id]}) ----</b>` : '<b>----</b>';
+    })}</p>`;
     return el;
   }
 
@@ -103,7 +125,29 @@
     };
 
     newPage();
-    for (let i = 0; i < qs.length; i++) await place(questionEl(qs[i], i + 1, test.mod || 'metin', base));
+    const groups = (bank && bank.gruplar) || {};
+    const numOf = Object.fromEntries(qs.map((q, i) => [q.id, i + 1]));
+    let prevYon = null, prevGrup = null;
+    for (let i = 0; i < qs.length; i++) {
+      const q = qs[i], qEl = questionEl(q, i + 1, test.mod || 'metin', base);
+      const lead = [];
+      if (q.yonerge && q.yonerge !== prevYon) {
+        let j = i;
+        while (j + 1 < qs.length && qs[j + 1].yonerge === q.yonerge) j++;
+        lead.push(yonergeEl(i + 1, j + 1, q.yonerge));
+      }
+      if (q.grup && q.grup !== prevGrup && groups[q.grup]) lead.push(passageEl(groups[q.grup].metin, q.grup, qs, numOf));
+      prevYon = q.yonerge || null;
+      prevGrup = q.grup || null;
+      if (lead.length) {
+        const unit = document.createElement('div');
+        unit.className = 'ts-unit';
+        lead.concat(qEl).forEach((x) => unit.appendChild(x));
+        await place(unit);
+      } else {
+        await place(qEl);
+      }
+    }
 
     if (test.cevapAnahtari !== false && qs.length) {
       const key = document.createElement('div');

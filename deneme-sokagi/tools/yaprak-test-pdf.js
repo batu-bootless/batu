@@ -6,7 +6,7 @@
 // Hazır test tanımıyla (panelin kaydettiği biçim):
 //   node tools/yaprak-test-pdf.js --test test.json --out test.pdf
 //
-// Seçenekler: --kaynak <id>  --konu "a,b"  --adet N  --mod gorsel|metin  --baslik "..."  --no N
+// Seçenekler: --kaynak <id>  --konu "a,b"  --adet N  --mod gorsel|metin  --baslik "..."  --no N  --ust "DENEME SINAVI"
 //             --karistir (kaynak sırası yerine karışık)  --cevapsiz (cevap anahtarı ekleme)
 const fs = require('fs');
 const path = require('path');
@@ -29,6 +29,7 @@ function fromBank() {
     baslik: arg('baslik', konular.length === 1 ? konular[0] : 'Karma Test'),
     ders: `${qs[0].sinav} · ${dersler.join(' – ')}`,
     no: Number(arg('no', 1)),
+    ust: arg('ust') || undefined,
     mod: arg('mod', 'metin'),
     soruIds: qs.map((q) => q.id),
     cevapAnahtari: !arg('cevapsiz'),
