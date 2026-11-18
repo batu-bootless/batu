@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Şifre Yenile | Deneme Sokağı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>try { var t = localStorage.getItem('ds-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  <link rel="stylesheet" href="panel.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body data-page="reset">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.9 8.3 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.3v.2"/></symbol>
+</defs></svg>
+<div class="auth">
+  <aside class="auth-side" aria-hidden="true">
+    <a class="auth-logo" href="index.html" tabindex="-1"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="9" width="42" height="24" rx="5" fill="#fff"/><path d="M24 33v12" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M11 17h18M11 24h12" stroke="#1e88e5" stroke-width="3.2" stroke-linecap="round"/><path d="M33 15l5 6-5 6" fill="none" stroke="#ffd600" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Deneme<b>Sokağı</b></span></a>
+    <h2>Türkiye'deki tüm sınavlar için <b>tek deneme adresin</b></h2>
+    <ul class="auth-feats">
+      <li><span><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>ÖSYM ve MEB formatında online denemeler</li>
+      <li><span><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Türkiye geneli sıralama ve net analizi</li>
+      <li><span><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Konu eksikleri, yanlış defteri ve çalışma planı</li>
+    </ul>
+    <div class="float-stage">
+      <div class="fcard fc1"><small>Son deneme neti</small><b>87,5</b><span class="up">▲ 3,5</span></div>
+      <div class="fcard fc2"><small>Net gelişimi</small>
+        <svg viewBox="0 0 280 70" preserveAspectRatio="none"><defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e88e5" stop-opacity=".3"/><stop offset="1" stop-color="#1e88e5" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0 60 C20 60 20 52 40 52 S60 47 80 47 S100 54 120 54 S140 38 160 38 S180 33 200 33 S220 27 240 27 S260 16 280 16 L280 70 L0 70Z" fill="url(#fg)"/>
+          <path d="M0 60 C20 60 20 52 40 52 S60 47 80 47 S100 54 120 54 S140 38 160 38 S180 33 200 33 S220 27 240 27 S260 16 280 16" fill="none" stroke="#1e88e5" stroke-width="3" stroke-linecap="round"/></svg></div>
+      <div class="fcard fc3"><small>Ders bazlı netler</small><div class="bars"><i style="--c:#1e88e5;--w:84%"></i><i style="--c:#14a89a;--w:77%"></i><i style="--c:#f0a020;--w:66%"></i><i style="--c:#e2558f;--w:60%"></i></div></div>
+    </div>
+    <p class="auth-side-foot">Deneme Sokağı bağımsız bir eğitim platformudur; ÖSYM, MEB veya YÖK ile bağlantılı değildir.</p>
+  </aside>
+  <main class="auth-main">
+    <div class="auth-top">
+      <a class="auth-logo" href="index.html"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="9" width="42" height="24" rx="5" fill="#1e88e5"/><path d="M24 33v12" stroke="#1e88e5" stroke-width="4" stroke-linecap="round"/><path d="M11 17h18M11 24h12" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><path d="M33 15l5 6-5 6" fill="none" stroke="#ffd600" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Deneme<b>Sokağı</b></span></a>
+      <a class="back" href="index.html"><svg><use href="#i-back"/></svg>Ana sayfa</a>
+    </div>
+    <div class="auth-box" id="authBox">
+      <div id="reqView" style="display:grid;gap:18px">
+        <div><h1>Şifreni mi unuttun?</h1><p class="lead">E-posta adresini yaz, sana şifre yenileme bağlantısı gönderelim.</p></div>
+      <div id="modeNote"></div>
+        <form class="auth-form" id="resetForm" novalidate>
+          <div id="formAlert"></div>
+          <label class="field">E-posta
+            <span class="inp"><svg><use href="#i-mail"/></svg><input class="input" id="email" type="email" autocomplete="email" placeholder="ornek@eposta.com" required></span>
+            <span class="field-err" id="email-err"></span></label>
+          <button class="btn btn-blue btn-block" type="submit" id="submitBtn"><span class="spin"></span><span class="lbl">Bağlantı gönder</span></button>
+        </form>
+        <p class="auth-alt"><a href="giris.html">Giriş sayfasına dön</a></p>
+      </div>
+      <div id="newView" hidden style="display:grid;gap:18px">
+        <div><h1>Yeni şifre belirle</h1><p class="lead">Hesabın için yeni bir şifre seç.</p></div>
+        <form class="auth-form" id="newPwForm" novalidate>
+          <div id="formAlert2"></div>
+          <label class="field">Yeni şifre
+            <span class="inp"><svg><use href="#i-lock"/></svg><input class="input pw" id="password" type="password" autocomplete="new-password" placeholder="En az 8 karakter" required><button class="eye" type="button" data-eye="password" aria-label="Şifreyi göster"><svg><use href="#i-eye"/></svg></button></span>
+            <span class="strength" id="strength" data-s="0" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="field-err" id="password-err"></span></label>
+          <label class="field">Yeni şifre (tekrar)
+            <span class="inp"><svg><use href="#i-lock"/></svg><input class="input pw" id="password2" type="password" autocomplete="new-password" placeholder="Şifreni tekrar yaz" required></span>
+            <span class="field-err" id="password2-err"></span></label>
+          <button class="btn btn-blue btn-block" type="submit" id="submitBtn2"><span class="spin"></span><span class="lbl">Şifreyi güncelle</span></button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="auth-config.js"></script>
+<script src="auth.js"></script>
+<script src="auth-pages.js"></script>
+</body>
+</html>

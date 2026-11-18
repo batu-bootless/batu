@@ -75,7 +75,7 @@ p { margin: 0; }
 .main-nav ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 0; }
 .main-nav li { position: relative; }
 .main-nav > ul > li > a {
-  display: block; padding: 0 50px; line-height: 78px; font-size: 16px; font-weight: 500;
+  display: block; padding: 0 30px; line-height: 78px; font-size: 16px; font-weight: 500;
   letter-spacing: .8px; text-transform: uppercase; color: var(--nav);
 }
 .main-nav > ul > li > a:hover { color: var(--blue); }
@@ -91,8 +91,15 @@ p { margin: 0; }
 .mega a { display: block; font-size: 15px; font-weight: 400; color: var(--nav); padding: 5px 0; white-space: nowrap; }
 .mega a:hover { color: var(--blue); }
 
-.header-icons { display: flex; gap: 28px; margin-right: 13px; }
+.header-icons { display: flex; gap: 22px; margin-left: auto; }
+.header-icons a[href="giris.html"] { display: none; }
 .header-icons svg { width: 25px; height: 25px; fill: none; stroke: var(--blue); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.header-auth { display: flex; align-items: center; gap: 8px; margin-left: 18px; }
+.header-auth a { height: 40px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 999px; font-size: 15px; font-weight: 600; white-space: nowrap; transition: background .2s; }
+.ha-login { color: var(--blue); }
+.ha-login:hover { background: var(--tint); }
+.ha-signup { background: var(--yellow); color: #1a1c1e; }
+.ha-signup:hover { background: #ffe033; }
 .nav-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--nav); margin: 5px 0; transition: .2s; }
 
@@ -405,6 +412,9 @@ h2 { font-size: 32px; line-height: 1.3; color: var(--ink); }
 
 /* ===== Responsive ===== */
 @media (max-width: 1280px) {
+  .main-nav > ul > li > a { padding: 0 16px; }
+  .header-auth { margin-left: 12px; }
+  .ha-login { padding: 0 12px !important; }
   .main-nav > ul > li > a { padding: 0 22px; }
 }
 @media (max-width: 1340px) and (min-width: 1025px) {
@@ -437,6 +447,8 @@ h2 { font-size: 32px; line-height: 1.3; color: var(--ink); }
   .promo-sub { font-size: 20px; }
 }
 @media (max-width: 640px) {
+  .header-auth { display: none; }
+  .header-icons a[href="giris.html"] { display: block; }
   body { font-size: 16px; }
   .header-inner { height: 64px; padding: 0 16px; }
   .main-nav { top: 64px; }
