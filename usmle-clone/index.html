@@ -76,9 +76,9 @@
   <div class="container hero-inner">
     <div class="hero-copy">
       <h1>Trusted USMLE® Question Banks &amp; Educator Resources</h1>
-      <p>For over 20 years, our team of experienced physicians and medical educators has delivered high-quality USMLE practice questions and learning tools. We guide students to success in the classroom, on their exams, and in their careers.</p>
+      <p>For over 20 years, our team of experienced physicians and medical educators has delivered the highest-quality USMLE practice questions and learning tools possible. We guide students to success in the classroom, on their exams, and in their careers.</p>
       <div class="rating">
-        <span class="stars" aria-hidden="true">★★★★<span class="half">★</span></span>
+        <span class="stars" aria-label="4.5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg class="half" viewBox="0 0 24 24"><path class="e" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/><path d="M12 2.5v14.8l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span>
         <a href="#reviews">(31,134)</a>
       </div>
       <h2 class="hero-select">Select Your Exam</h2>
@@ -89,9 +89,32 @@
       </div>
     </div>
 
-    <!-- Laptop mockup (pure CSS/HTML) -->
+    <!-- Laptop mockup: SVG body + HTML screen/keyboard fitted with projective transforms (see script.js) -->
     <div class="laptop" aria-hidden="true">
-      <div class="laptop-screen">
+      <svg class="laptop-body" viewBox="0 0 700 500">
+        <defs>
+          <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd4da"/><stop offset=".35" stop-color="#eceef1"/><stop offset="1" stop-color="#f6f7f9"/></linearGradient>
+          <linearGradient id="lip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9dde2"/><stop offset=".5" stop-color="#aeb5bd"/><stop offset="1" stop-color="#8c949d"/></linearGradient>
+          <radialGradient id="shadow"><stop offset="0" stop-color="#002a6b" stop-opacity=".55"/><stop offset="1" stop-color="#002a6b" stop-opacity="0"/></radialGradient>
+          <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3f46"/><stop offset="1" stop-color="#121417"/></linearGradient>
+        </defs>
+        <ellipse cx="380" cy="470" rx="330" ry="26" fill="url(#shadow)"/>
+        <!-- deck -->
+        <polygon points="232,330 674,354 652,448 15,404" fill="url(#deck)"/>
+        <polygon points="15,404 652,448 647,460 22,416" fill="url(#lip)"/>
+        <polygon points="15,404 22,417 18,412" fill="#9aa2ab"/>
+        <!-- keyboard well -->
+        <polygon points="196,342 650,362 640,414 128,383" fill="#c5cbd2"/>
+        <!-- trackpad -->
+        <polygon points="330,420 470,428 467,444 300,436" fill="#e6e9ec" stroke="#d0d5da" stroke-width="1"/>
+        <!-- hinge -->
+        <polygon points="230,326 672,350 674,356 232,334" fill="#7d858e"/>
+        <!-- lid / bezel -->
+        <polygon points="222,30 677,13 672,352 229,328" fill="url(#bezel)" stroke="#aeb5bd" stroke-width="3" stroke-linejoin="round"/>
+        <!-- glass reflection -->
+        <polygon points="560,18 677,13 674,180" fill="#fff" opacity=".06"/>
+      </svg>
+      <div class="laptop-screen" data-quad="233,44 665,29 659,338 240,316">
         <div class="qb">
           <div class="qb-top"><span>▣ ⚑ ▤</span><span>Item 7 of 40</span><span>⛶ ? ⚙ ◷ 07:47</span></div>
           <div class="qb-body">
@@ -115,8 +138,8 @@
           </div>
           <div class="qb-bottom"><span>⏹ End &nbsp; ⏸ Suspend</span><span>✎ Feedback</span><span>← Previous &nbsp; Next →</span></div>
         </div>
-      </div>
-      <div class="laptop-base"><div class="keys"></div></div>
+        </div>
+      <div class="laptop-keys" data-quad="200,345 646,365 636,410 134,380"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br></div>
     </div>
   </div>
 </section>
