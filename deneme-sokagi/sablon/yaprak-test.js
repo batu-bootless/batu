@@ -8,6 +8,7 @@
   const SITE = 'www.denemesokagi.com';
   const TEXT_PT = 6.4; // question text size in yaprak-test.css (.ts-qc)
   const L5 = ['A', 'B', 'C', 'D', 'E'];
+  const trUp = (s) => String(s || '').toLocaleUpperCase('tr');
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
   // Round badge logo: street sign on a blue disc with a "DENEME SOKAĞI" sign-shaped tag.
@@ -68,14 +69,28 @@
   function yonergeEl(a, b, text) {
     const el = document.createElement('div');
     el.className = 'ts-yon';
-    el.innerHTML = `<b>${a === b ? a : `${a} – ${b}`}:</b> ${esc(text)}`;
+    el.innerHTML = /^soru/i.test(text)
+      ? `<b>${a === b ? `${a}.` : `${a}. – ${b}.`}</b> ${esc(text)}`
+      : `<b>${a === b ? a : `${a} – ${b}`}:</b> ${esc(text)}`;
+    return el;
+  }
+  // Deneme: each test ("TÜRKÇE TESTİ") opens with a bar, as in the printed booklets.
+  function sectionEl(name, count) {
+    const el = document.createElement('div');
+    el.className = 'ts-sec';
+    el.innerHTML = `<b>${esc(trUp(name))} TESTİ</b><span>${count} soru</span>`;
     return el;
   }
   // Passage for cloze / reading questions; "(17) ----" blanks get this test's question numbers.
-  function passageEl(text, gid, qs, numOf) {
+  function passageEl(g, gid, qs, numOf, mode, base) {
     const el = document.createElement('div');
+    if (mode === 'gorsel' && g.gorsel) {
+      el.className = 'ts-passage img';
+      el.innerHTML = `<img src="${esc(base + g.gorsel)}" alt="">`;
+      return el;
+    }
     el.className = 'ts-passage';
-    el.innerHTML = `<p>${esc(text).replace(/\((\d+)\) ----/g, (m, n) => {
+    el.innerHTML = `<p>${esc(g.metin).replace(/\((\d+)\) ----/g, (m, n) => {
       const q = qs.find((x) => x.grup === gid && String(x.no) === n);
       return q ? `<b>(${numOf[q.id]}) ----</b>` : '<b>----</b>';
     })}</p>`;
@@ -83,9 +98,9 @@
   }
 
   const bandHtml = (test) => `<header class="ts-band">${LOGO}
-      <h1 class="ts-title">${esc(test.ust || 'SORU BANKASI')}</h1>
+      <h1 class="ts-title">${esc(test.ust || 'DENEME')}</h1>
       <div class="ts-subject">${esc(test.baslik || test.ders || '')}</div>
-      <div class="ts-test"><span>TEST</span><span>${esc(test.no || 1)}</span></div>
+      <div class="ts-test"><span>${esc(test.rozet || 'TEST')}</span><span>${esc(test.no || 1)}</span></div>
     </header>`;
 
   const ready = (el) => Promise.all([...el.querySelectorAll('img')].map((img) => (img.complete ? Promise.resolve() : new Promise((r) => { img.onload = img.onerror = r; }))));
@@ -125,19 +140,40 @@
     };
 
     newPage();
+    const mode = test.mod || 'metin';
     const groups = (bank && bank.gruplar) || {};
-    const numOf = Object.fromEntries(qs.map((q, i) => [q.id, i + 1]));
-    let prevYon = null, prevGrup = null;
+    // A deneme ("bolumlu") is split into its tests; numbering restarts in each test.
+    const secOf = (q) => (test.bolumlu ? (q.bolum || q.ders || '') : '');
+    const secs = [], numOf = {};
+    for (const q of qs) {
+      if (!secs.length || secs[secs.length - 1].ad !== secOf(q)) secs.push({ ad: secOf(q), qs: [] });
+      const sec = secs[secs.length - 1];
+      sec.qs.push(q);
+      numOf[q.id] = sec.qs.length;
+    }
+    let prevYon = null, prevGrup = null, prevSec = null;
     for (let i = 0; i < qs.length; i++) {
-      const q = qs[i], qEl = questionEl(q, i + 1, test.mod || 'metin', base);
-      const lead = [];
-      if (q.yonerge && q.yonerge !== prevYon) {
-        let j = i;
-        while (j + 1 < qs.length && qs[j + 1].yonerge === q.yonerge) j++;
-        lead.push(yonergeEl(i + 1, j + 1, q.yonerge));
+      const q = qs[i], n = numOf[q.id], qEl = questionEl(q, n, mode, base);
+      const lead = [], sec = secOf(q), g = q.grup ? groups[q.grup] : null;
+      if (test.bolumlu && sec !== prevSec) {
+        if (prevSec !== null) newPage();   // each test starts on a new page
+        lead.push(sectionEl(sec, secs.find((s) => s.ad === sec).qs.length));
+        prevYon = prevGrup = null;
       }
-      if (q.grup && q.grup !== prevGrup && groups[q.grup]) lead.push(passageEl(groups[q.grup].metin, q.grup, qs, numOf));
-      prevYon = q.yonerge || null;
+      prevSec = sec;
+      if (g && g.yonerge) {
+        if (q.grup !== prevGrup) {
+          let j = i;
+          while (j + 1 < qs.length && qs[j + 1].grup === q.grup) j++;
+          lead.push(yonergeEl(n, numOf[qs[j].id], g.yonerge));
+        }
+      } else if (q.yonerge && q.yonerge !== prevYon) {
+        let j = i;
+        while (j + 1 < qs.length && qs[j + 1].yonerge === q.yonerge && secOf(qs[j + 1]) === sec) j++;
+        lead.push(yonergeEl(n, numOf[qs[j].id], q.yonerge));
+      }
+      if (g && q.grup !== prevGrup) lead.push(passageEl(g, q.grup, qs, numOf, mode, base));
+      prevYon = g && g.yonerge ? null : (q.yonerge || null);
       prevGrup = q.grup || null;
       if (lead.length) {
         const unit = document.createElement('div');
@@ -150,11 +186,14 @@
     }
 
     if (test.cevapAnahtari !== false && qs.length) {
-      const key = document.createElement('div');
-      key.className = 'ts-key';
-      key.innerHTML = `<h4>CEVAP ANAHTARI</h4><div class="ts-key-grid">${qs.map((q, i) => `<span>${i + 1}.<b>${esc(q.cevap || '—')}</b></span>`).join('')}</div>` +
-        (qs.some((q) => !q.cevap) ? '<p>— : Kaynakta cevap anahtarı bulunamayan soru.</p>' : '');
-      await place(key);
+      for (const [k, sec] of secs.entries()) {
+        const key = document.createElement('div');
+        key.className = 'ts-key';
+        key.innerHTML = (k === 0 ? '<h4>CEVAP ANAHTARI</h4>' : '') + (sec.ad ? `<h5>${esc(trUp(sec.ad))} TESTİ</h5>` : '') +
+          `<div class="ts-key-grid">${sec.qs.map((q) => `<span>${numOf[q.id]}.<b>${esc(q.cevap || '—')}</b></span>`).join('')}</div>` +
+          (k === secs.length - 1 && qs.some((q) => !q.cevap) ? '<p>— : Kaynakta cevap anahtarı bulunamayan soru.</p>' : '');
+        await place(key);
+      }
     }
 
     pages.forEach((p, i) => { p.querySelector('.ts-pg').textContent = String(i + 1); });
@@ -169,5 +208,12 @@
     return { pages: pages.length, questions: qs.length };
   }
 
-  global.DSYaprakTest = { render, LOGO, code };
+  // Main bank + the optional local-only bank (data/yerel/soru-bankasi.js, never published).
+  function bank() {
+    const a = global.DS_SORU_BANKASI, b = global.DS_SORU_BANKASI_YEREL;
+    if (!a || !b) return a || b || null;
+    return Object.assign({}, a, { kaynaklar: a.kaynaklar.concat(b.kaynaklar), gruplar: Object.assign({}, a.gruplar, b.gruplar), sorular: a.sorular.concat(b.sorular) });
+  }
+
+  global.DSYaprakTest = { render, LOGO, code, bank };
 })(window);

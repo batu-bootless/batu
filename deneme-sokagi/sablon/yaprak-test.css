@@ -1,5 +1,5 @@
-/* Deneme Sokağı — soru bankası / yaprak test PDF şablonu
-   Ölçüler mm cinsinden, A4 (210 × 297). Düzen: ilk sayfada gri başlık bandı (logo, SORU BANKASI,
+/* Deneme Sokağı — yaprak test / deneme PDF şablonu
+   Ölçüler mm cinsinden, A4 (210 × 297). Düzen: ilk sayfada gri başlık bandı (logo, DENEME,
    ders/konu çubuğu, TEST rozeti); iki sütun, aralarında dikey site adresli siyah çizgi;
    soru numarası kendi satırında, metin girintili ve iki yana yaslı; soru kodu sağda; altta site + sayfa rozeti.
    Her şey .ds-doc altında kalır, böylece panel önizlemesi de aynı dosyayı kullanır. */
@@ -64,6 +64,11 @@
 .ts-passage { margin: 0 2.8mm 3.4mm 0; font-size: 6.4pt; line-height: 1.4; text-align: justify; }
 .ts-passage p { margin: 0; }
 .ts-passage b { font-weight: 700; white-space: nowrap; }
+.ts-passage.img { margin-left: 6.9mm; }   /* same scale as the question images */
+.ts-passage.img img { display: block; width: 100%; height: auto; }
+.ts-sec { margin: 0 2.8mm 3.4mm 0; height: 6.2mm; display: flex; align-items: center; justify-content: space-between; padding: 0 2mm 0 1.6mm;
+  border-radius: 1.5mm 0 0 1.5mm; background: var(--ts-magenta); color: #fff; font: 700 9pt/1 "DS Head", sans-serif; letter-spacing: .3pt; }
+.ts-sec span { font-weight: 400; font-size: 7.5pt; letter-spacing: 0; }
 .ts-unit { break-inside: avoid; }
 .ts-dlg { line-height: 1.5; text-align: left; }
 
@@ -73,6 +78,7 @@
   background: var(--ts-bar); color: #fff; font: 700 9pt/1 "DS Head", sans-serif; letter-spacing: .3pt; }
 .ts-key-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2mm 2mm; font: 400 8.1pt/1.4 "DS Head", sans-serif; color: var(--ts-num); }
 .ts-key-grid b { color: var(--ts-magenta); margin-left: 1mm; }
+.ts-key h5 { margin: 2.6mm 0 1.6mm; font: 700 7.6pt/1.2 "DS Head", sans-serif; color: var(--ts-magenta); letter-spacing: .3pt; }
 .ts-key p { margin: 2mm 0 0; font: 400 6.5pt "DS Head", sans-serif; color: var(--ts-code); }
 
 /* ---- footer ---- */

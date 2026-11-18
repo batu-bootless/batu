@@ -25,6 +25,24 @@ Sütunlar, soru numaraları, test/ders/konu başlıkları ve cevap anahtarı oto
 gösterir; yayına almadan önce buradan kontrol edin. Tüm kaynaklar
 `data/soru-bankasi.json` ve `data/soru-bankasi.js` (panelin kullandığı) dosyalarında birleşir.
 
+**Deneme kitapçıkları** da okunur (`--tur deneme`):
+
+```bash
+python3 tools/soru_cikar.py DENEME.pdf --kaynak-id x --kaynak-ad "…" --sinav TYT --tur deneme --sayfalar 3-31 --dk-soru 1.32
+```
+
+- Her testte numara 1'den başlar; test adı ("TYT TÜRKÇE TESTİ") sorunun **bölümü** olur.
+- "Tarih (1-5), Coğrafya (6-10) …" satırından **ders**, "KONU DAĞILIMI" tablosundan **konu** alınır.
+- Sütunlu cevap anahtarı ("TÜRKÇE TESTİ 1. B …") okunur; `--kitapcik A|B` hangi kitapçığın alınacağını seçer.
+- "35. - 36. soruları aşağıdaki parçaya göre cevaplayınız." kutusu ve altındaki parça **ortak paragraf** olur
+  (görsel + metin); "16.-20. soruları …" gibi parçasız kutular o soruların **yönergesi** olur.
+- `--sayfalar` kapak, açıklama ve boş sayfaları atlar; kenardaki dikey yazılar (yayınevi adı) soru metnine girmez.
+
+**`--yerel`**: çıktılar `data/yerel/kaynaklar/<kaynak-id>/` altına, birleşik hâli `data/yerel/soru-bankasi.{json,js}`
+dosyasına yazılır. `data/yerel/` git'e girmez ve yayınlanan sayfalara konmaz; panel ve şablon bu bilgisayarda onu da
+okur (Denemelerim'de "Yalnız test" etiketiyle). Kullanım izni olmayan bir kaynağı yalnızca şablonu ve sistemi
+denemek için böyle kullanın; yayına almak için yayınevinden izin gerekir.
+
 Sınırlar: metin katmanı olan PDF'lerde çalışır; taranmış (yalnızca resim) sayfalar için OCR
 gerekir ve araç bu sayfaları atlayıp uyarır. Sayfa düzeni çok farklı kaynaklarda ayar gerekebilir.
 
@@ -65,7 +83,7 @@ okuması önerilir. Örnek PDF: `ornekler/ds-yds-denemesi-1.pdf`.
 ## 3. Deneme Sokağı PDF'i — `yaprak-test-pdf.js`
 
 `sablon/yaprak-test.html` şablonuyla A4, iki sütunlu, soru bankası dizilimli PDF üretir: ilk sayfada gri
-başlık bandı (logo, SORU BANKASI, konu çubuğu, TEST rozeti), sütunlar arasında dikey site adresli çizgi,
+başlık bandı (logo, DENEME, konu çubuğu, TEST rozeti), sütunlar arasında dikey site adresli çizgi,
 her sorunun altında soru kodu, altta site adresi ve sayfa rozeti, isteğe bağlı cevap anahtarı.
 Yazı tipleri `sablon/fonts/` altında (Liberation Sans: SIL OFL, DejaVu Sans: Bitstream Vera lisansı).
 
@@ -76,7 +94,8 @@ node tools/yaprak-test-pdf.js --test test.json --out test.pdf   # paneldeki test
 ```
 
 Seçenekler: `--kaynak <id>`, `--adet N`, `--mod gorsel|metin`, `--baslik "…"`, `--no N`,
-`--ust "DENEME SINAVI"` (bant başlığı), `--karistir`, `--cevapsiz`. Panelde aynı şablon "Önizle" ve "PDF / Yazdır" ile kullanılır.
+`--ust "…"` (bant başlığı, varsayılan DENEME), `--rozet DENEME` (rozet yazısı, varsayılan TEST),
+`--bolumlu` (deneme düzeni; birden çok testli kaynakta kendiliğinden), `--karistir`, `--cevapsiz`. Panelde aynı şablon "Önizle" ve "PDF / Yazdır" ile kullanılır.
 
 ## 4. Şablon kontrolü — `sablon-kontrol.js`
 

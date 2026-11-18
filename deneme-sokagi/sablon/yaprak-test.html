@@ -25,6 +25,7 @@
   <div id="doc" class="ds-doc preview"></div>
 
   <script src="../data/soru-bankasi.js"></script>
+  <script src="../data/yerel/soru-bankasi.js"></script><!-- yalnızca yerel deneme içerikleri (git dışı); yoksa atlanır -->
   <script src="yaprak-test.js"></script>
   <script>
     (async () => {
@@ -40,14 +41,15 @@
         } catch (e) { test = null; }
       }
       const doc = document.getElementById('doc');
-      if (!test || !window.DS_SORU_BANKASI) {
+      const bank = DSYaprakTest.bank();
+      if (!test || !bank) {
         doc.innerHTML = '<p class="msg">Yaprak test bulunamadı. Paneldeki "Oluşturulan Yaprak Testler" sayfasından bir test seçip tekrar dene.</p>';
         window.__DS_READY__ = true;
         return;
       }
-      document.title = `${test.baslik} | Yaprak Test | Deneme Sokağı`;
+      document.title = `${test.baslik} | ${test.bolumlu ? 'Deneme' : 'Yaprak Test'} | Deneme Sokağı`;
       document.getElementById('barTitle').textContent = `${test.baslik} · ${test.soruIds.length} soru`;
-      await DSYaprakTest.render(doc, test, window.DS_SORU_BANKASI, { base: '../' });
+      await DSYaprakTest.render(doc, test, bank, { base: '../' });
       window.__DS_READY__ = true;
       try {
         if (localStorage.getItem('ds-autoprint') === test.id) { localStorage.removeItem('ds-autoprint'); setTimeout(() => window.print(), 400); }

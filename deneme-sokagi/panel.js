@@ -154,7 +154,7 @@
   const hrs = (m) => `${Math.floor(m / 60)} sa ${m % 60} dk`;
 
   /* ---------------- question bank (tools/soru_cikar.py → data/soru-bankasi.js) ---------------- */
-  const BANK = window.DS_SORU_BANKASI || { kaynaklar: [], sorular: [] };
+  const BANK = (window.DSYaprakTest && window.DSYaprakTest.bank()) || window.DS_SORU_BANKASI || { kaynaklar: [], sorular: [] };
   BANK.byId = Object.fromEntries(BANK.sorular.map((q) => [q.id, q]));
   BANK.src = Object.fromEntries(BANK.kaynaklar.map((k) => [k.id, k]));
   function dersKey(name) {
@@ -168,10 +168,14 @@
   }
   // One question shape for the player: built-in sample questions and bank questions.
   const qItem = (q, i) => q && { s: q.s, t: q.t, o: q.o, a: q.a, sol: q.sol || [], ref: { q: i } };
-  const bankItem = (b) => b && {
-    s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [],
-    a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, yon: b.yonerge,
-    passage: b.grup && BANK.gruplar && BANK.gruplar[b.grup] ? BANK.gruplar[b.grup].metin : null, ref: { bank: b.id },
+  const bankItem = (b) => {
+    if (!b) return null;
+    const g = b.grup && BANK.gruplar ? BANK.gruplar[b.grup] : null;
+    return {
+      s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [],
+      a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, yon: b.yonerge || (g && g.yonerge) || null,
+      passage: g ? g.metin : null, passageImg: g && g.gorsel ? g.gorsel : null, ref: { bank: b.id },
+    };
   };
   const wq = (w) => (w.bank ? bankItem(BANK.byId[w.bank]) : qItem(QUESTIONS[w.q], w.q));
   const minutesFor = (n) => Math.max(5, Math.round(n * 1.5));
@@ -572,10 +576,10 @@
       body = BANK.kaynaklar.filter((k) => k.tur === 'deneme').map((k) => {
         const qs = BANK.sorular.filter((q) => q.kaynak === k.id), fresh = qs.filter((q) => !isSeen(q.id)), r = sonuc[k.id];
         return `<article class="card ex-card">
-          <div class="ex-top"><span class="chip blue">${esc(k.sinav)}</span>${r ? `<span class="chip good">Çözüldü · ${fmt(r.net)} net</span>` : fresh.length === qs.length ? '<span class="chip good">Hemen başlayabilirsin</span>' : `<span class="chip warn">${fresh.length} yeni soru</span>`}</div>
+          <div class="ex-top"><span class="chip blue">${esc(k.sinav)}</span>${k.yerel ? '<span class="chip warn" title="Bu bilgisayardaki yerel deneme; git\'e ve yayına girmez">Yalnız test</span>' : ''}${r ? `<span class="chip good">Çözüldü · ${fmt(r.net)} net</span>` : fresh.length === qs.length ? '<span class="chip good">Hemen başlayabilirsin</span>' : `<span class="chip warn">${fresh.length} yeni soru</span>`}</div>
           <h3>${esc(k.ad)}</h3><p class="small muted">${esc([...new Set(qs.map((q) => q.konu))].join(', '))}</p>
           <div class="ex-meta"><span>${icon('file')}${qs.length} soru</span><span>${icon('clock')}${Math.round(qs.length * k.dk_soru)} dk</span></div>
-          <div class="ex-foot"><span class="small muted">${fresh.length ? 'Daha önce gördüğün sorular gelmez' : 'Tüm sorularını gördün'}</span>${fresh.length ? `<button class="btn btn-yellow btn-sm btn-play" data-action="bank-deneme" data-id="${esc(k.id)}">${icon('play')} Başla</button>` : '<button class="btn btn-ghost btn-sm" disabled>Tamamlandı</button>'}</div>
+          <div class="ex-foot"><span class="small muted">${fresh.length ? 'Daha önce gördüğün sorular gelmez' : 'Tüm sorularını gördün'}</span><span class="btn-pair"><button class="btn btn-ghost btn-sm" data-action="bank-deneme-pdf" data-id="${esc(k.id)}" title="Deneme şablonunda PDF">${icon('file')} PDF</button>${fresh.length ? `<button class="btn btn-yellow btn-sm btn-play" data-action="bank-deneme" data-id="${esc(k.id)}">${icon('play')} Başla</button>` : '<button class="btn btn-ghost btn-sm" disabled>Tamamlandı</button>'}</span></div>
         </article>`;
       }).join('') + PRACTICE.map((p) => `<article class="card ex-card">
         <div class="ex-top"><span class="chip blue">${p.type}</span>${p.play ? '<span class="chip good">Hemen başlayabilirsin</span>' : ''}</div>
@@ -1015,6 +1019,18 @@
       </section>
     </div>`;
   }
+  // The whole deneme in the Deneme Sokağı template: one part per test, answer key at the end.
+  function bankDenemePdf(id) {
+    const k = BANK.src[id];
+    if (!k) return;
+    const qs = BANK.sorular.filter((q) => q.kaynak === id).sort((a, b) => a.sira - b.sira);
+    const test = {
+      id: 'dn-' + id, baslik: k.ad, ders: k.sinav, no: 1, ust: 'DENEME', rozet: 'DENEME', mod: 'gorsel',
+      bolumlu: new Set(qs.map((q) => q.bolum).filter(Boolean)).size > 1, soruIds: qs.map((q) => q.id), cevapAnahtari: true,
+    };
+    try { localStorage.setItem('ds-yaprak-tests-deneme', JSON.stringify([test])); } catch (e) { return toast('Tarayıcı depolaması kapalı; PDF açılamadı'); }
+    downloadTest(test, false);
+  }
   function startBankDeneme(id) {
     const k = BANK.src[id];
     if (!k) return;
@@ -1187,6 +1203,7 @@
       case 'yt-solve': return solveTest(a.dataset.id);
       case 'yt-pdf': { const t = ytests.find((x) => x.id === a.dataset.id); return t && downloadTest(t); }
       case 'bank-deneme': return startBankDeneme(a.dataset.id);
+      case 'bank-deneme-pdf': return bankDenemePdf(a.dataset.id);
       case 'yt-del': {
         if (!a.dataset.armed) {
           a.dataset.armed = '1'; a.classList.add('armed'); a.textContent = 'Silmek için tekrar tıkla';
@@ -1247,9 +1264,10 @@
     $('#plTimer span').textContent = fmtT(st.left);
     st.timer = setInterval(tick, 1000);
     const asImage = (q) => mode === 'gorsel' && q.img;
-    const lead = (q) => `${q.yon ? `<p class="pl-yon">${esc(q.yon)}</p>` : ''}${q.passage ? `<div class="pl-passage">${esc(q.passage).replace(/\((\d+)\) ----/g, (m, n) => (+n === q.no ? '<mark>----</mark>' : '----'))}</div>` : ''}`;
+    const yonText = (y) => y.replace(/^soruları/i, 'Bu soruları');   // "35. – 36. soruları …" without the numbers
+    const lead = (q, img) => `${q.yon ? `<p class="pl-yon">${esc(yonText(q.yon))}</p>` : ''}${img && q.passageImg ? `<img class="pl-img pl-pimg" src="${esc(q.passageImg)}" alt="Paragraf">` : q.passage ? `<div class="pl-passage">${esc(q.passage).replace(/\((\d+)\) ----/g, (m, n) => (+n === q.no ? '<mark>----</mark>' : '----'))}</div>` : ''}`;
     const body = (q) => {
-      if (asImage(q)) return `<img class="pl-img" src="${esc(q.img)}" alt="Soru ${st.cur + 1}">`;
+      if (asImage(q)) return lead(q, true) + `<img class="pl-img" src="${esc(q.img)}" alt="Soru ${st.cur + 1}">`;
       if (q.fig) return `${q.ust ? `<p class="pl-text">${esc(q.ust)}</p>` : ''}<img class="pl-fig" src="${esc(q.fig)}" alt="Şekil">${q.alt ? `<p class="pl-text">${esc(q.alt)}</p>` : ''}`;
       return lead(q) + (q.t ? `<p class="pl-text">${esc(q.t)}</p>` : '<p class="pl-text muted">Paragrafta işaretli boşluğa gelecek seçeneği bul.</p>');
     };

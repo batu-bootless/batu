@@ -13,7 +13,7 @@ const TOL = 0.6; // mm
 const REF = {
   'bant yüksekliği': 27.6,
   'logo sol': 16.3, 'logo üst': 4.3, 'logo boyu': 20.3,
-  'SORU BANKASI sol': 45.3,
+  'Başlık (DENEME) sol': 45.3,
   'konu çubuğu sol': 106.9, 'konu çubuğu üst': 18.3, 'konu çubuğu sağ': 207.8,
   'TEST rozeti sol': 173.6, 'TEST rozeti üst': 2.0,
   'sütun çizgisi sol': 106.1, 'sütun çizgisi genişliği': 0.6, 'sütun çizgisi üst': 30.5,
@@ -45,7 +45,7 @@ const REF = {
     return {
       'bant yüksekliği': r('.ts-band').h,
       'logo sol': r('.ts-logo').l, 'logo üst': r('.ts-logo').t, 'logo boyu': r('.ts-logo').w,
-      'SORU BANKASI sol': r('.ts-title').l,
+      'Başlık (DENEME) sol': r('.ts-title').l,
       'konu çubuğu sol': r('.ts-subject').l, 'konu çubuğu üst': r('.ts-subject').t, 'konu çubuğu sağ': r('.ts-subject').r,
       'TEST rozeti sol': r('.ts-test').l, 'TEST rozeti üst': r('.ts-test').t,
       'sütun çizgisi sol': r('.ts-rule').l, 'sütun çizgisi genişliği': r('.ts-rule').w, 'sütun çizgisi üst': r('.ts-rule').t,

@@ -13,6 +13,7 @@ tarayıcıda) açın.
 - `sablon/` — Deneme Sokağı yaprak test şablonu (A4, iki sütun, soru bankası dizilimi)
 - `data/` — soru bankası (`tools/soru_cikar.py` ile PDF'ten çıkarılır, `tools/soru_ekle.py` ile yazılı sorulardan eklenir)
 - `icerik/` — Deneme Sokağı için yazılmış özgün sorular (ör. 80 soruluk YDS Denemesi 1)
+- `data/yerel/` — yalnızca bu bilgisayarda deneme amaçlı kullanılan kaynaklar (`soru_cikar.py --yerel`); git'e ve yayına girmez
 - `tools/` — soru çıkarma ve PDF üretme araçları (ayrıntılar: `tools/README.md`)
 - `ornekler/` — şablonla üretilmiş örnek PDF'ler
 

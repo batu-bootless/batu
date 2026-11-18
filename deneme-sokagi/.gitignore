@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+# yalnızca yerel deneme içindir (izinsiz kaynaklar) — git ve yayına girmez
+data/yerel/

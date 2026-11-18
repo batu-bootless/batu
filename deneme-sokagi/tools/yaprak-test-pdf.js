@@ -6,7 +6,8 @@
 // Hazır test tanımıyla (panelin kaydettiği biçim):
 //   node tools/yaprak-test-pdf.js --test test.json --out test.pdf
 //
-// Seçenekler: --kaynak <id>  --konu "a,b"  --adet N  --mod gorsel|metin  --baslik "..."  --no N  --ust "DENEME SINAVI"
+// Seçenekler: --kaynak <id>  --konu "a,b"  --adet N  --mod gorsel|metin  --baslik "..."  --no N  --ust "DENEME"  --rozet DENEME
+//             --bolumlu (deneme: her test yeni sayfada, numara her testte 1'den; birden çok test varsa kendiliğinden açılır)
 //             --karistir (kaynak sırası yerine karışık)  --cevapsiz (cevap anahtarı ekleme)
 const fs = require('fs');
 const path = require('path');
@@ -17,6 +18,8 @@ const arg = (name, def) => { const i = process.argv.indexOf('--' + name); return
 
 function fromBank() {
   const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/soru-bankasi.json'), 'utf8'));
+  const yerel = path.join(ROOT, 'data/yerel/soru-bankasi.json');   // local-only sources (git-ignored)
+  if (fs.existsSync(yerel)) bank.sorular = bank.sorular.concat(JSON.parse(fs.readFileSync(yerel, 'utf8')).sorular);
   const konular = String(arg('konu', '')).split(',').map((s) => s.trim()).filter(Boolean);
   let qs = bank.sorular.filter((q) => (!arg('kaynak') || q.kaynak === arg('kaynak')) && (!konular.length || konular.includes(q.konu)));
   qs.sort((a, b) => a.sira - b.sira);                        // keep the question bank's own order
@@ -30,6 +33,8 @@ function fromBank() {
     ders: `${qs[0].sinav} · ${dersler.join(' – ')}`,
     no: Number(arg('no', 1)),
     ust: arg('ust') || undefined,
+    rozet: arg('rozet') || undefined,
+    bolumlu: Boolean(arg('bolumlu')) || new Set(qs.map((q) => q.bolum).filter(Boolean)).size > 1,
     mod: arg('mod', 'metin'),
     soruIds: qs.map((q) => q.id),
     cevapAnahtari: !arg('cevapsiz'),
