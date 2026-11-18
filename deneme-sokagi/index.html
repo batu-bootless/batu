@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deneme Sokağı | Türkiye'deki Tüm Sınavlar İçin Deneme Platformu</title>
+  <meta name="description" content="YKS, LGS, KPSS, ALES, DGS, YDS, TUS ve daha fazlası: Türkiye'deki tüm sınavlar için ÖSYM ve MEB formatında online denemeler, Türkiye geneli sıralama ve detaylı net analizi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#" aria-label="Deneme Sokağı ana sayfa">
+      <!-- Logo işareti: sokak tabelası -->
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="3" y="9" width="42" height="24" rx="5" fill="currentColor"/>
+        <path d="M24 33v12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+        <path d="M11 17h18M11 24h12" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M33 15l5 6-5 6" fill="none" stroke="#ffd600" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-word">Deneme<b>Sokağı</b></span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" aria-label="Ana menü">
+      <ul>
+        <li class="has-menu">
+          <a href="#sinavlar">Sınavlar</a>
+          <div class="mega">
+            <div><h4>Lise &amp; Üniversite</h4><a href="#yks">YKS (TYT · AYT · YDT)</a><a href="#lgs">LGS</a><a href="#sinavlar">MSÜ</a></div>
+            <div><h4>Kamu</h4><a href="#kpss">KPSS</a><a href="#sinavlar">ÖABT</a><a href="#sinavlar">EKPSS</a><a href="#sinavlar">MEB-AGS</a></div>
+            <div><h4>Akademik &amp; Mesleki</h4><a href="#sinavlar">ALES</a><a href="#sinavlar">DGS</a><a href="#sinavlar">YDS · YÖKDİL</a><a href="#sinavlar">TUS · DUS</a><a href="#sinavlar">HMGS</a></div>
+          </div>
+        </li>
+        <li class="has-menu">
+          <a href="#neden">Neden Biz</a>
+          <div class="mega small"><div><a href="#">Türkiye Geneli Deneme</a><a href="#">Eğitmenlerimiz</a><a href="#yorumlar">Başarı Hikâyeleri</a></div></div>
+        </li>
+        <li class="has-menu">
+          <a href="#">Kaynaklar</a>
+          <div class="mega small"><div><a href="#">Sınav Takvimi</a><a href="#">Puan Hesaplama</a><a href="#">Konu Anlatımları</a><a href="#">Blog</a></div></div>
+        </li>
+        <li class="has-menu">
+          <a href="#kurumlar">Kurumlar</a>
+          <div class="mega small"><div><a href="#kurumlar">Okul ve Dershaneler İçin</a><a href="#kurumlar">Kurum Ortağı Ol</a></div></div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-icons">
+      <a href="#" aria-label="Yardım">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.3 9a2.8 2.8 0 0 1 5.4 1c0 2-2.7 2.4-2.7 4"/><circle cx="12" cy="17.6" r=".6" fill="currentColor"/></svg>
+      </a>
+      <a href="#" aria-label="Hesabım">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </a>
+      <a href="#" aria-label="Sepetim">
+        <svg viewBox="0 0 24 24"><rect x="4" y="7.5" width="16" height="13.5" rx="2.5"/><path d="M8.5 10V6.5a3.5 3.5 0 0 1 7 0V10"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-swoosh" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <h1>Türkiye'deki Tüm Sınavlar İçin Online Deneme Sınavları</h1>
+      <p>YKS'den LGS'ye, KPSS'den ALES'e kadar tüm sınavlar tek adreste. Gerçek sınav formatında denemeler çöz, Türkiye geneli sıralamanı gör ve detaylı net analiziyle eksiklerini kapat.</p>
+      <ul class="hero-checks">
+        <li>ÖSYM &amp; MEB formatında</li>
+        <li>Türkiye geneli sıralama</li>
+        <li>Video çözümler</li>
+      </ul>
+      <h2 class="hero-select">Sınavını Seç</h2>
+      <div class="exam-buttons">
+        <a class="btn btn-yellow" href="#yks">YKS</a>
+        <a class="btn btn-yellow" href="#lgs">LGS</a>
+        <a class="btn btn-yellow" href="#kpss">KPSS</a>
+        <a class="btn btn-yellow-outline" href="#sinavlar">Tüm Sınavlar</a>
+      </div>
+    </div>
+
+    <!-- Laptop mockup: SVG body + HTML screen/keyboard fitted with projective transforms (see script.js) -->
+    <!-- Image slot: drop a transparent PNG/WebP at assets/hero-laptop.png and it replaces the drawn laptop. -->
+    <img class="laptop-img" src="assets/hero-laptop.png" alt="" onload="document.querySelector('.hero').classList.add('has-laptop-img')" onerror="this.remove()">
+    <div class="laptop" aria-hidden="true">
+      <svg class="laptop-body" viewBox="0 0 700 500">
+        <defs>
+          <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd4da"/><stop offset=".35" stop-color="#eceef1"/><stop offset="1" stop-color="#f6f7f9"/></linearGradient>
+          <linearGradient id="lip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9dde2"/><stop offset=".5" stop-color="#aeb5bd"/><stop offset="1" stop-color="#8c949d"/></linearGradient>
+          <radialGradient id="shadow"><stop offset="0" stop-color="#002a6b" stop-opacity=".55"/><stop offset="1" stop-color="#002a6b" stop-opacity="0"/></radialGradient>
+          <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3f46"/><stop offset="1" stop-color="#121417"/></linearGradient>
+        </defs>
+        <ellipse cx="380" cy="470" rx="330" ry="26" fill="url(#shadow)"/>
+        <polygon points="232,330 674,354 652,448 15,404" fill="url(#deck)"/>
+        <polygon points="15,404 652,448 647,460 22,416" fill="url(#lip)"/>
+        <polygon points="15,404 22,417 18,412" fill="#9aa2ab"/>
+        <polygon points="196,342 650,362 640,414 128,383" fill="#c5cbd2"/>
+        <polygon points="330,420 470,428 467,444 300,436" fill="#e6e9ec" stroke="#d0d5da" stroke-width="1"/>
+        <polygon points="230,326 672,350 674,356 232,334" fill="#7d858e"/>
+        <polygon points="222,30 677,13 672,352 229,328" fill="url(#bezel)" stroke="#aeb5bd" stroke-width="3" stroke-linejoin="round"/>
+        <polygon points="560,18 677,13 674,180" fill="#fff" opacity=".06"/>
+      </svg>
+      <div class="laptop-screen" data-quad="233,44 665,29 659,338 240,316">
+        <div class="qb">
+          <div class="qb-top"><span>▣ ⚑ ▤</span><span>TYT Matematik · Soru 7 / 40</span><span>⛶ ? ⚙ ◷ 07:47</span></div>
+          <div class="qb-body">
+            <div class="qb-q">
+              <p>Bir sınıftaki öğrencilerin %40'ı kızdır. Sınıfa 6 kız öğrenci daha katıldığında kız öğrencilerin oranı %50 oluyor.</p>
+              <p><b>Buna göre sınıfta başlangıçta kaç öğrenci vardır?</b></p>
+              <ul>
+                <li>A) 24</li>
+                <li>B) 27</li>
+                <li class="ok">C) 30</li>
+                <li>D) 32</li>
+                <li>E) 36</li>
+              </ul>
+              <div class="qb-stats"><span class="g">Doğru</span><span>Öğrencilerin %77'si doğru yanıtladı</span><span>58 sn</span></div>
+            </div>
+            <div class="qb-exp">
+              <div class="qb-exp-title">Çözüm</div>
+              <div class="ratio">
+                <small>Başlangıç (n = 30)</small>
+                <div class="ratio-bar"><i style="--w:40%"></i><span>12 kız</span><span>18 erkek</span></div>
+                <small>6 kız katıldıktan sonra (36)</small>
+                <div class="ratio-bar"><i style="--w:50%"></i><span>18 kız</span><span>18 erkek</span></div>
+              </div>
+              <p>Başlangıçta n öğrenci olsun; kız sayısı 0,4n.</p>
+              <p class="eq">(0,4n + 6) / (n + 6) = 1/2</p>
+              <p class="eq">0,8n + 12 = n + 6 &nbsp;⇒&nbsp; n = 30</p>
+            </div>
+          </div>
+          <div class="qb-bottom"><span>⏹ Bitir &nbsp; ⏸ Duraklat</span><span>✎ Geri Bildirim</span><span>← Önceki &nbsp; Sonraki →</span></div>
+        </div>
+      </div>
+      <div class="laptop-keys" data-quad="200,345 646,365 636,410 134,380"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEDEN BİZ ============ -->
+<section class="why" id="neden">
+  <div class="container narrow center">
+    <h2>Neden Deneme Sokağı?</h2>
+    <p class="lead">Sınava hazırlığın en etkili yolu, gerçek sınavı defalarca yaşamaktır. Deneme Sokağı'nda her deneme gerçek sınavın süresi, formatı ve puanlamasıyla hazırlanır; her denemeden sonra neyi bildiğini, neyi bilmediğini net olarak görürsün.</p>
+  </div>
+  <div class="container why-grid">
+    <div class="why-item">
+      <div class="why-icon"><svg viewBox="0 0 48 48"><path d="M8 40V26h10v14M19 40V14h10v26M30 40V21h10v19M5 40h38"/><path d="M24 5l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg></div>
+      <span class="why-pre">Rakiplerinle yarış,</span>
+      <strong>Türkiye Geneli Sıralama</strong>
+      <span class="why-post">her denemede yerini gör</span>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><svg viewBox="0 0 48 48"><circle cx="17" cy="15" r="6"/><path d="M6 40c0-7 5-11 11-11s11 4 11 11"/><rect x="27" y="8" width="16" height="12" rx="1.5"/><path d="M31 13h8M31 16h5M28 26l6-6"/></svg></div>
+      <span class="why-pre">Alanında uzman</span>
+      <strong>Eğitmen Kadrosu</strong>
+      <span class="why-post">tarafından hazırlanan sorular</span>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><svg viewBox="0 0 48 48"><rect x="11" y="9" width="26" height="33" rx="3"/><rect x="18" y="5" width="12" height="7" rx="2"/><path d="M16 21l2 2 4-4M26 21h6M16 31l2 2 4-4M26 31h6"/></svg></div>
+      <span class="why-pre">Gerçek sınav deneyimi:</span>
+      <strong>ÖSYM &amp; MEB Formatı</strong>
+      <span class="why-post">süre, optik form ve puanlama</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMO BANNER ============ -->
+<section class="container">
+  <a class="promo" href="#">
+    <div class="promo-shot" aria-hidden="true">
+      <div class="ps-side"></div>
+      <div class="ps-doc">
+        <b>Sonuç Karnesi</b>
+        <i></i><i></i><i class="s"></i><i></i><i></i><i class="s"></i><i></i><i></i>
+      </div>
+    </div>
+    <div class="promo-text">
+      <div class="promo-title"><span class="new">YENİ!</span> Türkiye Geneli Deneme</div>
+      <div class="promo-sub">Her ay. Gerçek sınav saatinde. Anında sonuç.</div>
+    </div>
+    <span class="promo-cta">HEMEN KATIL</span>
+  </a>
+</section>
+
+<!-- ============ ÖĞRENCİLER / KURUMLAR ============ -->
+<section class="prefer">
+  <div class="container narrow center">
+    <h2>Öğrenciler ve Kurumlar İçin Tek Platform</h2>
+    <p class="lead">İster sınava tek başına hazırlanan bir öğrenci ol, ister öğrencilerinin gelişimini takip eden bir okul ya da dershane. Deneme Sokağı iki farklı ihtiyaca göre tasarlandı:</p>
+  </div>
+
+  <div class="container split">
+    <div class="split-copy">
+      <h3>Öğrenciler İçin Kapsamlı Denemeler</h3>
+      <p>Tam denemeler, branş denemeleri ve konu bazlı testlerle hazırlığını adım adım planla. Her denemenin sonunda doğru, yanlış ve boşlarını konu konu gör; yanlış yaptığın sorulara video çözümlerle geri dön, notlarını ve tekrar kartlarını tek yerde tut.</p>
+    </div>
+    <div class="split-media">
+      <div class="carousel" data-carousel>
+        <button class="car-btn prev" aria-label="Önceki">‹</button>
+        <div class="car-stage">
+          <div class="blob"></div>
+          <div class="slides">
+            <div class="slide is-active">
+              <div class="ui-card notebook">
+                <div class="ui-head"><span class="ui-tag">≡</span> Notlarım</div>
+                <div class="nb-grid">
+                  <div class="nb-tree">
+                    <div class="nb-new">Yeni Not <b>+</b></div>
+                    <div>▾ Matematik</div><div class="in">› Temel Kavramlar</div><div class="in">› Sayı Basamakları</div><div class="in">▾ Problemler</div><div class="in2">Yaş Problemleri</div><div class="in2 act">Yüzde Problemleri</div><div class="in2">Hareket Problemleri</div><div>› Türkçe</div><div>› Fizik</div>
+                  </div>
+                  <div class="nb-note">
+                    <b>Yüzde Problemleri</b>
+                    <div class="toolbar"></div>
+                    <p>Bir çokluğa ekleme yapıldığında oran değişir; yeni oranı kurarken hem payı hem paydayı güncellemeyi unutma. Bilinmeyene n de, oranı kesir olarak yaz, içler-dışlar çarpımı yap.</p>
+                    <div class="formula"><span>%x · n = x·n / 100</span><span>(a + k) / (b + k)</span></div>
+                    <div class="nb-foot"><span class="chip">Yüzde ×</span><span class="save">Kaydet</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="ui-card flash">
+                <div class="ui-head"><span class="ui-tag">▤</span> Tekrar Kartları</div>
+                <div class="flash-card"><small>Ön yüz</small><p>Türk edebiyatında “durum öyküsü”nün en önemli temsilcisi kimdir?</p></div>
+                <div class="flash-card back"><small>Arka yüz</small><p>Sait Faik Abasıyanık</p></div>
+                <div class="flash-rate"><span>Unuttum</span><span>Zor</span><span>İyi</span><span>Kolay</span></div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="ui-card perf">
+                <div class="ui-head"><span class="ui-tag">◔</span> Net Analizi</div>
+                <div class="perf-row"><div class="ring" style="--p:72"><span>%72</span></div><div class="perf-bars"><i style="--w:88%"></i><i style="--w:64%"></i><i style="--w:75%"></i><i style="--w:52%"></i></div></div>
+                <div class="perf-legend"><span>Türkçe</span><span>Matematik</span><span>Sosyal</span><span>Fen</span></div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="ui-card sched">
+                <div class="ui-head"><span class="ui-tag">▦</span> Çalışma Planım</div>
+                <div class="cal"><i></i><i class="d"></i><i></i><i class="d"></i><i class="d"></i><i></i><i></i><i class="d"></i><i></i><i></i><i class="d"></i><i></i><i class="t"></i><i></i></div>
+                <div class="sched-note">Bugün: 40 soru · Problemler</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="car-btn next" aria-label="Sonraki">›</button>
+        <div class="dots"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container split reverse" id="kurumlar">
+    <div class="split-copy">
+      <h3>Okul ve Dershaneler İçin Deneme Yönetimi</h3>
+      <p>Kurum paneliyle sınıflarına deneme ata, sonuçları öğrenci, sınıf ve konu bazında anında raporla. En çok zorlanılan konuları gör, eksik kapatma ödevleri oluştur ve öğrencilerinin gelişimini dönem boyunca tek ekrandan takip et.</p>
+      <a class="btn btn-ghost" href="#">Kurum Ortağı Ol</a>
+    </div>
+    <div class="split-media">
+      <div class="carousel" data-carousel>
+        <button class="car-btn prev" aria-label="Önceki">‹</button>
+        <div class="car-stage">
+          <div class="blob"></div>
+          <div class="slides">
+            <div class="slide is-active">
+              <div class="ui-card grade">
+                <div class="tabs"><span>Not Defteri</span><span>Ödevler</span><span class="on">Raporlar</span><span>Öğrenciler</span></div>
+                <div class="subtabs"><span class="on">Öğretmen Atamalı</span><span>Bireysel</span></div>
+                <div class="grade-row">
+                  <div class="ring" style="--p:65"><span>%65<small>Doğru</small></span></div>
+                  <div class="g-col"><b>En İyi Üç</b><span>Türkçe</span><span>Tarih</span><span>Biyoloji</span></div>
+                  <div class="g-col"><b>En Zayıf Üç</b><span>Geometri</span><span>Fizik</span><span>Kimya</span></div>
+                  <div class="g-col"><b>Genel</b><span>Deneme: 12</span><span>Soru: 1.440</span><span>Doğru: %65</span></div>
+                </div>
+                <div class="g-table"><span>SINIF</span><span>DOĞRU</span><span>YANLIŞ</span><span>BOŞ</span></div>
+                <div class="g-table r"><span>12-A Sayısal</span><span>%65</span><span>%28</span><span>%7</span></div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="ui-card assign">
+                <div class="ui-head"><span class="ui-tag">✚</span> Yeni Deneme Ata</div>
+                <div class="field"><small>Başlık</small><span>TYT Genel Deneme 5</span></div>
+                <div class="field"><small>Son tarih</small><span>12 Aralık 2026</span></div>
+                <div class="field"><small>Ayarlar</small><span>120 soru · 165 dk · ÖSYM formatı</span></div>
+                <div class="save right">Ata</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="ui-card roster">
+                <div class="ui-head"><span class="ui-tag">☰</span> Öğrenci Listesi</div>
+                <div class="ro"><i></i>Öğrenci A <b>%81</b></div>
+                <div class="ro"><i></i>Öğrenci B <b>%74</b></div>
+                <div class="ro"><i></i>Öğrenci C <b>%69</b></div>
+                <div class="ro"><i></i>Öğrenci D <b>%58</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="car-btn next" aria-label="Sonraki">›</button>
+        <div class="dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HER ADIMDA ============ -->
+<section class="every-step">
+  <div class="container split">
+    <div class="split-copy">
+      <h2>Sınav Yolculuğunun Her Adımında Yanındayız</h2>
+      <p>Ortaokuldan üniversiteye, kamu sınavlarından akademik kariyere kadar Deneme Sokağı hep yanında. Sana <em>ne</em> çalışman ve <em>nasıl</em> çalışman gerektiğini gösterir, potansiyelinin en iyisine ulaşmanı sağlar.</p>
+    </div>
+    <div class="split-media">
+      <div class="podium" aria-hidden="true">
+        <div class="blob big"></div>
+        <div class="cyl c1"><span>LGS'den…</span>
+          <svg viewBox="0 0 100 100"><path d="M10 45L50 22l40 23"/><rect x="18" y="45" width="64" height="50"/><path d="M42 95V72h16v23M28 58h10M62 58h10M50 8v14M50 8h12v7H50"/></svg>
+        </div>
+        <div class="cyl c2"><span>…YKS'ye…</span>
+          <svg viewBox="0 0 100 100"><path d="M8 38l42-18 42 18-42 18z"/><path d="M26 47v22c0 6 11 12 24 12s24-6 24-12V47M86 41v28"/><circle cx="86" cy="72" r="3"/></svg>
+        </div>
+        <div class="cyl c3"><span>…KPSS ve Ötesine…</span>
+          <svg viewBox="0 0 100 100"><rect x="12" y="34" width="76" height="52" rx="5"/><path d="M36 34v-9a5 5 0 0 1 5-5h18a5 5 0 0 1 5 5v9M12 56h76M44 52h12v9H44z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POPÜLER DENEMELER ============ -->
+<section class="qbanks">
+  <div class="container">
+    <h2 class="center">En Çok Tercih Edilen Denemeler</h2>
+    <div class="qb-cards">
+      <article class="qb-card" id="yks">
+        <h3>YKS Denemeleri</h3>
+        <ul>
+          <li><span class="hl">TYT, AYT ve YDT</span> tam denemeler</li>
+          <li>ÖSYM formatında süre ve optik form</li>
+          <li>Türkiye geneli sıralama ve net analizi</li>
+          <li>Her soruya video çözüm</li>
+        </ul>
+        <a class="btn btn-blue" href="#">YKS Denemelerini İncele</a>
+      </article>
+      <article class="qb-card" id="lgs">
+        <h3>LGS Denemeleri</h3>
+        <ul>
+          <li><span class="hl">Sözel ve Sayısal</span> bölüm denemeleri</li>
+          <li>MEB formatına uygun yeni nesil sorular</li>
+          <li>İl ve okul bazında sıralama</li>
+          <li>Kazanım bazlı eksik analizi</li>
+        </ul>
+        <a class="btn btn-blue" href="#">LGS Denemelerini İncele</a>
+      </article>
+      <article class="qb-card" id="kpss">
+        <h3>KPSS Denemeleri</h3>
+        <ul>
+          <li><span class="hl">GY-GK, Eğitim Bilimleri</span> ve ÖABT</li>
+          <li>Lisans, Önlisans ve Ortaöğretim</li>
+          <li>Puan türüne göre tahmini puan</li>
+          <li>Konu bazlı soru bankası</li>
+        </ul>
+        <a class="btn btn-blue" href="#">KPSS Denemelerini İncele</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YORUMLAR ============ -->
+<!-- ÖRNEK YORUMLAR: yayına almadan önce gerçek kullanıcı yorumlarıyla (izin alınarak) değiştirin. -->
+<section class="stories" id="yorumlar">
+  <div class="container">
+    <h2 class="center">Deneme Sokağı Başarı Hikâyeleri</h2>
+    <div class="quotes">
+      <figure>
+        <span class="qmark">“</span>
+        <blockquote>Her hafta TYT denemesi çözüp sıralamamı takip ettim. Net analizi sayesinde hangi konuya ne kadar zaman ayırmam gerektiğini ilk kez bu kadar net gördüm.”</blockquote>
+        <figcaption><b>— Örnek Kullanıcı</b><span>YKS Öğrencisi</span></figcaption>
+      </figure>
+      <figure>
+        <span class="qmark">“</span>
+        <blockquote>Video çözümler çok işime yaradı. Yanlış yaptığım soruları tekrar kartlarına ekleyip sınavdan önceki haftalarda sadece onları çalıştım.”</blockquote>
+        <figcaption><b>— Örnek Kullanıcı</b><span>LGS Öğrencisi</span></figcaption>
+      </figure>
+      <figure>
+        <span class="qmark">“</span>
+        <blockquote>KPSS'ye çalışırken gerçek sınav süresiyle deneme çözmek stresimi azalttı. Sınav günü kendimi çok daha hazır hissettim.”</blockquote>
+        <figcaption><b>— Örnek Kullanıcı</b><span>KPSS Adayı</span></figcaption>
+      </figure>
+    </div>
+    <div class="center"><a class="btn btn-ghost" href="#">Tüm Yorumları Oku</a></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ TÜM SINAVLAR + FOOTER ============ -->
+<footer>
+  <section class="all-products" id="sinavlar">
+    <div class="container">
+      <h3 class="center">Tüm Sınavları Keşfet</h3>
+      <p class="center sub">Sınavını seç, denemelere hemen başla</p>
+      <div class="prod-grid">
+        <div><h4>Ortaöğretim</h4><a href="#lgs">LGS</a><a href="#">Bursluluk (İOKBS)</a><h4 class="mt">Üniversite</h4><a href="#yks">YKS – TYT</a><a href="#yks">YKS – AYT</a><a href="#yks">YKS – YDT</a><a href="#">MSÜ</a></div>
+        <div><h4>KPSS</h4><a href="#kpss">KPSS Lisans</a><a href="#kpss">KPSS Önlisans</a><a href="#kpss">KPSS Ortaöğretim</a><a href="#kpss">KPSS A Grubu</a><a href="#kpss">EKPSS</a></div>
+        <div><h4>Öğretmenlik</h4><a href="#">MEB-AGS</a><a href="#">ÖABT</a><a href="#">Eğitim Bilimleri</a></div>
+        <div><h4>Lisansüstü &amp; Dil</h4><a href="#">ALES</a><a href="#">DGS</a><a href="#">YDS</a><a href="#">YÖKDİL</a><a href="#">e-YDS</a></div>
+        <div><h4>Sağlık</h4><a href="#">TUS</a><a href="#">DUS</a><a href="#">YDUS</a><a href="#">EUS</a></div>
+        <div><h4>Hukuk</h4><a href="#">HMGS</a><a href="#">İYÖS</a><h4 class="mt">Kaynaklar</h4><a href="#">Sınav Takvimi</a><a href="#">Puan Hesaplama</a><a href="#">Blog</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="footer-bottom">
+    <div class="container">
+      <div class="fb-grid">
+        <div><h4>Kurumsal</h4><a href="#">Hakkımızda</a><a href="#">Ekibimiz</a><a href="#yorumlar">Yorumlar</a><a href="#">Kariyer</a><a href="#">Basın</a></div>
+        <div><h4>Destek</h4><a href="#">Sıkça Sorulan Sorular</a><a href="#">Gizlilik Politikası</a><a href="#">KVKK Aydınlatma Metni</a><a href="#">Kullanım Koşulları</a></div>
+        <div><h4>İletişim</h4><a href="#">Bize Ulaşın</a><a href="#">Forum</a></div>
+        <div>
+          <h4>Bizi Takip Et</h4>
+          <div class="social">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.3 5.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm6 4v6l5-3z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zm3 7v8h3v-8zm1.5-4.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4zM11 10v8h3v-4.2c0-1.2.6-1.8 1.5-1.8s1.5.6 1.5 1.8V18h3v-5c0-2.4-1.4-3.2-3-3.2-1.2 0-2.1.5-2.6 1.2V10z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.2-.6.6-.6z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <p class="legal">Deneme Sokağı bağımsız bir eğitim platformudur; ÖSYM, MEB veya YÖK ile herhangi bir bağlantısı yoktur ve bu kurumlar tarafından onaylanmamıştır. YKS, LGS, KPSS, ALES, DGS, YDS, YÖKDİL, TUS, DUS ve diğer sınav adları ilgili kurumlara aittir. Denemelerdeki sorular özgün olarak hazırlanmıştır.</p>
+      <p class="legal">© 2026 Deneme Sokağı</p>
+    </div>
+  </section>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
