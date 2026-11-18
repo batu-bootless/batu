@@ -51,9 +51,16 @@
 .ts-qc { margin: 0.5mm 2.8mm 0 6.9mm; font-size: 6.4pt; line-height: 1.35; text-align: justify; hyphens: none; }
 .ts-qc p { margin: 0 0 1.75mm; }
 .ts-qc .stem-b { font-weight: 700; }
+.ts-qc p.li { padding-left: 3.4mm; text-indent: -3.4mm; margin-bottom: 0.9mm; }
+.ts-qc p + p.li, .ts-qc p.li + p:not(.li) { margin-top: 0.4mm; }
+.ds-doc .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.05; margin: 0 .12em; font-size: .92em; text-indent: 0; }
+.ds-doc .frac > span:first-child { border-bottom: .5pt solid currentColor; padding: 0 .18em; }
+.ds-doc sup, .ds-doc sub { font-size: .72em; line-height: 0; }
 .ts-fig { display: block; max-width: 100%; margin: 0.5mm 0 2mm; }
 .ts-opts { display: grid; gap: 1.38mm; text-align: left; }
 .ts-opt b { font-weight: 700; margin-right: 0.5mm; }
+.ts-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 2mm; }
+.ts-opts.row3 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 2mm; }
 .ts-q.img .ts-qc { margin-top: 0.8mm; }
 .ts-q.img .ts-qc img { display: block; width: 100%; height: auto; }
 .ts-code { margin-top: 4.3mm; text-align: right; font: 400 8.1pt/1.2 "DS Head", sans-serif; color: var(--ts-code); }

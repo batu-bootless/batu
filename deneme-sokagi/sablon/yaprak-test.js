@@ -31,34 +31,53 @@
     return 'DS' + (10000 + (h % 90000));
   }
 
+  // Light markup written by tools/soru_metin.py (and allowed in hand-written questions):
+  //   **kalın**  __altı çizili__  10^{-3}  a_{1}  {pay/payda}
+  function rich(s) {
+    return esc(s)
+      .replace(/\{([^{}/]+)\/([^{}]+)\}/g, '<span class="frac"><span>$1</span><span>$2</span></span>')
+      .replace(/\^\{([^{}]*)\}/g, '<sup>$1</sup>')
+      .replace(/_\{([^{}]*)\}/g, '<sub>$1</sub>')
+      .replace(/\*\*([\s\S]+?)\*\*/g, '<b>$1</b>')
+      .replace(/__([\s\S]+?)__/g, '<u>$1</u>');
+  }
+  const LIST_LINE = /^(?:\*\*|__)*(?:(?:I|II|III|IV|V|VI|VII|VIII|IX|X)\.\s|[●•▪■]\s?)/;
+
   // Question banks set the question sentence in bold ("… hangisidir?"), the lead-in in regular weight.
   function stemHtml(text) {
     const t = String(text || '').trim();
     if (!t) return '';
+    // Text read from the page layout already carries its bold parts and line structure.
+    if (/\*\*/.test(t)) return t.split('\n').map((ln) => `<p${LIST_LINE.test(ln) ? ' class="li"' : ''}>${rich(ln)}</p>`).join('');
     if (t.includes('\n')) {
-      return `<p class="ts-dlg">${t.split('\n').map((ln) => { const m = ln.match(/^([^:]{1,24}):\s*(.*)$/); return m ? `<b>${esc(m[1])}:</b> ${esc(m[2])}` : esc(ln); }).join('<br>')}</p>`;
+      return `<p class="ts-dlg">${t.split('\n').map((ln) => { const m = ln.match(/^([^:]{1,24}):\s*(.*)$/); return m ? `<b>${esc(m[1])}:</b> ${rich(m[2])}` : rich(ln); }).join('<br>')}</p>`;
     }
-    if (/----/.test(t)) return `<p class="stem-b">${esc(t)}</p>`;
+    if (/----/.test(t)) return `<p class="stem-b">${rich(t)}</p>`;
     const parts = t.split(/(?<=[.!?…:])\s+(?=[A-ZÇĞİÖŞÜ0-9"“(])/);
     if (parts.length > 1 && /\?$/.test(parts[parts.length - 1])) {
-      return `<p>${esc(parts.slice(0, -1).join(' '))}</p><p class="stem-b">${esc(parts[parts.length - 1])}</p>`;
+      return `<p>${rich(parts.slice(0, -1).join(' '))}</p><p class="stem-b">${rich(parts[parts.length - 1])}</p>`;
     }
-    return /\?$/.test(t) ? `<p class="stem-b">${esc(t)}</p>` : `<p>${esc(t)}</p>`;
+    return /\?$/.test(t) ? `<p class="stem-b">${rich(t)}</p>` : `<p>${rich(t)}</p>`;
   }
+  // Short options sit in one row (or 3 + 2), as in printed tests; longer ones one per line.
+  const optLen = (o) => String(o || '').replace(/\*\*|__|[{}^_]/g, '').replace(/\/[^ ]*/g, '').length;
   const optsHtml = (opts) => (opts && opts.length
-    ? `<div class="ts-opts">${opts.slice(0, 5).map((o, i) => `<span class="ts-opt"><b>${L5[i]})</b>${esc(o)}</span>`).join('')}</div>` : '');
+    ? `<div class="ts-opts${Math.max(...opts.map(optLen)) <= 9 ? ' row5' : Math.max(...opts.map(optLen)) <= 20 ? ' row3' : ''}">${opts.slice(0, 5).map((o, i) => `<span class="ts-opt"><b>${L5[i]})</b>${rich(o)}</span>`).join('')}</div>` : '');
 
   function questionEl(q, n, mode, base) {
     const el = document.createElement('div');
     let content;
-    if (mode === 'gorsel' && q.gorsel) {
+    const noText = !q.metin && !q.metin_ust && !q.metin_alt && !(q.secenekler || []).some(Boolean);
+    if (q.gorsel && (mode === 'gorsel' || noText || q.gorsel_goster)) {
       el.className = 'ts-q img';
       content = `<img src="${esc(base + q.gorsel)}" alt="Soru ${n}">`;
     } else {
       el.className = 'ts-q';
-      content = q.sekil
-        ? stemHtml(q.metin_ust) + `<img class="ts-fig" src="${esc(base + q.sekil)}" alt=""${q.sekil_pt && q.yazi_pt ? ` style="width:${(q.sekil_pt * TEXT_PT / q.yazi_pt).toFixed(1)}pt"` : ''}>` + stemHtml(q.metin_alt)
-        : stemHtml(q.metin_govde || q.metin);
+      // figures keep the size they had next to the source's text
+      const fig = (src, pt) => `<img class="ts-fig" src="${esc(base + src)}" alt=""${pt && q.yazi_pt ? ` style="width:${(pt * TEXT_PT / q.yazi_pt).toFixed(1)}pt"` : ''}>`;
+      content = q.parcalar ? q.parcalar.map((p) => (p.sekil ? fig(p.sekil, p.sekil_pt) : stemHtml(p.metin))).join('')
+        : q.sekil ? stemHtml(q.metin_ust) + fig(q.sekil, q.sekil_pt) + stemHtml(q.metin_alt)
+          : stemHtml(q.metin_govde || q.metin);
       content += optsHtml(q.secenekler);
     }
     el.innerHTML = `<div class="ts-qn">${n}.</div><div class="ts-qc">${content}</div><div class="ts-code">[#${esc(code(q))}]</div>`;
@@ -216,5 +235,5 @@
     return Object.assign({}, a, { kaynaklar: a.kaynaklar.concat(b.kaynaklar), gruplar: Object.assign({}, a.gruplar, b.gruplar), sorular: a.sorular.concat(b.sorular) });
   }
 
-  global.DSYaprakTest = { render, LOGO, code, bank };
+  global.DSYaprakTest = { render, LOGO, code, bank, rich, stemHtml, questionEl };
 })(window);

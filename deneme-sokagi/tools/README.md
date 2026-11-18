@@ -38,6 +38,13 @@ python3 tools/soru_cikar.py DENEME.pdf --kaynak-id x --kaynak-ad "…" --sinav T
   (görsel + metin); "16.-20. soruları …" gibi parçasız kutular o soruların **yönergesi** olur.
 - `--sayfalar` kapak, açıklama ve boş sayfaları atlar; kenardaki dikey yazılar (yayınevi adı) soru metnine girmez.
 
+**Metin olarak çıkarma** (`tools/soru_metin.py`): sorular yazı olarak alınır, yalnızca şekiller görseldir.
+Kalın, altı çizili, üs, alt indis ve kesirler işaretlenir (`**kalın**`, `__altı çizili__`, `10^{-3}`, `a_{1}`,
+`{pay/payda}`); I-II-III maddeleri, diyalog ve formül satırları ayrı satırda kalır. Şekiller hem çizim nesnelerinden
+hem sayfanın piksel taramasından bulunur; şekil içindeki etiketler görselde kalır, birden çok şekilli soru
+"metin → şekil → metin" parçaları olarak saklanır. Metne güvenle çevrilemeyen soru (ör. kelimelerin altına yazılmış
+Romen rakamları) `tools/soru_duzelt.py` ile `"gorsel_goster": true` yapılır ve kırpılmış görseliyle gösterilir.
+
 **`--yerel`**: çıktılar `data/yerel/kaynaklar/<kaynak-id>/` altına, birleşik hâli `data/yerel/soru-bankasi.{json,js}`
 dosyasına yazılır. `data/yerel/` git'e girmez ve yayınlanan sayfalara konmaz; panel ve şablon bu bilgisayarda onu da
 okur (Denemelerim'de "Yalnız test" etiketiyle). Kullanım izni olmayan bir kaynağı yalnızca şablonu ve sistemi

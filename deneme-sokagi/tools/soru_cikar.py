@@ -40,6 +40,9 @@ from pathlib import Path
 import pdfplumber
 from PIL import Image, ImageDraw, ImageOps
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import soru_metin  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 OVERRIDE = {}
 NUM_RE = re.compile(r'^(\d{1,3})[.)]$')
@@ -288,12 +291,14 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
     foot_counts = {}
     for page, words in zip(pdf.pages, pages_words):
         for ln in group_lines([w for w in words if w['top'] > page.height * 0.85]):
-            k = re.sub(r'\d+', '#', ln['text'])
+            if OPT_RE.match(ln['text']):          # options at the foot of a column are not a footer
+                continue
+            k = (re.sub(r'\d+', '#', ln['text']), round(ln['top'] / 4))   # same text at the same height
             foot_counts[k] = foot_counts.get(k, 0) + 1
 
     def footer_top_of(page, words):
         lines = group_lines([w for w in words if w['top'] > page.height * 0.85])
-        tops = [ln['top'] for ln in lines if foot_counts.get(re.sub(r'\d+', '#', ln['text']), 0) > 1
+        tops = [ln['top'] for ln in lines if (not OPT_RE.match(ln['text']) and foot_counts.get((re.sub(r'\d+', '#', ln['text']), round(ln['top'] / 4)), 0) > 1)
                 or re.fullmatch(r'[\d\s/|-]+', ln['text']) or 'www.' in ln['text'].lower()
                 or re.search(r'BİTTİ|GEÇİNİZ|KONTROL EDİNİZ', ln['text'])]
         rules = [r['top'] for r in list(page.rects) + list(page.lines)
@@ -435,26 +440,9 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
             bottom = max([w['bottom'] for w in qwords] + [g[3] for g in gfx]) + 3
             box = (cx0, top, cx1, bottom)
 
-            # text lines: body lines start at the column's text edge or with an option marker
-            lines = group_lines(qwords)
-            num_w = s['w']['x1'] - s['w']['x0']
-            is_body = lambda ln: ln['x0'] <= s['left'] + num_w + 8 or OPT_RE.match(ln['text'])
-            label_lines = [ln for ln in lines if not is_body(ln)]
-            body_lines = [ln for ln in lines if is_body(ln)]
-            fig_box = None
-            if gfx:
-                fig_box = union(gfx + [(ln['x0'], ln['top'], ln['x1'], ln['bottom']) for ln in label_lines])
-            opt_start = next((k for k, ln in enumerate(body_lines) if OPT_RE.match(ln['text'])), len(body_lines))
-            stem_lines, opt_lines = body_lines[:opt_start], body_lines[opt_start:]
-            first = stem_lines[0] if stem_lines else None
-            if first:  # drop the source number from the first line
-                first = dict(first, text=re.sub(r'^\d{1,3}[.)]\s*', '', first['text']))
-                stem_lines = [first] + stem_lines[1:]
-            ust = [ln['text'] for ln in stem_lines if not fig_box or ln['bottom'] <= fig_box[1] + 1]
-            alt = [ln['text'] for ln in stem_lines if fig_box and ln['top'] >= fig_box[3] - 1]
-
-            body_sizes = sorted(w['size'] for ln in body_lines for w in ln['words'])
-            yazi_pt = round(body_sizes[len(body_sizes) // 2], 2) if body_sizes else None
+            # text as text (bold / underline / exponents / fractions as markup), drawings as figures
+            qa = soru_metin.analyze(page, box, [w for w in qwords if w is not s['w']], s['w'], cx1 - cx0)
+            fig_box, yazi_pt = qa['fig'], qa['yazi_pt']
             order += 1
             qid = f'{kaynak_id}-t{test_no:02d}-s{s["n"]:02d}'
             sub = next((name for a, b, name in subders if a <= s['n'] <= b), None)
@@ -465,21 +453,31 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
             nw = s['w']
             ImageDraw.Draw(img).rectangle([(nw['x0'] - ox - 1.5) * scale, (nw['top'] - oy - 1.5) * scale, (nw['x1'] - ox + 2.5) * scale, (nw['bottom'] - oy + 1.5) * scale], fill='white')
             trim(img, sides=False).save(out_dir / f'{qid}.png', optimize=True)
-            sekil = None
-            if fig_box:
-                fimg, _ = render(page, (fig_box[0] - 4, fig_box[1] - 4, fig_box[2] + 4, fig_box[3] + 4), dpi)
-                trim(fimg, 6).save(out_dir / f'{qid}-sekil.png', optimize=True)
-                sekil = f'{rel}/{qid}-sekil.png'
+            sekil, parcalar = None, None
+            if qa['figs']:
+                paths = []
+                for k, f in enumerate(qa['figs']):
+                    name = f'{qid}-sekil{"" if k == 0 else k + 1}.png'
+                    fimg, _ = render(page, (f[0] - 4, f[1] - 4, f[2] + 4, f[3] + 4), dpi)
+                    trim(fimg, 6).save(out_dir / name, optimize=True)
+                    paths.append((f, f'{rel}/{name}'))
+                sekil = paths[0][1]
+                fig_box = paths[0][0] if not qa['parcalar'] else fig_box
+                if qa['parcalar']:
+                    path_of = {tuple(f): pth for f, pth in paths}
+                    parcalar = [{'metin': v} if k == 't' else {'sekil': path_of[tuple(v)], 'sekil_pt': round(v[2] - v[0] + 8, 1)}
+                                for k, v in qa['parcalar'] if k == 'f' or v]
             questions.append({
                 'id': qid, 'kaynak': kaynak_id, 'kaynak_ad': kaynak_ad, 'sinav': sinav,
                 'test': test_no, 'no': s['n'], 'sira': order, 'sayfa': page.page_number,
                 'ders': q_ders, 'konu': q_konu, 'bolum': bolum or None,
                 'grup': blk['gid'] if blk else None, 'yonerge': blk['text'] if blk and not blk['gid'] else None,
-                'metin': dashfix(' '.join(ust + alt)), 'metin_ust': dashfix(' '.join(ust)), 'metin_alt': dashfix(' '.join(alt)),
-                'secenekler': split_options(opt_lines),
+                'metin': '\n'.join(x for x in (qa['ust'], qa['alt']) if x), 'metin_ust': qa['ust'], 'metin_alt': qa['alt'],
+                'secenekler': qa['secenekler'],
                 'cevap': None,
                 'gorsel': f'{rel}/{qid}.png', 'sekil': sekil,
                 'sekil_pt': round(fig_box[2] - fig_box[0] + 8, 1) if fig_box else None, 'yazi_pt': yazi_pt,
+                **({'parcalar': parcalar} if parcalar else {}),
                 'bbox': [round(v, 1) for v in box],
             })
 

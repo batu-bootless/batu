@@ -173,6 +173,8 @@
     const g = b.grup && BANK.gruplar ? BANK.gruplar[b.grup] : null;
     return {
       s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [],
+      figW: b.sekil_pt && b.yazi_pt ? Math.round(b.sekil_pt * 15.5 / b.yazi_pt) : null, imgOnly: !!b.gorsel_goster,
+      parts: b.parcalar ? b.parcalar.map((p) => (p.sekil ? { fig: p.sekil, w: b.yazi_pt ? Math.round(p.sekil_pt * 15.5 / b.yazi_pt) : null } : { t: p.metin })) : null,
       a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, yon: b.yonerge || (g && g.yonerge) || null,
       passage: g ? g.metin : null, passageImg: g && g.gorsel ? g.gorsel : null, ref: { bank: b.id },
     };
@@ -976,7 +978,7 @@
     if (qs.length < state.b.adet) toast(`Paragraf soruları bölünmediği için test ${qs.length} soru oldu.`);
     const konular = [...new Set(qs.map((q) => q.konu))], bolumler = [...new Set(qs.map(bolumOf))];
     const test = {
-      id: 'yt-' + uid(), no: nextTestNo(), mod: 'gorsel',
+      id: 'yt-' + uid(), no: nextTestNo(), mod: 'metin',
       baslik: konular.length === 1 ? konular[0] : bolumler.length === 1 && bolumler[0] ? `${bolumler[0]} Testi` : `${[...new Set(qs.map((q) => q.sinav))].join(' · ')} Karma Test`,
       ders: [...new Set(qs.map((q) => `${q.sinav} · ${q.ders}`))].join(' – '),
       soruIds: qs.map((q) => q.id), cevapAnahtari: true, olusturma: new Date().toISOString(),
@@ -1154,7 +1156,7 @@
     if (!qs.length) return toast('Seçtiğin denemelerde yeni soru kalmadı');
     // Questions count as seen once the deneme is finished; closing it early keeps them available.
     openPlayer(qs.map(bankItem), dnTitle(groups), dkFor(qs) * 60, {
-      mode: 'gorsel',
+      mode: 'metin',
       onFinish: (r) => {
         markSolved(qs.map((q) => q.id));
         const all = store.get(ukey('deneme-sonuc'), {});
@@ -1180,7 +1182,7 @@
     const groups = dnGroups(), qs = groups.flatMap((g) => g.qs);
     if (!qs.length) return toast('Seçtiğin denemelerde yeni soru kalmadı');
     const test = {
-      id: 'dn-' + uid(), baslik: dnTitle(groups), ders: [...new Set(groups.map((g) => g.k.sinav))].join(' · '), no: 1, ust: 'DENEME', rozet: 'DENEME', mod: 'gorsel',
+      id: 'dn-' + uid(), baslik: dnTitle(groups), ders: [...new Set(groups.map((g) => g.k.sinav))].join(' · '), no: 1, ust: 'DENEME', rozet: 'DENEME', mod: 'metin',
       bolumlu: new Set(qs.map(bolumOf)).size > 1, soruIds: qs.map((q) => q.id), cevapAnahtari: true,
     };
     try { localStorage.setItem('ds-yaprak-tests-deneme', JSON.stringify([test])); } catch (e) { return toast('Tarayıcı depolaması kapalı; PDF açılamadı'); }
@@ -1399,22 +1401,28 @@
     };
     $('#plTimer span').textContent = fmtT(st.left);
     st.timer = setInterval(tick, 1000);
-    const asImage = (q) => mode === 'gorsel' && q.img;
+    // Questions are shown as text (figures as pictures); the cropped page is only a fallback when there is no text.
+    const hasText = (q) => !!(q.t || q.ust || q.alt || (q.o || []).some(Boolean));
+    const asImage = (q) => !!q.img && (mode === 'gorsel' || q.imgOnly || !hasText(q));
+    const stem = (t) => (window.DSYaprakTest ? window.DSYaprakTest.stemHtml(t) : esc(t));
+    const richOpt = (t) => (window.DSYaprakTest ? window.DSYaprakTest.rich(t) : esc(t));
     const yonText = (y) => y.replace(/^soruları/i, 'Bu soruları');   // "35. – 36. soruları …" without the numbers
     const lead = (q, img) => `${q.yon ? `<p class="pl-yon">${esc(yonText(q.yon))}</p>` : ''}${img && q.passageImg ? `<img class="pl-img pl-pimg" src="${esc(q.passageImg)}" alt="Paragraf">` : q.passage ? `<div class="pl-passage">${esc(q.passage).replace(/\((\d+)\) ----/g, (m, n) => (+n === q.no ? '<mark>----</mark>' : '----'))}</div>` : ''}`;
     const body = (q) => {
       if (asImage(q)) return lead(q, true) + `<img class="pl-img" src="${esc(q.img)}" alt="Soru ${st.cur + 1}">`;
-      if (q.fig) return `${q.ust ? `<p class="pl-text">${esc(q.ust)}</p>` : ''}<img class="pl-fig" src="${esc(q.fig)}" alt="Şekil">${q.alt ? `<p class="pl-text">${esc(q.alt)}</p>` : ''}`;
-      return lead(q) + (q.t ? `<p class="pl-text">${esc(q.t)}</p>` : '<p class="pl-text muted">Paragrafta işaretli boşluğa gelecek seçeneği bul.</p>');
+      const figImg = (src, w) => `<img class="pl-fig" src="${esc(src)}" alt="Şekil"${w ? ` style="width:${w}px"` : ''}>`;
+      if (q.parts) return lead(q) + q.parts.map((p) => (p.fig ? figImg(p.fig, p.w) : `<div class="pl-text">${stem(p.t)}</div>`)).join('');
+      if (q.fig) return lead(q) + `${q.ust ? `<div class="pl-text">${stem(q.ust)}</div>` : ''}<img class="pl-fig" src="${esc(q.fig)}" alt="Şekil"${q.figW ? ` style="width:${q.figW}px"` : ''}>${q.alt ? `<div class="pl-text">${stem(q.alt)}</div>` : ''}`;
+      return lead(q) + (q.t ? `<div class="pl-text">${stem(q.t)}</div>` : '<p class="pl-text muted">Paragrafta işaretli boşluğa gelecek seçeneği bul.</p>');
     };
 
     function draw() {
-      const q = qs[st.cur], n = qs.length, answered = st.ans.filter((x) => x !== null).length, letters = asImage(q);
+      const q = qs[st.cur], n = qs.length, answered = st.ans.filter((x) => x !== null).length, letters = asImage(q) || !(q.o || []).some(Boolean);
       $('#plProg').style.width = `${(answered / n) * 100}%`;
       main.innerHTML = `<div class="pl-body">
         <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${q.konu ? `<span class="chip">${esc(q.konu)}</span>` : ''}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}</div>
           ${body(q)}
-          <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${L5.map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${esc(q.o[i] || '')}</span>`}</button>`).join('')}</div>
+          <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${L5.map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${richOpt(q.o[i] || '')}</span>`}</button>`).join('')}</div>
           <p class="small muted" style="margin-top:14px">Klavye: A–E ile işaretle, ← → ile geç. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
         </div>
         <aside class="pl-side"><h3>Optik form</h3>
