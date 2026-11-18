@@ -840,24 +840,78 @@
     $$('[data-notif]').forEach((c) => c.addEventListener('change', () => toast(c.checked ? 'Bildirim açıldı' : 'Bildirim kapatıldı')));
   }
 
-  /* --- Yaprak Test Oluştur: the user only picks how many questions --- */
+  /* --- Yaprak Test Oluştur: 1) the user picks the denemeler / soru bankaları, 2) the test and how many questions --- */
   const nextTestNo = () => ytests.reduce((m, t) => Math.max(m, t.no || 0), 0) + 1;
+  const bolumOf = (q) => q.bolum || q.ders || '';
+  const srcQs = (id) => BANK.sorular.filter((q) => q.kaynak === id);
+  const srcFreshN = (id) => srcQs(id).filter((q) => !isSeen(q.id)).length;
+  // Every source is offered; denemeler first, the user's own exam first inside each group.
+  function builderSources() {
+    const mine = poolSinav(), at = (k) => BANK.kaynaklar.indexOf(k);
+    return BANK.kaynaklar.slice().sort((a, b) => (b.tur === 'deneme') - (a.tur === 'deneme') || mine.includes(b.sinav) - mine.includes(a.sinav) || at(a) - at(b));
+  }
+  // Selected sources (bank sources before denemeler, so a deneme is not used up first), optional test filter.
+  const selPool = () => BANK.sorular
+    .filter((q) => (state.b.sec || []).includes(q.kaynak) && (!state.b.bolum || bolumOf(q) === state.b.bolum))
+    .sort((a, b) => srcRank(a) - srcRank(b) || a.sira - b.sira);
+  const selFresh = () => selPool().filter((q) => !isSeen(q.id));
+  const stepsHtml = (n) => `<ol class="steps" aria-label="Adımlar"><li class="${n === 1 ? 'on' : 'done'}">${n > 1 ? icon('check') : '<i>1</i>'} Kaynak seç</li><li class="${n === 2 ? 'on' : ''}"><i>2</i> Soru sayısı</li></ol>`;
+
   function vTestOlustur() {
-    const pool = poolQs(), fresh = pool.filter((q) => !isSeen(q.id)), b = state.b, max = fresh.length;
-    if (!pool.length) {
-      return `<div class="view"><section class="card s-12 empty"><h2>${esc(user.exam)} için soru havuzu hazırlanıyor</h2><p class="muted">Hedef sınavın için henüz soru eklenmedi. Hedef sınavını Ayarlar'dan değiştirebilirsin.</p><a class="btn btn-soft" href="#ayarlar">Ayarlar'a git</a></section></div>`;
+    const b = state.b;
+    if (!BANK.kaynaklar.length) {
+      return `<div class="view"><section class="card s-12 empty"><h2>Soru havuzu hazırlanıyor</h2><p class="muted">Henüz deneme ya da soru bankası eklenmedi.</p></section></div>`;
     }
-    const solvedN = pool.filter((q) => seen.solved[q.id]).length;
-    const usedN = pool.filter((q) => seen.used[q.id] && !seen.solved[q.id]).length;
-    if (!max) {
-      return `<div class="view"><section class="card s-12 empty"><h2>Havuzdaki tüm soruları gördün</h2><p class="muted">${esc(user.exam)} havuzundaki ${pool.length} sorunun hepsi sana gösterildi (${solvedN} çözüldü). Yeni sorular eklendiğinde burada görünecek.</p><a class="btn btn-soft" href="#yaprak-testler">Oluşturduğun testlere bak</a></section></div>`;
-    }
+    b.sec = (b.sec || []).filter((id) => BANK.src[id] && srcFreshN(id));
+    if (b.adim === 2 && b.sec.length) return vBuilderCount();
+    b.adim = 1;
+    return vBuilderSources();
+  }
+
+  function srcCard(k) {
+    const all = srcQs(k.id), fresh = all.filter((q) => !isSeen(q.id)).length, on = state.b.sec.includes(k.id);
+    const parts = [...new Set(all.map(bolumOf))].filter(Boolean);
+    const pct = all.length ? (all.length - fresh) / all.length * 100 : 0;
+    return `<label class="src-card${on ? ' on' : ''}${fresh ? '' : ' off'}">
+      <input type="checkbox" data-src="${esc(k.id)}" ${on ? 'checked' : ''} ${fresh ? '' : 'disabled'} aria-label="${esc(k.ad)}">
+      <span class="src-check">${icon('check')}</span>
+      <span class="src-top"><span class="chip blue">${esc(k.sinav)}</span><span class="chip">${k.tur === 'deneme' ? 'Deneme' : 'Soru bankası'}</span>${k.yerel ? '<span class="chip warn">Yalnız test</span>' : ''}</span>
+      <b class="src-name">${esc(k.ad)}</b>
+      <span class="src-parts">${esc(parts.slice(0, 5).join(' · '))}</span>
+      <span class="src-bar" aria-hidden="true"><i style="width:${pct.toFixed(1)}%"></i></span>
+      <span class="src-meta">${fresh ? `<b>${fresh}</b> yeni soru · ${all.length} soru` : 'Tüm sorularını gördün'}</span>
+    </label>`;
+  }
+  function vBuilderSources() {
+    const srcs = builderSources(), den = srcs.filter((k) => k.tur === 'deneme'), ban = srcs.filter((k) => k.tur !== 'deneme');
+    const open = srcs.filter((k) => srcFreshN(k.id));
+    const group = (title, list) => (list.length ? `<h3 class="src-h">${title}<span>${list.length}</span></h3><div class="src-grid">${list.map(srcCard).join('')}</div>` : '');
+    return `<div class="view">
+      <section class="card s-12 qb-src">
+        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Soruların geleceği denemeleri seç, sonra soru sayısını belirle. Birden fazla seçebilirsin.</p></div>${stepsHtml(1)}</div>
+        <div class="src-tools"><button type="button" class="btn btn-ghost btn-sm" data-src-all ${open.length ? '' : 'disabled'}>${icon('check')} Tümünü seç</button><button type="button" class="btn btn-ghost btn-sm" data-src-none>Seçimi temizle</button></div>
+        ${open.length ? '' : '<p class="muted">Tüm kaynaklardaki soruları gördün. Yeni denemeler eklendiğinde burada görünecek.</p>'}
+        ${group('Denemeler', den)}${group('Soru bankaları', ban)}
+        <div class="src-foot"><span id="srcSum" class="small muted"></span><span class="spacer"></span><button type="button" class="btn btn-blue" data-src-next>Devam et ${icon('arrow')}</button></div>
+      </section>
+    </div>`;
+  }
+
+  function vBuilderCount() {
+    const b = state.b;
+    const parts = [...new Set(BANK.sorular.filter((q) => b.sec.includes(q.kaynak) && !isSeen(q.id)).map(bolumOf))].filter(Boolean);
+    if (b.bolum && !parts.includes(b.bolum)) b.bolum = '';
+    const pool = selPool(), fresh = pool.filter((q) => !isSeen(q.id)), max = fresh.length;
     b.adet = Math.max(1, Math.min(b.adet || 10, max));
     const presets = [...new Set([5, 10, 20, 40].filter((n) => n < max).concat(max))];
-    const pct = (pool.length - max) / pool.length * 100;
+    const solvedN = pool.filter((q) => seen.solved[q.id]).length;
+    const usedN = pool.filter((q) => seen.used[q.id] && !seen.solved[q.id]).length;
+    const pct = pool.length ? (pool.length - max) / pool.length * 100 : 0;
     return `<div class="view">
       <section class="card s-8 qb-builder">
-        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Kaç soru istediğini seç. Sorular, daha önce karşına çıkmamış sorulardan gelir.</p></div><span class="chip blue">${esc([...new Set([user.exam, ...poolSinav()])].join(' · '))}</span></div>
+        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Kaç soru istediğini seç. Sorular, daha önce karşına çıkmamış sorulardan gelir.</p></div>${stepsHtml(2)}</div>
+        <div class="sel-row"><span class="sel-chips">${b.sec.map((id) => `<span class="chip blue">${esc(BANK.src[id].ad)}</span>`).join('')}</span><button type="button" class="btn btn-ghost btn-sm" data-src-back>${icon('back')} Kaynakları değiştir</button></div>
+        ${parts.length > 1 ? `<div class="bolum-row"><span class="small muted">Test</span><div class="presets bolum" role="group" aria-label="Test seç">${['', ...parts].map((p) => `<button type="button" class="${p === b.bolum ? 'on' : ''}" data-bolum="${esc(p)}">${p ? esc(p) : 'Tümü'}</button>`).join('')}</div></div>` : ''}
         <div class="count-box">
           <button type="button" class="step" data-step="-1" aria-label="Bir soru azalt">−</button>
           <div class="count-val"><output id="b-count">${b.adet}</output><span>soru</span></div>
@@ -870,29 +924,55 @@
         <p class="small muted">Oluşturduğun test "Oluşturulan Yaprak Testler" sayfasına kaydedilir. İçindeki sorular sana bir daha gösterilmez.</p>
       </section>
       <section class="card s-4 b-sum">
-        <div class="card-h"><div><h2>Soru havuzun</h2><p>${esc(user.exam)} hedefine göre</p></div></div>
+        <div class="card-h"><div><h2>Seçtiğin havuz</h2><p>${b.sec.length} kaynak${b.bolum ? ` · ${esc(b.bolum)}` : ''}</p></div></div>
         ${ringSvg(pct, `%${fmt(pct, 0)}`, 'gördüğün sorular')}
         <dl class="sum-list">
           <div><dt>Yeni soru</dt><dd>${max}</dd></div>
           <div><dt>Çözülen</dt><dd>${solvedN}</dd></div>
           <div><dt>Teste eklenen, çözülmeyen</dt><dd>${usedN}</dd></div>
-          <div><dt>Toplam havuz</dt><dd>${pool.length}</dd></div>
+          <div><dt>Toplam</dt><dd>${pool.length}</dd></div>
         </dl>
-        <p class="small muted">Her sorunun kalıcı bir künyesi vardır (ör. ${esc(fresh[0].kod || '')}); PDF'te sorunun altında görünür.</p>
+        <p class="small muted">Her sorunun kalıcı bir künyesi vardır (ör. ${esc((fresh[0] || {}).kod || '')}); PDF'te sorunun altında görünür.</p>
       </section>
     </div>`;
   }
+
   function afterTestOlustur() {
-    const range = $('#b-range');
-    if (!range) return;
     const b = state.b;
+    if (b.adim !== 2) {
+      const sum = () => {
+        const n = b.sec.reduce((a, id) => a + srcFreshN(id), 0);
+        $('#srcSum').innerHTML = b.sec.length ? `<b>${b.sec.length}</b> kaynak seçildi · <b>${n}</b> yeni soru` : 'Devam etmek için en az bir kaynak seç';
+        $('[data-src-next]').disabled = !b.sec.length;
+      };
+      const sync = () => {
+        $$('[data-src]').forEach((x) => { x.checked = b.sec.includes(x.dataset.src); x.closest('.src-card').classList.toggle('on', x.checked); });
+        sum();
+      };
+      $$('[data-src]').forEach((x) => x.addEventListener('change', () => {
+        b.sec = x.checked ? [...new Set([...b.sec, x.dataset.src])] : b.sec.filter((id) => id !== x.dataset.src);
+        sync();
+      }));
+      $('[data-src-all]').addEventListener('click', () => { b.sec = builderSources().filter((k) => srcFreshN(k.id)).map((k) => k.id); sync(); });
+      $('[data-src-none]').addEventListener('click', () => { b.sec = []; sync(); });
+      $('[data-src-next]').addEventListener('click', () => {
+        if (!b.sec.length) return toast('Önce en az bir deneme ya da soru bankası seç');
+        b.adim = 2; b.bolum = '';
+        render(false); window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      sum();
+      return;
+    }
+    $('[data-src-back]').addEventListener('click', () => { b.adim = 1; render(false); });
+    $$('[data-bolum]').forEach((x) => x.addEventListener('click', () => { b.bolum = x.dataset.bolum; render(false); }));
+    const range = $('#b-range');
     const set = (n) => {
       const max = +range.max;
       b.adet = Math.max(1, Math.min(max, n));
       range.value = b.adet;
       $('#b-count').textContent = b.adet;
-      $('#b-dk').textContent = `${dkFor(poolQs().filter((q) => !isSeen(q.id)).slice(0, b.adet))} dk`;
-      $$('.presets button').forEach((x) => x.classList.toggle('on', +x.dataset.preset === b.adet));
+      $('#b-dk').textContent = `${dkFor(selFresh().slice(0, b.adet))} dk`;
+      $$('[data-preset]').forEach((x) => x.classList.toggle('on', +x.dataset.preset === b.adet));
       const c = $('#b-count'); c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump');
     };
     range.addEventListener('input', () => set(+range.value));
@@ -901,16 +981,16 @@
     $$('[data-make]').forEach((x) => x.addEventListener('click', () => createTest(x.dataset.make)));
   }
   function createTest(action) {
-    const qs = pickQuestions(poolQs().filter((q) => !isSeen(q.id)), state.b.adet);
+    const qs = pickQuestions(selFresh(), state.b.adet);
     if (!qs.length) return toast('Bu sayıda soruya uyan yeni soru yok; paragraf soruları bölünmeden verilir. Sayıyı artırmayı dene.');
     if (qs.length < state.b.adet) toast(`Paragraf soruları bölünmediği için test ${qs.length} soru oldu.`);
-    const konular = [...new Set(qs.map((q) => q.konu))];
+    const konular = [...new Set(qs.map((q) => q.konu))], bolumler = [...new Set(qs.map(bolumOf))];
     const test = {
       id: 'yt-' + uid(), no: nextTestNo(), mod: 'gorsel',
-      baslik: konular.length === 1 ? konular[0] : `${[...new Set(qs.map((q) => q.sinav))].join(' · ')} Karma Test`,
+      baslik: konular.length === 1 ? konular[0] : bolumler.length === 1 && bolumler[0] ? `${bolumler[0]} Testi` : `${[...new Set(qs.map((q) => q.sinav))].join(' · ')} Karma Test`,
       ders: [...new Set(qs.map((q) => `${q.sinav} · ${q.ders}`))].join(' – '),
       soruIds: qs.map((q) => q.id), cevapAnahtari: true, olusturma: new Date().toISOString(),
-      kaynak: [...new Set(qs.map((q) => q.kaynak_ad))].join(', '), konular, dk: dkFor(qs), sonuc: null,
+      kaynak: [...new Set(qs.map((q) => (BANK.src[q.kaynak] || {}).ad || q.kaynak_ad))].join(', '), konular, dk: dkFor(qs), sonuc: null,
     };
     ytests.unshift(test); saveTests();
     markUsed(test.soruIds);

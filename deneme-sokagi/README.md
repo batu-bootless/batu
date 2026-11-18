@@ -18,9 +18,12 @@ tarayıcıda) açın.
 - `ornekler/` — şablonla üretilmiş örnek PDF'ler
 
 ## Soru havuzu kuralları
-- Yaprak test oluştururken kullanıcı yalnızca **soru sayısını** seçer, sonra **Çöz** ya da **PDF indir**.
-- Sorular kullanıcının hedef sınavının havuzundan (Ayarlar → Hedef sınav), kaynaktaki sırayla gelir;
-  önce soru bankaları, sonra deneme kaynakları kullanılır (yaprak testler bir denemeyi erken tüketmesin diye).
+- Yaprak test iki adımda oluşturulur: **1. Kaynak seç** — sistemdeki bütün denemeler ve soru bankaları kart
+  olarak listelenir (önce denemeler; her grupta önce hedef sınavınkiler), kullanıcı bir ya da birkaçını seçer
+  ("Tümünü seç" de var) ve **Devam et**'e basar. **2. Soru sayısı** — seçilen kaynaklar birden çok test içeriyorsa
+  (ör. TYT: Türkçe, Sosyal, Matematik, Fen) test seçilebilir; sonra soru sayısı ve **Çöz** ya da **PDF indir**.
+- Sorular seçilen kaynaklardan, kaynaktaki sırayla gelir; birden çok kaynak seçildiyse önce soru bankaları,
+  sonra denemeler kullanılır (yaprak testler bir denemeyi erken tüketmesin diye).
 - Paragrafa bağlı sorular (cloze, okuma) bölünmez: paragrafın tüm soruları birlikte gelir.
 - Bir deneme, **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
 - Bir kullanıcıya verilmiş (teste eklenmiş, denemede gösterilmiş) ya da çözülmüş soru ona **bir daha gösterilmez**.

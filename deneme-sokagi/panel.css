@@ -801,6 +801,51 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
   .act { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* ============ Yaprak test: step 1, pick denemeler / soru bankaları ============ */
+.steps { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+.steps li { height: 30px; padding: 0 12px 0 6px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--muted); background: var(--surface-2); border: 1px solid var(--border); }
+.steps li i { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 11.5px; background: var(--surface); border: 1px solid var(--border); }
+.steps li svg { width: 20px; height: 20px; padding: 4px; border-radius: 50%; background: var(--good); fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.steps li.on { color: var(--brand); background: var(--brand-50); border-color: var(--brand-100); }
+.steps li.on i { background: var(--brand); border-color: var(--brand); color: #fff; }
+.steps li.done { color: var(--good); }
+.src-tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.src-h { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); }
+.src-h span { min-width: 22px; height: 22px; padding: 0 7px; border-radius: 999px; display: inline-grid; place-items: center; background: var(--surface-2); border: 1px solid var(--border); font-size: 11.5px; letter-spacing: 0; }
+.src-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; }
+.src-card { position: relative; display: grid; align-content: start; gap: 8px; padding: 16px; border-radius: 16px; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; animation: rise .45s var(--ease) both;
+  transition: border-color .2s, box-shadow .2s, transform .15s, background .2s; min-width: 0; }
+.src-card:hover { border-color: var(--brand-100); transform: translateY(-1px); }
+.src-card.on { border-color: var(--brand); background: var(--brand-50); box-shadow: 0 0 0 3px var(--brand-50); }
+.src-card.off { opacity: .55; cursor: not-allowed; transform: none; }
+.src-card input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.src-check { position: absolute; top: 14px; right: 14px; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--faint); display: grid; place-items: center; background: var(--surface); transition: background .2s, border-color .2s, transform .2s; }
+.src-check svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity .15s; }
+.src-card.on .src-check { background: var(--brand); border-color: var(--brand); transform: scale(1.06); }
+.src-card.on .src-check svg { opacity: 1; }
+.src-card input:focus-visible ~ .src-check { outline: 2px solid var(--brand); outline-offset: 2px; }
+.src-top { display: flex; gap: 6px; flex-wrap: wrap; padding-right: 32px; }
+.src-name { font-size: 15.5px; line-height: 1.35; }
+.src-parts { font-size: 12.5px; color: var(--muted); min-height: 1em; }
+.src-bar { height: 6px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; }
+.src-bar i { display: block; height: 100%; border-radius: inherit; background: var(--brand); }
+.src-meta { font-size: 12.5px; color: var(--muted); }
+.src-meta b { color: var(--text); }
+.src-foot { position: sticky; bottom: 0; z-index: 3; display: flex; align-items: center; gap: 12px; margin: 20px -22px -22px; padding: 14px 22px; background: var(--surface); border-top: 1px solid var(--border); border-radius: 0 0 var(--r) var(--r); }
+.src-foot .spacer { flex: 1; }
+.src-foot .btn[disabled] { opacity: .5; cursor: not-allowed; }
+/* step 2 */
+.sel-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.sel-chips { display: flex; gap: 6px; flex-wrap: wrap; min-width: 0; }
+.sel-chips .chip { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.bolum-row { display: grid; gap: 8px; justify-items: center; }
+.presets.bolum button { min-width: 0; }
+@media (max-width: 640px) {
+  .src-grid { grid-template-columns: minmax(0, 1fr); }
+  .src-foot { margin: 18px -18px -18px; padding: 12px 18px; }
+  .steps li { height: 28px; font-size: 12px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
 }
