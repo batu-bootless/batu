@@ -1031,7 +1031,8 @@
     let u = null;
     if (window.DSAuth) { try { u = await window.DSAuth.getUser(); } catch (e) { u = null; } }
     if (!u && window.DSAuth && !window.DS_PREVIEW) {
-      location.replace('giris.html?next=' + encodeURIComponent('panel.html' + location.hash));
+      try { sessionStorage.setItem('ds-next', 'panel.html' + location.hash); } catch (e) { /* default: panel.html */ }
+      location.replace('giris.html');
       return;
     }
     user = {

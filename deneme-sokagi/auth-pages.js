@@ -10,7 +10,9 @@
 
   // Only allow redirects to our own pages, e.g. "panel.html#analiz".
   const next = (() => {
-    const n = new URLSearchParams(location.search).get('next') || '';
+    let n = new URLSearchParams(location.search).get('next') || '';
+    try { n = n || sessionStorage.getItem('ds-next') || ''; } catch (e) { /* ignore */ }
+    try { sessionStorage.removeItem('ds-next'); } catch (e) { /* ignore */ }
     return /^[a-z0-9-]+\.html(#[a-z0-9-]+)?$/i.test(n) ? n : 'panel.html';
   })();
 
@@ -41,6 +43,11 @@
   if (note && A && A.mode === 'demo') {
     note.innerHTML = `<div class="alert warn">${ICON('alert')}<span><b>Demo modu:</b> hesaplar yalnızca bu tarayıcıda saklanır. Gerçek hesaplar için Supabase bağlantısı kurulmalı.</span></div>`;
   }
+
+  if (A && A.mode === 'demo') {
+    document.querySelectorAll('#googleBtn, .divider').forEach((el) => { el.hidden = true; });
+  }
+  document.querySelectorAll('a[href="#"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
 
   // Show / hide password
   document.querySelectorAll('[data-eye]').forEach((b) => b.addEventListener('click', () => {
