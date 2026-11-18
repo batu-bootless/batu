@@ -90,6 +90,8 @@
     </div>
 
     <!-- Laptop mockup: SVG body + HTML screen/keyboard fitted with projective transforms (see script.js) -->
+    <!-- Image slot: drop a transparent PNG/WebP at assets/hero-laptop.png and it replaces the drawn laptop. -->
+    <img class="laptop-img" src="assets/hero-laptop.png" alt="" onload="document.querySelector('.hero').classList.add('has-laptop-img')" onerror="this.remove()">
     <div class="laptop" aria-hidden="true">
       <svg class="laptop-body" viewBox="0 0 700 500">
         <defs>
