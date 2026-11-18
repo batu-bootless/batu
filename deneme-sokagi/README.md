@@ -15,6 +15,13 @@ tarayıcıda) açın.
 - `tools/` — soru çıkarma ve PDF üretme araçları (ayrıntılar: `tools/README.md`)
 - `ornekler/` — şablonla üretilmiş örnek PDF'ler
 
+## Soru havuzu kuralları
+- Yaprak test oluştururken kullanıcı yalnızca **soru sayısını** seçer, sonra **Çöz** ya da **PDF indir**.
+- Sorular kullanıcının hedef sınavının havuzundan (Ayarlar → Hedef sınav), kaynaktaki sırayla gelir.
+- Bir kullanıcıya verilmiş (teste eklenmiş, denemede gösterilmiş) ya da çözülmüş soru ona **bir daha gösterilmez**.
+  Demo modunda bu kayıt tarayıcıda tutulur; canlı sistemde kullanıcı hesabına bağlanmalıdır.
+- Genel Bakış'taki **Geçmiş** kartı en son çözülen, oluşturulan ve indirilen testleri gösterir.
+
 ## Öğrenci paneli
 Genel bakış, Denemelerim, Yaprak Test Oluştur, Sonuç Analizi, Konu Eksiklerim, Yanlış Defteri,
 Çalışma Planı (odak zamanlayıcı dahil), Sıralama; Test Geçmişi (Oluşturulan Yaprak Testler,

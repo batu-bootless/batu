@@ -28,6 +28,7 @@
     tr: { name: 'Türkçe', short: 'Türkçe', q: 40, c: 'var(--c-tr)', avg: 22.4 },
     sos: { name: 'Sosyal Bilimler', short: 'Sosyal', q: 20, c: 'var(--c-sos)', avg: 9.8 },
     mat: { name: 'Temel Matematik', short: 'Matematik', q: 40, c: 'var(--c-mat)', avg: 12.6 },
+    dil: { name: 'İngilizce', short: 'İngilizce', c: 'var(--c-dil)' },
     fen: { name: 'Fen Bilimleri', short: 'Fen', q: 20, c: 'var(--c-fen)', avg: 6.9 },
     all: { name: 'Genel', c: 'var(--brand)' },
   };
@@ -155,8 +156,10 @@
   /* ---------------- question bank (tools/soru_cikar.py → data/soru-bankasi.js) ---------------- */
   const BANK = window.DS_SORU_BANKASI || { kaynaklar: [], sorular: [] };
   BANK.byId = Object.fromEntries(BANK.sorular.map((q) => [q.id, q]));
+  BANK.src = Object.fromEntries(BANK.kaynaklar.map((k) => [k.id, k]));
   function dersKey(name) {
     const n = String(name || '').toLocaleLowerCase('tr');
+    if (/ingilizce|almanca|fransızca|arapça|rusça|yabancı dil|english/.test(n)) return 'dil';
     if (n.includes('türkçe') || n.includes('edebiyat')) return 'tr';
     if (n.includes('matematik') || n.includes('geometri')) return 'mat';
     if (/fen|fizik|kimya|biyoloji/.test(n)) return 'fen';
@@ -209,14 +212,37 @@
   let upcomingReg = store.get('ds-reg', Object.fromEntries(UPCOMING.map((u) => [u.id, u.reg])));
   let wrongs = store.get('ds-wrongs', WRONG_DEFAULT);
   let profile = store.get('ds-profile', null);
-  // Created yaprak tests (also read by sablon/yaprak-test.html for printing).
-  let ytests = store.get('ds-yaprak-tests', null);
-  if (!ytests) {
-    const sample = BANK.sorular.filter((q) => q.konu === 'Yüzde Problemleri').sort((a, b) => a.sira - b.sira);
-    ytests = sample.length ? [{ id: 'yt-ornek', baslik: 'Yüzde Problemleri', ders: `${sample[0].sinav} · ${sample[0].ders}`, no: 1, mod: 'gorsel', soruIds: sample.map((q) => q.id), cevapAnahtari: true, ogrenciAlani: true, olusturma: new Date(Date.now() - 2 * 864e5).toISOString(), kaynak: sample[0].kaynak_ad, konular: ['Yüzde Problemleri'], sonuc: null }] : [];
-    store.set('ds-yaprak-tests', ytests);
+  /* ---------------- per-user progress: created tests, seen questions, activity ---------------- */
+  // A question the user has been given (in a test they created or a deneme they started) is never offered again.
+  const ukey = (name) => `ds-${name}:${(user && user.email) || 'misafir'}`;
+  let ytests = [], seen = { used: {}, solved: {} }, activity = [];
+  function loadProgress() {
+    ytests = store.get(ukey('yaprak-tests'), []);
+    seen = Object.assign({ used: {}, solved: {} }, store.get(ukey('seen'), {}));
+    activity = store.get(ukey('activity'), []);
   }
-  const saveTests = () => store.set('ds-yaprak-tests', ytests);
+  const saveTests = () => store.set(ukey('yaprak-tests'), ytests);
+  const saveSeen = () => store.set(ukey('seen'), seen);
+  const isSeen = (id) => !!(seen.used[id] || seen.solved[id]);
+  function markUsed(ids) { const t = Date.now(); ids.forEach((id) => { seen.used[id] = seen.used[id] || t; }); saveSeen(); }
+  function markSolved(ids) { const t = Date.now(); ids.forEach((id) => { seen.solved[id] = t; seen.used[id] = seen.used[id] || t; }); saveSeen(); }
+  function logActivity(ev) {
+    activity.unshift({ id: uid(), at: new Date().toISOString(), ...ev });
+    activity = activity.slice(0, 60);
+    store.set(ukey('activity'), activity);
+  }
+  function saveHistory(entry) {
+    const h = store.get('ds-history', []);
+    h.unshift({ id: 'h-' + uid(), tarih: new Date().toISOString(), ...entry });
+    store.set('ds-history', h.slice(0, 80));
+  }
+  // Which question pools belong to the user's target exam (Ayarlar → Hedef sınav).
+  const EXAM_POOLS = { YKS: ['TYT', 'AYT'], YDS: ['YDS'], 'YÖKDİL': ['YÖKDİL', 'YDS'], LGS: ['LGS'], KPSS: ['KPSS'], ALES: ['ALES'], DGS: ['DGS'], TUS: ['TUS'], DUS: ['DUS'], HMGS: ['HMGS'], 'MSÜ': ['MSÜ', 'TYT'], 'MEB-AGS': ['MEB-AGS'] };
+  const poolSinav = () => EXAM_POOLS[user.exam] || [user.exam];
+  const srcOrder = (q) => BANK.kaynaklar.findIndex((k) => k.id === q.kaynak);
+  const poolQs = () => BANK.sorular.filter((q) => poolSinav().includes(q.sinav)).sort((a, b) => srcOrder(a) - srcOrder(b) || a.sira - b.sira);
+  const dkFor = (qs) => Math.max(5, Math.round(qs.reduce((a, q) => a + ((BANK.src[q.kaynak] || {}).dk_soru || 1.5), 0)));
+  const pad2 = (n) => String(n).padStart(2, '0');
 
   /* ---------------- plan (shared by overview + plan view) ---------------- */
   const weekStart = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return d; })();
@@ -357,6 +383,24 @@
   /* ---------------- views ---------------- */
   const greet = () => { const h = new Date().getHours(); return h < 5 ? 'İyi geceler' : h < 12 ? 'Günaydın' : h < 18 ? 'İyi günler' : 'İyi akşamlar'; };
 
+  const ACT = { cozuldu: ['check', 'Çözüldü', 'good'], olusturuldu: ['filepen', 'Oluşturuldu', 'blue'], indirildi: ['download', 'PDF indirildi', 'warn'] };
+  function ago(iso) {
+    const sec = (Date.now() - new Date(iso)) / 1000;
+    if (sec < 60) return 'az önce';
+    if (sec < 3600) return `${Math.floor(sec / 60)} dk önce`;
+    if (sec < 86400) return `${Math.floor(sec / 3600)} sa önce`;
+    const d = Math.floor(sec / 86400);
+    return d === 1 ? 'dün' : `${d} gün önce`;
+  }
+  function activityCard() {
+    const list = activity.slice(0, 6);
+    return `<section class="card s-12">
+      <div class="card-h"><div><h2>Geçmiş</h2><p>En son çözdüğün, oluşturduğun ve indirdiğin testler</p></div><a class="link-btn" href="#yaprak-testler">Tüm testler</a></div>
+      ${list.length ? `<ul class="act">${list.map((a, i) => { const [ic, lbl, cls] = ACT[a.tur] || ACT.olusturuldu; return `<li style="animation-delay:${i * 50}ms"><span class="act-ic ${cls}">${icon(ic)}</span><span class="act-txt"><b>${esc(a.ad)}</b><span>${esc(a.detay || '')}</span></span><span class="act-meta"><span class="chip ${cls}">${lbl}${a.net != null ? ' · ' + fmt(a.net) + ' net' : ''}</span><small>${ago(a.at)}</small></span></li>`; }).join('')}</ul>`
+        : `<div class="act-empty"><p class="muted">Henüz bir test çözmedin. İlk yaprak testini oluşturduğunda burada görünecek.</p><a class="btn btn-yellow btn-sm" href="#test-olustur">${icon('plus')} Yaprak test oluştur</a></div>`}
+    </section>`;
+  }
+
   function kpi({ ic, label, value, d, pre = '', suf = '', small = '', deltaHtml, foot, spark }) {
     return `<article class="card kpi s-3">
       <div class="kpi-top"><span class="kpi-ic">${icon(ic)}</span>${deltaHtml || ''}</div>
@@ -404,6 +448,8 @@
       ${kpi({ ic: 'sparkle', label: 'Tahmini TYT puanı (yaklaşık)', value: Math.round(estScore(LAST.net)), d: 0, deltaHtml: delta(1, `${fmt(Math.round(estScore(LAST.net) - estScore(PREV.net)), 0)} puan`), foot: 'Son deneme netine göre hesaplanır', spark: sparkline(EXAMS.map((e) => estScore(e.net))) })}
       ${kpi({ ic: 'trophy', label: 'Türkiye sıralaması', value: LAST.rank, d: 0, suf: '.', small: `/ ${fmt(LAST.total, 0)}`, deltaHtml: delta(1, `${fmt(PREV.rank - LAST.rank, 0)} sıra`), foot: `İlk %${fmt((LAST.rank / LAST.total) * 100, 1)} içindesin`, spark: sparkline(EXAMS.map((e) => e.rank), true) })}
       ${kpi({ ic: 'check', label: 'Bu hafta çözülen soru', value: weekQ[weekQ.length - 1], d: 0, deltaHtml: delta(1, `%${fmt(Math.round((weekQ[5] / weekQ[4] - 1) * 100), 0)}`), foot: `Çalışma süresi: ${hrs(hs.week)}`, spark: sparkline(weekQ) })}
+
+      ${activityCard()}
 
       <section class="card s-8">
         <div class="card-h"><div><h2>Net gelişimi</h2><p>Son ${EXAMS.length} TYT denemesi · hedef çizgisi ${fmt(goalNet)} net</p></div>
@@ -505,7 +551,16 @@
         <div class="ex-foot"><span class="small muted">Türkiye geneli sıralamaya dahil</span>${upcomingReg[u.id] ? `<button class="btn btn-ghost btn-sm" data-action="unregister" data-id="${u.id}">Kaydı iptal et</button>` : `<button class="btn btn-blue btn-sm" data-action="register" data-id="${u.id}">Kaydol</button>`}</div>
       </article>`).join('');
     } else if (tab === 'pratik') {
-      body = PRACTICE.map((p) => `<article class="card ex-card">
+      const sonuc = store.get(ukey('deneme-sonuc'), {});
+      body = BANK.kaynaklar.filter((k) => k.tur === 'deneme').map((k) => {
+        const qs = BANK.sorular.filter((q) => q.kaynak === k.id), fresh = qs.filter((q) => !isSeen(q.id)), r = sonuc[k.id];
+        return `<article class="card ex-card">
+          <div class="ex-top"><span class="chip blue">${esc(k.sinav)}</span>${r ? `<span class="chip good">Çözüldü · ${fmt(r.net)} net</span>` : fresh.length === qs.length ? '<span class="chip good">Hemen başlayabilirsin</span>' : `<span class="chip warn">${fresh.length} yeni soru</span>`}</div>
+          <h3>${esc(k.ad)}</h3><p class="small muted">${esc([...new Set(qs.map((q) => q.konu))].join(', '))}</p>
+          <div class="ex-meta"><span>${icon('file')}${qs.length} soru</span><span>${icon('clock')}${Math.round(qs.length * k.dk_soru)} dk</span></div>
+          <div class="ex-foot"><span class="small muted">${fresh.length ? 'Daha önce gördüğün sorular gelmez' : 'Tüm sorularını gördün'}</span>${fresh.length ? `<button class="btn btn-yellow btn-sm btn-play" data-action="bank-deneme" data-id="${esc(k.id)}">${icon('play')} Başla</button>` : '<button class="btn btn-ghost btn-sm" disabled>Tamamlandı</button>'}</div>
+        </article>`;
+      }).join('') + PRACTICE.map((p) => `<article class="card ex-card">
         <div class="ex-top"><span class="chip blue">${p.type}</span>${p.play ? '<span class="chip good">Hemen başlayabilirsin</span>' : ''}</div>
         <h3>${p.name}</h3><p class="small muted">${p.desc}</p>
         <div class="ex-meta"><span>${icon('file')}${p.q} soru</span><span>${icon('clock')}${p.dur} dk</span></div>
@@ -764,105 +819,91 @@
     $$('[data-notif]').forEach((c) => c.addEventListener('change', () => toast(c.checked ? 'Bildirim açıldı' : 'Bildirim kapatıldı')));
   }
 
-  /* --- Yaprak Test Oluştur --- */
-  const bankQs = (f) => BANK.sorular.filter((q) => (!f.kaynak || q.kaynak === f.kaynak) && (!f.ders || q.ders === f.ders) && (!f.konular || f.konular.includes(q.konu)));
+  /* --- Yaprak Test Oluştur: the user only picks how many questions --- */
   const nextTestNo = () => ytests.reduce((m, t) => Math.max(m, t.no || 0), 0) + 1;
-  const autoTitle = (k) => (k.length === 1 ? k[0] : k.length === 2 ? k.join(' ve ') : `${k[0]} ve ${k.length - 1} konu daha`);
-  function builderState() {
-    const b = state.b;
-    if (!BANK.kaynaklar.some((k) => k.id === b.kaynak)) b.kaynak = BANK.kaynaklar[0] && BANK.kaynaklar[0].id;
-    const dersler = [...new Set(bankQs({ kaynak: b.kaynak }).map((q) => q.ders))];
-    if (!dersler.includes(b.ders)) { b.ders = dersler[0]; b.konular = null; }
-    const konular = [];
-    bankQs({ kaynak: b.kaynak, ders: b.ders }).sort((x, y) => x.sira - y.sira).forEach((q) => {
-      const k = konular.find((x) => x.ad === q.konu);
-      if (k) k.n++; else konular.push({ ad: q.konu, n: 1 });
-    });
-    if (!b.konular || !b.konular.every((k) => konular.some((x) => x.ad === k))) b.konular = konular.length ? [konular[0].ad] : [];
-    const avail = b.konular.length ? bankQs({ kaynak: b.kaynak, ders: b.ders, konular: b.konular }).length : 0;
-    b.adet = Math.max(1, Math.min(b.adet || 10, avail || 1));
-    return { dersler, konular, avail };
-  }
   function vTestOlustur() {
-    if (!BANK.sorular.length) {
-      return `<div class="view"><section class="card s-12 empty"><h2>Soru bankası boş</h2><p class="muted">Önce bir soru bankası PDF'inden soru çıkar:<br><code>python3 tools/soru_cikar.py kaynak.pdf --kaynak-id ornek --kaynak-ad "Kaynak adı"</code></p></section></div>`;
+    const pool = poolQs(), fresh = pool.filter((q) => !isSeen(q.id)), b = state.b, max = fresh.length;
+    if (!pool.length) {
+      return `<div class="view"><section class="card s-12 empty"><h2>${esc(user.exam)} için soru havuzu hazırlanıyor</h2><p class="muted">Hedef sınavın için henüz soru eklenmedi. Hedef sınavını Ayarlar'dan değiştirebilirsin.</p><a class="btn btn-soft" href="#ayarlar">Ayarlar'a git</a></section></div>`;
     }
-    const b = state.b, { dersler, konular, avail } = builderState();
-    const src = BANK.kaynaklar.find((k) => k.id === b.kaynak);
-    const card = (name, val, label, sub) => `<label class="opt-card"><input type="radio" name="${name}" value="${val}" ${b[name] === val ? 'checked' : ''}><span><b>${label}</b><small>${sub}</small></span></label>`;
+    const solvedN = pool.filter((q) => seen.solved[q.id]).length;
+    const usedN = pool.filter((q) => seen.used[q.id] && !seen.solved[q.id]).length;
+    if (!max) {
+      return `<div class="view"><section class="card s-12 empty"><h2>Havuzdaki tüm soruları gördün</h2><p class="muted">${esc(user.exam)} havuzundaki ${pool.length} sorunun hepsi sana gösterildi (${solvedN} çözüldü). Yeni sorular eklendiğinde burada görünecek.</p><a class="btn btn-soft" href="#yaprak-testler">Oluşturduğun testlere bak</a></section></div>`;
+    }
+    b.adet = Math.max(1, Math.min(b.adet || 10, max));
+    const presets = [...new Set([5, 10, 20, 40].filter((n) => n < max).concat(max))];
+    const pct = (pool.length - max) / pool.length * 100;
     return `<div class="view">
-      <section class="card s-8">
-        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Soru bankasından konu seç; testin Deneme Sokağı şablonunda, kaynaktaki soru sırasıyla hazırlansın.</p></div></div>
-        <form id="builder" class="builder" novalidate>
-          <div class="b-row">
-            <label class="field">Soru bankası<select class="select" id="b-kaynak">${BANK.kaynaklar.map((k) => `<option value="${esc(k.id)}" ${k.id === b.kaynak ? 'selected' : ''}>${esc(k.ad)} · ${k.soru} soru</option>`).join('')}</select></label>
-            <div class="field">Ders<div class="tabs" id="b-ders">${dersler.map((d) => `<button type="button" class="${d === b.ders ? 'on' : ''}" data-ders="${esc(d)}">${esc(d)}</button>`).join('')}</div></div>
-          </div>
-          <div class="field"><span class="f-label">Konular <small>· birden fazla seçebilirsin</small></span>
-            <div class="picks" id="b-konular">${konular.map((k) => `<label class="pick"><input type="checkbox" value="${esc(k.ad)}" ${b.konular.includes(k.ad) ? 'checked' : ''}><span>${esc(k.ad)}<em>${k.n}</em></span></label>`).join('')}</div></div>
-          <div class="field"><span class="f-label">Soru sayısı</span>
-            <span class="range-row"><input type="range" id="b-adet" min="1" max="${Math.max(1, avail)}" value="${b.adet}" ${avail ? '' : 'disabled'} aria-label="Soru sayısı"><output id="b-adet-out">${b.adet}</output><span class="small">/ ${avail} uygun soru</span></span></div>
-          <div class="field">Görünüm<div class="opt-cards">${card('mod', 'gorsel', 'Görsel', 'Sorular kaynaktaki görünümüyle')}${card('mod', 'metin', 'Metin', 'Deneme Sokağı dizgisiyle')}</div></div>
-          <div class="field">Soru sırası<div class="opt-cards">${card('sira', 'kaynak', 'Kaynaktaki sıra', 'Soru bankasındaki dizilim korunur')}${card('sira', 'karisik', 'Karışık', 'Sorular karıştırılır')}</div></div>
-          <div class="b-row">
-            <div class="toggle-row boxed"><div><b>Cevap anahtarı</b><span>Testin sonuna ekle</span></div><span class="switch"><input type="checkbox" id="b-key" ${b.key ? 'checked' : ''} aria-label="Cevap anahtarı"><i></i></span></div>
-          </div>
-          <label class="field">Test adı<input class="input" id="b-ad" maxlength="70" placeholder="${esc(autoTitle(b.konular) || 'Yaprak test')}" value="${esc(b.ad)}"></label>
-          <div class="b-actions"><button class="btn btn-yellow" type="submit" ${avail ? '' : 'disabled'}>${icon('plus')} Testi oluştur</button><span class="small muted">Test, "Oluşturulan Yaprak Testler" sayfasına kaydedilir.</span></div>
-        </form>
+      <section class="card s-8 qb-builder">
+        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Kaç soru istediğini seç. Sorular, daha önce karşına çıkmamış sorulardan gelir.</p></div><span class="chip blue">${esc([...new Set([user.exam, ...poolSinav()])].join(' · '))}</span></div>
+        <div class="count-box">
+          <button type="button" class="step" data-step="-1" aria-label="Bir soru azalt">−</button>
+          <div class="count-val"><output id="b-count">${b.adet}</output><span>soru</span></div>
+          <button type="button" class="step" data-step="1" aria-label="Bir soru artır">+</button>
+        </div>
+        <input type="range" id="b-range" min="1" max="${max}" value="${b.adet}" aria-label="Soru sayısı">
+        <div class="presets" role="group" aria-label="Hazır soru sayıları">${presets.map((n) => `<button type="button" class="${n === b.adet ? 'on' : ''}" data-preset="${n}">${n === max ? `Tümü · ${n}` : n}</button>`).join('')}</div>
+        <p class="count-sub">Önerilen süre <b id="b-dk">${dkFor(fresh.slice(0, b.adet))} dk</b> · Deneme Sokağı şablonunda, kaynaktaki soru sırasıyla</p>
+        <div class="make-row"><button type="button" class="btn btn-blue btn-lg btn-play" data-make="coz">${icon('play')} Çöz</button><button type="button" class="btn btn-yellow btn-lg" data-make="indir">${icon('download')} PDF indir</button></div>
+        <p class="small muted">Oluşturduğun test "Oluşturulan Yaprak Testler" sayfasına kaydedilir. İçindeki sorular sana bir daha gösterilmez.</p>
       </section>
       <section class="card s-4 b-sum">
-        <div class="card-h"><div><h2>Özet</h2><p>Yaprak test ${String(nextTestNo()).padStart(2, '0')}</p></div></div>
-        <div class="mini-page ${b.mod}" aria-hidden="true"><div class="mp-head"></div><div class="mp-cols"><div>${'<i></i>'.repeat(4)}</div><div>${'<i></i>'.repeat(3)}</div></div></div>
+        <div class="card-h"><div><h2>Soru havuzun</h2><p>${esc(user.exam)} hedefine göre</p></div></div>
+        ${ringSvg(pct, `%${fmt(pct, 0)}`, 'gördüğün sorular')}
         <dl class="sum-list">
-          <div><dt>Soru</dt><dd id="sum-adet">${b.adet}</dd></div>
-          <div><dt>Önerilen süre</dt><dd id="sum-sure">${minutesFor(b.adet)} dk</dd></div>
-          <div><dt>Soru bankası</dt><dd>${esc(src ? src.ad : '—')}</dd></div>
-          <div><dt>Ders</dt><dd>${esc(b.ders || '—')}</dd></div>
-          <div><dt>Konular</dt><dd>${esc(b.konular.join(', ') || '—')}</dd></div>
-          <div><dt>Görünüm</dt><dd>${b.mod === 'gorsel' ? 'Görsel' : 'Metin'} · ${b.sira === 'kaynak' ? 'kaynak sırası' : 'karışık'}</dd></div>
+          <div><dt>Yeni soru</dt><dd>${max}</dd></div>
+          <div><dt>Çözülen</dt><dd>${solvedN}</dd></div>
+          <div><dt>Teste eklenen, çözülmeyen</dt><dd>${usedN}</dd></div>
+          <div><dt>Toplam havuz</dt><dd>${pool.length}</dd></div>
         </dl>
+        <p class="small muted">Her sorunun kalıcı bir künyesi vardır (ör. ${esc(fresh[0].kod || '')}); PDF'te sorunun altında görünür.</p>
       </section>
     </div>`;
   }
   function afterTestOlustur() {
-    const f = $('#builder');
-    if (!f) return;
+    const range = $('#b-range');
+    if (!range) return;
     const b = state.b;
-    $('#b-kaynak').addEventListener('change', (e) => { b.kaynak = e.target.value; b.ders = null; render(false); });
-    $$('#b-ders [data-ders]').forEach((x) => x.addEventListener('click', () => { b.ders = x.dataset.ders; b.konular = null; render(false); }));
-    $$('#b-konular input').forEach((x) => x.addEventListener('change', () => {
-      const sel = $$('#b-konular input:checked').map((i) => i.value);
-      if (!sel.length) { x.checked = true; return toast('En az bir konu seçmelisin'); }
-      const r = $('#b-adet'), wasAll = +r.value >= +r.max;
-      b.konular = sel;
-      if (wasAll) b.adet = 999;
-      render(false);
-    }));
-    $('#b-adet').addEventListener('input', (e) => {
-      b.adet = +e.target.value;
-      $('#b-adet-out').textContent = b.adet; $('#sum-adet').textContent = b.adet; $('#sum-sure').textContent = `${minutesFor(b.adet)} dk`;
-    });
-    $$('input[name="mod"], input[name="sira"]', f).forEach((r) => r.addEventListener('change', () => { b[r.name] = r.value; render(false); }));
-    $('#b-key').addEventListener('change', (e) => { b.key = e.target.checked; });
-    $('#b-ad').addEventListener('input', (e) => { b.ad = e.target.value; });
-    f.addEventListener('submit', (e) => { e.preventDefault(); createTest(); });
+    const set = (n) => {
+      const max = +range.max;
+      b.adet = Math.max(1, Math.min(max, n));
+      range.value = b.adet;
+      $('#b-count').textContent = b.adet;
+      $('#b-dk').textContent = `${dkFor(poolQs().filter((q) => !isSeen(q.id)).slice(0, b.adet))} dk`;
+      $$('.presets button').forEach((x) => x.classList.toggle('on', +x.dataset.preset === b.adet));
+      const c = $('#b-count'); c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump');
+    };
+    range.addEventListener('input', () => set(+range.value));
+    $$('[data-step]').forEach((x) => x.addEventListener('click', () => set(b.adet + +x.dataset.step)));
+    $$('[data-preset]').forEach((x) => x.addEventListener('click', () => set(+x.dataset.preset)));
+    $$('[data-make]').forEach((x) => x.addEventListener('click', () => createTest(x.dataset.make)));
   }
-  function createTest() {
-    const b = state.b;
-    let qs = bankQs({ kaynak: b.kaynak, ders: b.ders, konular: b.konular }).sort((x, y) => x.sira - y.sira);
-    if (b.sira === 'karisik') for (let i = qs.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [qs[i], qs[j]] = [qs[j], qs[i]]; }
-    qs = qs.slice(0, b.adet);
-    const src = BANK.kaynaklar.find((k) => k.id === b.kaynak) || {};
+  function createTest(action) {
+    const qs = poolQs().filter((q) => !isSeen(q.id)).slice(0, state.b.adet);
+    if (!qs.length) return toast('Yeni soru kalmadı');
+    const konular = [...new Set(qs.map((q) => q.konu))];
     const test = {
-      id: 'yt-' + uid(), baslik: b.ad.trim() || autoTitle(b.konular), ders: [src.sinav, b.ders].filter(Boolean).join(' · '),
-      no: nextTestNo(), mod: b.mod, soruIds: qs.map((q) => q.id), cevapAnahtari: b.key,
-      olusturma: new Date().toISOString(), kaynak: src.ad || '', konular: [...b.konular], sonuc: null,
+      id: 'yt-' + uid(), no: nextTestNo(), mod: 'gorsel',
+      baslik: konular.length === 1 ? konular[0] : `${[...new Set(qs.map((q) => q.sinav))].join(' · ')} Karma Test`,
+      ders: [...new Set(qs.map((q) => `${q.sinav} · ${q.ders}`))].join(' – '),
+      soruIds: qs.map((q) => q.id), cevapAnahtari: true, olusturma: new Date().toISOString(),
+      kaynak: [...new Set(qs.map((q) => q.kaynak_ad))].join(', '), konular, dk: dkFor(qs), sonuc: null,
     };
     ytests.unshift(test); saveTests();
-    b.ad = '';
-    toast('Yaprak test oluşturuldu');
-    openTestPreview(test);
+    markUsed(test.soruIds);
+    logActivity({ tur: action === 'indir' ? 'indirildi' : 'olusturuldu', ad: test.baslik, detay: `Yaprak test ${pad2(test.no)} · ${qs.length} soru`, ref: test.id });
+    if (action === 'indir') downloadTest(test, false); else solveTest(test.id);
+    if (routeKey() === 'test-olustur') render(false);
+  }
+  // Opens the print page; it prints itself once (→ "PDF olarak kaydet").
+  function downloadTest(test, log = true) {
+    try { localStorage.setItem('ds-autoprint', test.id); } catch (e) { /* the page still opens */ }
+    const a = document.createElement('a');
+    a.href = `sablon/yaprak-test.html#${test.id}`; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    if (log) logActivity({ tur: 'indirildi', ad: test.baslik, detay: `Yaprak test ${pad2(test.no)} · ${test.soruIds.length} soru`, ref: test.id });
+    toast('PDF sayfası açıldı. Yazdırma penceresinde "PDF olarak kaydet"i seç.');
   }
 
   async function openTestPreview(test) {
@@ -871,8 +912,8 @@
       <div class="pl-head"><div><h2 id="pvTitle">${esc(test.baslik)}</h2><p>Yaprak test ${String(test.no).padStart(2, '0')} · ${test.soruIds.length} soru · ${test.mod === 'gorsel' ? 'Görsel' : 'Metin'}${test.kaynak ? ' · ' + esc(test.kaynak) : ''}</p></div><span style="margin-left:auto"></span><button class="icon-btn" data-pv="close" aria-label="Kapat">${icon('x')}</button></div>
       <div class="pv-body"><p class="pv-loading">Sayfalar hazırlanıyor…</p><div class="pv-doc ds-doc preview" id="pvDoc"></div></div>
       <div class="pl-foot"><span class="small muted" id="pvInfo"></span><span class="spacer"></span>
-        <a class="btn btn-ghost btn-sm" href="sablon/yaprak-test.html#${esc(test.id)}" target="_blank" rel="noopener">${icon('download')} PDF / Yazdır</a>
-        <button class="btn btn-yellow btn-sm btn-play" data-pv="solve">${icon('play')} Testi çöz</button></div></div></div>`;
+        <button class="btn btn-ghost btn-sm" data-pv="pdf">${icon('download')} PDF indir</button>
+        ${test.sonuc ? `<span class="chip good">Çözüldü · ${fmt(test.sonuc.net)} net</span>` : `<button class="btn btn-yellow btn-sm btn-play" data-pv="solve">${icon('play')} Testi çöz</button>`}</div></div></div>`;
     const close = () => { document.removeEventListener('keydown', onKey); root.innerHTML = ''; };
     const onKey = (e) => { if (e.key === 'Escape') close(); };
     document.addEventListener('keydown', onKey);
@@ -882,6 +923,7 @@
       if (!b) return;
       if (b.dataset.pv === 'close') close();
       else if (b.dataset.pv === 'solve') { close(); solveTest(test.id); }
+      else if (b.dataset.pv === 'pdf') downloadTest(test);
     };
     if (!window.DSYaprakTest) { $('.pv-loading').textContent = 'Şablon yüklenemedi.'; return; }
     const doc = $('#pvDoc');
@@ -895,9 +937,15 @@
     if (!t) return;
     const items = t.soruIds.map((q) => bankItem(BANK.byId[q])).filter(Boolean);
     if (!items.length) return toast('Bu testin soruları bankada bulunamadı');
-    openPlayer(items, t.baslik, minutesFor(items.length) * 60, {
+    if (t.sonuc) return toast('Bu testi çözdün; sorular tekrar gösterilmez.');
+    openPlayer(items, t.baslik, (t.dk || minutesFor(items.length)) * 60, {
       mode: t.mod,
-      onFinish: (r) => { t.sonuc = { D: r.D, Y: r.Y, B: r.B, net: r.net, tarih: new Date().toISOString() }; saveTests(); if (routeKey() === 'yaprak-testler') render(false); },
+      onFinish: (r) => {
+        t.sonuc = { D: r.D, Y: r.Y, B: r.B, net: r.net, tarih: new Date().toISOString() }; saveTests();
+        markSolved(t.soruIds);
+        logActivity({ tur: 'cozuldu', ad: t.baslik, detay: `Yaprak test ${pad2(t.no)} · ${r.D} D · ${r.Y} Y · ${r.B} B`, net: r.net, ref: t.id });
+        if (['yaprak-testler', 'genel', 'test-olustur'].includes(routeKey())) render(false);
+      },
     });
   }
 
@@ -909,15 +957,15 @@
       return `<article class="card ex-card">
         <div class="ex-top"><span class="chip blue">Yaprak test ${String(t.no).padStart(2, '0')}</span>${r ? `<span class="chip good">Çözüldü · ${fmt(r.net)} net</span>` : '<span class="chip">Çözülmedi</span>'}</div>
         <h3>${esc(t.baslik)}</h3><p class="small muted">${esc(t.ders)}${t.kaynak ? ' · ' + esc(t.kaynak) : ''}</p>
-        <div class="ex-meta"><span>${icon('file')}${t.soruIds.length} soru</span><span>${icon('clock')}${minutesFor(t.soruIds.length)} dk</span><span>${icon('eye')}${t.mod === 'gorsel' ? 'Görsel' : 'Metin'}</span><span>${icon('calendar')}${dShort(d)}</span></div>
+        <div class="ex-meta"><span>${icon('file')}${t.soruIds.length} soru</span><span>${icon('clock')}${t.dk || minutesFor(t.soruIds.length)} dk</span><span>${icon('eye')}${t.mod === 'gorsel' ? 'Görsel' : 'Metin'}</span><span>${icon('calendar')}${dShort(d)}</span></div>
         ${r ? `<div class="yt-score"><span class="g">D ${r.D}</span><span class="b">Y ${r.Y}</span><span>B ${r.B}</span></div>` : ''}
         <div class="ex-foot"><button class="btn btn-ghost btn-sm" data-action="yt-del" data-id="${esc(t.id)}" aria-label="Testi sil">${icon('trash')}</button>
-          <span class="btn-pair"><button class="btn btn-soft btn-sm" data-action="yt-preview" data-id="${esc(t.id)}">${icon('eye')} Önizle</button><button class="btn btn-blue btn-sm" data-action="yt-solve" data-id="${esc(t.id)}">${r ? 'Tekrar çöz' : 'Çöz'}</button></span></div>
+          <span class="btn-pair"><button class="btn btn-soft btn-sm" data-action="yt-preview" data-id="${esc(t.id)}" aria-label="Önizle">${icon('eye')}</button><button class="btn btn-soft btn-sm" data-action="yt-pdf" data-id="${esc(t.id)}">${icon('download')} PDF</button>${r ? '' : `<button class="btn btn-blue btn-sm" data-action="yt-solve" data-id="${esc(t.id)}">Çöz</button>`}</span></div>
       </article>`;
     }).join('');
     return `<div class="view">
-      <div class="toolbar s-12"><span class="small muted">${list.length} yaprak test · PDF için önizlemeden "PDF / Yazdır"</span><a class="btn btn-yellow btn-sm" href="#test-olustur">${icon('plus')} Yeni yaprak test</a></div>
-      ${list.length ? `<div class="ex-grid s-12">${cards}</div>` : `<section class="card s-12 empty"><h2>Henüz yaprak test oluşturmadın</h2><p class="muted">Soru bankasından konu seçerek ilk testini birkaç saniyede hazırlayabilirsin.</p><a class="btn btn-yellow" href="#test-olustur">${icon('plus')} İlk yaprak testini oluştur</a></section>`}
+      <div class="toolbar s-12"><span class="small muted">${list.length} yaprak test · çözülen testlerin soruları tekrar gösterilmez</span><a class="btn btn-yellow btn-sm" href="#test-olustur">${icon('plus')} Yeni yaprak test</a></div>
+      ${list.length ? `<div class="ex-grid s-12">${cards}</div>` : `<section class="card s-12 empty"><h2>Henüz yaprak test oluşturmadın</h2><p class="muted">Kaç soru istediğini seç, testin birkaç saniyede hazır olsun.</p><a class="btn btn-yellow" href="#test-olustur">${icon('plus')} İlk yaprak testini oluştur</a></section>`}
     </div>`;
   }
 
@@ -937,7 +985,7 @@
     const avg = tyt.reduce((a, r) => a + r.net, 0) / (tyt.length || 1);
     const best = tyt.reduce((m, r) => (r.net > m.net ? r : m), { net: 0, ad: '' });
     return `<div class="view">
-      ${kpi({ ic: 'file', label: 'Çözülen deneme', value: all.length, d: 0, foot: `${tyt.length} TYT · ${all.length - tyt.length} mini deneme` })}
+      ${kpi({ ic: 'file', label: 'Çözülen deneme', value: all.length, d: 0, foot: `${tyt.length} TYT · ${all.length - tyt.length} diğer deneme` })}
       ${kpi({ ic: 'chart', label: 'Ortalama TYT neti', value: Math.round(avg * 4) / 4, small: '/ 120', foot: `Türkiye ortalaması ${fmt(AVG_TOTAL, 1)} net` })}
       ${kpi({ ic: 'trophy', label: 'En yüksek net', value: best.net, small: '/ 120', foot: esc(best.ad) })}
       ${kpi({ ic: 'check', label: 'Çözülen soru', value: all.reduce((a, r) => a + r.soru, 0), d: 0, foot: 'Denemelerdeki toplam soru' })}
@@ -949,10 +997,27 @@
       </section>
     </div>`;
   }
+  function startBankDeneme(id) {
+    const k = BANK.src[id];
+    if (!k) return;
+    const qs = BANK.sorular.filter((q) => q.kaynak === id && !isSeen(q.id)).sort((a, b) => a.sira - b.sira);
+    if (!qs.length) return toast('Bu denemenin tüm sorularını gördün');
+    markUsed(qs.map((q) => q.id));
+    openPlayer(qs.map(bankItem), k.ad, Math.round(qs.length * k.dk_soru) * 60, {
+      mode: 'gorsel',
+      onFinish: (r) => {
+        markSolved(qs.map((q) => q.id));
+        const all = store.get(ukey('deneme-sonuc'), {}); all[id] = { D: r.D, Y: r.Y, B: r.B, net: r.net, tarih: new Date().toISOString() }; store.set(ukey('deneme-sonuc'), all);
+        saveHistory({ ad: k.ad, tur: 'Deneme', soru: qs.length, D: r.D, Y: r.Y, B: r.B, net: r.net });
+        logActivity({ tur: 'cozuldu', ad: k.ad, detay: `${k.sinav} denemesi · ${qs.length} soru`, net: r.net });
+        if (['denemeler', 'genel'].includes(routeKey())) render(false);
+      },
+    });
+    if (routeKey() === 'denemeler') render(false);
+  }
   function saveMini(r) {
-    const h = store.get('ds-history', []);
-    h.unshift({ id: 'm-' + uid(), ad: 'Mini TYT Denemesi', tur: 'Mini', tarih: new Date().toISOString(), soru: QUESTIONS.length, D: r.D, Y: r.Y, B: r.B, net: r.net });
-    store.set('ds-history', h.slice(0, 50));
+    saveHistory({ ad: 'Mini TYT Denemesi', tur: 'Mini', soru: QUESTIONS.length, D: r.D, Y: r.Y, B: r.B, net: r.net });
+    logActivity({ tur: 'cozuldu', ad: 'Mini TYT Denemesi', detay: `Mini deneme · ${QUESTIONS.length} soru`, net: r.net });
   }
 
   /* --- Paketler --- */
@@ -1103,6 +1168,8 @@
       case 'retry': { const it = a.dataset.bank ? bankItem(BANK.byId[a.dataset.bank]) : qItem(QUESTIONS[+a.dataset.q], +a.dataset.q); return it && openPlayer([it], 'Yanlış defteri · tekrar', 3 * 60); }
       case 'yt-preview': { const t = ytests.find((x) => x.id === a.dataset.id); return t && openTestPreview(t); }
       case 'yt-solve': return solveTest(a.dataset.id);
+      case 'yt-pdf': { const t = ytests.find((x) => x.id === a.dataset.id); return t && downloadTest(t); }
+      case 'bank-deneme': return startBankDeneme(a.dataset.id);
       case 'yt-del': {
         if (!a.dataset.armed) {
           a.dataset.armed = '1'; a.classList.add('armed'); a.textContent = 'Silmek için tekrar tıkla';
@@ -1367,7 +1434,7 @@
     user.exam = p.exam || user.exam; user.alan = p.alan || user.alan;
     const ini = user.name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toLocaleUpperCase('tr')).join('');
     $('.avatar').textContent = ini || 'DS';
-    $('.av-name').innerHTML = `${esc(user.name)}<small>${esc(user.exam)} · ${esc(user.alan)}</small>`;
+    $('.av-name').innerHTML = `${esc(user.name)}<small>${esc([user.exam, user.alan].filter((x) => x && x !== '—').join(' · '))}</small>`;
   }
   async function logout() {
     try { if (window.DSAuth) await window.DSAuth.signOut(); } catch (e) { /* ignore */ }
@@ -1392,6 +1459,7 @@
       city: 'İstanbul', school: 'Örnek Anadolu Lisesi', exam: (u && u.exam) || 'YKS', alan: (u && u.alan) || 'Sayısal',
     };
     applyUser();
+    loadProgress();
     document.body.classList.add('ready');
     render(true);
   }

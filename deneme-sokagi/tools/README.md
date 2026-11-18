@@ -7,6 +7,12 @@ pip install -r tools/requirements.txt
 python3 tools/soru_cikar.py KAYNAK.pdf --kaynak-id kaynak-adi --kaynak-ad "Kaynak Adı" --sinav TYT
 ```
 
+Seçenekler: `--tur banka|deneme` (deneme kaynakları panelde Denemelerim → Hemen çöz'de de çıkar),
+`--kod-on XX` (künye harfleri), `--dk-soru` (soru başına süre), `--ders` / `--konu` (elle başlık).
+
+Her soruya kalıcı bir **künye** verilir: 2 harf + 5 rakam (ör. `YD48213`). Harfler sınavdan gelir
+(YDS → YD, TYT → TY). Künye bankada benzersizdir ve araç tekrar çalıştırıldığında değişmez.
+
 Her soru, kaynaktaki sırası korunarak iki biçimde çıkarılır:
 
 - **Görsel:** sorunun PDF'ten kırpılmış hâli (`data/sorular/<kaynak-id>/<id>.png`).
@@ -25,8 +31,11 @@ gerekir ve araç bu sayfaları atlayıp uyarır. Sayfa düzeni çok farklı kayn
 **Telif:** Yalnızca sahibi olduğunuz ya da kullanım izni aldığınız kaynaklarla kullanın.
 Yayınevlerinin soru bankaları ve ÖSYM'nin soru kitapçıkları izinsiz çoğaltılamaz.
 
-Deneme dosyası: `tools/ornek-kaynak/` bu proje için yazılmış özgün sorulardan oluşan örnek bir
-soru bankasıdır (`python3 tools/ornek-kaynak/olustur.py` + `node tools/html-pdf.js …`).
+Deneme dosyaları: `tools/ornek-kaynak/` bu proje için yazılmış özgün sorulardan oluşur — TYT soru
+bankası (`olustur.py`) ve YDS denemesi (`olustur_yds.py`); PDF'e çevirmek için `node tools/html-pdf.js …`.
+
+Filigran kaldırma yoktur: filigran kaynağın sahibini gösterir. Kendi kaynağınızın filigransız
+aslını kullanın.
 
 ## 2. Deneme Sokağı PDF'i — `yaprak-test-pdf.js`
 
@@ -43,3 +52,7 @@ node tools/yaprak-test-pdf.js --test test.json --out test.pdf   # paneldeki test
 
 Seçenekler: `--kaynak <id>`, `--adet N`, `--mod gorsel|metin`, `--baslik "…"`, `--no N`,
 `--karistir`, `--cevapsiz`. Panelde aynı şablon "Önizle" ve "PDF / Yazdır" ile kullanılır.
+
+## 3. Şablon kontrolü — `sablon-kontrol.js`
+
+`node tools/sablon-kontrol.js` şablonun 19 ölçüsünü referans PDF'le karşılaştırır (±0,6 mm).
