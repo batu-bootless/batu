@@ -835,6 +835,15 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
 .src-foot .spacer { flex: 1; }
 .src-foot .btn[disabled] { opacity: .5; cursor: not-allowed; }
 /* step 2 */
+.dn-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.dn-stats div { display: grid; justify-items: center; padding: 16px 8px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); }
+.dn-stats b { font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.dn-stats span { font-size: 13px; color: var(--muted); font-weight: 600; }
+.dn-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.dn-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); }
+.dn-list li b { font-size: 14.5px; }
+.dn-list li span { font-size: 12.5px; color: var(--muted); }
+.b-sum .sum-list dt small { display: block; font-size: 12px; color: var(--faint); font-weight: 500; }
 .sel-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .sel-chips { display: flex; gap: 6px; flex-wrap: wrap; min-width: 0; }
 .sel-chips .chip { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }

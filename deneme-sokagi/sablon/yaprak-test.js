@@ -144,23 +144,24 @@
     const groups = (bank && bank.gruplar) || {};
     // A deneme ("bolumlu") is split into its tests; numbering restarts in each test.
     const secOf = (q) => (test.bolumlu ? (q.bolum || q.ders || '') : '');
-    const secs = [], numOf = {};
+    const secs = [], numOf = {}, secOfQ = {};
     for (const q of qs) {
-      if (!secs.length || secs[secs.length - 1].ad !== secOf(q)) secs.push({ ad: secOf(q), qs: [] });
+      if (!secs.length || secs[secs.length - 1].ad !== secOf(q) || (test.bolumlu && secs[secs.length - 1].kaynak !== q.kaynak)) secs.push({ ad: secOf(q), kaynak: q.kaynak, qs: [] });
       const sec = secs[secs.length - 1];
       sec.qs.push(q);
       numOf[q.id] = sec.qs.length;
+      secOfQ[q.id] = sec;
     }
     let prevYon = null, prevGrup = null, prevSec = null;
     for (let i = 0; i < qs.length; i++) {
       const q = qs[i], n = numOf[q.id], qEl = questionEl(q, n, mode, base);
-      const lead = [], sec = secOf(q), g = q.grup ? groups[q.grup] : null;
-      if (test.bolumlu && sec !== prevSec) {
+      const lead = [], S = secOfQ[q.id], sec = S.ad, g = q.grup ? groups[q.grup] : null;
+      if (test.bolumlu && S !== prevSec) {
         if (prevSec !== null) newPage();   // each test starts on a new page
-        lead.push(sectionEl(sec, secs.find((s) => s.ad === sec).qs.length));
+        lead.push(sectionEl(sec, S.qs.length));
         prevYon = prevGrup = null;
       }
-      prevSec = sec;
+      prevSec = S;
       if (g && g.yonerge) {
         if (q.grup !== prevGrup) {
           let j = i;
@@ -169,7 +170,7 @@
         }
       } else if (q.yonerge && q.yonerge !== prevYon) {
         let j = i;
-        while (j + 1 < qs.length && qs[j + 1].yonerge === q.yonerge && secOf(qs[j + 1]) === sec) j++;
+        while (j + 1 < qs.length && qs[j + 1].yonerge === q.yonerge && secOfQ[qs[j + 1].id] === S) j++;
         lead.push(yonergeEl(n, numOf[qs[j].id], q.yonerge));
       }
       if (g && q.grup !== prevGrup) lead.push(passageEl(g, q.grup, qs, numOf, mode, base));

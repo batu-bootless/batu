@@ -25,6 +25,10 @@ tarayıcıda) açın.
 - Sorular seçilen kaynaklardan, kaynaktaki sırayla gelir; birden çok kaynak seçildiyse önce soru bankaları,
   sonra denemeler kullanılır (yaprak testler bir denemeyi erken tüketmesin diye).
 - Paragrafa bağlı sorular (cloze, okuma) bölünmez: paragrafın tüm soruları birlikte gelir.
+- **Denemelerim → Hemen çöz** aynı iki adımlıdır: **1. Deneme seç** — bütün denemeler kart olarak listelenir, kullanıcı
+  bir ya da birkaçını seçip **Devam et**'e basar. **2. Başla** — istenirse tek bir test seçilir (ör. yalnızca Türkçe),
+  toplam soru ve süre görünür; **Başla** ya da **PDF indir**. Birlikte çözülen denemelerin sonucu ayrı ayrı kaydedilir;
+  test test çözülen bir denemenin neti toplanır.
 - Bir deneme, **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
 - Bir kullanıcıya verilmiş (teste eklenmiş, denemede gösterilmiş) ya da çözülmüş soru ona **bir daha gösterilmez**.
   Demo modunda bu kayıt tarayıcıda tutulur; canlı sistemde kullanıcı hesabına bağlanmalıdır.

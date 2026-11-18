@@ -211,9 +211,10 @@
 
   /* ---------------- state ---------------- */
   const state = {
-    exam: LAST.id, analizSubj: 'mat', eksikFilter: 'all', wrongFilter: 'Tümü', examTab: 'yaklasan', rankTab: 'tr',
+    exam: LAST.id, analizSubj: 'mat', eksikFilter: 'all', wrongFilter: 'Tümü', examTab: 'pratik', rankTab: 'tr',
     histFilter: 'Tümü', pkgTab: 'Tümü', billing: 'yillik',
     b: { kaynak: null, ders: null, konular: null, adet: 10, mod: 'gorsel', sira: 'kaynak', key: true, ogr: true, ad: '' },
+    dn: { sec: [], adim: 1, bolum: '' },   // Denemelerim → Hemen çöz selection
   };
   let user = null;
   let charts = [];      // redraw callbacks for the current view
@@ -561,7 +562,7 @@
   /* --- Denemelerim --- */
   function vExams() {
     const tab = state.examTab;
-    const tabs = [['yaklasan', 'Yaklaşan'], ['pratik', 'Hemen çöz'], ['tamamlanan', 'Tamamlanan']];
+    const tabs = [['pratik', 'Hemen çöz'], ['yaklasan', 'Yaklaşan'], ['tamamlanan', 'Tamamlanan']];
     let body = '';
     if (tab === 'yaklasan') {
       body = UPCOMING.map((u) => `<article class="card ex-card">
@@ -572,21 +573,8 @@
         <div class="ex-foot"><span class="small muted">Türkiye geneli sıralamaya dahil</span>${upcomingReg[u.id] ? `<button class="btn btn-ghost btn-sm" data-action="unregister" data-id="${u.id}">Kaydı iptal et</button>` : `<button class="btn btn-blue btn-sm" data-action="register" data-id="${u.id}">Kaydol</button>`}</div>
       </article>`).join('');
     } else if (tab === 'pratik') {
-      const sonuc = store.get(ukey('deneme-sonuc'), {});
-      body = BANK.kaynaklar.filter((k) => k.tur === 'deneme').map((k) => {
-        const qs = BANK.sorular.filter((q) => q.kaynak === k.id), fresh = qs.filter((q) => !isSeen(q.id)), r = sonuc[k.id];
-        return `<article class="card ex-card">
-          <div class="ex-top"><span class="chip blue">${esc(k.sinav)}</span>${k.yerel ? '<span class="chip warn" title="Bu bilgisayardaki yerel deneme; git\'e ve yayına girmez">Yalnız test</span>' : ''}${r ? `<span class="chip good">Çözüldü · ${fmt(r.net)} net</span>` : fresh.length === qs.length ? '<span class="chip good">Hemen başlayabilirsin</span>' : `<span class="chip warn">${fresh.length} yeni soru</span>`}</div>
-          <h3>${esc(k.ad)}</h3><p class="small muted">${esc([...new Set(qs.map((q) => q.konu))].join(', '))}</p>
-          <div class="ex-meta"><span>${icon('file')}${qs.length} soru</span><span>${icon('clock')}${Math.round(qs.length * k.dk_soru)} dk</span></div>
-          <div class="ex-foot"><span class="small muted">${fresh.length ? 'Daha önce gördüğün sorular gelmez' : 'Tüm sorularını gördün'}</span><span class="btn-pair"><button class="btn btn-ghost btn-sm" data-action="bank-deneme-pdf" data-id="${esc(k.id)}" title="Deneme şablonunda PDF">${icon('file')} PDF</button>${fresh.length ? `<button class="btn btn-yellow btn-sm btn-play" data-action="bank-deneme" data-id="${esc(k.id)}">${icon('play')} Başla</button>` : '<button class="btn btn-ghost btn-sm" disabled>Tamamlandı</button>'}</span></div>
-        </article>`;
-      }).join('') + PRACTICE.map((p) => `<article class="card ex-card">
-        <div class="ex-top"><span class="chip blue">${p.type}</span>${p.play ? '<span class="chip good">Hemen başlayabilirsin</span>' : ''}</div>
-        <h3>${p.name}</h3><p class="small muted">${p.desc}</p>
-        <div class="ex-meta"><span>${icon('file')}${p.q} soru</span><span>${icon('clock')}${p.dur} dk</span></div>
-        <div class="ex-foot"><span class="small muted">İstediğin zaman çöz</span><button class="btn ${p.play ? 'btn-yellow' : 'btn-soft'} btn-sm btn-play" data-action="${p.play ? 'start-mini' : 'start-locked'}">${icon('play')} Başla</button></div>
-      </article>`).join('');
+      const tb = `<div class="toolbar s-12"><div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${k === tab}" class="${k === tab ? 'on' : ''}" data-action="exam-tab" data-k="${k}">${l}</button>`).join('')}</div><span class="small muted">Denemeleri seç; istersen yalnızca bir testini çöz</span></div>`;
+      return `<div class="view">${tb}${vDenemeSec()}</div>`;
     } else {
       body = [...EXAMS].reverse().map((e) => `<article class="card ex-card">
         <div class="ex-top"><span class="chip blue">TYT</span><span class="chip">${dShort(e.d)}</span></div>
@@ -597,7 +585,7 @@
     }
     return `<div class="view">
       <div class="toolbar s-12"><div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${k === tab}" class="${k === tab ? 'on' : ''}" data-action="exam-tab" data-k="${k}">${l}</button>`).join('')}</div>
-      <span class="small muted">${tab === 'tamamlanan' ? `${EXAMS.length} deneme tamamlandı` : tab === 'yaklasan' ? `${Object.values(upcomingReg).filter(Boolean).length} denemeye kayıtlısın` : 'Mini deneme bu örnek panelde çözülebilir'}</span></div>
+      <span class="small muted">${tab === 'tamamlanan' ? `${EXAMS.length} deneme tamamlandı` : `${Object.values(upcomingReg).filter(Boolean).length} denemeye kayıtlısın`}</span></div>
       <div class="ex-grid s-12">${body}</div>
     </div>`;
   }
@@ -855,7 +843,7 @@
     .filter((q) => (state.b.sec || []).includes(q.kaynak) && (!state.b.bolum || bolumOf(q) === state.b.bolum))
     .sort((a, b) => srcRank(a) - srcRank(b) || a.sira - b.sira);
   const selFresh = () => selPool().filter((q) => !isSeen(q.id));
-  const stepsHtml = (n) => `<ol class="steps" aria-label="Adımlar"><li class="${n === 1 ? 'on' : 'done'}">${n > 1 ? icon('check') : '<i>1</i>'} Kaynak seç</li><li class="${n === 2 ? 'on' : ''}"><i>2</i> Soru sayısı</li></ol>`;
+  const stepsHtml = (n, a = 'Kaynak seç', b = 'Soru sayısı') => `<ol class="steps" aria-label="Adımlar"><li class="${n === 1 ? 'on' : 'done'}">${n > 1 ? icon('check') : '<i>1</i>'} ${a}</li><li class="${n === 2 ? 'on' : ''}"><i>2</i> ${b}</li></ol>`;
 
   function vTestOlustur() {
     const b = state.b;
@@ -868,24 +856,25 @@
     return vBuilderSources();
   }
 
-  function srcCard(k) {
-    const all = srcQs(k.id), fresh = all.filter((q) => !isSeen(q.id)).length, on = state.b.sec.includes(k.id);
+  // Selectable source card, shared by Yaprak Test Oluştur and Denemelerim. o.chip / o.meta add deneme details.
+  function srcCard(k, sel, o = {}) {
+    const all = srcQs(k.id), fresh = all.filter((q) => !isSeen(q.id)).length, on = sel.includes(k.id);
     const parts = [...new Set(all.map(bolumOf))].filter(Boolean);
     const pct = all.length ? (all.length - fresh) / all.length * 100 : 0;
     return `<label class="src-card${on ? ' on' : ''}${fresh ? '' : ' off'}">
       <input type="checkbox" data-src="${esc(k.id)}" ${on ? 'checked' : ''} ${fresh ? '' : 'disabled'} aria-label="${esc(k.ad)}">
       <span class="src-check">${icon('check')}</span>
-      <span class="src-top"><span class="chip blue">${esc(k.sinav)}</span><span class="chip">${k.tur === 'deneme' ? 'Deneme' : 'Soru bankası'}</span>${k.yerel ? '<span class="chip warn">Yalnız test</span>' : ''}</span>
+      <span class="src-top"><span class="chip blue">${esc(k.sinav)}</span><span class="chip">${k.tur === 'deneme' ? 'Deneme' : 'Soru bankası'}</span>${k.yerel ? '<span class="chip warn">Yalnız test</span>' : ''}${o.chip ? o.chip(k, all.length, fresh) : ''}</span>
       <b class="src-name">${esc(k.ad)}</b>
       <span class="src-parts">${esc(parts.slice(0, 5).join(' · '))}</span>
       <span class="src-bar" aria-hidden="true"><i style="width:${pct.toFixed(1)}%"></i></span>
-      <span class="src-meta">${fresh ? `<b>${fresh}</b> yeni soru · ${all.length} soru` : 'Tüm sorularını gördün'}</span>
+      <span class="src-meta">${fresh ? `<b>${fresh}</b> yeni soru · ${all.length} soru${o.meta ? o.meta(k, all.length, fresh) : ''}` : 'Tüm sorularını gördün'}</span>
     </label>`;
   }
   function vBuilderSources() {
     const srcs = builderSources(), den = srcs.filter((k) => k.tur === 'deneme'), ban = srcs.filter((k) => k.tur !== 'deneme');
     const open = srcs.filter((k) => srcFreshN(k.id));
-    const group = (title, list) => (list.length ? `<h3 class="src-h">${title}<span>${list.length}</span></h3><div class="src-grid">${list.map(srcCard).join('')}</div>` : '');
+    const group = (title, list) => (list.length ? `<h3 class="src-h">${title}<span>${list.length}</span></h3><div class="src-grid">${list.map((k) => srcCard(k, state.b.sec)).join('')}</div>` : '');
     return `<div class="view">
       <section class="card s-12 qb-src">
         <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Soruların geleceği denemeleri seç, sonra soru sayısını belirle. Birden fazla seçebilirsin.</p></div>${stepsHtml(1)}</div>
@@ -937,32 +926,33 @@
     </div>`;
   }
 
+  // Step 1 behaviour shared by both pickers: toggle cards, select all / none, live summary, "Devam et".
+  function bindPicker(st, list, noun) {
+    const sum = () => {
+      const n = st.sec.reduce((a, id) => a + srcFreshN(id), 0);
+      $('#srcSum').innerHTML = st.sec.length ? `<b>${st.sec.length}</b> ${noun} seçildi · <b>${n}</b> yeni soru` : `Devam etmek için en az bir ${noun} seç`;
+      $('[data-src-next]').disabled = !st.sec.length;
+    };
+    const sync = () => {
+      $$('[data-src]').forEach((x) => { x.checked = st.sec.includes(x.dataset.src); x.closest('.src-card').classList.toggle('on', x.checked); });
+      sum();
+    };
+    $$('[data-src]').forEach((x) => x.addEventListener('change', () => {
+      st.sec = x.checked ? [...new Set([...st.sec, x.dataset.src])] : st.sec.filter((id) => id !== x.dataset.src);
+      sync();
+    }));
+    $('[data-src-all]').addEventListener('click', () => { st.sec = list().filter((k) => srcFreshN(k.id)).map((k) => k.id); sync(); });
+    $('[data-src-none]').addEventListener('click', () => { st.sec = []; sync(); });
+    $('[data-src-next]').addEventListener('click', () => {
+      if (!st.sec.length) return toast(`Önce en az bir ${noun} seç`);
+      st.adim = 2; st.bolum = '';
+      render(false); window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    sum();
+  }
   function afterTestOlustur() {
     const b = state.b;
-    if (b.adim !== 2) {
-      const sum = () => {
-        const n = b.sec.reduce((a, id) => a + srcFreshN(id), 0);
-        $('#srcSum').innerHTML = b.sec.length ? `<b>${b.sec.length}</b> kaynak seçildi · <b>${n}</b> yeni soru` : 'Devam etmek için en az bir kaynak seç';
-        $('[data-src-next]').disabled = !b.sec.length;
-      };
-      const sync = () => {
-        $$('[data-src]').forEach((x) => { x.checked = b.sec.includes(x.dataset.src); x.closest('.src-card').classList.toggle('on', x.checked); });
-        sum();
-      };
-      $$('[data-src]').forEach((x) => x.addEventListener('change', () => {
-        b.sec = x.checked ? [...new Set([...b.sec, x.dataset.src])] : b.sec.filter((id) => id !== x.dataset.src);
-        sync();
-      }));
-      $('[data-src-all]').addEventListener('click', () => { b.sec = builderSources().filter((k) => srcFreshN(k.id)).map((k) => k.id); sync(); });
-      $('[data-src-none]').addEventListener('click', () => { b.sec = []; sync(); });
-      $('[data-src-next]').addEventListener('click', () => {
-        if (!b.sec.length) return toast('Önce en az bir deneme ya da soru bankası seç');
-        b.adim = 2; b.bolum = '';
-        render(false); window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      sum();
-      return;
-    }
+    if (b.adim !== 2) return bindPicker(b, builderSources, 'kaynak');
     $('[data-src-back]').addEventListener('click', () => { b.adim = 1; render(false); });
     $$('[data-bolum]').forEach((x) => x.addEventListener('click', () => { b.bolum = x.dataset.bolum; render(false); }));
     const range = $('#b-range');
@@ -1099,34 +1089,102 @@
       </section>
     </div>`;
   }
-  // The whole deneme in the Deneme Sokağı template: one part per test, answer key at the end.
-  function bankDenemePdf(id) {
-    const k = BANK.src[id];
-    if (!k) return;
-    const qs = BANK.sorular.filter((q) => q.kaynak === id).sort((a, b) => a.sira - b.sira);
-    const test = {
-      id: 'dn-' + id, baslik: k.ad, ders: k.sinav, no: 1, ust: 'DENEME', rozet: 'DENEME', mod: 'gorsel',
-      bolumlu: new Set(qs.map((q) => q.bolum).filter(Boolean)).size > 1, soruIds: qs.map((q) => q.id), cevapAnahtari: true,
-    };
-    try { localStorage.setItem('ds-yaprak-tests-deneme', JSON.stringify([test])); } catch (e) { return toast('Tarayıcı depolaması kapalı; PDF açılamadı'); }
-    downloadTest(test, false);
+  /* --- Denemelerim → Hemen çöz: 1) pick denemeler, 2) optional single test, then Başla or PDF --- */
+  const denemeSources = () => builderSources().filter((k) => k.tur === 'deneme');
+  // The questions a session gets: each selected deneme's unseen questions (in booklet order), optionally one test.
+  const dnGroups = () => denemeSources().filter((k) => state.dn.sec.includes(k.id))
+    .map((k) => ({ k, qs: srcQs(k.id).filter((q) => !isSeen(q.id) && (!state.dn.bolum || bolumOf(q) === state.dn.bolum)).sort((a, b) => a.sira - b.sira) }))
+    .filter((g) => g.qs.length);
+  function vDenemeSec() {
+    const d = state.dn;
+    d.sec = (d.sec || []).filter((id) => BANK.src[id] && srcFreshN(id));
+    if (d.adim === 2 && d.sec.length) return vDenemeBasla();
+    d.adim = 1;
+    const list = denemeSources(), open = list.filter((k) => srcFreshN(k.id)), sonuc = store.get(ukey('deneme-sonuc'), {});
+    const chip = (k, n, fresh) => { const r = sonuc[k.id]; return r ? `<span class="chip good">${fresh && r.soru ? `${r.soru}/${n} soru` : 'Çözüldü'} · ${fmt(r.net)} net</span>` : ''; };
+    const meta = (k, n) => ` · ${Math.round(n * k.dk_soru)} dk`;
+    const extra = PRACTICE.map((p) => `<article class="card ex-card">
+        <div class="ex-top"><span class="chip blue">${p.type}</span>${p.play ? '<span class="chip good">Hemen başlayabilirsin</span>' : ''}</div>
+        <h3>${p.name}</h3><p class="small muted">${p.desc}</p>
+        <div class="ex-meta"><span>${icon('file')}${p.q} soru</span><span>${icon('clock')}${p.dur} dk</span></div>
+        <div class="ex-foot"><span class="small muted">İstediğin zaman çöz</span><button class="btn ${p.play ? 'btn-yellow' : 'btn-soft'} btn-sm btn-play" data-action="${p.play ? 'start-mini' : 'start-locked'}">${icon('play')} Başla</button></div>
+      </article>`).join('');
+    return `<section class="card s-12 qb-src">
+        <div class="card-h"><div><h2>Deneme çöz</h2><p>Çözmek istediğin denemeleri seç ve devam et. Birden fazla seçersen art arda tek oturumda çözülür.</p></div>${stepsHtml(1, 'Deneme seç', 'Başla')}</div>
+        <div class="src-tools"><button type="button" class="btn btn-ghost btn-sm" data-src-all ${open.length ? '' : 'disabled'}>${icon('check')} Tümünü seç</button><button type="button" class="btn btn-ghost btn-sm" data-src-none>Seçimi temizle</button></div>
+        ${list.length ? `<h3 class="src-h">Denemeler<span>${list.length}</span></h3><div class="src-grid">${list.map((k) => srcCard(k, d.sec, { chip, meta })).join('')}</div>` : '<p class="muted">Henüz deneme eklenmedi.</p>'}
+        ${list.length && !open.length ? '<p class="muted" style="margin-top:12px">Tüm denemelerin sorularını gördün. Yeni denemeler eklendiğinde burada görünecek.</p>' : ''}
+        <div class="src-foot"><span id="srcSum" class="small muted"></span><span class="spacer"></span><button type="button" class="btn btn-blue" data-src-next>Devam et ${icon('arrow')}</button></div>
+      </section>
+      <h3 class="src-h s-12" style="margin:6px 0 -6px">Örnek ve paket denemeleri</h3>
+      <div class="ex-grid s-12">${extra}</div>`;
   }
-  function startBankDeneme(id) {
-    const k = BANK.src[id];
-    if (!k) return;
-    const qs = BANK.sorular.filter((q) => q.kaynak === id && !isSeen(q.id)).sort((a, b) => a.sira - b.sira);
-    if (!qs.length) return toast('Bu denemenin tüm sorularını gördün');
+  function vDenemeBasla() {
+    const d = state.dn, sonuc = store.get(ukey('deneme-sonuc'), {});
+    const parts = [...new Set(BANK.sorular.filter((q) => d.sec.includes(q.kaynak) && !isSeen(q.id)).map(bolumOf))].filter(Boolean);
+    if (d.bolum && !parts.includes(d.bolum)) d.bolum = '';
+    const groups = dnGroups(), qs = groups.flatMap((g) => g.qs), dk = dkFor(qs);
+    return `<section class="card s-8 qb-builder dn-start">
+        <div class="card-h"><div><h2>Denemeye başla</h2><p>Süre, seçtiğin soruların sayısına göre ayarlanır. Deneme bitince soruları çözülmüş sayılır.</p></div>${stepsHtml(2, 'Deneme seç', 'Başla')}</div>
+        <div class="sel-row"><span class="sel-chips">${d.sec.map((id) => `<span class="chip blue">${esc(BANK.src[id].ad)}</span>`).join('')}</span><button type="button" class="btn btn-ghost btn-sm" data-src-back>${icon('back')} Denemeleri değiştir</button></div>
+        ${parts.length > 1 ? `<div class="bolum-row"><span class="small muted">Test</span><div class="presets bolum" role="group" aria-label="Test seç">${['', ...parts].map((p) => `<button type="button" class="${p === d.bolum ? 'on' : ''}" data-bolum="${esc(p)}">${p ? esc(p) : 'Tümü'}</button>`).join('')}</div></div>` : ''}
+        <div class="dn-stats"><div><b>${qs.length}</b><span>soru</span></div><div><b>${dk}</b><span>dakika</span></div><div><b>${groups.length}</b><span>deneme</span></div></div>
+        <ul class="dn-list">${groups.map((g) => `<li><b>${esc(g.k.ad)}</b><span>${g.qs.length} soru · ${esc([...new Set(g.qs.map(bolumOf))].filter(Boolean).join(' · '))}</span></li>`).join('')}</ul>
+        <div class="make-row"><button type="button" class="btn btn-blue btn-lg btn-play" data-dn="basla">${icon('play')} Başla</button><button type="button" class="btn btn-yellow btn-lg" data-dn="pdf">${icon('download')} PDF indir</button></div>
+        <p class="small muted">Yarıda kapatırsan sorular harcanmaz; daha sonra yeniden başlayabilirsin. Daha önce gördüğün sorular gelmez.</p>
+      </section>
+      <section class="card s-4 b-sum">
+        <div class="card-h"><div><h2>Son sonuçların</h2><p>Seçtiğin denemelerde</p></div></div>
+        <dl class="sum-list">${d.sec.map((id) => { const r = sonuc[id]; return `<div><dt>${esc(BANK.src[id].ad)}${r && r.soru ? `<small>${r.soru} / ${srcQs(id).length} soru çözüldü</small>` : ''}</dt><dd>${r ? `${fmt(r.net)} net` : '—'}</dd></div>`; }).join('')}</dl>
+        <p class="small muted">Sonuçlar Test Geçmişi → Deneme Sınavları sayfasında da listelenir.</p>
+      </section>`;
+  }
+  function afterExams() {
+    if (state.examTab !== 'pratik' || !$('.qb-src, .dn-start')) return;
+    const d = state.dn;
+    if (d.adim !== 2) return bindPicker(d, denemeSources, 'deneme');
+    $('[data-src-back]').addEventListener('click', () => { d.adim = 1; render(false); });
+    $$('[data-bolum]').forEach((x) => x.addEventListener('click', () => { d.bolum = x.dataset.bolum; render(false); }));
+    $('[data-dn="basla"]').addEventListener('click', startDenemeSel);
+    $('[data-dn="pdf"]').addEventListener('click', denemeSelPdf);
+  }
+  const dnTitle = (groups) => `${groups.length === 1 ? groups[0].k.ad : `${groups.length} deneme`}${state.dn.bolum ? ` · ${state.dn.bolum}` : ''}`;
+  function startDenemeSel() {
+    const groups = dnGroups(), qs = groups.flatMap((g) => g.qs), bolum = state.dn.bolum;
+    if (!qs.length) return toast('Seçtiğin denemelerde yeni soru kalmadı');
     // Questions count as seen once the deneme is finished; closing it early keeps them available.
-    openPlayer(qs.map(bankItem), k.ad, Math.round(qs.length * k.dk_soru) * 60, {
+    openPlayer(qs.map(bankItem), dnTitle(groups), dkFor(qs) * 60, {
       mode: 'gorsel',
       onFinish: (r) => {
         markSolved(qs.map((q) => q.id));
-        const all = store.get(ukey('deneme-sonuc'), {}); all[id] = { D: r.D, Y: r.Y, B: r.B, net: r.net, tarih: new Date().toISOString() }; store.set(ukey('deneme-sonuc'), all);
-        saveHistory({ ad: k.ad, tur: 'Deneme', soru: qs.length, D: r.D, Y: r.Y, B: r.B, net: r.net });
-        logActivity({ tur: 'cozuldu', ad: k.ad, detay: `${k.sinav} denemesi · ${qs.length} soru`, net: r.net });
+        const all = store.get(ukey('deneme-sonuc'), {});
+        let i0 = 0;
+        for (const g of groups) {   // one result per deneme, even when several were solved together
+          const s = r.status.slice(i0, i0 + g.qs.length); i0 += g.qs.length;
+          const D = s.filter((x) => x === 'ok').length, Y = s.filter((x) => x === 'no').length, B = s.filter((x) => x === 'empty').length, net = D - Y / 4;
+          const ad = g.k.ad + (bolum ? ` · ${bolum}` : '');
+          // A deneme solved test by test adds up (its questions never repeat, so the parts do not overlap).
+          const prev = all[g.k.id], total = srcQs(g.k.id).length;
+          const acc = prev && prev.soru != null && prev.soru + g.qs.length <= total ? prev : { D: 0, Y: 0, B: 0, soru: 0 };
+          all[g.k.id] = { D: acc.D + D, Y: acc.Y + Y, B: acc.B + B, net: acc.D + D - (acc.Y + Y) / 4, soru: acc.soru + g.qs.length, tarih: new Date().toISOString() };
+          saveHistory({ ad, tur: 'Deneme', soru: g.qs.length, D, Y, B, net });
+          logActivity({ tur: 'cozuldu', ad, detay: `${g.k.sinav} denemesi · ${g.qs.length} soru`, net });
+        }
+        store.set(ukey('deneme-sonuc'), all);
         if (['denemeler', 'genel'].includes(routeKey())) render(false);
       },
     });
+  }
+  // The selection in the Deneme Sokağı template: one part per test, answer key at the end.
+  function denemeSelPdf() {
+    const groups = dnGroups(), qs = groups.flatMap((g) => g.qs);
+    if (!qs.length) return toast('Seçtiğin denemelerde yeni soru kalmadı');
+    const test = {
+      id: 'dn-' + uid(), baslik: dnTitle(groups), ders: [...new Set(groups.map((g) => g.k.sinav))].join(' · '), no: 1, ust: 'DENEME', rozet: 'DENEME', mod: 'gorsel',
+      bolumlu: new Set(qs.map(bolumOf)).size > 1, soruIds: qs.map((q) => q.id), cevapAnahtari: true,
+    };
+    try { localStorage.setItem('ds-yaprak-tests-deneme', JSON.stringify([test])); } catch (e) { return toast('Tarayıcı depolaması kapalı; PDF açılamadı'); }
+    downloadTest(test, false);
   }
   function saveMini(r) {
     saveHistory({ ad: 'Mini TYT Denemesi', tur: 'Mini', soru: QUESTIONS.length, D: r.D, Y: r.Y, B: r.B, net: r.net });
@@ -1201,7 +1259,7 @@
   /* ---------------- router ---------------- */
   const ROUTES = {
     genel: { title: 'Genel Bakış', v: vOverview, after: afterOverview },
-    denemeler: { title: 'Denemelerim', v: vExams },
+    denemeler: { title: 'Denemelerim', v: vExams, after: afterExams },
     analiz: { title: 'Sonuç Analizi', v: vAnaliz },
     eksikler: { title: 'Konu Eksiklerim', v: vEksikler },
     yanlislar: { title: 'Yanlış Defteri', v: vYanlislar },
@@ -1282,8 +1340,6 @@
       case 'yt-preview': { const t = ytests.find((x) => x.id === a.dataset.id); return t && openTestPreview(t); }
       case 'yt-solve': return solveTest(a.dataset.id);
       case 'yt-pdf': { const t = ytests.find((x) => x.id === a.dataset.id); return t && downloadTest(t); }
-      case 'bank-deneme': return startBankDeneme(a.dataset.id);
-      case 'bank-deneme-pdf': return bankDenemePdf(a.dataset.id);
       case 'yt-del': {
         if (!a.dataset.armed) {
           a.dataset.armed = '1'; a.classList.add('armed'); a.textContent = 'Silmek için tekrar tıkla';
@@ -1400,7 +1456,7 @@
       const oldFoot = $('.pl-foot', root); if (oldFoot) oldFoot.remove();
       main.insertAdjacentHTML('afterend', `<div class="pl-foot"><span class="small muted">${opts.onFinish ? 'Sonucun kaydedildi.' : 'Sonuçlar örnek panelde kaydedilmez.'}</span><span class="spacer"></span>${st.wrong.length ? '<button class="btn btn-soft btn-sm" data-pl="to-notebook">Yanlış ve boşları deftere ekle</button>' : ''}<button class="btn btn-blue btn-sm" data-pl="close-now">Panele dön</button></div>`);
       animateIn(main);
-      if (opts.onFinish) opts.onFinish({ D, Y, B, U, net });
+      if (opts.onFinish) opts.onFinish({ D, Y, B, U, net, status });
     }
     function close() {
       clearInterval(st.timer);
