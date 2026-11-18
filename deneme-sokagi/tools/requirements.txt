@@ -1,0 +1,3 @@
+# tools/soru_cikar.py
+pdfplumber>=0.11   # metin katmanı ve sayfa görüntüsü (pypdfium2 ile birlikte gelir)
+Pillow>=10

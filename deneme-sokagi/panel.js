@@ -152,15 +152,71 @@
   }
   const hrs = (m) => `${Math.floor(m / 60)} sa ${m % 60} dk`;
 
+  /* ---------------- question bank (tools/soru_cikar.py → data/soru-bankasi.js) ---------------- */
+  const BANK = window.DS_SORU_BANKASI || { kaynaklar: [], sorular: [] };
+  BANK.byId = Object.fromEntries(BANK.sorular.map((q) => [q.id, q]));
+  function dersKey(name) {
+    const n = String(name || '').toLocaleLowerCase('tr');
+    if (n.includes('türkçe') || n.includes('edebiyat')) return 'tr';
+    if (n.includes('matematik') || n.includes('geometri')) return 'mat';
+    if (/fen|fizik|kimya|biyoloji/.test(n)) return 'fen';
+    if (/sosyal|tarih|coğrafya|felsefe|din/.test(n)) return 'sos';
+    return 'all';
+  }
+  // One question shape for the player: built-in sample questions and bank questions.
+  const qItem = (q, i) => q && { s: q.s, t: q.t, o: q.o, a: q.a, sol: q.sol || [], ref: { q: i } };
+  const bankItem = (b) => b && { s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [], a: b.cevap ? L5.indexOf(b.cevap) : null, sol: [], konu: b.konu, ref: { bank: b.id } };
+  const wq = (w) => (w.bank ? bankItem(BANK.byId[w.bank]) : qItem(QUESTIONS[w.q], w.q));
+  const minutesFor = (n) => Math.max(5, Math.round(n * 1.5));
+
+  /* ---------------- packages (sample prices; payments are not live yet) ---------------- */
+  const DAY = 864e5;
+  const PACKAGES = [
+    { id: 'yks-pro', sinav: 'YKS', ad: 'YKS Pro', desc: 'TYT ve AYT için eksiksiz hazırlık', aylik: 349, yillik: 2490, featured: true,
+      ozellik: ['Tüm TYT ve AYT denemeleri', 'Her ay Türkiye geneli deneme', 'Her soruya video çözüm', 'Sınırsız yaprak test oluşturma', 'Konu analizi ve çalışma planı'] },
+    { id: 'yks-deneme', sinav: 'YKS', ad: 'YKS Deneme Paketi', desc: 'Yalnızca deneme çözmek isteyenler için', aylik: 149, yillik: 990,
+      ozellik: ['20 TYT + 10 AYT deneme', 'Türkiye geneli sıralama', 'Video çözümler'] },
+    { id: 'lgs-pro', sinav: 'LGS', ad: 'LGS Pro', desc: '8. sınıf öğrencileri için', aylik: 249, yillik: 1790,
+      ozellik: ['Tüm LGS denemeleri', 'Sözel ve sayısal bölüm denemeleri', 'Kazanım bazlı analiz', 'Sınırsız yaprak test'] },
+    { id: 'kpss-pro', sinav: 'KPSS', ad: 'KPSS Pro', desc: 'GY-GK, Eğitim Bilimleri ve ÖABT', aylik: 299, yillik: 2190,
+      ozellik: ['Lisans, önlisans ve ortaöğretim denemeleri', 'Puan türüne göre tahmini puan', 'Video çözümler', 'Sınırsız yaprak test'] },
+    { id: 'ales-dgs', sinav: 'Diğer', ad: 'ALES · DGS Paketi', desc: 'Sayısal ve sözel denemeler', aylik: 199, yillik: 1390,
+      ozellik: ['ALES ve DGS denemeleri', 'Türkiye geneli sıralama', 'Video çözümler'] },
+    { id: 'yaprak', sinav: 'Tümü', ad: 'Yaprak Test Paketi', desc: 'Konu tekrarı için sınırsız test', aylik: 99, yillik: 690,
+      ozellik: ['Sınırsız yaprak test oluşturma', 'Görsel veya metin dizgisi', 'PDF çıktısı ve cevap anahtarı'] },
+  ];
+  const MY_PACKAGES = [
+    { id: 'yks-pro', donem: 'yillik', bas: new Date(Date.now() - 323 * DAY), bit: new Date(Date.now() + 42 * DAY), deneme: [8, 40] },
+    { id: 'yaz-kampi', ad: 'Yaz Kampı Paketi', donem: 'tek', bas: new Date(Date.now() - 140 * DAY), bit: new Date(Date.now() - 80 * DAY),
+      ozellik: ['8 haftalık TYT kampı', '16 deneme', 'Haftalık canlı soru çözümü'] },
+  ];
+  const orderNo = (d, n) => `DS-${d.getFullYear()}-${n}`;
+  const PAYMENTS = [
+    { tarih: MY_PACKAGES[0].bas, no: orderNo(MY_PACKAGES[0].bas, '104812'), paket: 'YKS Pro · Yıllık', yontem: 'Kredi kartı', tutar: 2490, durum: 'Ödendi' },
+    { tarih: MY_PACKAGES[1].bas, no: orderNo(MY_PACKAGES[1].bas, '087305'), paket: 'Yaz Kampı Paketi', yontem: 'Kredi kartı', tutar: 490, durum: 'Ödendi' },
+    { tarih: new Date(MY_PACKAGES[1].bas.getTime() - 12 * DAY), no: orderNo(MY_PACKAGES[1].bas, '085119'), paket: 'YKS Deneme Paketi · Aylık', yontem: 'Banka kartı', tutar: 149, durum: 'İade edildi' },
+  ];
+  const price = (n) => `${fmt(n, 0)} ₺`;
+
   /* ---------------- state ---------------- */
   const state = {
     exam: LAST.id, analizSubj: 'mat', eksikFilter: 'all', wrongFilter: 'Tümü', examTab: 'yaklasan', rankTab: 'tr',
+    histFilter: 'Tümü', pkgTab: 'Tümü', billing: 'yillik',
+    b: { kaynak: null, ders: null, konular: null, adet: 10, mod: 'gorsel', sira: 'kaynak', key: true, ogr: true, ad: '' },
   };
   let user = null;
   let charts = [];      // redraw callbacks for the current view
   let upcomingReg = store.get('ds-reg', Object.fromEntries(UPCOMING.map((u) => [u.id, u.reg])));
   let wrongs = store.get('ds-wrongs', WRONG_DEFAULT);
   let profile = store.get('ds-profile', null);
+  // Created yaprak tests (also read by sablon/yaprak-test.html for printing).
+  let ytests = store.get('ds-yaprak-tests', null);
+  if (!ytests) {
+    const sample = BANK.sorular.filter((q) => q.konu === 'Yüzde Problemleri').sort((a, b) => a.sira - b.sira);
+    ytests = sample.length ? [{ id: 'yt-ornek', baslik: 'Yüzde Problemleri', ders: `${sample[0].sinav} · ${sample[0].ders}`, no: 1, mod: 'gorsel', soruIds: sample.map((q) => q.id), cevapAnahtari: true, ogrenciAlani: true, olusturma: new Date(Date.now() - 2 * 864e5).toISOString(), kaynak: sample[0].kaynak_ad, konular: ['Yüzde Problemleri'], sonuc: null }] : [];
+    store.set('ds-yaprak-tests', ytests);
+  }
+  const saveTests = () => store.set('ds-yaprak-tests', ytests);
 
   /* ---------------- plan (shared by overview + plan view) ---------------- */
   const weekStart = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return d; })();
@@ -534,11 +590,11 @@
     const kc = { 'Bilgi eksiği': 'bad', 'Dikkat hatası': 'warn', 'Süre yetmedi': 'blue' };
     return `<div class="view">
       <div class="toolbar s-12"><div class="tabs">${kinds.map((k) => `<button class="${k === f ? 'on' : ''}" data-action="wrong-filter" data-k="${k}">${k}</button>`).join('')}</div><span class="small muted">${wrongs.length} soru defterde</span></div>
-      <div class="wrong-list s-12">${list.length ? list.map((w) => { const q = QUESTIONS[w.q]; return `<article class="card wrong" data-wrong="${w.id}">
+      <div class="wrong-list s-12">${list.length ? list.map((w) => { const q = wq(w); if (!q) return ''; return `<article class="card wrong" data-wrong="${w.id}">
         <div><div class="wrong-meta">${subjChip(q.s)}<span class="chip ${kc[w.kind]}">${w.kind}</span><span class="chip">${esc(w.topic)}</span></div>
         <p>${esc(q.t)}</p>
-        <p class="wrong-src">${esc(w.src)} · ${w.date} · Senin cevabın: <b>${w.your}</b> · Doğru cevap: <b style="color:var(--good)">${L5[q.a]}</b></p></div>
-        <div class="wrong-actions"><button class="btn btn-blue btn-sm" data-action="retry" data-q="${w.q}">Tekrar çöz</button><button class="btn btn-soft btn-sm" data-action="video" data-q="${w.q}">${icon('video')} Video çözüm</button><button class="btn btn-ghost btn-sm" data-action="learned" data-id="${w.id}">${icon('check')} Öğrendim</button></div>
+        <p class="wrong-src">${esc(w.src)} · ${w.date} · Senin cevabın: <b>${w.your}</b> · Doğru cevap: <b style="color:var(--good)">${q.a == null ? '—' : L5[q.a]}</b></p></div>
+        <div class="wrong-actions"><button class="btn btn-blue btn-sm" data-action="retry" ${w.bank ? `data-bank="${w.bank}"` : `data-q="${w.q}"`}>Tekrar çöz</button>${q.sol.length ? `<button class="btn btn-soft btn-sm" data-action="video" data-q="${w.q}">${icon('video')} Video çözüm</button>` : ''}<button class="btn btn-ghost btn-sm" data-action="learned" data-id="${w.id}">${icon('check')} Öğrendim</button></div>
       </article>`; }).join('') : `<section class="card"><p class="muted">Bu filtrede soru yok. Denemelerde yanlış yaptığın sorular buraya otomatik eklenir.</p></section>`}</div>
     </div>`;
   }
@@ -708,6 +764,264 @@
     $$('[data-notif]').forEach((c) => c.addEventListener('change', () => toast(c.checked ? 'Bildirim açıldı' : 'Bildirim kapatıldı')));
   }
 
+  /* --- Yaprak Test Oluştur --- */
+  const bankQs = (f) => BANK.sorular.filter((q) => (!f.kaynak || q.kaynak === f.kaynak) && (!f.ders || q.ders === f.ders) && (!f.konular || f.konular.includes(q.konu)));
+  const nextTestNo = () => ytests.reduce((m, t) => Math.max(m, t.no || 0), 0) + 1;
+  const autoTitle = (k) => (k.length === 1 ? k[0] : k.length === 2 ? k.join(' ve ') : `${k[0]} ve ${k.length - 1} konu daha`);
+  function builderState() {
+    const b = state.b;
+    if (!BANK.kaynaklar.some((k) => k.id === b.kaynak)) b.kaynak = BANK.kaynaklar[0] && BANK.kaynaklar[0].id;
+    const dersler = [...new Set(bankQs({ kaynak: b.kaynak }).map((q) => q.ders))];
+    if (!dersler.includes(b.ders)) { b.ders = dersler[0]; b.konular = null; }
+    const konular = [];
+    bankQs({ kaynak: b.kaynak, ders: b.ders }).sort((x, y) => x.sira - y.sira).forEach((q) => {
+      const k = konular.find((x) => x.ad === q.konu);
+      if (k) k.n++; else konular.push({ ad: q.konu, n: 1 });
+    });
+    if (!b.konular || !b.konular.every((k) => konular.some((x) => x.ad === k))) b.konular = konular.length ? [konular[0].ad] : [];
+    const avail = b.konular.length ? bankQs({ kaynak: b.kaynak, ders: b.ders, konular: b.konular }).length : 0;
+    b.adet = Math.max(1, Math.min(b.adet || 10, avail || 1));
+    return { dersler, konular, avail };
+  }
+  function vTestOlustur() {
+    if (!BANK.sorular.length) {
+      return `<div class="view"><section class="card s-12 empty"><h2>Soru bankası boş</h2><p class="muted">Önce bir soru bankası PDF'inden soru çıkar:<br><code>python3 tools/soru_cikar.py kaynak.pdf --kaynak-id ornek --kaynak-ad "Kaynak adı"</code></p></section></div>`;
+    }
+    const b = state.b, { dersler, konular, avail } = builderState();
+    const src = BANK.kaynaklar.find((k) => k.id === b.kaynak);
+    const card = (name, val, label, sub) => `<label class="opt-card"><input type="radio" name="${name}" value="${val}" ${b[name] === val ? 'checked' : ''}><span><b>${label}</b><small>${sub}</small></span></label>`;
+    return `<div class="view">
+      <section class="card s-8">
+        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Soru bankasından konu seç; testin Deneme Sokağı şablonunda, kaynaktaki soru sırasıyla hazırlansın.</p></div></div>
+        <form id="builder" class="builder" novalidate>
+          <div class="b-row">
+            <label class="field">Soru bankası<select class="select" id="b-kaynak">${BANK.kaynaklar.map((k) => `<option value="${esc(k.id)}" ${k.id === b.kaynak ? 'selected' : ''}>${esc(k.ad)} · ${k.soru} soru</option>`).join('')}</select></label>
+            <div class="field">Ders<div class="tabs" id="b-ders">${dersler.map((d) => `<button type="button" class="${d === b.ders ? 'on' : ''}" data-ders="${esc(d)}">${esc(d)}</button>`).join('')}</div></div>
+          </div>
+          <div class="field"><span class="f-label">Konular <small>· birden fazla seçebilirsin</small></span>
+            <div class="picks" id="b-konular">${konular.map((k) => `<label class="pick"><input type="checkbox" value="${esc(k.ad)}" ${b.konular.includes(k.ad) ? 'checked' : ''}><span>${esc(k.ad)}<em>${k.n}</em></span></label>`).join('')}</div></div>
+          <div class="field"><span class="f-label">Soru sayısı</span>
+            <span class="range-row"><input type="range" id="b-adet" min="1" max="${Math.max(1, avail)}" value="${b.adet}" ${avail ? '' : 'disabled'} aria-label="Soru sayısı"><output id="b-adet-out">${b.adet}</output><span class="small">/ ${avail} uygun soru</span></span></div>
+          <div class="field">Görünüm<div class="opt-cards">${card('mod', 'gorsel', 'Görsel', 'Sorular kaynaktaki görünümüyle')}${card('mod', 'metin', 'Metin', 'Deneme Sokağı dizgisiyle')}</div></div>
+          <div class="field">Soru sırası<div class="opt-cards">${card('sira', 'kaynak', 'Kaynaktaki sıra', 'Soru bankasındaki dizilim korunur')}${card('sira', 'karisik', 'Karışık', 'Sorular karıştırılır')}</div></div>
+          <div class="b-row">
+            <div class="toggle-row boxed"><div><b>Cevap anahtarı</b><span>Testin sonuna ekle</span></div><span class="switch"><input type="checkbox" id="b-key" ${b.key ? 'checked' : ''} aria-label="Cevap anahtarı"><i></i></span></div>
+            <div class="toggle-row boxed"><div><b>Öğrenci bilgileri</b><span>Ad, sınıf, numara alanı</span></div><span class="switch"><input type="checkbox" id="b-ogr" ${b.ogr ? 'checked' : ''} aria-label="Öğrenci bilgileri"><i></i></span></div>
+          </div>
+          <label class="field">Test adı<input class="input" id="b-ad" maxlength="70" placeholder="${esc(autoTitle(b.konular) || 'Yaprak test')}" value="${esc(b.ad)}"></label>
+          <div class="b-actions"><button class="btn btn-yellow" type="submit" ${avail ? '' : 'disabled'}>${icon('plus')} Testi oluştur</button><span class="small muted">Test, "Oluşturulan Yaprak Testler" sayfasına kaydedilir.</span></div>
+        </form>
+      </section>
+      <section class="card s-4 b-sum">
+        <div class="card-h"><div><h2>Özet</h2><p>Yaprak test ${String(nextTestNo()).padStart(2, '0')}</p></div></div>
+        <div class="mini-page ${b.mod}" aria-hidden="true"><div class="mp-head"></div><div class="mp-cols"><div>${'<i></i>'.repeat(4)}</div><div>${'<i></i>'.repeat(3)}</div></div></div>
+        <dl class="sum-list">
+          <div><dt>Soru</dt><dd id="sum-adet">${b.adet}</dd></div>
+          <div><dt>Önerilen süre</dt><dd id="sum-sure">${minutesFor(b.adet)} dk</dd></div>
+          <div><dt>Soru bankası</dt><dd>${esc(src ? src.ad : '—')}</dd></div>
+          <div><dt>Ders</dt><dd>${esc(b.ders || '—')}</dd></div>
+          <div><dt>Konular</dt><dd>${esc(b.konular.join(', ') || '—')}</dd></div>
+          <div><dt>Görünüm</dt><dd>${b.mod === 'gorsel' ? 'Görsel' : 'Metin'} · ${b.sira === 'kaynak' ? 'kaynak sırası' : 'karışık'}</dd></div>
+        </dl>
+      </section>
+    </div>`;
+  }
+  function afterTestOlustur() {
+    const f = $('#builder');
+    if (!f) return;
+    const b = state.b;
+    $('#b-kaynak').addEventListener('change', (e) => { b.kaynak = e.target.value; b.ders = null; render(false); });
+    $$('#b-ders [data-ders]').forEach((x) => x.addEventListener('click', () => { b.ders = x.dataset.ders; b.konular = null; render(false); }));
+    $$('#b-konular input').forEach((x) => x.addEventListener('change', () => {
+      const sel = $$('#b-konular input:checked').map((i) => i.value);
+      if (!sel.length) { x.checked = true; return toast('En az bir konu seçmelisin'); }
+      const r = $('#b-adet'), wasAll = +r.value >= +r.max;
+      b.konular = sel;
+      if (wasAll) b.adet = 999;
+      render(false);
+    }));
+    $('#b-adet').addEventListener('input', (e) => {
+      b.adet = +e.target.value;
+      $('#b-adet-out').textContent = b.adet; $('#sum-adet').textContent = b.adet; $('#sum-sure').textContent = `${minutesFor(b.adet)} dk`;
+    });
+    $$('input[name="mod"], input[name="sira"]', f).forEach((r) => r.addEventListener('change', () => { b[r.name] = r.value; render(false); }));
+    $('#b-key').addEventListener('change', (e) => { b.key = e.target.checked; });
+    $('#b-ogr').addEventListener('change', (e) => { b.ogr = e.target.checked; });
+    $('#b-ad').addEventListener('input', (e) => { b.ad = e.target.value; });
+    f.addEventListener('submit', (e) => { e.preventDefault(); createTest(); });
+  }
+  function createTest() {
+    const b = state.b;
+    let qs = bankQs({ kaynak: b.kaynak, ders: b.ders, konular: b.konular }).sort((x, y) => x.sira - y.sira);
+    if (b.sira === 'karisik') for (let i = qs.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [qs[i], qs[j]] = [qs[j], qs[i]]; }
+    qs = qs.slice(0, b.adet);
+    const src = BANK.kaynaklar.find((k) => k.id === b.kaynak) || {};
+    const test = {
+      id: 'yt-' + uid(), baslik: b.ad.trim() || autoTitle(b.konular), ders: [src.sinav, b.ders].filter(Boolean).join(' · '),
+      no: nextTestNo(), mod: b.mod, soruIds: qs.map((q) => q.id), cevapAnahtari: b.key, ogrenciAlani: b.ogr,
+      olusturma: new Date().toISOString(), kaynak: src.ad || '', konular: [...b.konular], sonuc: null,
+    };
+    ytests.unshift(test); saveTests();
+    b.ad = '';
+    toast('Yaprak test oluşturuldu');
+    openTestPreview(test);
+  }
+
+  async function openTestPreview(test) {
+    const root = $('#modalRoot');
+    root.innerHTML = `<div class="modal-back"><div class="modal wide" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+      <div class="pl-head"><div><h2 id="pvTitle">${esc(test.baslik)}</h2><p>Yaprak test ${String(test.no).padStart(2, '0')} · ${test.soruIds.length} soru · ${test.mod === 'gorsel' ? 'Görsel' : 'Metin'}${test.kaynak ? ' · ' + esc(test.kaynak) : ''}</p></div><span style="margin-left:auto"></span><button class="icon-btn" data-pv="close" aria-label="Kapat">${icon('x')}</button></div>
+      <div class="pv-body"><p class="pv-loading">Sayfalar hazırlanıyor…</p><div class="pv-doc ds-doc preview" id="pvDoc"></div></div>
+      <div class="pl-foot"><span class="small muted" id="pvInfo"></span><span class="spacer"></span>
+        <a class="btn btn-ghost btn-sm" href="sablon/yaprak-test.html#${esc(test.id)}" target="_blank" rel="noopener">${icon('download')} PDF / Yazdır</a>
+        <button class="btn btn-yellow btn-sm btn-play" data-pv="solve">${icon('play')} Testi çöz</button></div></div></div>`;
+    const close = () => { document.removeEventListener('keydown', onKey); root.innerHTML = ''; };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
+    root.onclick = (e) => {
+      if (e.target.classList.contains('modal-back')) return close();
+      const b = e.target.closest('[data-pv]');
+      if (!b) return;
+      if (b.dataset.pv === 'close') close();
+      else if (b.dataset.pv === 'solve') { close(); solveTest(test.id); }
+    };
+    if (!window.DSYaprakTest) { $('.pv-loading').textContent = 'Şablon yüklenemedi.'; return; }
+    const doc = $('#pvDoc');
+    const r = await window.DSYaprakTest.render(doc, test, BANK, { base: '' });
+    const loading = $('.pv-loading'); if (loading) loading.remove();
+    doc.style.zoom = Math.min(1, (doc.parentElement.clientWidth - 32) / 794);
+    $('#pvInfo').textContent = `${r.pages} sayfa · A4 · Deneme Sokağı şablonu`;
+  }
+  function solveTest(id) {
+    const t = ytests.find((x) => x.id === id);
+    if (!t) return;
+    const items = t.soruIds.map((q) => bankItem(BANK.byId[q])).filter(Boolean);
+    if (!items.length) return toast('Bu testin soruları bankada bulunamadı');
+    openPlayer(items, t.baslik, minutesFor(items.length) * 60, {
+      mode: t.mod,
+      onFinish: (r) => { t.sonuc = { D: r.D, Y: r.Y, B: r.B, net: r.net, tarih: new Date().toISOString() }; saveTests(); if (routeKey() === 'yaprak-testler') render(false); },
+    });
+  }
+
+  /* --- Oluşturulan Yaprak Testler --- */
+  function vYaprakTestler() {
+    const list = ytests;
+    const cards = list.map((t) => {
+      const d = new Date(t.olusturma), r = t.sonuc;
+      return `<article class="card ex-card">
+        <div class="ex-top"><span class="chip blue">Yaprak test ${String(t.no).padStart(2, '0')}</span>${r ? `<span class="chip good">Çözüldü · ${fmt(r.net)} net</span>` : '<span class="chip">Çözülmedi</span>'}</div>
+        <h3>${esc(t.baslik)}</h3><p class="small muted">${esc(t.ders)}${t.kaynak ? ' · ' + esc(t.kaynak) : ''}</p>
+        <div class="ex-meta"><span>${icon('file')}${t.soruIds.length} soru</span><span>${icon('clock')}${minutesFor(t.soruIds.length)} dk</span><span>${icon('eye')}${t.mod === 'gorsel' ? 'Görsel' : 'Metin'}</span><span>${icon('calendar')}${dShort(d)}</span></div>
+        ${r ? `<div class="yt-score"><span class="g">D ${r.D}</span><span class="b">Y ${r.Y}</span><span>B ${r.B}</span></div>` : ''}
+        <div class="ex-foot"><button class="btn btn-ghost btn-sm" data-action="yt-del" data-id="${esc(t.id)}" aria-label="Testi sil">${icon('trash')}</button>
+          <span class="btn-pair"><button class="btn btn-soft btn-sm" data-action="yt-preview" data-id="${esc(t.id)}">${icon('eye')} Önizle</button><button class="btn btn-blue btn-sm" data-action="yt-solve" data-id="${esc(t.id)}">${r ? 'Tekrar çöz' : 'Çöz'}</button></span></div>
+      </article>`;
+    }).join('');
+    return `<div class="view">
+      <div class="toolbar s-12"><span class="small muted">${list.length} yaprak test · PDF için önizlemeden "PDF / Yazdır"</span><a class="btn btn-yellow btn-sm" href="#test-olustur">${icon('plus')} Yeni yaprak test</a></div>
+      ${list.length ? `<div class="ex-grid s-12">${cards}</div>` : `<section class="card s-12 empty"><h2>Henüz yaprak test oluşturmadın</h2><p class="muted">Soru bankasından konu seçerek ilk testini birkaç saniyede hazırlayabilirsin.</p><a class="btn btn-yellow" href="#test-olustur">${icon('plus')} İlk yaprak testini oluştur</a></section>`}
+    </div>`;
+  }
+
+  /* --- Deneme Sınavları (test geçmişi) --- */
+  function historyRows() {
+    const exams = EXAMS.map((e) => {
+      const t = SK.reduce((acc, k) => { const r = dyb(e[k], SUBJ[k].q); return { D: acc.D + r.D, Y: acc.Y + r.Y, B: acc.B + r.B }; }, { D: 0, Y: 0, B: 0 });
+      return { id: e.id, ad: e.name, tur: e.id.startsWith('tg') ? 'Türkiye Geneli' : 'Deneme', d: e.d, soru: 120, ...t, net: e.net, rank: e.rank, analiz: true };
+    });
+    const mine = store.get('ds-history', []).map((h) => ({ ...h, d: new Date(h.tarih) }));
+    return [...mine, ...exams].sort((a, b) => b.d - a.d);
+  }
+  function vDenemeGecmisi() {
+    const all = historyRows(), f = state.histFilter;
+    const rows = all.filter((r) => f === 'Tümü' || r.tur === f);
+    const tyt = all.filter((r) => r.soru === 120);
+    const avg = tyt.reduce((a, r) => a + r.net, 0) / (tyt.length || 1);
+    const best = tyt.reduce((m, r) => (r.net > m.net ? r : m), { net: 0, ad: '' });
+    return `<div class="view">
+      ${kpi({ ic: 'file', label: 'Çözülen deneme', value: all.length, d: 0, foot: `${tyt.length} TYT · ${all.length - tyt.length} mini deneme` })}
+      ${kpi({ ic: 'chart', label: 'Ortalama TYT neti', value: Math.round(avg * 4) / 4, small: '/ 120', foot: `Türkiye ortalaması ${fmt(AVG_TOTAL, 1)} net` })}
+      ${kpi({ ic: 'trophy', label: 'En yüksek net', value: best.net, small: '/ 120', foot: esc(best.ad) })}
+      ${kpi({ ic: 'check', label: 'Çözülen soru', value: all.reduce((a, r) => a + r.soru, 0), d: 0, foot: 'Denemelerdeki toplam soru' })}
+      <section class="card s-12">
+        <div class="card-h"><div><h2>Deneme sınavları</h2><p>Çözdüğün denemeler, en yeniden eskiye</p></div>
+          <div class="tabs">${['Tümü', 'Türkiye Geneli', 'Deneme', 'Mini'].map((k) => `<button class="${k === f ? 'on' : ''}" data-action="hist-filter" data-k="${k}">${k}</button>`).join('')}</div></div>
+        <div class="table-wrap"><table class="t"><thead><tr><th>Deneme</th><th>Tür</th><th>Tarih</th><th class="r">Soru</th><th class="r">D</th><th class="r">Y</th><th class="r">B</th><th class="r">Net</th><th class="r">Sıra</th><th></th></tr></thead>
+        <tbody>${rows.map((r) => `<tr><td><b>${esc(r.ad)}</b></td><td><span class="chip ${r.tur === 'Türkiye Geneli' ? 'blue' : r.tur === 'Mini' ? 'warn' : ''}">${r.tur}</span></td><td>${dShort(r.d)} ${r.d.getFullYear()}</td><td class="r">${r.soru}</td><td class="r" style="color:var(--good)">${r.D}</td><td class="r" style="color:var(--bad)">${r.Y}</td><td class="r muted">${r.B}</td><td class="r"><b>${fmt(r.net)}</b></td><td class="r">${r.rank ? fmt(r.rank, 0) + '.' : '—'}</td><td class="r">${r.analiz ? `<button class="btn btn-soft btn-sm" data-action="open-exam" data-id="${r.id}">Analiz</button>` : ''}</td></tr>`).join('') || '<tr><td colspan="10" class="muted">Bu türde deneme yok.</td></tr>'}</tbody></table></div>
+      </section>
+    </div>`;
+  }
+  function saveMini(r) {
+    const h = store.get('ds-history', []);
+    h.unshift({ id: 'm-' + uid(), ad: 'Mini TYT Denemesi', tur: 'Mini', tarih: new Date().toISOString(), soru: QUESTIONS.length, D: r.D, Y: r.Y, B: r.B, net: r.net });
+    store.set('ds-history', h.slice(0, 50));
+  }
+
+  /* --- Paketler --- */
+  const yearlySave = (p) => Math.round((1 - p.yillik / (p.aylik * 12)) * 100);
+  function vPaketAl() {
+    const tab = state.pkgTab, per = state.billing, now = new Date();
+    const owned = new Set(MY_PACKAGES.filter((m) => m.bit > now).map((m) => m.id));
+    const list = PACKAGES.filter((p) => tab === 'Tümü' || p.sinav === tab || p.sinav === 'Tümü');
+    return `<div class="view">
+      <div class="toolbar s-12"><div class="tabs">${['Tümü', 'YKS', 'LGS', 'KPSS', 'Diğer'].map((k) => `<button class="${k === tab ? 'on' : ''}" data-action="pkg-tab" data-k="${k}">${k}</button>`).join('')}</div>
+        <div class="seg" role="radiogroup" aria-label="Ödeme dönemi">${[['aylik', 'Aylık'], ['yillik', 'Yıllık']].map(([k, l]) => `<label><input type="radio" name="billing" value="${k}" ${k === per ? 'checked' : ''} data-action="billing"><span>${l}${k === 'yillik' ? '<em class="save-tag">indirimli</em>' : ''}</span></label>`).join('')}</div></div>
+      <div class="pkg-grid s-12">${list.map((p) => {
+        const amount = per === 'yillik' ? p.yillik : p.aylik;
+        return `<article class="card pkg${p.featured ? ' featured' : ''}">
+          ${p.featured ? '<span class="ribbon">En çok tercih edilen</span>' : ''}
+          <div><span class="chip blue">${p.sinav === 'Tümü' ? 'Tüm sınavlar' : p.sinav}</span></div>
+          <h3>${p.ad}</h3><p class="small muted">${p.desc}</p>
+          <p class="price"><b>${price(amount)}</b><span>/ ${per === 'yillik' ? 'yıl' : 'ay'}</span></p>
+          <p class="small ${per === 'yillik' ? 'good-txt' : 'muted'}">${per === 'yillik' ? `Aylık ${price(Math.round(p.yillik / 12))} · %${yearlySave(p)} tasarruf` : `Yıllık alırsan %${yearlySave(p)} tasarruf`}</p>
+          <ul class="feat">${p.ozellik.map((o) => `<li>${icon('check')}<span>${o}</span></li>`).join('')}</ul>
+          ${owned.has(p.id) ? `<button class="btn btn-ghost" disabled>${icon('check')} Paketin aktif</button>` : `<button class="btn ${p.featured ? 'btn-yellow' : 'btn-blue'}" data-action="buy" data-id="${p.id}">Satın al</button>`}
+        </article>`;
+      }).join('')}</div>
+      <p class="s-12 small muted">Fiyatlar örnektir ve KDV dahildir. Ödeme sistemi henüz aktif değil.</p>
+    </div>`;
+  }
+  function openBuy(id) {
+    const p = PACKAGES.find((x) => x.id === id);
+    if (!p) return;
+    const per = state.billing, amount = per === 'yillik' ? p.yillik : p.aylik, root = $('#modalRoot');
+    root.innerHTML = `<div class="modal-back"><div class="modal xs" role="dialog" aria-modal="true" aria-labelledby="buyTitle">
+      <div class="pl-head"><div><h2 id="buyTitle">Sipariş özeti</h2><p>${p.ad}</p></div><span style="margin-left:auto"></span><button class="icon-btn" data-buy="close" aria-label="Kapat">${icon('x')}</button></div>
+      <div class="buy-body">
+        <dl class="sum-list"><div><dt>Paket</dt><dd>${p.ad}</dd></div><div><dt>Dönem</dt><dd>${per === 'yillik' ? '12 ay' : '1 ay'}</dd></div><div><dt>Başlangıç</dt><dd>Ödeme onaylandığında</dd></div><div class="total"><dt>Toplam (KDV dahil)</dt><dd>${price(amount)}</dd></div></dl>
+        <div class="notice">${icon('clock')}<div><b>Ödeme sistemi henüz aktif değil</b><span>Ödeme altyapısı eklendiğinde bu adımdan güvenli ödeme sayfasına geçilecek. Şimdilik satın alma yapılamıyor.</span></div></div>
+      </div>
+      <div class="pl-foot"><span class="spacer"></span><button class="btn btn-ghost btn-sm" data-buy="close">Vazgeç</button><button class="btn btn-yellow btn-sm" disabled>Ödemeye geç (yakında)</button></div></div></div>`;
+    const close = () => { document.removeEventListener('keydown', onKey); root.innerHTML = ''; };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
+    root.onclick = (e) => { if (e.target.classList.contains('modal-back') || e.target.closest('[data-buy="close"]')) close(); };
+  }
+  function vPaketlerim() {
+    const now = new Date();
+    return `<div class="view">${MY_PACKAGES.map((m) => {
+      const p = PACKAGES.find((x) => x.id === m.id) || { ad: m.ad, ozellik: m.ozellik || [] };
+      const active = m.bit > now, total = m.bit - m.bas, left = Math.max(0, Math.ceil((m.bit - now) / DAY));
+      return `<section class="card s-6 mypkg${active ? '' : ' expired'}">
+        <div class="card-h"><div><h2>${p.ad}</h2><p>${m.donem === 'yillik' ? 'Yıllık' : m.donem === 'aylik' ? 'Aylık' : 'Dönemlik'} paket · ${dShort(m.bas)} ${m.bas.getFullYear()} – ${dShort(m.bit)} ${m.bit.getFullYear()}</p></div>${active ? '<span class="chip good">Aktif</span>' : '<span class="chip">Süresi doldu</span>'}</div>
+        ${active ? `<div class="sbar-row"><div class="sbar-top"><b>Kalan süre</b><span><strong>${left}</strong> gün</span></div>${track(((m.bit - now) / total) * 100, 'var(--brand)')}</div>` : ''}
+        ${active && m.deneme ? `<div class="use-grid"><div><small>Kullanılan deneme</small><b>${m.deneme[0]} / ${m.deneme[1]}</b>${track((m.deneme[0] / m.deneme[1]) * 100, 'var(--c-mat)')}</div><div><small>Yaprak test</small><b>${ytests.length} oluşturuldu</b><span class="small muted">Sınırsız</span></div><div><small>Video çözüm</small><b>Açık</b><span class="small muted">Tüm denemelerde</span></div></div>` : ''}
+        <ul class="feat">${p.ozellik.map((o) => `<li>${icon('check')}<span>${o}</span></li>`).join('')}</ul>
+        <div class="ex-foot">${active ? `<span class="small muted">Yenileme tarihi: ${dShort(m.bit)} ${m.bit.getFullYear()}</span><a class="btn btn-soft btn-sm" href="#paket-al">Paketi yenile</a>` : `<span class="small muted">Bu paketin süresi doldu</span><a class="btn btn-blue btn-sm" href="#paket-al">Yeni paket seç</a>`}</div>
+      </section>`;
+    }).join('')}</div>`;
+  }
+  function vOdemeler() {
+    const paid = PAYMENTS.filter((p) => p.durum === 'Ödendi').reduce((a, p) => a + p.tutar, 0);
+    return `<div class="view">
+      <div class="s-12 notice">${icon('clock')}<div><b>Ödeme sistemi henüz aktif değil</b><span>Aktif olduğunda tüm ödemelerin ve faturaların burada listelenecek. Aşağıdaki kayıtlar örnektir.</span></div></div>
+      <section class="card s-12"><div class="card-h"><div><h2>Ödeme geçmişi</h2><p>${PAYMENTS.length} işlem · toplam ödenen ${price(paid)}</p></div></div>
+        <div class="table-wrap"><table class="t"><thead><tr><th>Tarih</th><th>Sipariş no</th><th>Paket</th><th>Ödeme yöntemi</th><th class="r">Tutar</th><th>Durum</th><th></th></tr></thead>
+        <tbody>${PAYMENTS.map((p) => `<tr><td>${dShort(p.tarih)} ${p.tarih.getFullYear()}</td><td class="muted">${p.no}</td><td><b>${p.paket}</b></td><td>${p.yontem}</td><td class="r"><b>${price(p.tutar)}</b></td><td><span class="chip ${p.durum === 'Ödendi' ? 'good' : 'warn'}">${p.durum}</span></td><td class="r"><button class="btn btn-ghost btn-sm" data-action="invoice">${icon('download')} Fatura</button></td></tr>`).join('')}</tbody></table></div>
+      </section>
+    </div>`;
+  }
+
   /* ---------------- router ---------------- */
   const ROUTES = {
     genel: { title: 'Genel Bakış', v: vOverview, after: afterOverview },
@@ -718,6 +1032,12 @@
     plan: { title: 'Çalışma Planı', v: vPlan, after: afterPlan },
     siralama: { title: 'Sıralama', v: vSiralama, after: afterSiralama },
     ayarlar: { title: 'Ayarlar', v: vAyarlar, after: afterAyarlar },
+    'test-olustur': { title: 'Yaprak Test Oluştur', v: vTestOlustur, after: afterTestOlustur },
+    'yaprak-testler': { title: 'Oluşturulan Yaprak Testler', v: vYaprakTestler },
+    'deneme-gecmisi': { title: 'Deneme Sınavları', v: vDenemeGecmisi },
+    'paket-al': { title: 'Paket Satın Al', v: vPaketAl },
+    paketlerim: { title: 'Paketlerim', v: vPaketlerim },
+    odemeler: { title: 'Ödemelerim', v: vOdemeler },
   };
   const routeKey = () => { const k = location.hash.slice(1); return ROUTES[k] ? k : 'genel'; };
 
@@ -780,9 +1100,24 @@
     if (!a) return;
     const act = a.dataset.action;
     switch (act) {
-      case 'start-mini': return openPlayer(QUESTIONS.map((_, i) => i), 'Mini TYT Denemesi', 10 * 60);
+      case 'start-mini': return openPlayer(QUESTIONS.map(qItem), 'Mini TYT Denemesi', 10 * 60, { onFinish: saveMini });
       case 'start-locked': return toast('Bu örnek panelde yalnızca Mini TYT Denemesi çözülebilir');
-      case 'retry': return openPlayer([+a.dataset.q], 'Yanlış defteri · tekrar', 3 * 60);
+      case 'retry': { const it = a.dataset.bank ? bankItem(BANK.byId[a.dataset.bank]) : qItem(QUESTIONS[+a.dataset.q], +a.dataset.q); return it && openPlayer([it], 'Yanlış defteri · tekrar', 3 * 60); }
+      case 'yt-preview': { const t = ytests.find((x) => x.id === a.dataset.id); return t && openTestPreview(t); }
+      case 'yt-solve': return solveTest(a.dataset.id);
+      case 'yt-del': {
+        if (!a.dataset.armed) {
+          a.dataset.armed = '1'; a.classList.add('armed'); a.textContent = 'Silmek için tekrar tıkla';
+          setTimeout(() => { if (a.isConnected) { delete a.dataset.armed; a.classList.remove('armed'); a.innerHTML = icon('trash'); } }, 3000);
+          return;
+        }
+        ytests = ytests.filter((x) => x.id !== a.dataset.id); saveTests(); toast('Yaprak test silindi'); return render(false);
+      }
+      case 'hist-filter': state.histFilter = a.dataset.k; return render(false);
+      case 'pkg-tab': state.pkgTab = a.dataset.k; return render(false);
+      case 'billing': state.billing = a.value; return render(false);
+      case 'buy': return openBuy(a.dataset.id);
+      case 'invoice': return toast('Faturalar, ödeme sistemi aktif olduğunda indirilebilecek');
       case 'video': return openVideo(+a.dataset.q);
       case 'register': upcomingReg[a.dataset.id] = true; store.set('ds-reg', upcomingReg); toast('Denemeye kaydoldun. Hatırlatma göndereceğiz.'); return render(false);
       case 'unregister': upcomingReg[a.dataset.id] = false; store.set('ds-reg', upcomingReg); toast('Deneme kaydın iptal edildi'); return render(false);
@@ -806,9 +1141,11 @@
   });
 
   /* ---------------- exam player ---------------- */
-  function openPlayer(idxs, title, seconds) {
-    const qs = idxs.map((i) => QUESTIONS[i]);
-    const st = { cur: 0, ans: qs.map(() => null), flag: qs.map(() => false), left: seconds, timer: null, done: false };
+  // items: [{ s, t, o, a (index | null), sol, img?, fig?, ust?, alt?, konu?, ref }]
+  // opts.mode 'gorsel' shows the question image with A–E answer buttons; opts.onFinish(result) receives D/Y/B/net.
+  function openPlayer(items, title, seconds, opts = {}) {
+    const qs = items, mode = opts.mode || 'metin';
+    const st = { cur: 0, ans: qs.map(() => null), flag: qs.map(() => false), left: seconds, timer: null, done: false, wrong: [] };
     const root = $('#modalRoot');
     const lastFocus = document.activeElement;
     root.innerHTML = `<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="plTitle">
@@ -819,23 +1156,28 @@
       <div id="plConfirm"></div>
       <div id="plMain"></div></div></div>`;
     const main = $('#plMain', root);
-
-    const fmtT = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+    const fmtT = (sec) => `${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`;
     const tick = () => {
       st.left--; $('#plTimer span').textContent = fmtT(Math.max(0, st.left));
       $('#plTimer').classList.toggle('low', st.left <= 60);
-      if (st.left <= 0) { finish(); toast('Süre doldu, deneme tamamlandı'); }
+      if (st.left <= 0) { finish(); toast('Süre doldu, test tamamlandı'); }
     };
     $('#plTimer span').textContent = fmtT(st.left);
     st.timer = setInterval(tick, 1000);
+    const asImage = (q) => mode === 'gorsel' && q.img;
+    const body = (q) => {
+      if (asImage(q)) return `<img class="pl-img" src="${esc(q.img)}" alt="Soru ${st.cur + 1}">`;
+      if (q.fig) return `${q.ust ? `<p class="pl-text">${esc(q.ust)}</p>` : ''}<img class="pl-fig" src="${esc(q.fig)}" alt="Şekil">${q.alt ? `<p class="pl-text">${esc(q.alt)}</p>` : ''}`;
+      return `<p class="pl-text">${esc(q.t)}</p>`;
+    };
 
     function draw() {
-      const q = qs[st.cur], n = qs.length, answered = st.ans.filter((x) => x !== null).length;
+      const q = qs[st.cur], n = qs.length, answered = st.ans.filter((x) => x !== null).length, letters = asImage(q);
       $('#plProg').style.width = `${(answered / n) * 100}%`;
       main.innerHTML = `<div class="pl-body">
-        <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}</div>
-          <p class="pl-text">${esc(q.t)}</p>
-          <div class="opts" role="radiogroup" aria-label="Seçenekler">${q.o.map((o, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}"><span class="L">${L5[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>
+        <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${q.konu ? `<span class="chip">${esc(q.konu)}</span>` : ''}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}</div>
+          ${body(q)}
+          <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${L5.map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${esc(q.o[i] || '')}</span>`}</button>`).join('')}</div>
           <p class="small muted" style="margin-top:14px">Klavye: A–E ile işaretle, ← → ile geç. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
         </div>
         <aside class="pl-side"><h3>Optik form</h3>
@@ -845,7 +1187,7 @@
         <div class="pl-foot"><button class="btn ${st.flag[st.cur] ? 'flagged' : 'btn-ghost'} btn-sm" data-pl="flag">${icon('flag')} ${st.flag[st.cur] ? 'İşareti kaldır' : 'Sonra bak'}</button><span class="spacer"></span>
           <button class="btn btn-ghost btn-sm" data-pl="prev" ${st.cur === 0 ? 'disabled' : ''}>${icon('back')} Önceki</button>
           ${st.cur < n - 1 ? `<button class="btn btn-blue btn-sm" data-pl="next">Sonraki ${icon('arrow')}</button>` : ''}
-          <button class="btn btn-yellow btn-sm" data-pl="finish">Denemeyi bitir</button></div>`;
+          <button class="btn btn-yellow btn-sm" data-pl="finish">Testi bitir</button></div>`;
     }
     const pick = (qi, li) => { st.ans[qi] = st.ans[qi] === li ? null : li; draw(); };
     const confirmBar = (msg, yes, yesTxt) => {
@@ -854,21 +1196,28 @@
     function finish() {
       clearInterval(st.timer); st.done = true; $('#plConfirm').innerHTML = '';
       $('#plTimer').classList.remove('low');
-      let D = 0, Y = 0, B = 0;
-      qs.forEach((q, i) => { if (st.ans[i] === null) B++; else if (st.ans[i] === q.a) D++; else Y++; });
+      let D = 0, Y = 0, B = 0, U = 0;
+      const status = qs.map((q, i) => {
+        if (st.ans[i] === null) { B++; return 'empty'; }
+        if (q.a == null) { U++; return 'unknown'; }
+        if (st.ans[i] === q.a) { D++; return 'ok'; }
+        Y++; return 'no';
+      });
       const net = D - Y / 4, pct = (Math.max(0, net) / qs.length) * 100;
+      st.wrong = qs.map((q, i) => (status[i] === 'no' || status[i] === 'empty' ? i : null)).filter((x) => x !== null);
       $('#plProg').style.width = '100%';
       main.innerHTML = `<div class="result">
         <div class="result-top">${ringSvg(pct, fmt(net), 'net')}
           <div><h3>${net >= qs.length * 0.8 ? 'Harika iş çıkardın!' : net >= qs.length * 0.5 ? 'İyi gidiyorsun!' : 'Eksiklerini birlikte kapatalım'}</h3>
           <p>${qs.length} sorunun ${D} tanesini doğru yanıtladın. Süre: ${fmtT(seconds - Math.max(0, st.left))}</p>
-          <div class="res-stats"><div class="g"><small>Doğru</small><b>${D}</b></div><div class="b"><small>Yanlış</small><b>${Y}</b></div><div><small>Boş</small><b>${B}</b></div><div><small>Net</small><b>${fmt(net)}</b></div></div></div></div>
-        <div class="review">${qs.map((q, i) => { const s = st.ans[i] === null ? 'empty' : st.ans[i] === q.a ? 'ok' : 'no'; return `<details class="rv"><summary><span class="st ${s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${L5[q.a]}</em></summary><div class="rv-body">${q.sol.map(esc).join('<br>')}</div></details>`; }).join('')}</div>
+          <div class="res-stats"><div class="g"><small>Doğru</small><b>${D}</b></div><div class="b"><small>Yanlış</small><b>${Y}</b></div><div><small>Boş</small><b>${B}</b></div><div><small>Net</small><b>${fmt(net)}</b></div></div>
+          ${U ? `<p class="small muted" style="margin-top:8px">${U} sorunun kaynağında cevap anahtarı olmadığı için puanlanmadı.</p>` : ''}</div></div>
+        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${q.sol.length ? q.sol.map(esc).join('<br>') : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
       </div>`;
-      $('.pl-foot', root)?.remove();
-      main.insertAdjacentHTML('afterend', `<div class="pl-foot"><span class="small muted">Sonuçların analiz sayfasına eklenir (örnek panelde kaydedilmez).</span><span class="spacer"></span>${Y + B ? `<button class="btn btn-soft btn-sm" data-pl="to-notebook">Yanlış ve boşları deftere ekle</button>` : ''}<button class="btn btn-blue btn-sm" data-pl="close-now">Panele dön</button></div>`);
+      const oldFoot = $('.pl-foot', root); if (oldFoot) oldFoot.remove();
+      main.insertAdjacentHTML('afterend', `<div class="pl-foot"><span class="small muted">${opts.onFinish ? 'Sonucun kaydedildi.' : 'Sonuçlar örnek panelde kaydedilmez.'}</span><span class="spacer"></span>${st.wrong.length ? '<button class="btn btn-soft btn-sm" data-pl="to-notebook">Yanlış ve boşları deftere ekle</button>' : ''}<button class="btn btn-blue btn-sm" data-pl="close-now">Panele dön</button></div>`);
       animateIn(main);
-      st.wrongIdx = qs.map((q, i) => (st.ans[i] !== q.a ? idxs[i] : null)).filter((x) => x !== null);
+      if (opts.onFinish) opts.onFinish({ D, Y, B, U, net });
     }
     function close() {
       clearInterval(st.timer);
@@ -877,7 +1226,7 @@
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
     function onKey(e) {
-      if (e.key === 'Escape') { e.preventDefault(); return st.done ? close() : confirmBar('Denemeden çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık'); }
+      if (e.key === 'Escape') { e.preventDefault(); return st.done ? close() : confirmBar('Testten çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık'); }
       if (st.done || /input|select|textarea/i.test(e.target.tagName)) return;
       const k = e.key.toUpperCase();
       if (L5.includes(k)) pick(st.cur, L5.indexOf(k));
@@ -897,18 +1246,22 @@
         case 'finish': { const empty = st.ans.filter((x) => x === null).length; return empty ? confirmBar(`${empty} soru boş. Yine de bitirmek istiyor musun?`, 'finish-now', 'Bitir') : finish(); }
         case 'finish-now': return finish();
         case 'cancel': $('#plConfirm').innerHTML = ''; return;
-        case 'close': return st.done ? close() : confirmBar('Denemeden çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık');
+        case 'close': return st.done ? close() : confirmBar('Testten çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık');
         case 'close-now': return close();
         case 'to-notebook': {
           let added = 0;
-          st.wrongIdx.forEach((qi) => { if (!wrongs.some((w) => w.q === qi)) { wrongs.unshift({ id: uid(), q: qi, topic: SUBJ[QUESTIONS[qi].s].name, src: `${title}`, date: dShort(new Date()), kind: 'Bilgi eksiği', your: '—' }); added++; } });
+          st.wrong.forEach((i) => {
+            const q = qs[i], ref = q.ref || {};
+            const exists = wrongs.some((w) => (ref.bank ? w.bank === ref.bank : !w.bank && w.q === ref.q));
+            if (!exists) { wrongs.unshift({ id: uid(), ...ref, topic: q.konu || SUBJ[q.s].name, src: title, date: dShort(new Date()), kind: 'Bilgi eksiği', your: st.ans[i] === null ? '—' : L5[st.ans[i]] }); added++; }
+          });
           store.set('ds-wrongs', wrongs); b.remove();
           return toast(added ? `${added} soru yanlış defterine eklendi` : 'Bu sorular zaten defterinde');
         }
       }
     };
     draw();
-    setTimeout(() => $('.opt', root)?.focus(), 50);
+    setTimeout(() => { const o = $('.opt', root); if (o) o.focus(); }, 50);
   }
 
   /* ---------------- video solution (sample player) ---------------- */

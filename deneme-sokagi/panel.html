@@ -12,6 +12,7 @@
     try { if (localStorage.getItem('ds-theme') === 'dark') document.documentElement.dataset.dsTheme = 'dark'; } catch (e) {}
   </script>
   <link rel="stylesheet" href="panel.css">
+  <link rel="stylesheet" href="sablon/yaprak-test.css">
 </head>
 <body>
 
@@ -49,6 +50,15 @@
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-logout" viewBox="0 0 24 24"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l-5-5 5-5M5 12h11"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+    <symbol id="i-filepen" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><path d="M14 3v5h5v3M9 9h2M9 13h4"/><path d="m19.5 14.5 2 2-5.5 5.5h-2v-2z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m21 8-9-5-9 5v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 13a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
     <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
   </defs>
 </svg>
@@ -70,11 +80,19 @@
       <p class="sb-label">Çalışma</p>
       <a href="#genel" data-route="genel"><svg><use href="#i-home"/></svg>Genel Bakış</a>
       <a href="#denemeler" data-route="denemeler"><svg><use href="#i-file"/></svg>Denemelerim<span class="sb-badge">2</span></a>
+      <a href="#test-olustur" data-route="test-olustur"><svg><use href="#i-filepen"/></svg>Yaprak Test Oluştur</a>
       <a href="#analiz" data-route="analiz"><svg><use href="#i-chart"/></svg>Sonuç Analizi</a>
       <a href="#eksikler" data-route="eksikler"><svg><use href="#i-target"/></svg>Konu Eksiklerim</a>
       <a href="#yanlislar" data-route="yanlislar"><svg><use href="#i-bookmark"/></svg>Yanlış Defteri</a>
       <a href="#plan" data-route="plan"><svg><use href="#i-calendar"/></svg>Çalışma Planı</a>
       <a href="#siralama" data-route="siralama"><svg><use href="#i-trophy"/></svg>Sıralama</a>
+      <p class="sb-label">Test Geçmişi</p>
+      <a href="#yaprak-testler" data-route="yaprak-testler"><svg><use href="#i-layers"/></svg>Oluşturulan Yaprak Testler</a>
+      <a href="#deneme-gecmisi" data-route="deneme-gecmisi"><svg><use href="#i-history"/></svg>Deneme Sınavları</a>
+      <p class="sb-label">Paketler</p>
+      <a href="#paket-al" data-route="paket-al"><svg><use href="#i-cart"/></svg>Paket Satın Al</a>
+      <a href="#paketlerim" data-route="paketlerim"><svg><use href="#i-box"/></svg>Paketlerim</a>
+      <a href="#odemeler" data-route="odemeler"><svg><use href="#i-card"/></svg>Ödemelerim</a>
       <p class="sb-label">Hesap</p>
       <a href="#ayarlar" data-route="ayarlar"><svg><use href="#i-settings"/></svg>Ayarlar</a>
       <a href="#" data-action="support"><svg><use href="#i-help"/></svg>Destek</a>
@@ -132,6 +150,8 @@
 
 <script src="auth-config.js"></script>
 <script src="auth.js"></script>
+<script src="data/soru-bankasi.js"></script>
+<script src="sablon/yaprak-test.js"></script>
 <script src="panel.js"></script>
 </body>
 </html>

@@ -9,9 +9,17 @@ tarayıcıda) açın.
 - `giris.html`, `kayit.html`, `sifre.html` — giriş, kayıt ve şifre yenileme (`auth.css`, `auth-pages.js`)
 - `panel.html` — öğrenci paneli (`panel.css`, `panel.js`); giriş yapılmadan açılırsa giriş sayfasına yönlendirir
 
+## Yaprak test, soru bankası ve PDF şablonu
+- `sablon/` — Deneme Sokağı yaprak test şablonu (A4, iki sütun, soru bankası dizilimi)
+- `data/` — soru bankası (`tools/soru_cikar.py` ile PDF'ten çıkarılır)
+- `tools/` — soru çıkarma ve PDF üretme araçları (ayrıntılar: `tools/README.md`)
+- `ornekler/` — şablonla üretilmiş örnek PDF'ler
+
 ## Öğrenci paneli
-Genel bakış, Denemelerim, Sonuç Analizi, Konu Eksiklerim, Yanlış Defteri, Çalışma Planı
-(odak zamanlayıcı dahil), Sıralama ve Ayarlar. Mini TYT denemesi panel içinde çözülebilir.
+Genel bakış, Denemelerim, Yaprak Test Oluştur, Sonuç Analizi, Konu Eksiklerim, Yanlış Defteri,
+Çalışma Planı (odak zamanlayıcı dahil), Sıralama; Test Geçmişi (Oluşturulan Yaprak Testler,
+Deneme Sınavları); Paketler (Paket Satın Al, Paketlerim, Ödemelerim — ödeme sistemi henüz yok,
+fiyatlar örnek) ve Ayarlar. Mini TYT denemesi panel içinde çözülebilir.
 Açık / koyu tema, mobil uyum ve klavye kısayolları (`/` arama, sınavda A–E ve ← →) vardır.
 
 Paneldeki deneme sonuçları, sıralamalar ve istatistikler **örnek veridir** ("Örnek veri" etiketi).

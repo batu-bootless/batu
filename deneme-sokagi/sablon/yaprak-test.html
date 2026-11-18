@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yaprak Test | Deneme Sokağı</title>
+  <link rel="stylesheet" href="yaprak-test.css">
+  <style>
+    body { margin: 0; background: #e9eef4; font-family: "DS Figtree", Arial, sans-serif; }
+    .bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; padding: 12px 16px; background: #fff; border-bottom: 1px solid #dfe6ee; }
+    .bar b { font-size: 15px; color: #17212d; margin-right: auto; }
+    .bar a, .bar button { font: 600 14px "DS Figtree", Arial, sans-serif; height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #dfe6ee; background: #fff; color: #17212d; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none; }
+    .bar button.primary { background: #ffd600; border-color: #ffd600; }
+    #doc { padding: 24px 0 48px; }
+    .msg { max-width: 520px; margin: 60px auto; text-align: center; color: #5f6e80; font-size: 15px; }
+    @media print { body { background: #fff; } #doc { padding: 0; } }
+  </style>
+</head>
+<body>
+  <div class="bar ds-noprint">
+    <b id="barTitle">Yaprak test</b>
+    <a href="../panel.html#yaprak-testler">Panele dön</a>
+    <button class="primary" id="printBtn" type="button">Yazdır / PDF olarak kaydet</button>
+  </div>
+  <div id="doc" class="ds-doc preview"></div>
+
+  <script src="../data/soru-bankasi.js"></script>
+  <script src="yaprak-test.js"></script>
+  <script>
+    (async () => {
+      // The test comes from tools/yaprak-test-pdf.js (window.__DS_TEST__) or from the panel (localStorage + #id).
+      let test = window.__DS_TEST__ || null;
+      if (!test) {
+        try {
+          const list = JSON.parse(localStorage.getItem('ds-yaprak-tests') || '[]');
+          test = list.find((t) => t.id === location.hash.slice(1)) || null;
+        } catch (e) { test = null; }
+      }
+      const doc = document.getElementById('doc');
+      if (!test || !window.DS_SORU_BANKASI) {
+        doc.innerHTML = '<p class="msg">Yaprak test bulunamadı. Paneldeki "Oluşturulan Yaprak Testler" sayfasından bir test seçip tekrar dene.</p>';
+        window.__DS_READY__ = true;
+        return;
+      }
+      document.title = `${test.baslik} | Yaprak Test | Deneme Sokağı`;
+      document.getElementById('barTitle').textContent = `${test.baslik} · ${test.soruIds.length} soru`;
+      await DSYaprakTest.render(doc, test, window.DS_SORU_BANKASI, { base: '../' });
+      window.__DS_READY__ = true;
+    })();
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
