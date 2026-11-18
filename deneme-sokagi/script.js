@@ -39,7 +39,7 @@ document.querySelectorAll('[data-carousel]').forEach((root) => {
 });
 
 // Fit an element onto a 4-corner quad (TL, TR, BR, BL) with a CSS matrix3d homography.
-// Used for the laptop screen and keyboard so they follow the drawn perspective exactly.
+// Any element with data-quad="x,y x,y x,y x,y" is fitted onto that quad.
 function fitQuad(el) {
   const pts = el.dataset.quad.trim().split(/\s+/).map((p) => p.split(',').map(Number));
   const w = el.offsetWidth, h = el.offsetHeight;

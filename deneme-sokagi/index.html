@@ -92,60 +92,66 @@
       </div>
     </div>
 
-    <!-- Laptop mockup: SVG body + HTML screen/keyboard fitted with projective transforms (see script.js) -->
-    <!-- Image slot: drop a transparent PNG/WebP at assets/hero-laptop.png and it replaces the drawn laptop. -->
-    <img class="laptop-img" src="assets/hero-laptop.png" alt="" onload="document.querySelector('.hero').classList.add('has-laptop-img')" onerror="this.remove()">
-    <div class="laptop" aria-hidden="true">
-      <svg class="laptop-body" viewBox="0 0 700 500">
-        <defs>
-          <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd4da"/><stop offset=".35" stop-color="#eceef1"/><stop offset="1" stop-color="#f6f7f9"/></linearGradient>
-          <linearGradient id="lip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9dde2"/><stop offset=".5" stop-color="#aeb5bd"/><stop offset="1" stop-color="#8c949d"/></linearGradient>
-          <radialGradient id="shadow"><stop offset="0" stop-color="#002a6b" stop-opacity=".55"/><stop offset="1" stop-color="#002a6b" stop-opacity="0"/></radialGradient>
-          <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3f46"/><stop offset="1" stop-color="#121417"/></linearGradient>
-        </defs>
-        <ellipse cx="380" cy="470" rx="330" ry="26" fill="url(#shadow)"/>
-        <polygon points="232,330 674,354 652,448 15,404" fill="url(#deck)"/>
-        <polygon points="15,404 652,448 647,460 22,416" fill="url(#lip)"/>
-        <polygon points="15,404 22,417 18,412" fill="#9aa2ab"/>
-        <polygon points="196,342 650,362 640,414 128,383" fill="#c5cbd2"/>
-        <polygon points="330,420 470,428 467,444 300,436" fill="#e6e9ec" stroke="#d0d5da" stroke-width="1"/>
-        <polygon points="230,326 672,350 674,356 232,334" fill="#7d858e"/>
-        <polygon points="222,30 677,13 672,352 229,328" fill="url(#bezel)" stroke="#aeb5bd" stroke-width="3" stroke-linejoin="round"/>
-        <polygon points="560,18 677,13 674,180" fill="#fff" opacity=".06"/>
-      </svg>
-      <div class="laptop-screen" data-quad="233,44 665,29 659,338 240,316">
-        <div class="qb">
-          <div class="qb-top"><span>▣ ⚑ ▤</span><span>TYT Matematik · Soru 7 / 40</span><span>⛶ ? ⚙ ◷ 07:47</span></div>
-          <div class="qb-body">
-            <div class="qb-q">
-              <p>Bir sınıftaki öğrencilerin %40'ı kızdır. Sınıfa 6 kız öğrenci daha katıldığında kız öğrencilerin oranı %50 oluyor.</p>
-              <p><b>Buna göre sınıfta başlangıçta kaç öğrenci vardır?</b></p>
-              <ul>
-                <li>A) 24</li>
-                <li>B) 27</li>
-                <li class="ok">C) 30</li>
-                <li>D) 32</li>
-                <li>E) 36</li>
-              </ul>
+    <!-- Tablet mockup (CSS 3D). Image slot: drop a transparent PNG/WebP at assets/hero-device.png to replace it. -->
+    <img class="device-img" src="assets/hero-device.png" alt="" onload="document.querySelector('.hero').classList.add('has-device-img')" onerror="this.remove()">
+    <div class="device" aria-hidden="true">
+      <div class="device-shadow"></div>
+      <div class="tablet">
+        <div class="tablet-edge" style="--z:1"></div>
+        <div class="tablet-edge" style="--z:2"></div>
+        <div class="tablet-edge" style="--z:3"></div>
+        <div class="tablet-edge" style="--z:4"></div>
+        <div class="tablet-edge" style="--z:5"></div>
+        <div class="tablet-edge" style="--z:6"></div>
+        <div class="tablet-edge" style="--z:7"></div>
+        <div class="tablet-edge" style="--z:8"></div>
+        <div class="tablet-front">
+          <div class="tablet-glass">
+            <span class="tablet-camera"></span>
+            <div class="tablet-screen">
+              <div class="screen-scale">
+              <div class="qb">
+                <div class="qb-top"><span>▣ ⚑ ▤</span><span>TYT Matematik · Soru 7 / 40</span><span>⛶ ? ⚙ ◷ 07:47</span></div>
+                <div class="qb-body">
+                  <div class="qb-q">
+                    <p>Bir sınıftaki öğrencilerin %40'ı kızdır. Sınıfa 6 kız öğrenci daha katıldığında kız öğrencilerin oranı %50 oluyor.</p>
+                    <p><b>Buna göre sınıfta başlangıçta kaç öğrenci vardır?</b></p>
+                    <ul>
+                      <li>A) 24</li>
+                      <li>B) 27</li>
+                      <li class="ok">C) 30</li>
+                      <li>D) 32</li>
+                      <li>E) 36</li>
+                    </ul>
+                    <dl class="qb-meta">
+                <div><dt>Konu</dt><dd>Yüzde Problemleri</dd></div>
+                <div><dt>Zorluk</dt><dd><i class="lvl"><b></b><b></b><b class="off"></b></i> Orta</dd></div>
+                <div><dt>Ortalama süre</dt><dd>1 dk 12 sn</dd></div>
+              </dl>
               <div class="qb-stats"><span class="g">Doğru</span><span>Öğrencilerin %77'si doğru yanıtladı</span><span>58 sn</span></div>
-            </div>
-            <div class="qb-exp">
-              <div class="qb-exp-title">Çözüm</div>
-              <div class="ratio">
-                <small>Başlangıç (n = 30)</small>
-                <div class="ratio-bar"><i style="--w:40%"></i><span>12 kız</span><span>18 erkek</span></div>
-                <small>6 kız katıldıktan sonra (36)</small>
-                <div class="ratio-bar"><i style="--w:50%"></i><span>18 kız</span><span>18 erkek</span></div>
+                  </div>
+                  <div class="qb-exp">
+                    <div class="qb-exp-title">Çözüm</div>
+                    <div class="ratio">
+                      <small>Başlangıç (n = 30)</small>
+                      <div class="ratio-bar"><i style="--w:40%"></i><span>12 kız</span><span>18 erkek</span></div>
+                      <small>6 kız katıldıktan sonra (36)</small>
+                      <div class="ratio-bar"><i style="--w:50%"></i><span>18 kız</span><span>18 erkek</span></div>
+                    </div>
+                    <p>Başlangıçta n öğrenci olsun; kız sayısı 0,4n.</p>
+                    <p class="eq">(0,4n + 6) / (n + 6) = 1/2</p>
+                    <p class="eq">0,8n + 12 = n + 6 &nbsp;⇒&nbsp; n = 30</p>
+                  </div>
+                </div>
+                <div class="qb-bottom"><span>⏹ Bitir &nbsp; ⏸ Duraklat</span><span>✎ Geri Bildirim</span><span>← Önceki &nbsp; Sonraki →</span></div>
               </div>
-              <p>Başlangıçta n öğrenci olsun; kız sayısı 0,4n.</p>
-              <p class="eq">(0,4n + 6) / (n + 6) = 1/2</p>
-              <p class="eq">0,8n + 12 = n + 6 &nbsp;⇒&nbsp; n = 30</p>
+              </div>
             </div>
+            <div class="tablet-glare"></div>
           </div>
-          <div class="qb-bottom"><span>⏹ Bitir &nbsp; ⏸ Duraklat</span><span>✎ Geri Bildirim</span><span>← Önceki &nbsp; Sonraki →</span></div>
         </div>
       </div>
-      <div class="laptop-keys" data-quad="200,345 646,365 636,410 134,380"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><br></div>
+      <div class="stylus"></div>
     </div>
   </div>
 </section>

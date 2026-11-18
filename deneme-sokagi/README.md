@@ -5,8 +5,8 @@ platformunun statik ana sayfası. Kurulum gerekmez: `index.html` dosyasını tar
 
 - `index.html` — sayfa içeriği (Türkçe)
 - `styles.css` — renkler en üstte değişken olarak, düzen ve mobil uyum
-- `script.js` — mobil menü, karuseller, laptop ekranının perspektif yerleşimi
-- `assets/hero-laptop.png` — (isteğe bağlı) bu dosya eklenirse çizilmiş laptopun yerine geçer
+- `script.js` — mobil menü ve karuseller
+- `assets/hero-device.png` — (isteğe bağlı) bu dosya eklenirse çizilmiş tabletin yerine geçer
 
 Yayından önce: "Başarı Hikâyeleri" bölümündeki yorumlar örnektir; gerçek kullanıcı
 yorumlarıyla (izin alınarak) değiştirilmelidir.

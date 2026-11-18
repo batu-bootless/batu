@@ -1,2 +1,2 @@
-Put the hero laptop image here as hero-laptop.png (transparent background, ~1336px wide).
-It replaces the CSS-drawn laptop automatically; delete it to fall back.
+Put the hero device image here as hero-device.png (transparent background, ~1280px wide).
+It replaces the CSS-drawn tablet automatically; delete it to fall back.
