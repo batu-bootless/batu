@@ -30,8 +30,10 @@ soru bankasıdır (`python3 tools/ornek-kaynak/olustur.py` + `node tools/html-pd
 
 ## 2. Deneme Sokağı PDF'i — `yaprak-test-pdf.js`
 
-`sablon/yaprak-test.html` şablonuyla A4, iki sütunlu, soru bankası dizilimli PDF üretir
-(üst bilgi, öğrenci alanı, sayfa numarası, cevap anahtarı).
+`sablon/yaprak-test.html` şablonuyla A4, iki sütunlu, soru bankası dizilimli PDF üretir: ilk sayfada gri
+başlık bandı (logo, SORU BANKASI, konu çubuğu, TEST rozeti), sütunlar arasında dikey site adresli çizgi,
+her sorunun altında soru kodu, altta site adresi ve sayfa rozeti, isteğe bağlı cevap anahtarı.
+Yazı tipleri `sablon/fonts/` altında (Liberation Sans: SIL OFL, DejaVu Sans: Bitstream Vera lisansı).
 
 ```bash
 node tools/yaprak-test-pdf.js --konu "Yüzde Problemleri" --mod gorsel --out ornekler/yuzde.pdf

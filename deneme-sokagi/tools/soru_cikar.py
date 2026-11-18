@@ -252,6 +252,8 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
             ust = [ln['text'] for ln in stem_lines if not fig_box or ln['bottom'] <= fig_box[1] + 1]
             alt = [ln['text'] for ln in stem_lines if fig_box and ln['top'] >= fig_box[3] - 1]
 
+            body_sizes = sorted(w['size'] for ln in body_lines for w in ln['words'])
+            yazi_pt = round(body_sizes[len(body_sizes) // 2], 2) if body_sizes else None
             order += 1
             qid = f'{kaynak_id}-t{test_no:02d}-s{s["n"]:02d}'
             img, (ox, oy) = render(page, box, dpi)
@@ -272,6 +274,7 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
                 'secenekler': split_options(opt_lines),
                 'cevap': None,
                 'gorsel': f'data/sorular/{kaynak_id}/{qid}.png', 'sekil': sekil,
+                'sekil_pt': round(fig_box[2] - fig_box[0] + 8, 1) if fig_box else None, 'yazi_pt': yazi_pt,
                 'bbox': [round(v, 1) for v in box],
             })
 

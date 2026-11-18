@@ -23,6 +23,8 @@
   "cevap": "D",
   "gorsel": "data/sorular/ornek/ornek-t01-s01.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    105.6,
@@ -54,6 +56,8 @@
   "cevap": "B",
   "gorsel": "data/sorular/ornek/ornek-t01-s02.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    274.3,
@@ -85,6 +89,8 @@
   "cevap": "D",
   "gorsel": "data/sorular/ornek/ornek-t01-s03.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    442.3,
@@ -116,6 +122,8 @@
   "cevap": "A",
   "gorsel": "data/sorular/ornek/ornek-t01-s04.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    105.6,
@@ -147,6 +155,8 @@
   "cevap": "C",
   "gorsel": "data/sorular/ornek/ornek-t01-s05.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    242.8,
@@ -178,6 +188,8 @@
   "cevap": "B",
   "gorsel": "data/sorular/ornek/ornek-t01-s06.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    410.8,
@@ -209,6 +221,8 @@
   "cevap": "C",
   "gorsel": "data/sorular/ornek/ornek-t01-s07.png",
   "sekil": "data/sorular/ornek/ornek-t01-s07-sekil.png",
+  "sekil_pt": 218.0,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    105.6,
@@ -240,6 +254,8 @@
   "cevap": "A",
   "gorsel": "data/sorular/ornek/ornek-t01-s08.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    352.3,
@@ -271,6 +287,8 @@
   "cevap": "E",
   "gorsel": "data/sorular/ornek/ornek-t01-s09.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    105.6,
@@ -302,6 +320,8 @@
   "cevap": "D",
   "gorsel": "data/sorular/ornek/ornek-t01-s10.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    274.3,
@@ -333,6 +353,8 @@
   "cevap": "C",
   "gorsel": "data/sorular/ornek/ornek-t02-s01.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    105.6,
@@ -364,6 +386,8 @@
   "cevap": "D",
   "gorsel": "data/sorular/ornek/ornek-t02-s02.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    274.3,
@@ -395,6 +419,8 @@
   "cevap": "B",
   "gorsel": "data/sorular/ornek/ornek-t02-s03.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    426.6,
@@ -426,6 +452,8 @@
   "cevap": "C",
   "gorsel": "data/sorular/ornek/ornek-t02-s04.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    105.6,
@@ -457,6 +485,8 @@
   "cevap": "B",
   "gorsel": "data/sorular/ornek/ornek-t02-s05.png",
   "sekil": "data/sorular/ornek/ornek-t02-s05-sekil.png",
+  "sekil_pt": 214.3,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    290.1,
@@ -488,6 +518,8 @@
   "cevap": "A",
   "gorsel": "data/sorular/ornek/ornek-t02-s06.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    602.1,
@@ -519,6 +551,8 @@
   "cevap": "D",
   "gorsel": "data/sorular/ornek/ornek-t02-s07.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    105.6,
@@ -550,6 +584,8 @@
   "cevap": "B",
   "gorsel": "data/sorular/ornek/ornek-t02-s08.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    274.3,
@@ -581,6 +617,8 @@
   "cevap": "A",
   "gorsel": "data/sorular/ornek/ornek-t02-s09.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    105.6,
@@ -612,6 +650,8 @@
   "cevap": "E",
   "gorsel": "data/sorular/ornek/ornek-t02-s10.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    274.3,
@@ -643,6 +683,8 @@
   "cevap": "B",
   "gorsel": "data/sorular/ornek/ornek-t03-s01.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    105.6,
@@ -674,6 +716,8 @@
   "cevap": "E",
   "gorsel": "data/sorular/ornek/ornek-t03-s02.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    258.6,
@@ -705,6 +749,8 @@
   "cevap": "C",
   "gorsel": "data/sorular/ornek/ornek-t03-s03.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    426.6,
@@ -736,6 +782,8 @@
   "cevap": "D",
   "gorsel": "data/sorular/ornek/ornek-t03-s04.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    105.6,
@@ -767,6 +815,8 @@
   "cevap": "E",
   "gorsel": "data/sorular/ornek/ornek-t03-s05.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    258.6,
@@ -798,6 +848,8 @@
   "cevap": "A",
   "gorsel": "data/sorular/ornek/ornek-t03-s06.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    410.8,
@@ -829,6 +881,8 @@
   "cevap": "B",
   "gorsel": "data/sorular/ornek/ornek-t03-s07.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    105.6,
@@ -860,6 +914,8 @@
   "cevap": "D",
   "gorsel": "data/sorular/ornek/ornek-t03-s08.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    35.7,
    258.6,
@@ -891,6 +947,8 @@
   "cevap": "C",
   "gorsel": "data/sorular/ornek/ornek-t03-s09.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    105.6,
@@ -922,6 +980,8 @@
   "cevap": "E",
   "gorsel": "data/sorular/ornek/ornek-t03-s10.png",
   "sekil": null,
+  "sekil_pt": null,
+  "yazi_pt": 10.5,
   "bbox": [
    308.0,
    258.6,

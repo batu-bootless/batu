@@ -652,8 +652,12 @@ table.t { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 56
 .b-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .b-sum { display: flex; flex-direction: column; gap: 16px; align-self: start; position: sticky; top: 92px; }
 .mini-page { align-self: center; width: 150px; max-width: 100%; aspect-ratio: 210 / 297; border-radius: 6px; background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow); padding: 10px; display: flex; flex-direction: column; gap: 8px; }
-.mp-head { height: 14px; border-bottom: 3px solid var(--brand); position: relative; }
-.mp-head::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 30%; height: 3px; background: var(--yellow); }
+.mini-page { padding: 0 10px 10px; overflow: hidden; }
+.mp-head { height: 26px; margin: 0 -10px; background: #ececec; position: relative; }
+.mp-head::before { content: ""; position: absolute; left: 10px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background: var(--brand); }
+.mp-head::after { content: ""; position: absolute; right: 12px; top: 2px; width: 20px; height: 11px; background: #e5077e; clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%); }
+.mp-cols { position: relative; }
+.mp-cols::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1.5px; background: #111; transform: translateX(-50%); }
 .mp-cols { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .mp-cols div { display: flex; flex-direction: column; gap: 7px; }
 .mp-cols i { display: block; height: 28px; border-radius: 3px; background: repeating-linear-gradient(180deg, #c9d4e0 0 2px, transparent 2px 6px); animation: rise .4s var(--ease) both; }

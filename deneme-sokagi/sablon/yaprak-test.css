@@ -1,92 +1,83 @@
-/* Deneme Sokağı — yaprak test / soru bankası PDF şablonu
-   A4 portrait, two columns read top-to-bottom then left-to-right (question-bank order).
-   Everything is scoped under .ds-doc so the panel can embed the preview. */
-@font-face { font-family: "DS Figtree"; src: url("fonts/Figtree.ttf") format("truetype"); font-weight: 300 900; font-style: normal; font-display: block; }
+/* Deneme Sokağı — soru bankası / yaprak test PDF şablonu
+   Ölçüler mm cinsinden, A4 (210 × 297). Düzen: ilk sayfada gri başlık bandı (logo, SORU BANKASI,
+   ders/konu çubuğu, TEST rozeti); iki sütun, aralarında dikey site adresli siyah çizgi;
+   soru numarası kendi satırında, metin girintili ve iki yana yaslı; soru kodu sağda; altta site + sayfa rozeti.
+   Her şey .ds-doc altında kalır, böylece panel önizlemesi de aynı dosyayı kullanır. */
+@font-face { font-family: "DS Text"; src: url("fonts/LiberationSans-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+@font-face { font-family: "DS Text"; src: url("fonts/LiberationSans-Bold.ttf") format("truetype"); font-weight: 700; font-display: block; }
+@font-face { font-family: "DS Head"; src: url("fonts/DejaVuSans-sub.ttf") format("truetype"); font-weight: 400; font-display: block; }
+@font-face { font-family: "DS Head"; src: url("fonts/DejaVuSans-Bold-sub.ttf") format("truetype"); font-weight: 700; font-display: block; }
 @page { size: A4; margin: 0; }
 
 .ds-doc {
-  --ds-blue: #1e88e5;
-  --ds-navy: #0d3a8a;
-  --ds-ink: #17212d;
-  --ds-muted: #5f6e80;
-  --ds-line: #cfd8e3;
-  --ds-soft: #f2f7fd;
-  --ds-yellow: #ffd600;
-  font-family: "DS Figtree", "Figtree", "Helvetica Neue", Arial, sans-serif;
-  color: var(--ds-ink);
+  --ts-magenta: #e5077e;
+  --ts-title: #e91e63;
+  --ts-band: #ececec;
+  --ts-bar: #71706f;
+  --ts-num: #333333;
+  --ts-code: #7b7b7b;
+  --ts-dark: #1a1a1a;
+  font-family: "DS Text", Arial, "Helvetica Neue", sans-serif;
+  color: #000;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
 .ds-doc *, .ds-doc *::before, .ds-doc *::after { box-sizing: border-box; }
-.ds-page {
-  position: relative; width: 210mm; height: 297mm; overflow: hidden; background: #fff;
-  padding: 11mm 11mm 9mm; display: flex; flex-direction: column;
-}
+.ds-page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: #fff; }
 .ds-page + .ds-page { break-before: page; }
 
-/* header */
-.ds-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 5mm; padding-bottom: 3mm; border-bottom: 0.7mm solid var(--ds-blue); position: relative; }
-.ds-head::after { content: ""; position: absolute; left: 0; bottom: -0.7mm; width: 26mm; height: 0.7mm; background: var(--ds-yellow); }
-.ds-brand { display: flex; align-items: center; gap: 2mm; font-weight: 800; font-size: 13pt; letter-spacing: -.2pt; color: var(--ds-blue); white-space: nowrap; }
-.ds-brand b { color: var(--ds-navy); font-weight: 800; }
-.ds-brand svg { width: 9mm; height: 9mm; }
-.ds-title { text-align: center; min-width: 0; }
-.ds-title small { display: block; font-size: 7.5pt; font-weight: 700; letter-spacing: 1.2pt; color: var(--ds-muted); text-transform: uppercase; }
-.ds-title strong { display: block; font-size: 13pt; font-weight: 800; letter-spacing: -.1pt; text-transform: uppercase; line-height: 1.2; }
-.ds-badge { text-align: center; border: 0.4mm solid var(--ds-blue); border-radius: 2.5mm; padding: 1.2mm 3mm; color: var(--ds-blue); line-height: 1.1; }
-.ds-badge small { display: block; font-size: 6.5pt; font-weight: 700; letter-spacing: 1pt; }
-.ds-badge b { font-size: 15pt; font-weight: 800; }
-.ds-page.cont .ds-head { padding-bottom: 2mm; }
-.ds-page.cont .ds-brand { font-size: 10pt; }
-.ds-page.cont .ds-brand svg { width: 6.5mm; height: 6.5mm; }
-.ds-page.cont .ds-title strong { font-size: 10pt; }
-.ds-page.cont .ds-badge b { font-size: 11pt; }
+/* ---- header band (first page) ---- */
+.ts-band { position: absolute; left: 0; top: 0; width: 210mm; height: 27.6mm; background: var(--ts-band); }
+.ts-logo { position: absolute; left: 16.3mm; top: 4.3mm; width: 20.3mm; height: 20.3mm; display: block; }
+.ts-title { position: absolute; left: 45.6mm; top: 17.9mm; margin: 0; font: italic 700 17.3pt/1.17 "DS Head", sans-serif; letter-spacing: -0.69pt; color: var(--ts-title); white-space: nowrap; }
+.ts-subject { position: absolute; left: 106.9mm; top: 18.3mm; width: 100.9mm; height: 6.9mm; padding-left: 1.1mm; display: flex; align-items: center;
+  background: var(--ts-bar); border-radius: 1.7mm 0 0 1.7mm; color: #fff; font: 700 11.5pt/1 "DS Head", sans-serif; white-space: nowrap; overflow: hidden; }
+.ts-test { position: absolute; left: 173.6mm; top: 2mm; width: 23.8mm; height: 12.2mm; padding: 1.55mm 0 0 2.5mm;
+  background: var(--ts-magenta); clip-path: polygon(0 0, 100% 0, calc(100% - 4.4mm) 100%, 0 100%);
+  color: #fff; font: 700 11.5pt/1.2 "DS Head", sans-serif; }
+.ts-test span { display: block; }
 
-.ds-info { display: flex; justify-content: space-between; align-items: center; gap: 4mm; margin-top: 3mm; font-size: 8pt; color: var(--ds-muted); }
-.ds-fields { display: flex; gap: 4mm; flex: 1; }
-.ds-fields span { flex: 1; border-bottom: 0.3mm solid var(--ds-line); padding-bottom: 1mm; white-space: nowrap; }
-.ds-fields span:first-child { flex: 2.2; }
-.ds-meta { white-space: nowrap; font-weight: 600; color: var(--ds-ink); background: var(--ds-soft); border-radius: 1.5mm; padding: 1mm 2.5mm; }
+/* ---- body: two columns, rule with the site address between them ---- */
+.ds-body { position: absolute; left: 15.5mm; top: 31.1mm; width: 178.9mm; bottom: 21mm; display: grid; grid-template-columns: 80.9mm 80.9mm; column-gap: 17.1mm; }
+.ds-page.cont .ds-body { top: 12mm; }
+.ds-col { min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+.ts-rule { position: absolute; left: 90.6mm; top: -0.6mm; width: 0.6mm; bottom: 0; background: #000; }
+.ts-vurl { position: absolute; left: 89.9mm; top: 50%; width: 2.8mm; padding: 2.2mm 0; background: #fff;
+  writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg);
+  font: 700 7.5pt/2.8mm "DS Head", sans-serif; letter-spacing: 1pt; color: #222; white-space: nowrap; text-align: center; }
 
-/* body: two columns with a rule */
-.ds-body { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 9mm; margin-top: 5mm; position: relative; }
-.ds-body::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 0.3mm; background: var(--ds-line); transform: translateX(-50%); }
-.ds-col { min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 6mm; }
+/* ---- question ---- */
+.ts-q { padding-bottom: 3.6mm; break-inside: avoid; }
+.ts-qn { font: 700 8.1pt/1.2 "DS Head", sans-serif; color: var(--ts-num); }
+.ts-qc { margin: 0.5mm 2.8mm 0 6.9mm; font-size: 6.4pt; line-height: 1.35; text-align: justify; hyphens: none; }
+.ts-qc p { margin: 0 0 1.75mm; }
+.ts-qc .stem-b { font-weight: 700; }
+.ts-fig { display: block; max-width: 100%; margin: 0.5mm 0 2mm; }
+.ts-opts { display: grid; gap: 1.38mm; text-align: left; }
+.ts-opt b { font-weight: 700; margin-right: 0.5mm; }
+.ts-q.img .ts-qc { margin-top: 0.8mm; }
+.ts-q.img .ts-qc img { display: block; width: 100%; height: auto; }
+.ts-code { margin-top: 4.3mm; text-align: right; font: 400 8.1pt/1.2 "DS Head", sans-serif; color: var(--ts-code); }
 
-/* question */
-.ds-q { position: relative; padding-left: 7mm; break-inside: avoid; font-size: 9.6pt; line-height: 1.45; }
-.ds-qn { position: absolute; left: 0; top: 0; font-weight: 800; color: var(--ds-navy); font-size: 10pt; }
-.ds-q p { margin: 0 0 1.6mm; }
-.ds-q .stem-b { font-weight: 700; }
-.ds-fig { display: block; max-width: 100%; margin: 1mm 0 2mm; }
-.ds-opts { display: grid; gap: 1.1mm 3mm; margin-top: 1.5mm; }
-.ds-opts.c1 { grid-template-columns: 1fr; }
-.ds-opts.c2 { grid-template-columns: 1fr 1fr; }
-.ds-opts.c5 { grid-template-columns: repeat(5, 1fr); }
-.ds-opt { display: flex; gap: 1.6mm; }
-.ds-opt b { font-weight: 800; color: var(--ds-navy); }
-/* image questions: the source crop with its own number masked out */
-.ds-q.img { padding-left: 0; }
-.ds-q.img .ds-qn { background: #fff; padding-right: 1mm; }
-.ds-q.img img { display: block; width: 100%; height: auto; }
+/* ---- answer key ---- */
+.ts-key { break-inside: avoid; margin-top: 1mm; }
+.ts-key h4 { margin: 0 0 2mm; height: 6.2mm; display: flex; align-items: center; padding-left: 1.6mm; border-radius: 1.5mm 0 0 1.5mm;
+  background: var(--ts-bar); color: #fff; font: 700 9pt/1 "DS Head", sans-serif; letter-spacing: .3pt; }
+.ts-key-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2mm 2mm; font: 400 8.1pt/1.4 "DS Head", sans-serif; color: var(--ts-num); }
+.ts-key-grid b { color: var(--ts-magenta); margin-left: 1mm; }
+.ts-key p { margin: 2mm 0 0; font: 400 6.5pt "DS Head", sans-serif; color: var(--ts-code); }
 
-/* answer key */
-.ds-key { border: 0.4mm solid var(--ds-blue); border-radius: 2.5mm; padding: 3mm; break-inside: avoid; }
-.ds-key h4 { margin: 0 0 2.5mm; font-size: 8.5pt; font-weight: 800; letter-spacing: 1pt; color: var(--ds-blue); }
-.ds-key-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.4mm; }
-.ds-key-grid span { display: flex; justify-content: space-between; align-items: center; font-size: 8.5pt; padding: 1mm 2mm; border-radius: 1.2mm; background: var(--ds-soft); }
-.ds-key-grid b { color: var(--ds-navy); }
-.ds-key p { margin: 2.5mm 0 0; font-size: 7pt; color: var(--ds-muted); }
+/* ---- footer ---- */
+.ts-foot { position: absolute; left: 10.2mm; right: 14.7mm; bottom: 8.5mm; height: 6.1mm; display: flex; align-items: center; justify-content: space-between; font: 400 11.5pt/1 "DS Head", sans-serif; }
+.ts-url { display: flex; align-items: center; gap: 1.3mm; color: #000; }
+.ts-url i { font-style: normal; color: var(--ts-magenta); }
+.ts-pg { width: 16mm; height: 6.1mm; padding-left: 2mm; display: flex; align-items: center; background: var(--ts-dark); color: #fff; font-weight: 700;
+  border-radius: 1.2mm 0 0 1.2mm; clip-path: polygon(0 0, calc(100% - 2.3mm) 0, 100% 100%, 0 100%); }
 
-/* footer */
-.ds-foot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 4mm; padding-top: 2.5mm; margin-top: 3mm; border-top: 0.3mm solid var(--ds-line); font-size: 7.5pt; color: var(--ds-muted); }
-.ds-foot .pg { font-weight: 700; color: var(--ds-ink); background: var(--ds-soft); border-radius: 3mm; padding: 0.6mm 3mm; }
-.ds-foot .next { text-align: right; font-weight: 600; font-style: italic; }
-
-/* screen preview */
+/* ---- screen preview ---- */
 .ds-doc.preview { display: grid; justify-items: center; gap: 8mm; }
-.ds-doc.preview .ds-page { box-shadow: 0 2px 4px rgba(15,30,55,.06), 0 12px 32px rgba(15,30,55,.12); border-radius: 1mm; }
+.ds-doc.preview .ds-page { box-shadow: 0 2px 4px rgba(15,30,55,.06), 0 12px 32px rgba(15,30,55,.12); }
 @media print {
   .ds-doc.preview { display: block; gap: 0; }
-  .ds-doc.preview .ds-page { box-shadow: none; border-radius: 0; }
+  .ds-doc.preview .ds-page { box-shadow: none; }
   .ds-noprint { display: none !important; }
 }

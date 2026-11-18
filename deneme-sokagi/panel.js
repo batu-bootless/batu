@@ -806,7 +806,6 @@
           <div class="field">Soru sırası<div class="opt-cards">${card('sira', 'kaynak', 'Kaynaktaki sıra', 'Soru bankasındaki dizilim korunur')}${card('sira', 'karisik', 'Karışık', 'Sorular karıştırılır')}</div></div>
           <div class="b-row">
             <div class="toggle-row boxed"><div><b>Cevap anahtarı</b><span>Testin sonuna ekle</span></div><span class="switch"><input type="checkbox" id="b-key" ${b.key ? 'checked' : ''} aria-label="Cevap anahtarı"><i></i></span></div>
-            <div class="toggle-row boxed"><div><b>Öğrenci bilgileri</b><span>Ad, sınıf, numara alanı</span></div><span class="switch"><input type="checkbox" id="b-ogr" ${b.ogr ? 'checked' : ''} aria-label="Öğrenci bilgileri"><i></i></span></div>
           </div>
           <label class="field">Test adı<input class="input" id="b-ad" maxlength="70" placeholder="${esc(autoTitle(b.konular) || 'Yaprak test')}" value="${esc(b.ad)}"></label>
           <div class="b-actions"><button class="btn btn-yellow" type="submit" ${avail ? '' : 'disabled'}>${icon('plus')} Testi oluştur</button><span class="small muted">Test, "Oluşturulan Yaprak Testler" sayfasına kaydedilir.</span></div>
@@ -846,7 +845,6 @@
     });
     $$('input[name="mod"], input[name="sira"]', f).forEach((r) => r.addEventListener('change', () => { b[r.name] = r.value; render(false); }));
     $('#b-key').addEventListener('change', (e) => { b.key = e.target.checked; });
-    $('#b-ogr').addEventListener('change', (e) => { b.ogr = e.target.checked; });
     $('#b-ad').addEventListener('input', (e) => { b.ad = e.target.value; });
     f.addEventListener('submit', (e) => { e.preventDefault(); createTest(); });
   }
@@ -858,7 +856,7 @@
     const src = BANK.kaynaklar.find((k) => k.id === b.kaynak) || {};
     const test = {
       id: 'yt-' + uid(), baslik: b.ad.trim() || autoTitle(b.konular), ders: [src.sinav, b.ders].filter(Boolean).join(' · '),
-      no: nextTestNo(), mod: b.mod, soruIds: qs.map((q) => q.id), cevapAnahtari: b.key, ogrenciAlani: b.ogr,
+      no: nextTestNo(), mod: b.mod, soruIds: qs.map((q) => q.id), cevapAnahtari: b.key,
       olusturma: new Date().toISOString(), kaynak: src.ad || '', konular: [...b.konular], sonuc: null,
     };
     ytests.unshift(test); saveTests();
