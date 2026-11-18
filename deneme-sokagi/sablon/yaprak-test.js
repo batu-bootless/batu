@@ -27,7 +27,7 @@
     if (q.kod) return q.kod;
     let h = 0x811c9dc5;
     for (const ch of String(q.id)) { h ^= ch.codePointAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
-    return 'DS-' + (10000 + (h % 90000));
+    return 'DS' + (10000 + (h % 90000));
   }
 
   // Question banks set the question sentence in bold ("… hangisidir?"), the lead-in in regular weight.

@@ -6,7 +6,9 @@ Her soru için iki çıktı üretir, kaynaktaki sırayı koruyarak:
   * metin : soru kökü, şekil (varsa ayrı görsel), A–E seçenekleri ve cevap anahtarı
 
 Kullanım:
-  python3 tools/soru_cikar.py KAYNAK.pdf --kaynak-id ornek --kaynak-ad "Örnek Soru Bankası" [--sinav TYT]
+  python3 tools/soru_cikar.py KAYNAK.pdf --kaynak-id ornek --kaynak-ad "Örnek Soru Bankası" [--sinav TYT] [--tur banka|deneme]
+
+Her soruya kalıcı bir künye verilir: 2 harf + 5 rakam (ör. YD48213; harfler sınavdan gelir, --kod-on ile değişir).
 
 Çıktılar (deneme-sokagi/ altında):
   data/sorular/<kaynak-id>/*.png        soru ve şekil görselleri
@@ -22,24 +24,35 @@ import html
 import json
 import re
 import sys
+import zlib
 from pathlib import Path
 
 import pdfplumber
 from PIL import Image, ImageDraw, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
+OVERRIDE = {}
 NUM_RE = re.compile(r'^(\d{1,3})[.)]$')
 NUM_GLUED_RE = re.compile(r'^(\d{1,3})[.)](\S.*)$')
 OPT_RE = re.compile(r'(?:(?<=\s)|^)([A-E])\)\s*')
 LETTERS = 'ABCDE'
 
 
+def dashfix(text):
+    """'----' blanks broken across lines or by kerning ('- ---') are glued back together."""
+    return re.sub(r'-(?:\s+-)+', lambda m: m.group(0).replace(' ', ''), text).strip()
+
+
 def tr_lower(s):
     return s.replace('I', 'ı').replace('İ', 'i').lower()
 
 
+SMALL_WORDS = {'ve', 'ile', 'veya', 'ya', 'da', 'de', 'ki', 'ya da'}
+
+
 def tr_title(s):
-    return ' '.join(w[:1] + tr_lower(w[1:]) for w in s.split())
+    words = s.split()
+    return ' '.join(tr_lower(w) if i and tr_lower(w) in SMALL_WORDS else w[:1] + tr_lower(w[1:]) for i, w in enumerate(words))
 
 
 def group_lines(words, tol=3):
@@ -57,7 +70,7 @@ def group_lines(words, tol=3):
         ln['x0'] = ln['words'][0]['x0']
         ln['x1'] = max(w['x1'] for w in ln['words'])
         ln['bottom'] = max(w['bottom'] for w in ln['words'])
-        ln['text'] = ' '.join(w['text'] for w in ln['words'])
+        ln['text'] = re.sub(r'-(?:\s+-)+', lambda m: m.group(0).replace(' ', ''), ' '.join(w['text'] for w in ln['words']))
         ln['size'] = max(w.get('size', 0) for w in ln['words'])
     lines.sort(key=lambda ln: ln['top'])
     return lines
@@ -112,18 +125,20 @@ def render(page, box, dpi):
     return page.crop((x0, top, x1, bottom)).to_image(resolution=dpi).original.convert('RGB'), (x0, top)
 
 
-def trim(img, pad=10):
+def trim(img, pad=10, sides=True):
     bbox = ImageOps.invert(img.convert('L')).point(lambda v: 255 if v > 18 else 0).getbbox()
     if not bbox:
         return img
     l, t, r, b = bbox
+    if not sides:
+        l, r = pad, img.width - pad
     return img.crop((max(0, l - pad), max(0, t - pad), min(img.width, r + pad), min(img.height, b + pad)))
 
 
 def parse_key(text):
     """'TEST 1 … 1 2 3 … / D B C …' or '1.D 2-B' -> {test: {no: letter}}"""
     key = {}
-    parts = re.split(r'TEST\s*(\d+)', text)
+    parts = re.split(r'(?:TEST|DENEME)\s*(\d+)', text)
     for i in range(1, len(parts), 2):
         t, body = int(parts[i]), parts[i + 1]
         found = {int(n): L for n, L in re.findall(r'(\d{1,3})\s*[.\-:)]\s*([A-E])\b', body)}
@@ -172,6 +187,24 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
             words = []
         pages_words.append(words)
 
+    # Footer candidates: bottom-band lines that repeat across pages (digits ignored), page numbers, web addresses.
+    foot_counts = {}
+    for page, words in zip(pdf.pages, pages_words):
+        for ln in group_lines([w for w in words if w['top'] > page.height * 0.85]):
+            k = re.sub(r'\d+', '#', ln['text'])
+            foot_counts[k] = foot_counts.get(k, 0) + 1
+
+    def footer_top_of(page, words):
+        lines = group_lines([w for w in words if w['top'] > page.height * 0.85])
+        tops = [ln['top'] for ln in lines if foot_counts.get(re.sub(r'\d+', '#', ln['text']), 0) > 1
+                or re.fullmatch(r'[\d\s/|-]+', ln['text']) or 'www.' in ln['text'].lower()]
+        rules = [r['top'] for r in list(page.rects) + list(page.lines)
+                 if r['x1'] - r['x0'] > page.width * 0.6 and r['bottom'] - r['top'] < 2.5 and r['top'] > page.height * 0.8]
+        if tops and rules:
+            above = [r for r in rules if r < min(tops)]
+            return max(above) if above else min(tops)
+        return min(tops or rules or [page.height])
+
     # Header lines that repeat on every question page belong to the publisher, not the test.
     q_pages = [w for w in pages_words if w]
     header_counts = {}
@@ -185,7 +218,7 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
         if not words:
             continue
         W, H = page.width, page.height
-        footer_top = min([w['top'] for w in words if w['top'] > H * 0.92] or [H])
+        footer_top = footer_top_of(page, words)
         body = [w for w in words if w['top'] < footer_top]
         mid_words = [w for w in body if H * 0.12 < w['top'] < H * 0.9]
         gutter = find_gutter(mid_words, W)
@@ -217,10 +250,14 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
         first_top = min(s['w']['top'] for s in kept)
         head_lines = [ln for ln in group_lines([w for w in body if w['bottom'] < first_top - 2]) if ln['text'] not in brand_lines]
         head_text = ' '.join(ln['text'] for ln in head_lines)
-        m_test = re.search(r'TEST\s*(\d+)', head_text, re.I)
-        title_lines = sorted([ln for ln in head_lines if not re.search(r'TEST|^\d+$', ln['text'], re.I)], key=lambda ln: -ln['size'])
-        ders = title_lines[0]['text'] if title_lines else ''
-        konu = title_lines[1]['text'] if len(title_lines) > 1 else ders
+        m_test = re.search(r'(?:TEST|DENEME)\s*(\d+)', head_text, re.I)
+        is_title = lambda ln: not re.search(r'TEST|DENEME\s*\d|^\d+$|^\d+\s*[-–]', ln['text'], re.I)
+        title_lines = sorted([ln for ln in head_lines if is_title(ln)], key=lambda ln: -ln['size'])
+        if not title_lines:  # single-test sources repeat their title on every page
+            all_head = group_lines([w for w in body if w['bottom'] < first_top - 2])
+            title_lines = sorted([ln for ln in all_head if is_title(ln) and ln['size'] >= 9.5], key=lambda ln: -ln['size'])
+        ders = OVERRIDE.get('ders') or (title_lines[0]['text'] if title_lines else '')
+        konu = OVERRIDE.get('konu') or (title_lines[1]['text'] if len(title_lines) > 1 else ders)
 
         for i, s in enumerate(kept):
             if s['n'] == 1:
@@ -260,7 +297,7 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
             scale = dpi / 72
             nw = s['w']
             ImageDraw.Draw(img).rectangle([(nw['x0'] - ox - 1) * scale, (nw['top'] - oy - 1) * scale, (nw['x1'] - ox + 1.5) * scale, (nw['bottom'] - oy + 1) * scale], fill='white')
-            trim(img).save(out_dir / f'{qid}.png', optimize=True)
+            trim(img, sides=False).save(out_dir / f'{qid}.png', optimize=True)
             sekil = None
             if fig_box:
                 fimg, _ = render(page, (fig_box[0] - 4, fig_box[1] - 4, fig_box[2] + 4, fig_box[3] + 4), dpi)
@@ -270,7 +307,7 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
                 'id': qid, 'kaynak': kaynak_id, 'kaynak_ad': kaynak_ad, 'sinav': sinav,
                 'test': test_no, 'no': s['n'], 'sira': order, 'sayfa': page.page_number,
                 'ders': tr_title(ders), 'konu': tr_title(konu),
-                'metin': ' '.join(ust + alt).strip(), 'metin_ust': ' '.join(ust).strip(), 'metin_alt': ' '.join(alt).strip(),
+                'metin': dashfix(' '.join(ust + alt)), 'metin_ust': dashfix(' '.join(ust)), 'metin_alt': dashfix(' '.join(alt)),
                 'secenekler': split_options(opt_lines),
                 'cevap': None,
                 'gorsel': f'data/sorular/{kaynak_id}/{qid}.png', 'sekil': sekil,
@@ -283,11 +320,39 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi):
     return questions, warnings, key
 
 
-def write_outputs(kaynak_id, questions):
+def ascii_letters(text):
+    t = text.upper().translate(str.maketrans('ÇĞİÖŞÜ', 'CGIOSU'))
+    return re.sub(r'[^A-Z]', '', t)
+
+
+def assign_codes(questions, prefix, out_dir):
+    """Keep codes from the previous run of this source; give new questions a fresh, unused code."""
+    old = {}
+    prev = out_dir / 'sorular.json'
+    if prev.exists():
+        old = {q['id']: q.get('kod') for q in json.loads(prev.read_text(encoding='utf-8'))}
+    taken = set()
+    for f in (ROOT / 'data' / 'sorular').glob('*/sorular.json'):
+        if f.parent != out_dir:
+            taken.update(q.get('kod') for q in json.loads(f.read_text(encoding='utf-8')))
+    for q in questions:
+        kod = old.get(q['id'])
+        if not kod or kod in taken:
+            n = 10000 + zlib.crc32(q['id'].encode()) % 90000
+            while f'{prefix}{n}' in taken:
+                n = 10000 + (n - 10000 + 1) % 90000
+            kod = f'{prefix}{n}'
+        q['kod'] = kod
+        taken.add(kod)
+
+
+def write_outputs(kaynak_id, questions, meta):
     out_dir = ROOT / 'data' / 'sorular' / kaynak_id
+    assign_codes(questions, meta['kod_on'], out_dir)
+    (out_dir / 'kaynak.json').write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding='utf-8')
     (out_dir / 'sorular.json').write_text(json.dumps(questions, ensure_ascii=False, indent=1), encoding='utf-8')
 
-    rows = ''.join(f'''<tr><td class="n">{q["sira"]}<br><small>T{q["test"]}·{q["no"]}<br>s.{q["sayfa"]}</small></td>
+    rows = ''.join(f'''<tr><td class="n">{q["sira"]}<br><small>{q["kod"]}<br>T{q["test"]}·{q["no"]}<br>s.{q["sayfa"]}</small></td>
       <td><img src="{Path(q["gorsel"]).name}" alt=""></td>
       <td><b>{html.escape(q["ders"])} · {html.escape(q["konu"])}</b><p>{html.escape(q["metin_ust"])}</p>
       {f'<img class="fig" src="{Path(q["sekil"]).name}" alt="">' if q["sekil"] else ''}<p>{html.escape(q["metin_alt"])}</p>
@@ -303,7 +368,11 @@ td img{{max-width:380px;border:1px solid #e3e9f1}}td.n{{font-weight:700;width:60
         all_q.extend(json.loads(f.read_text(encoding='utf-8')))
     sources = {}
     for q in all_q:
-        sources.setdefault(q['kaynak'], {'id': q['kaynak'], 'ad': q['kaynak_ad'], 'sinav': q['sinav'], 'soru': 0})['soru'] += 1
+        if q['kaynak'] not in sources:
+            mf = ROOT / 'data' / 'sorular' / q['kaynak'] / 'kaynak.json'
+            m = json.loads(mf.read_text(encoding='utf-8')) if mf.exists() else {}
+            sources[q['kaynak']] = {'id': q['kaynak'], 'ad': q['kaynak_ad'], 'sinav': q['sinav'], 'tur': m.get('tur', 'banka'), 'dk_soru': m.get('dk_soru', 1.5), 'soru': 0}
+        sources[q['kaynak']]['soru'] += 1
     bank = {'surum': 1, 'kaynaklar': list(sources.values()), 'sorular': all_q}
     data = json.dumps(bank, ensure_ascii=False)
     (ROOT / 'data' / 'soru-bankasi.json').write_text(data, encoding='utf-8')
@@ -318,11 +387,22 @@ def main():
     ap.add_argument('--kaynak-ad', required=True, help='görünen ad, örn. "Örnek Soru Bankası"')
     ap.add_argument('--sinav', default='TYT')
     ap.add_argument('--dpi', type=int, default=200)
+    ap.add_argument('--tur', choices=['banka', 'deneme'], default='banka', help='soru bankası mı, deneme sınavı mı')
+    ap.add_argument('--kod-on', help='künyenin 2 harfi (varsayılan: sınav adından, ör. YDS → YD)')
+    ap.add_argument('--dk-soru', type=float, help='soru başına önerilen süre (dk)')
+    ap.add_argument('--ders', help='ders adını elle belirle')
+    ap.add_argument('--konu', help='konu adını elle belirle')
     a = ap.parse_args()
     if not re.fullmatch(r'[a-z0-9-]+', a.kaynak_id):
         sys.exit('--kaynak-id yalnızca küçük harf, rakam ve tire içerebilir.')
+    OVERRIDE.update({k: v for k, v in (('ders', a.ders), ('konu', a.konu)) if v})
+    kod_on = (a.kod_on or ascii_letters(a.sinav)[:2]).upper()
+    if not re.fullmatch(r'[A-Z]{2}', kod_on):
+        sys.exit('--kod-on iki harf olmalı (A–Z).')
+    dk = a.dk_soru or {'YDS': 2.25, 'YÖKDİL': 2.25, 'TYT': 1.375, 'AYT': 2.25, 'LGS': 1.5, 'KPSS': 1.0, 'ALES': 2.5, 'DGS': 2.3}.get(a.sinav.upper(), 1.5)
+    meta = {'id': a.kaynak_id, 'ad': a.kaynak_ad, 'sinav': a.sinav, 'tur': a.tur, 'kod_on': kod_on, 'dk_soru': dk}
     questions, warnings, key = extract(a.pdf, a.kaynak_id, a.kaynak_ad, a.sinav, a.dpi)
-    total = write_outputs(a.kaynak_id, questions)
+    total = write_outputs(a.kaynak_id, questions, meta)
     for w in warnings:
         print('UYARI:', w)
     by_test = {}
@@ -330,7 +410,9 @@ def main():
         by_test.setdefault((q['test'], q['ders'], q['konu']), []).append(q)
     for (t, d, k), qs in by_test.items():
         print(f'Test {t:>2} · {d} · {k}: {len(qs)} soru, {sum(1 for q in qs if q["cevap"])} cevaplı, {sum(1 for q in qs if q["sekil"])} şekilli')
-    print(f'{len(questions)} soru çıkarıldı ({a.kaynak_id}); bankada toplam {total} soru.')
+    if questions:
+        print(f'Künyeler: {questions[0]["kod"]} … {questions[-1]["kod"]}')
+    print(f'{len(questions)} soru çıkarıldı ({a.kaynak_id}, {a.tur}); bankada toplam {total} soru.')
 
 
 if __name__ == '__main__':

@@ -31,9 +31,12 @@
       // The test comes from tools/yaprak-test-pdf.js (window.__DS_TEST__) or from the panel (localStorage + #id).
       let test = window.__DS_TEST__ || null;
       if (!test) {
+        const id = location.hash.slice(1);
         try {
-          const list = JSON.parse(localStorage.getItem('ds-yaprak-tests') || '[]');
-          test = list.find((t) => t.id === location.hash.slice(1)) || null;
+          for (let i = 0; i < localStorage.length && !test; i++) {
+            const k = localStorage.key(i);
+            if (k && k.startsWith('ds-yaprak-tests')) test = (JSON.parse(localStorage.getItem(k)) || []).find((t) => t.id === id) || null;
+          }
         } catch (e) { test = null; }
       }
       const doc = document.getElementById('doc');
@@ -46,6 +49,9 @@
       document.getElementById('barTitle').textContent = `${test.baslik} · ${test.soruIds.length} soru`;
       await DSYaprakTest.render(doc, test, window.DS_SORU_BANKASI, { base: '../' });
       window.__DS_READY__ = true;
+      try {
+        if (localStorage.getItem('ds-autoprint') === test.id) { localStorage.removeItem('ds-autoprint'); setTimeout(() => window.print(), 400); }
+      } catch (e) { /* manual print button still works */ }
     })();
     document.getElementById('printBtn').addEventListener('click', () => window.print());
   </script>
