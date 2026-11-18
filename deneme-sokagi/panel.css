@@ -2,6 +2,7 @@
    Layout: navy sidebar + glass topbar + 12-column card grid. Same brand as the homepage
    (blue #1e88e5, yellow #ffd600, navy #0d1a26, Figtree). */
 :root {
+  color-scheme: light;
   --brand: #1e88e5;
   --brand-600: #1565c0;
   --brand-50: #eaf3fd;
@@ -44,20 +45,7 @@
   --r: 16px;
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --brand-50: #10283f; --brand-100: #15385a;
-    --bg: #09121b; --surface: #0f1b28; --surface-2: #13212f; --border: #1e2e40;
-    --text: #e7edf4; --muted: #9aabbe; --faint: #6c7d90;
-    --good-bg: #0f2e1d; --warn-bg: #33270d; --bad-bg: #3a1618;
-    --sidebar: #060d14; --sidebar-2: #0f1d2b;
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.25);
-    --topbar: rgba(9, 18, 27, .78);
-    --overlay: rgba(0, 0, 0, .6);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
+:root[data-ds-theme="dark"] {
   --brand-50: #10283f; --brand-100: #15385a;
   --bg: #09121b; --surface: #0f1b28; --surface-2: #13212f; --border: #1e2e40;
   --text: #e7edf4; --muted: #9aabbe; --faint: #6c7d90;
@@ -149,8 +137,7 @@ svg { flex-shrink: 0; }
 .icon-btn svg { width: 20px; height: 20px; fill: none; stroke: var(--text); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .icon-btn .dot { position: absolute; top: 9px; right: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--bad); box-shadow: 0 0 0 2px var(--surface); }
 .ic-sun { display: none; }
-:root[data-theme="dark"] .ic-sun { display: block; } :root[data-theme="dark"] .ic-moon { display: none; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ic-sun { display: block; } :root:not([data-theme="light"]) .ic-moon { display: none; } }
+:root[data-ds-theme="dark"] .ic-sun { display: block; } :root[data-ds-theme="dark"] .ic-moon { display: none; }
 .only-mobile { display: none; }
 
 .dropdown { position: relative; }

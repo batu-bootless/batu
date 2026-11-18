@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script>
-    // Apply the saved theme before first paint to avoid a flash.
-    try { var t = localStorage.getItem('ds-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+    // Light by default; dark only if the user chose it. Applied before first paint to avoid a flash.
+    try { if (localStorage.getItem('ds-theme') === 'dark') document.documentElement.dataset.dsTheme = 'dark'; } catch (e) {}
   </script>
   <link rel="stylesheet" href="panel.css">
 </head>

@@ -663,7 +663,7 @@
   const CITY_OPTS = ['Adana', 'Ankara', 'Antalya', 'Bursa', 'Diyarbakır', 'Erzurum', 'Eskişehir', 'Gaziantep', 'İstanbul', 'İzmir', 'Kayseri', 'Kocaeli', 'Konya', 'Malatya', 'Mersin', 'Samsun', 'Trabzon', 'Diğer'];
   function vAyarlar() {
     const p = { exam: user.exam, alan: user.alan, goalNet: 100, goalText: 'Boğaziçi Üniversitesi · Bilgisayar Mühendisliği', notif: { remind: true, results: true, weekly: false }, ...profile };
-    const theme = (() => { try { return localStorage.getItem('ds-theme') || 'system'; } catch (e) { return 'system'; } })();
+    const theme = effectiveDark() ? 'dark' : 'light';
     return `<div class="view">
       <section class="card s-7">
         <div class="card-h"><div><h2>Profil</h2><p>Sıralama ve öneriler bu bilgilere göre hazırlanır</p></div></div>
@@ -681,7 +681,7 @@
       </section>
       <section class="card s-5">
         <div class="card-h"><div><h2>Tercihler</h2><p>Görünüm ve bildirimler</p></div></div>
-        <div class="toggle-row"><div><b>Tema</b><span>Panelin görünümü</span></div><div class="seg" id="themeSeg">${[['system', 'Sistem'], ['light', 'Açık'], ['dark', 'Koyu']].map(([k, l]) => `<label><input type="radio" name="theme" value="${k}" ${k === theme ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
+        <div class="toggle-row"><div><b>Tema</b><span>Varsayılan açık tema; istersen koyu temaya geç</span></div><div class="seg" id="themeSeg">${[['light', 'Açık'], ['dark', 'Koyu']].map(([k, l]) => `<label><input type="radio" name="theme" value="${k}" ${k === theme ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
         ${[['remind', 'Deneme hatırlatmaları', 'Kayıtlı denemelerden 15 dk önce'], ['results', 'Sonuç bildirimleri', 'Sonuçlar açıklandığında'], ['weekly', 'Haftalık rapor e-postası', 'Her pazartesi gelişim özeti']].map(([k, t, s]) => `<div class="toggle-row"><div><b>${t}</b><span>${s}</span></div><span class="switch"><input type="checkbox" id="nt-${k}" data-notif="${k}" ${p.notif[k] ? 'checked' : ''} aria-label="${t}"><i></i></span></div>`).join('')}
       </section>
       <section class="card s-12">
@@ -969,10 +969,11 @@
   $('#markRead').addEventListener('click', () => { $$('#notifList li').forEach((li) => li.classList.add('read')); $('#bellDot').hidden = true; store.set('ds-notif-read', true); });
 
   // theme
-  const effectiveDark = () => { const t = document.documentElement.dataset.theme; return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; };
+  // Light is the default; dark is only used when the user turns it on.
+  const effectiveDark = () => document.documentElement.dataset.dsTheme === 'dark';
   function setTheme(mode) {
-    if (mode === 'system') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = mode;
-    try { if (mode === 'system') localStorage.removeItem('ds-theme'); else localStorage.setItem('ds-theme', mode); } catch (e) { /* ignore */ }
+    if (mode === 'dark') document.documentElement.dataset.dsTheme = 'dark'; else delete document.documentElement.dataset.dsTheme;
+    try { if (mode === 'dark') localStorage.setItem('ds-theme', 'dark'); else localStorage.removeItem('ds-theme'); } catch (e) { /* ignore */ }
   }
   $('#themeBtn').addEventListener('click', () => { setTheme(effectiveDark() ? 'light' : 'dark'); if (routeKey() === 'ayarlar') render(false); });
 

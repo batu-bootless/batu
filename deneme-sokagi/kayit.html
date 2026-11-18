@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>try { var t = localStorage.getItem('ds-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  <script>try { if (localStorage.getItem('ds-theme') === 'dark') document.documentElement.dataset.dsTheme = 'dark'; } catch (e) {}</script>
   <link rel="stylesheet" href="panel.css">
   <link rel="stylesheet" href="auth.css">
 </head>
