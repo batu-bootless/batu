@@ -42,7 +42,9 @@ bir IIFE'dir, dışarıya bir şey açmaz.
   her satırı, doğru cevap. **Kayıtlı anlatım:** soruda `ses` varsa (banka: `ses`, `ses_adimlar`, `ses_sure`;
   `tools/seslendir.py` üretir, birleştirme yalnızca çözüm metniyle uyuşan kaydı ekler) video bir `<audio>` ile oynar;
   adım, ilerleme ve süre sesin konumundan okunur; sarma `currentTime`, hız `playbackRate`, ses kapama `muted`.
-  Dosya yüklenemezse aynı adımdan cihaz sesine geçer. **Cihaz sesi:** tarayıcının Web Speech API'si
+  Kayıt daha büyük bir dosyanın bir bölümü olabilir (`ses_bas`: başlangıç saniyesi; önizlemelerde kaynak başına
+  birkaç dosya). Sarma, tarayıcı oraya atlayabilene kadar bekler; sunucu bayt aralığı desteklemiyorsa dosya bir kez
+  indirilip bellekten (blob) çalınır. Dosya yüklenemezse aynı adımdan cihaz sesine geçer. **Cihaz sesi:** tarayıcının Web Speech API'si
   (`speakable()` işaretlemeyi okunur metne çevirir); ses yoksa süreler metin uzunluğundan hesaplanır. Sesler
   sıralanır: doğal/sinirsel (Edge "Emel") > ağ/gelişmiş ("Google Türkçe", "Yelda (Gelişmiş)") > eski masaüstü
   sesleri; kadın sesi önce gelir. Adımlar ses bitince kısa bir nefesle sürer. Tercihler tarayıcıda: `ds-video-ses`

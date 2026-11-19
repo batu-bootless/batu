@@ -177,7 +177,7 @@
       parts: b.parcalar ? b.parcalar.map((p) => (p.sekil ? { fig: p.sekil, w: b.yazi_pt ? Math.round(p.sekil_pt * 15.5 / b.yazi_pt) : null } : { t: p.metin })) : null,
       a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, yon: b.yonerge || (g && g.yonerge) || null,
       passage: g ? g.metin : null, passageImg: g && g.gorsel ? g.gorsel : null, ref: { bank: b.id },
-      ses: b.ses && Array.isArray(b.ses_adimlar) ? { src: b.ses, at: b.ses_adimlar, dur: b.ses_sure } : null,
+      ses: b.ses && Array.isArray(b.ses_adimlar) ? { src: b.ses, at: b.ses_adimlar, dur: b.ses_sure, off: b.ses_bas || 0 } : null,
     };
   };
   const wq = (w) => (w.bank ? bankItem(BANK.byId[w.bank]) : qItem(QUESTIONS[w.q], w.q));
@@ -1787,12 +1787,42 @@
     const canSound = () => !!(rec || (synth && voice));
     let sound = canSound() && store.get('ds-video-ses', true) !== false;
     const voiced = () => !rec && !!(sound && synth && voice);   // the device's voice is reading
+    // the recording may be a section of a bigger file (ses_bas: where it starts), e.g. one file per source
+    const off = () => (rec && rec.off) || 0;
     let audio = null;
+    const atEnd = () => { if (ended) return; stop(); cur = steps.length - 1; t = steps[cur].dur; ended = true; paint(); };
+    // seeking waits until the browser can seek there (a server without byte ranges: once that part has loaded);
+    // until then the audio stays silent and the video shows the place it is going to
+    let want = null, local = '';
+    const trySeek = () => {
+      if (want == null || !audio) return;
+      const r = audio.seekable;
+      for (let i = 0; i < r.length; i++) {
+        if (r.start(i) <= want + 0.05 && want <= r.end(i)) { audio.currentTime = want; want = null; audio.muted = !sound; return; }
+      }
+      audio.muted = true;
+      if (audio.readyState >= 1) keepLocal();   // the server cannot jump into the file
+    };
+    // a server without byte ranges: the file is downloaded once and played from memory, where seeking always works
+    const keepLocal = () => {
+      if (local || !rec) return;
+      local = 'loading';
+      fetch(rec.src).then((r) => (r.ok ? r.blob() : Promise.reject(new Error(String(r.status))))).then((b) => {
+        if (!rec || !el.isConnected) return;
+        local = URL.createObjectURL(b);
+        if (want == null) want = audio.currentTime;
+        audio.src = local;
+        if (playing) audio.play().catch(() => {});
+      }).catch(() => deviceVoice());
+    };
+    const seek = (s) => { want = s; trySeek(); };
     if (rec) {
       audio = new Audio();
       audio.preload = 'auto';
       audio.src = rec.src;
-      audio.addEventListener('ended', () => { if (rec) { stop(); cur = steps.length - 1; t = steps[cur].dur; ended = true; paint(); } });
+      if (rec.off) seek(rec.off);
+      ['loadedmetadata', 'progress', 'canplay'].forEach((ev) => audio.addEventListener(ev, trySeek));
+      audio.addEventListener('ended', () => { if (rec && want == null) atEnd(); });
       audio.addEventListener('error', () => deviceVoice());
     }
     // the recording could not be loaded: the device's voice takes over from the same step
@@ -1809,7 +1839,7 @@
       paint();
     };
     const fromAudio = () => {   // recorded: the step and the time come from the audio's position
-      const now = Math.min(total, audio.currentTime);
+      const now = Math.min(total, Math.max(0, (want != null ? want : audio.currentTime) - off()));
       let i = 0; while (i < steps.length - 1 && steps[i + 1].start <= now) i++;
       cur = i; t = now - steps[i].start;
     };
@@ -1866,12 +1896,12 @@
     };
     const go = (i) => {
       cur = Math.max(0, Math.min(steps.length - 1, i)); t = 0; ended = false;
-      if (rec) audio.currentTime = steps[cur].start + 0.02;
+      if (rec) seek(off() + steps[cur].start + 0.02);
       if (playing) speak(cur); else hush();
       paint();
     };
     const tick = () => {
-      if (rec) { fromAudio(); return paint(); }
+      if (rec) { trySeek(); if (want == null && audio.currentTime >= off() + total - 0.03) return atEnd(); fromAudio(); return paint(); }
       const s = steps[cur];
       t = Math.min(s.dur, t + 0.1 * rate());
       if (spoken) since += 0.1;
@@ -1883,10 +1913,10 @@
     };
     function play() {
       if (playing) return;
-      if (ended) { cur = 0; t = 0; ended = false; if (rec) audio.currentTime = 0; }
+      if (ended) { cur = 0; t = 0; ended = false; if (rec) seek(off()); }
       playing = true;
       if (rec) {
-        audio.playbackRate = rate(); audio.muted = !sound;
+        audio.playbackRate = rate(); audio.muted = !sound || want != null;
         const p = audio.play();
         // blocked until the viewer clicks play: wait paused; unplayable file: the device's voice
         if (p && p.catch) p.catch((err) => { if (!rec) return; if (err.name === 'NotAllowedError') stop(); else if (err.name === 'NotSupportedError') deviceVoice(); });
@@ -1897,14 +1927,14 @@
     function stop() { playing = false; clearInterval(timer); hush(); if (audio) audio.pause(); paint(); }
     const toggleSound = () => {
       sound = !sound; store.set('ds-video-ses', sound);
-      if (audio) audio.muted = !sound;
+      if (audio) audio.muted = !sound || want != null;
       if (playing) speak(cur); else hush();
       paint();
     };
     const toggle = () => (playing ? stop() : play());
     const close = () => {
       stop();
-      if (audio) { rec = null; audio.removeAttribute('src'); audio.load(); }
+      if (audio) { rec = null; audio.removeAttribute('src'); audio.load(); if (local && local !== 'loading') URL.revokeObjectURL(local); }
       document.removeEventListener('keydown', onKey, true);
       el.remove();
       if (lastFocus && lastFocus.focus) lastFocus.focus();
