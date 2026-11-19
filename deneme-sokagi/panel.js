@@ -216,7 +216,7 @@
     exam: LAST.id, analizSubj: 'mat', eksikFilter: 'all', wrongFilter: 'Tümü', examTab: 'pratik', rankTab: 'tr',
     histFilter: 'Tümü', pkgTab: 'Tümü', billing: 'yillik',
     b: { kaynak: null, ders: null, konular: null, adet: 10, mod: 'gorsel', sira: 'kaynak', key: true, ogr: true, ad: '' },
-    dn: { sec: [], adim: 1, bolum: '' },   // Denemelerim → Hemen çöz selection
+    dn: { sec: [], adim: 1, branslar: [] },   // Denemelerim → Hemen çöz: chosen denemeler and branches (none = all)
   };
   let user = null;
   let charts = [];      // redraw callbacks for the current view
@@ -955,7 +955,7 @@
     $('[data-src-none]').addEventListener('click', () => { st.sec = []; sync(); });
     $('[data-src-next]').addEventListener('click', () => {
       if (!st.sec.length) return toast(`Önce en az bir ${noun} seç`);
-      st.adim = 2; st.bolum = '';
+      st.adim = 2; st.bolum = ''; if (st.branslar) st.branslar = [];
       render(false); window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     sum();
@@ -1127,7 +1127,7 @@
   const denemeSources = () => builderSources().filter((k) => k.tur === 'deneme');
   // The questions a session gets: each selected deneme's unseen questions (in booklet order), optionally one test.
   const dnGroups = () => denemeSources().filter((k) => state.dn.sec.includes(k.id))
-    .map((k) => ({ k, qs: srcQs(k.id).filter((q) => offered(q) && (!state.dn.bolum || bolumOf(q) === state.dn.bolum)).sort((a, b) => a.sira - b.sira) }))
+    .map((k) => ({ k, qs: srcQs(k.id).filter((q) => offered(q) && (!state.dn.branslar.length || state.dn.branslar.includes(bolumOf(q)))).sort((a, b) => a.sira - b.sira) }))
     .filter((g) => g.qs.length);
   function vDenemeSec() {
     const d = state.dn;
@@ -1155,12 +1155,20 @@
   function vDenemeBasla() {
     const d = state.dn, sonuc = store.get(ukey('deneme-sonuc'), {});
     const parts = [...new Set(BANK.sorular.filter((q) => d.sec.includes(q.kaynak) && offered(q)).map(bolumOf))].filter(Boolean);
-    if (d.bolum && !parts.includes(d.bolum)) d.bolum = '';
+    d.branslar = (d.branslar || []).filter((p) => parts.includes(p));
+    if (d.branslar.length === parts.length) d.branslar = [];          // every branch = the whole deneme
+    const inSel = (p) => BANK.sorular.filter((q) => d.sec.includes(q.kaynak) && offered(q) && (!p || bolumOf(q) === p));
+    const bransCard = (key, label) => {
+      const qs = inSel(key), on = key ? d.branslar.includes(key) : !d.branslar.length;
+      return `<button type="button" class="brans-card${on ? ' on' : ''}${key ? '' : ' all'}" data-brans="${esc(key)}" aria-pressed="${on}"><b>${esc(label)}</b><span>${qs.length} soru · ${dkFor(qs)} dk</span></button>`;
+    };
     const groups = dnGroups(), qs = groups.flatMap((g) => g.qs), dk = dkFor(qs);
     return `<section class="card s-8 qb-builder dn-start">
         <div class="card-h"><div><h2>Denemeye başla</h2><p>Süre, seçtiğin soruların sayısına göre ayarlanır. Deneme bitince soruları çözülmüş sayılır.</p></div>${stepsHtml(2, 'Deneme seç', 'Başla')}</div>
         <div class="sel-row"><span class="sel-chips">${d.sec.map((id) => `<span class="chip blue">${esc(BANK.src[id].ad)}</span>`).join('')}</span><button type="button" class="btn btn-ghost btn-sm" data-src-back>${icon('back')} Denemeleri değiştir</button></div>
-        ${parts.length > 1 ? `<div class="bolum-row"><span class="small muted">Test</span><div class="presets bolum" role="group" aria-label="Test seç">${['', ...parts].map((p) => `<button type="button" class="${p === d.bolum ? 'on' : ''}" data-bolum="${esc(p)}">${p ? esc(p) : 'Tümü'}</button>`).join('')}</div></div>` : ''}
+        ${parts.length > 1 ? `<div class="brans"><h3 class="src-h">Branş<span>${parts.length}</span></h3>
+          <div class="brans-grid" role="group" aria-label="Branş seç">${bransCard('', 'Tüm branşlar')}${parts.map((p) => bransCard(p, p)).join('')}</div>
+          <p class="small muted">Bir ya da birkaç branş seç; yalnızca o branşların soruları gelir. Seçmezsen deneme tüm branşlarla çözülür.</p></div>` : ''}
         <div class="dn-stats"><div><b>${qs.length}</b><span>soru</span></div><div><b>${dk}</b><span>dakika</span></div><div><b>${groups.length}</b><span>deneme</span></div></div>
         <ul class="dn-list">${groups.map((g) => `<li><b>${esc(g.k.ad)}</b><span>${g.qs.length} soru · ${esc([...new Set(g.qs.map(bolumOf))].filter(Boolean).join(' · '))}</span></li>`).join('')}</ul>
         <div class="make-row"><button type="button" class="btn btn-blue btn-lg btn-play" data-dn="basla">${icon('play')} Başla</button><button type="button" class="btn btn-yellow btn-lg" data-dn="pdf">${icon('download')} PDF indir</button></div>
@@ -1177,14 +1185,19 @@
     const d = state.dn;
     if (d.adim !== 2) return bindPicker(d, denemeSources, 'deneme');
     $('[data-src-back]').addEventListener('click', () => { d.adim = 1; render(false); });
-    $$('[data-bolum]').forEach((x) => x.addEventListener('click', () => { d.bolum = x.dataset.bolum; render(false); }));
+    $$('[data-brans]').forEach((x) => x.addEventListener('click', () => {
+      const k = x.dataset.brans;
+      d.branslar = !k ? [] : d.branslar.includes(k) ? d.branslar.filter((p) => p !== k) : [...d.branslar, k];
+      render(false);
+    }));
     $('[data-dn="basla"]').addEventListener('click', startDenemeSel);
     $('[data-dn="pdf"]').addEventListener('click', denemeSelPdf);
   }
-  const dnTitle = (groups) => `${groups.length === 1 ? groups[0].k.ad : `${groups.length} deneme`}${state.dn.bolum ? ` · ${state.dn.bolum}` : ''}`;
+  const bransAd = () => { const b = state.dn.branslar; return !b.length ? '' : b.length === 1 ? `${b[0]} Branş Denemesi` : b.join(' + '); };
+  const dnTitle = (groups) => `${groups.length === 1 ? groups[0].k.ad : `${groups.length} deneme`}${bransAd() ? ` · ${bransAd()}` : ''}`;
   function startDenemeSel() {
     newRound(state.dn.sec);
-    const groups = dnGroups(), qs = groups.flatMap((g) => g.qs), bolum = state.dn.bolum;
+    const groups = dnGroups(), qs = groups.flatMap((g) => g.qs), bolum = bransAd();
     if (!qs.length) return toast('Seçtiğin denemelerde yeni soru kalmadı');
     // Questions count as seen once the deneme is finished; closing it early keeps them available.
     openPlayer(qs.map(bankItem), dnTitle(groups), dkFor(qs) * 60, {

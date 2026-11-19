@@ -842,6 +842,17 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
 .src-foot .spacer { flex: 1; }
 .src-foot .btn[disabled] { opacity: .5; cursor: not-allowed; }
 /* step 2 */
+.brans .src-h { margin-top: 4px; }
+.brans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; margin-bottom: 8px; }
+.brans-card { position: relative; display: grid; gap: 4px; text-align: left; padding: 12px 34px 12px 14px; border-radius: 14px; border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--text); cursor: pointer; font: inherit; transition: border-color .2s, background .2s, box-shadow .2s; }
+.brans-card b { font-size: 14.5px; }
+.brans-card span { font-size: 12.5px; color: var(--muted); }
+.brans-card:hover { border-color: var(--brand-100); }
+.brans-card::after { content: ''; position: absolute; top: 12px; right: 12px; width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--faint); }
+.brans-card.on { border-color: var(--brand); background: var(--brand-50); box-shadow: 0 0 0 3px var(--brand-50); }
+.brans-card.on::after { border-color: var(--brand); background: var(--brand) radial-gradient(circle, #fff 0 3px, transparent 3.5px); }
+.brans-card.all b { color: var(--brand); }
 .dn-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .dn-stats div { display: grid; justify-items: center; padding: 16px 8px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); }
 .dn-stats b { font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1.05; font-variant-numeric: tabular-nums; }

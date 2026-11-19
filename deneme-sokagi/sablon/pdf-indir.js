@@ -121,7 +121,7 @@
   }
 
   const fileName = (s) => `${String(s || 'deneme-sokagi').toLocaleLowerCase('tr').normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/ı/g, 'i')
-    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'deneme-sokagi'}.pdf`;
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 100).replace(/-$/, '') || 'deneme-sokagi'}.pdf`;
 
   global.DSPdf = { build, save, fileName };
 })(window);
