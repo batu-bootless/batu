@@ -195,7 +195,18 @@ Kullanım (eksik ya da eskimiş bütün kayıtlar; kaldığı yerden devam eder)
 ```
 
 `--kaynak ornek` yalnızca bir kaynağı, `--isci 0 --isci-sayisi 2` (ve ikinci işlemde `--isci 1`) işi iki işleme
-bölerek seslendirir; `--sinir 5` deneme içindir. İşlemcide yavaştır (1 saniye ses ≈ 3–4 saniye); bütün banka birkaç
+bölerek seslendirir; `--sinir 5` deneme içindir.
+
+Model arada bir sözü uzatır (son kelimeyi tekrarlar) ya da bir kelimeyi bulanık okur. Kayıtları denetlemek için
+açık kaynak konuşma tanıma (faster-whisper) kurun (`.ses-venv/bin/pip install faster-whisper`), sonra:
+
+```bash
+.ses-venv/bin/python tools/seslendir.py --denetle
+```
+
+Her adımı dinleyip metinle karşılaştırır; belirgin biçimde ayrılan adımları (`soru-id:adım`) ve onları yeniden
+kaydedecek komutu yazar. `--adim ornek-t01-s08:1 …` yalnızca o adımları yeniden kaydeder: üç deneme üretir, en
+anlaşılır olanı eskisinden iyiyse yerine koyar; sorunun diğer adımlarına dokunmaz. İşlemcide yavaştır (1 saniye ses ≈ 3–4 saniye); bütün banka birkaç
 saat sürer. Bitince bankayı yeniden birleştirin (`python3 tools/soru_cikar.py --birlestir`). `npm run kontrol`
 dosyaların varlığını, adım sürelerini ve silinmiş sorulara ait artık kayıtları denetler; kaç videonun
 seslendirildiğini yazar. Yerel kaynakların kayıtları `data/yerel/` altında kalır, depoya girmez.
