@@ -153,7 +153,6 @@
       await ready(el);
       if (cols[ci].scrollHeight > cols[ci].clientHeight + 1 && cols[ci].children.length > 1) {
         el.remove();
-        cols[ci].classList.add('full');   // a filled column spreads its questions evenly from top to bottom
         if (++ci > 1) newPage();
         cols[ci].appendChild(el);
       }
