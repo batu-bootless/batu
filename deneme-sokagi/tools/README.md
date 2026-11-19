@@ -136,6 +136,27 @@ python3 tools/soru_duzelt.py data/sorular/<kaynak-id> duzeltme.json
 Anahtar `T<test>-<no>`; verilen alanlar sorunun alanlarının yerine yazılır ve banka yeniden birleştirilir.
 `soru_cikar.py` yeniden çalıştırılırsa düzeltmeleri bu komutla tekrar uygulayın.
 
+## Açıklamalı çözümler — `cozumler.json`
+
+Panelde her sorunun altındaki "Açıklamalı Çözümünü Gör" düğmesi sorunun `cozum` alanını gösterir. PDF'ten çıkarılan
+kaynaklarda çözümler kaynak klasöründeki `cozumler.json` dosyasında tutulur (`data/sorular/<kaynak>/` ya da
+`data/yerel/kaynaklar/<kaynak>/`):
+
+```json
+{ "ornek-t01-s04": "Üs, işaretten önce uygulanır: −3^{2} = −9.\n(−2)^{3} = −8.\n−9 + (−8) = **−17**" }
+```
+
+Metin, soru metniyle aynı işaretlemeyi kullanır (`**kalın**`, `x^{2}`, `{pay/payda}`); `\n` yeni satırdır, `•` ile
+başlayan satırlar madde olur. Doğru cevap panelde ayrıca gösterilir. Dosya değişince bankayı yeniden birleştirin:
+
+```bash
+python3 tools/soru_cikar.py --birlestir
+```
+
+`soru_cikar.py` bir kaynağı yeniden çıkarınca `cozumler.json` olduğu gibi kalır. `npm run kontrol` her kaydın bir soruya
+karşılık geldiğini denetler ve kaç sorunun çözümü olduğunu yazar. Yazılı içeriklerde (`soru_ekle.py`) çözüm, sorunun
+kendi `cozum` alanındadır.
+
 ## 6. Yerel sunucu ve kontroller — `sunucu.js`, `kontrol.js`
 
 - `npm start` (`node tools/sunucu.js [port]`) siteyi `http://localhost:8080`'de açar. `data/yerel/` varsa

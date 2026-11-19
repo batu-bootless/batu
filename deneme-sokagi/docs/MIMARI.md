@@ -52,7 +52,9 @@ soruların ardından, `'ayri'` ayrı sayfada, `false` yok. Ölçüler referans P
 ## Veri modeli — soru bankası
 
 `data/soru-bankasi.json` (tarayıcı için aynısı `.js` olarak, `window.DS_SORU_BANKASI = …`). Elle düzenlenmez;
-`tools/soru_cikar.py`, `tools/soru_ekle.py` ve `tools/soru_duzelt.py` kaynak klasörlerinden üretir.
+`tools/soru_cikar.py`, `tools/soru_ekle.py` ve `tools/soru_duzelt.py` kaynak klasörlerinden üretir. Açıklamalı
+çözümler her kaynağın klasöründeki `cozumler.json` dosyasındadır (`{ "soru-id": "çözüm" }`) ve birleştirmede
+sorulara `cozum` olarak eklenir; kaynak yeniden çıkarılınca kaybolmaz.
 
 ```jsonc
 {
@@ -78,7 +80,7 @@ soruların ardından, `'ayri'` ayrı sayfada, `false` yok. Ölçüler referans P
 | `gorsel` | Sorunun kaynaktan kırpılmış hâli (yedek gösterim) |
 | `gorsel_goster` | `true`: metne güvenle çevrilemedi, görseliyle gösterilir |
 | `grup`, `yonerge` | Paragraf grubu; bölüm yönergesi |
-| `cozum` | Çözüm açıklaması (yazılı içeriklerde) |
+| `cozum` | Açıklamalı çözüm (işaretlemeli, satır satır); PDF'ten çıkarılan kaynaklarda `cozumler.json`'dan gelir |
 
 ## Tarayıcıda saklanan veriler
 

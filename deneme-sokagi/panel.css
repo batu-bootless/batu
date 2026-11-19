@@ -570,6 +570,22 @@ table.t { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 56
 .rv summary .q { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rv summary em { font-style: normal; font-size: 12.5px; color: var(--muted); white-space: nowrap; }
 .rv-body { padding: 0 14px 14px 52px; font-size: 14px; color: var(--muted); line-height: 1.55; }
+/* açıklamalı çözüm: exam screen, result review, Yanlış Defteri */
+.pl-sol { margin-top: 18px; }
+.sol-btn svg { width: 17px; height: 17px; }
+.sol-box { margin-top: 12px; padding: 14px 16px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); animation: fade .25s ease both; }
+.sol-text { font-size: 14.5px; line-height: 1.6; color: var(--text); }
+.sol-text p { margin: 0 0 6px; }
+.sol-text p:last-child { margin-bottom: 0; }
+.sol-text p.li { padding-left: 14px; text-indent: -12px; }
+.sol-text .sol-ans { font-weight: 600; color: var(--good); }
+.sol-text .sol-ans span { color: var(--text); font-weight: 500; }
+.rv-body .sol-text { font-size: 14px; }
+.wrong-sol { margin-top: 10px; }
+.wrong-sol summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: var(--brand); font-size: 14px; font-weight: 600; list-style: none; }
+.wrong-sol summary::-webkit-details-marker { display: none; }
+.wrong-sol summary svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.wrong-sol .sol-text { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: var(--surface-2); }
 
 /* video modal */
 .vid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
@@ -690,8 +706,8 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
 .pl-text p.li { padding-left: 1.5em; text-indent: -1.5em; margin-bottom: 5px; }
 .pl-text .stem-b, .pl-text b { font-weight: 700; }
 .pl-text .ts-dlg { white-space: normal; }
-.pl-q .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.1; margin: 0 .12em; font-size: .9em; text-indent: 0; }
-.pl-q .frac > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 .2em; }
+.pl-q .frac, .sol-text .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.1; margin: 0 .12em; font-size: .9em; text-indent: 0; }
+.pl-q .frac > span:first-child, .sol-text .frac > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 .2em; }
 .pl-q sup, .pl-q sub { font-size: .72em; line-height: 0; }
 .pl-yon { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 10px; }
 .pl-passage { max-height: 240px; overflow: auto; margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); font-size: 14.5px; line-height: 1.65; }

@@ -78,6 +78,9 @@ gerçektir ve hesap başına saklanır.
   Birlikte çözülen denemelerin sonucu ayrı ayrı kaydedilir; parça parça çözülen bir denemenin neti toplanır.
 - Sorular kaynaktaki sırayla gelir; birden çok kaynakta önce soru bankaları, sonra denemeler kullanılır.
 - Paragrafa bağlı sorular (cloze, okuma) bölünmez: paragrafın soruları birlikte gelir.
+- Her sorunun altında **Açıklamalı Çözümünü Gör** düğmesi vardır: doğru cevap ve adım adım çözüm, test ya da deneme
+  sırasında istenildiği an açılır; açılan soru "Çözüm görüldü" diye işaretlenir. Aynı çözümler sonuç ekranında ve
+  Yanlış Defteri'nde de görünür. Bankadaki bütün soruların açıklamalı çözümü vardır.
 - Bir deneme **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
 - Kullanıcıya verilmiş ya da çözülmüş soru, o kaynağın bütün soruları görülene kadar **bir daha gösterilmez**.
   Bütün soruları görülen kaynak kilitlenmez: "yeniden çözülebilir" olur ve yeni bir tur başlar.

@@ -180,6 +180,15 @@
     };
   };
   const wq = (w) => (w.bank ? bankItem(BANK.byId[w.bank]) : qItem(QUESTIONS[w.q], w.q));
+  // Açıklamalı çözüm: the correct answer and the explanation (bank "cozum" or the sample questions' steps).
+  const solText = (q) => (q && q.sol && q.sol.length ? q.sol.join('\n') : '');
+  const solHtml = (q) => {
+    const rich = (t) => (window.DSYaprakTest ? window.DSYaprakTest.rich(t) : esc(t));
+    const lines = solText(q).split('\n').filter((ln) => ln.trim());
+    return (q.a != null ? `<p class="sol-ans">Doğru cevap: <b>${L5[q.a]}</b>${q.o && q.o[q.a] ? ` <span>${rich(q.o[q.a])}</span>` : ''}</p>` : '')
+      + (lines.length ? lines.map((ln) => `<p${/^[•●]/.test(ln) ? ' class="li"' : ''}>${rich(ln)}</p>`).join('')
+        : '<p class="muted">Bu soru için açıklamalı çözüm henüz eklenmedi.</p>');
+  };
   const minutesFor = (n) => Math.max(5, Math.round(n * 1.5));
 
   /* ---------------- packages (sample prices; payments are not live yet) ---------------- */
@@ -672,8 +681,9 @@
       <div class="wrong-list s-12">${list.length ? list.map((w) => { const q = wq(w); if (!q) return ''; return `<article class="card wrong" data-wrong="${w.id}">
         <div><div class="wrong-meta">${subjChip(q.s)}<span class="chip ${kc[w.kind]}">${w.kind}</span><span class="chip">${esc(w.topic)}</span></div>
         <p>${esc(q.t)}</p>
-        <p class="wrong-src">${esc(w.src)} · ${w.date} · Senin cevabın: <b>${w.your}</b> · Doğru cevap: <b style="color:var(--good)">${q.a == null ? '—' : L5[q.a]}</b></p></div>
-        <div class="wrong-actions"><button class="btn btn-blue btn-sm" data-action="retry" ${w.bank ? `data-bank="${w.bank}"` : `data-q="${w.q}"`}>Tekrar çöz</button>${q.sol.length ? `<button class="btn btn-soft btn-sm" data-action="video" data-q="${w.q}">${icon('video')} Video çözüm</button>` : ''}<button class="btn btn-ghost btn-sm" data-action="learned" data-id="${w.id}">${icon('check')} Öğrendim</button></div>
+        <p class="wrong-src">${esc(w.src)} · ${w.date} · Senin cevabın: <b>${w.your}</b> · Doğru cevap: <b style="color:var(--good)">${q.a == null ? '—' : L5[q.a]}</b></p>
+        ${solText(q) ? `<details class="wrong-sol"><summary>${icon('bulb')} Açıklamalı Çözümünü Gör</summary><div class="sol-text">${solHtml(q)}</div></details>` : ''}</div>
+        <div class="wrong-actions"><button class="btn btn-blue btn-sm" data-action="retry" ${w.bank ? `data-bank="${w.bank}"` : `data-q="${w.q}"`}>Tekrar çöz</button>${!w.bank && q.sol.length ? `<button class="btn btn-soft btn-sm" data-action="video" data-q="${w.q}">${icon('video')} Video çözüm</button>` : ''}<button class="btn btn-ghost btn-sm" data-action="learned" data-id="${w.id}">${icon('check')} Öğrendim</button></div>
       </article>`; }).join('') : `<section class="card"><p class="muted">Bu filtrede soru yok. Denemelerde yanlış yaptığın sorular buraya otomatik eklenir.</p></section>`}</div>
     </div>`;
   }
@@ -1492,7 +1502,7 @@
   // opts.mode 'gorsel' shows the question image with A–E answer buttons; opts.onFinish(result) receives D/Y/B/net.
   function openPlayer(items, title, seconds, opts = {}) {
     const qs = items, mode = opts.mode || 'metin';
-    const st = { cur: 0, ans: qs.map(() => null), flag: qs.map(() => false), left: seconds, timer: null, done: false, wrong: [] };
+    const st = { cur: 0, ans: qs.map(() => null), flag: qs.map(() => false), solOpen: qs.map(() => false), solSeen: qs.map(() => false), left: seconds, timer: null, done: false, wrong: [] };
     const root = $('#modalRoot');
     const lastFocus = document.activeElement;
     root.innerHTML = `<div class="modal-back"><div class="modal player" role="dialog" aria-modal="true" aria-labelledby="plTitle">
@@ -1557,9 +1567,11 @@
       const q = qs[st.cur], n = qs.length, answered = st.ans.filter((x) => x !== null).length, letters = asImage(q) || !(q.o || []).some(Boolean);
       $('#plProg').style.width = `${(answered / n) * 100}%`;
       main.innerHTML = `<div class="pl-body">
-        <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${q.konu ? `<span class="chip">${esc(q.konu)}</span>` : ''}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}</div>
+        <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${q.konu ? `<span class="chip">${esc(q.konu)}</span>` : ''}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}${st.solSeen[st.cur] ? '<span class="chip">Çözüm görüldü</span>' : ''}</div>
           ${body(q)}
           <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${L5.map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${richOpt(q.o[i] || '')}</span>`}</button>`).join('')}</div>
+          ${solText(q) || q.a != null ? `<div class="pl-sol"><button type="button" class="btn btn-soft btn-sm sol-btn" data-pl="sol" aria-expanded="${st.solOpen[st.cur]}">${icon('bulb')} ${st.solOpen[st.cur] ? 'Açıklamalı Çözümü Gizle' : 'Açıklamalı Çözümünü Gör'}</button>`
+            + `${st.solOpen[st.cur] ? `<div class="sol-box sol-text">${solHtml(q)}</div>` : ''}</div>` : ''}
           <p class="small muted" style="margin-top:14px">Klavye: A–E ile işaretle, ← → ile geç, F ile tam ekran. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
         </div>
         <aside class="pl-side"><h3>Optik form</h3>
@@ -1596,7 +1608,7 @@
           <p>${qs.length} sorunun ${D} tanesini doğru yanıtladın. Süre: ${fmtT(seconds - Math.max(0, st.left))}</p>
           <div class="res-stats"><div class="g"><small>Doğru</small><b>${D}</b></div><div class="b"><small>Yanlış</small><b>${Y}</b></div><div><small>Boş</small><b>${B}</b></div><div><small>Net</small><b>${fmt(net)}</b></div></div>
           ${U ? `<p class="small muted" style="margin-top:8px">${U} sorunun kaynağında cevap anahtarı olmadığı için puanlanmadı.</p>` : ''}</div></div>
-        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t || `${q.konu || 'Paragraf'} · boşluk`)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${q.sol.length ? q.sol.map(esc).join('<br>') : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
+        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t || `${q.konu || 'Paragraf'} · boşluk`)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${solText(q) ? `<div class="sol-text">${solHtml(q)}</div>` : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için açıklamalı çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
       </div>`;
       const oldFoot = $('.pl-foot', root); if (oldFoot) oldFoot.remove();
       main.insertAdjacentHTML('afterend', `<div class="pl-foot"><span class="small muted">${opts.onFinish ? 'Sonucun kaydedildi.' : 'Sonuçlar örnek panelde kaydedilmez.'}</span><span class="spacer"></span>${st.wrong.length ? '<button class="btn btn-soft btn-sm" data-pl="to-notebook">Yanlış ve boşları deftere ekle</button>' : ''}<button class="btn btn-blue btn-sm" data-pl="close-now">Panele dön</button></div>`);
@@ -1640,6 +1652,13 @@
         case 'finish': { const empty = st.ans.filter((x) => x === null).length; return empty ? confirmBar(`${empty} soru boş. Yine de bitirmek istiyor musun?`, 'finish-now', 'Bitir') : finish(); }
         case 'finish-now': return finish();
         case 'fs': return toggleFs();
+        case 'sol': {
+          st.solOpen[st.cur] = !st.solOpen[st.cur];
+          if (st.solOpen[st.cur]) st.solSeen[st.cur] = true;
+          draw();
+          const box = $('.sol-box', root); if (box) box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          return;
+        }
         case 'cancel': $('#plConfirm').innerHTML = ''; return;
         case 'close': return st.done ? close() : confirmBar('Testten çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık');
         case 'close-now': return close();

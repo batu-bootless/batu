@@ -59,9 +59,15 @@ function checkBank(label, jsonFile, jsFile, varName, srcDir, takenCodes) {
     const n = fs.readdirSync(srcDir).filter((d) => fs.existsSync(path.join(srcDir, d, 'sorular.json')))
       .reduce((a, d) => a + JSON.parse(fs.readFileSync(path.join(srcDir, d, 'sorular.json'), 'utf8')).length, 0);
     if (n !== bank.sorular.length) problems.push(`${path.relative(ROOT, srcDir)}: kaynak klasörlerinde ${n} soru, bankada ${bank.sorular.length} — bankayı yeniden birleştirin`);
+    for (const d of fs.readdirSync(srcDir)) {   // açıklamalı çözümler: no entry for a question that does not exist
+      const f = path.join(srcDir, d, 'cozumler.json');
+      if (!fs.existsSync(f)) continue;
+      for (const id of Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')))) if (!ids.has(id)) problems.push(`${path.relative(ROOT, f)}: "${id}" diye bir soru yok`);
+    }
   }
   for (const c of seenCodes) takenCodes.add(c);
-  ok(`${bank.kaynaklar.length} kaynak, ${bank.sorular.length} soru, ${Object.keys(bank.gruplar || {}).length} paragraf`);
+  ok(`${bank.kaynaklar.length} kaynak, ${bank.sorular.length} soru, ${Object.keys(bank.gruplar || {}).length} paragraf, `
+    + `${bank.sorular.filter((q) => q.cozum).length} açıklamalı çözüm`);
 }
 const codes = new Set();
 checkBank('Soru bankası', path.join(ROOT, 'data/soru-bankasi.json'), path.join(ROOT, 'data/soru-bankasi.js'), 'DS_SORU_BANKASI', path.join(ROOT, 'data/sorular'), codes);

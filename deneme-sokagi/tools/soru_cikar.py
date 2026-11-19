@@ -563,7 +563,15 @@ def _merge(base, out_name, var):
     all_q, gruplar, sources = [], {}, {}
     dirs = sorted(p for p in base.iterdir() if (p / 'sorular.json').exists()) if base.exists() else []
     for d in dirs:
-        all_q.extend(json.loads((d / 'sorular.json').read_text(encoding='utf-8')))
+        qs = json.loads((d / 'sorular.json').read_text(encoding='utf-8'))
+        # açıklamalı çözümler: written per source in cozumler.json ({id: text}), kept apart from the
+        # extracted sorular.json so that re-running the extractor does not lose them
+        sol = d / 'cozumler.json'
+        texts = json.loads(sol.read_text(encoding='utf-8')) if sol.exists() else {}
+        for q in qs:
+            if texts.get(q['id']) and not q.get('cozum'):
+                q['cozum'] = texts[q['id']]
+        all_q.extend(qs)
         if (d / 'gruplar.json').exists():
             gruplar.update(json.loads((d / 'gruplar.json').read_text(encoding='utf-8')))
     for q in all_q:
@@ -590,9 +598,9 @@ def merge_bank():
 
 def main():
     ap = argparse.ArgumentParser(description='Soru bankası PDF\'inden soruları görsel + metin olarak çıkarır.')
-    ap.add_argument('pdf')
-    ap.add_argument('--kaynak-id', required=True, help='kısa ad, örn. ornek (dosya/klasör adlarında kullanılır)')
-    ap.add_argument('--kaynak-ad', required=True, help='görünen ad, örn. "Örnek Soru Bankası"')
+    ap.add_argument('pdf', nargs='?')
+    ap.add_argument('--kaynak-id', help='kısa ad, örn. ornek (dosya/klasör adlarında kullanılır)')
+    ap.add_argument('--kaynak-ad', help='görünen ad, örn. "Örnek Soru Bankası"')
     ap.add_argument('--sinav', default='TYT')
     ap.add_argument('--dpi', type=int, default=200)
     ap.add_argument('--tur', choices=['banka', 'deneme'], default='banka', help='soru bankası mı, deneme sınavı mı')
@@ -603,7 +611,13 @@ def main():
     ap.add_argument('--sayfalar', help='yalnızca bu sayfalardaki sorular, örn. 3-31 (kapak ve bilgi sayfalarını atlar)')
     ap.add_argument('--kitapcik', default='A', help='cevap anahtarında okunacak kitapçık (A/B)')
     ap.add_argument('--yerel', action='store_true', help='yalnızca bu bilgisayarda deneme için: data/yerel/ altına yaz (git dışı)')
+    ap.add_argument('--birlestir', action='store_true', help='PDF okumadan yalnızca bankayı yeniden birleştir (ör. cozumler.json değişince)')
     a = ap.parse_args()
+    if a.birlestir:
+        print(f'Banka yeniden birleştirildi: {merge_bank()} soru.')
+        return
+    if not (a.pdf and a.kaynak_id and a.kaynak_ad):
+        ap.error('PDF dosyası, --kaynak-id ve --kaynak-ad gerekli (yalnızca birleştirmek için: --birlestir)')
     if not re.fullmatch(r'[a-z0-9-]+', a.kaynak_id):
         sys.exit('--kaynak-id yalnızca küçük harf, rakam ve tire içerebilir.')
     OVERRIDE.update({k: v for k, v in (('ders', a.ders), ('konu', a.konu)) if v})
