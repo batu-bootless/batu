@@ -10,6 +10,7 @@
 | `kontrol.js` | Bütünlük kontrolü (`npm run kontrol`) |
 | `sablon-kontrol.js` | PDF şablonunun referans ölçüleri |
 | `html-pdf.js`, `ornek-kaynak/` | Örnek kaynak PDF'lerini üretir (araçları denemek için) |
+| `tanitim-video.js` | Ana sayfadaki tabletin tanıtım videosu (`npm run video`) |
 
 ## 1. Soru bankası PDF'inden soru çıkarma — `soru_cikar.py`
 
@@ -142,3 +143,17 @@ Anahtar `T<test>-<no>`; verilen alanlar sorunun alanlarının yerine yazılır v
 - `npm run kontrol` (`node tools/kontrol.js`) JavaScript sözdizimini, soru bankasının tutarlılığını ve şablon
   ölçülerini denetler; bir sorun varsa ayrıntısıyla yazar ve 1 koduyla çıkar.
 - `npm test` (`node tests/smoke.js`) ana akışları gerçek bir tarayıcıda dener.
+
+## 7. Ana sayfa videosu — `tanitim-video.js`
+
+Ana sayfadaki tabletin ekranı, panelden kaydedilmiş sessiz bir videodur ve durmadan döngüde oynar
+(`img/tablet-demo.webm` + `.mp4`, kapak `img/tablet-demo.jpg`). Panelin görünümü değişince yeniden üretin:
+
+```bash
+npm run video        # PATH'te ffmpeg olmalı
+```
+
+Araç kendi sunucusunu `data/yerel/` olmadan açar (videoda yalnızca projenin özgün örnek içerikleri görünür),
+panelde bir oturum oynatır (Test Oluştur → kaynak → 10 soru → çöz → sonuç → başa dönüş), 2x kareleri ve
+çizilen imleci WebM (VP9) ve MP4'e (H.264) çevirir. Sistemde "hareketi azalt" açık olanlara video yerine
+kapak görseli gösterilir (`script.js`).

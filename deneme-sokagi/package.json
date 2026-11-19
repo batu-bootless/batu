@@ -8,7 +8,8 @@
     "kontrol": "node tools/kontrol.js",
     "test": "node tests/smoke.js",
     "sablon-kontrol": "node tools/sablon-kontrol.js",
-    "pdf": "node tools/yaprak-test-pdf.js"
+    "pdf": "node tools/yaprak-test-pdf.js",
+    "video": "node tools/tanitim-video.js"
   },
   "devDependencies": {
     "playwright": "1.63.0"

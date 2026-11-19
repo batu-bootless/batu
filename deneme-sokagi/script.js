@@ -6,6 +6,10 @@ toggle.addEventListener('click', () => {
   toggle.setAttribute('aria-expanded', String(open));
 });
 
+// Hero tablet video: a muted, endless loop; with "reduce motion" set in the system it stays on its still poster.
+const tabletVideo = document.querySelector('.tablet-video');
+if (tabletVideo && matchMedia('(prefers-reduced-motion: reduce)').matches) { tabletVideo.removeAttribute('autoplay'); tabletVideo.pause(); }
+
 // Carousels: arrows, dots, autoplay (paused on hover)
 document.querySelectorAll('[data-carousel]').forEach((root) => {
   const slides = [...root.querySelectorAll('.slide')];
