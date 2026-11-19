@@ -2,12 +2,14 @@
 
 Bu klasördeki şablon Deneme Sokağı'nın **kalıcı ve tek** PDF şablonudur. Aynı dosyalar her yerde kullanılır:
 
-- panelde **Önizle** penceresi, **PDF indir** ve Denemelerim kartlarındaki **PDF** (`yaprak-test.html` → yazdır / PDF olarak kaydet)
+- panelde **Önizle** penceresi ve **PDF indir** düğmeleri: `pdf-indir.js` testi bu şablonla sayfa içinde dizer,
+  her A4 sayfayı görüntüye çevirip tek PDF yapar ve indirir (yeni sekme ya da yazdırma penceresi açılmaz)
+- `yaprak-test.html`: şablonun tek başına sayfası (kayıtlı bir testi `#<test-id>` ile açıp yazdırmak için)
 - komut satırı: `node tools/yaprak-test-pdf.js …`
 
 Düzen, referans soru bankası test PDF'inin ölçüleriyle aynıdır (A4): gri başlık bandı (logo, **DENEME**,
 konu çubuğu, TEST / DENEME rozeti), iki sütun ve aralarında dikey site adresli siyah çizgi, kendi satırında soru
-numarası, iki yana yaslı metin, kalın soru cümlesi, alt alta şıklar, her sorunun altında künye
+numarası, iki yana yaslı metin, kalın soru cümlesi, şıklar (kısa olanlar yan yana), her sorunun altında künye
 (2 harf + 5 rakam, ör. `[#YD48213]`), altta site adresi ve sayfa rozeti, isteğe bağlı cevap anahtarı.
 
 **Deneme düzeni** (`bolumlu`, birden çok testli kaynaklarda kendiliğinden): her test ("TÜRKÇE TESTİ · 40 soru")

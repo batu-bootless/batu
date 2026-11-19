@@ -1,5 +1,16 @@
 # Deneme Sokağı araçları
 
+| Araç | İş |
+|---|---|
+| `soru_cikar.py` (+ `soru_metin.py`) | PDF'ten soruları metin + şekil olarak çıkarır, künye verir, bankayı birleştirir |
+| `soru_ekle.py` | Yazılmış (özgün) soruları bankaya ekler |
+| `soru_duzelt.py` | Çıkarılmış sorulara elle düzeltme / `gorsel_goster` uygular |
+| `yaprak-test-pdf.js` | Komut satırından Deneme Sokağı PDF'i |
+| `sunucu.js` | Yerel geliştirme sunucusu (`npm start`) |
+| `kontrol.js` | Bütünlük kontrolü (`npm run kontrol`) |
+| `sablon-kontrol.js` | PDF şablonunun referans ölçüleri |
+| `html-pdf.js`, `ornek-kaynak/` | Örnek kaynak PDF'lerini üretir (araçları denemek için) |
+
 ## 1. Soru bankası PDF'inden soru çıkarma — `soru_cikar.py`
 
 ```bash
@@ -102,8 +113,27 @@ node tools/yaprak-test-pdf.js --test test.json --out test.pdf   # paneldeki test
 
 Seçenekler: `--kaynak <id>`, `--adet N`, `--mod gorsel|metin`, `--baslik "…"`, `--no N`,
 `--ust "…"` (bant başlığı, varsayılan DENEME), `--rozet DENEME` (rozet yazısı, varsayılan TEST),
-`--bolumlu` (deneme düzeni; birden çok testli kaynakta kendiliğinden), `--karistir`, `--cevapsiz`. Panelde aynı şablon "Önizle" ve "PDF / Yazdır" ile kullanılır.
+`--bolumlu` (deneme düzeni; birden çok testli kaynakta kendiliğinden), `--karistir`, `--cevapsiz`.
+Panel aynı şablonu kullanır: "Önizle" ve "PDF indir" (PDF sayfa içinde üretilir, `sablon/pdf-indir.js`).
 
 ## 4. Şablon kontrolü — `sablon-kontrol.js`
 
 `node tools/sablon-kontrol.js` şablonun 19 ölçüsünü referans PDF'le karşılaştırır (±0,6 mm).
+
+## 5. Elle düzeltme — `soru_duzelt.py`
+
+```bash
+python3 tools/soru_duzelt.py data/sorular/<kaynak-id> duzeltme.json
+```
+
+`duzeltme.json`: `{"T1-3": {"gorsel_goster": true}, "T3-5": {"metin_ust": "…", "secenekler": ["…", "…", "…", "…", "…"]}}`.
+Anahtar `T<test>-<no>`; verilen alanlar sorunun alanlarının yerine yazılır ve banka yeniden birleştirilir.
+`soru_cikar.py` yeniden çalıştırılırsa düzeltmeleri bu komutla tekrar uygulayın.
+
+## 6. Yerel sunucu ve kontroller — `sunucu.js`, `kontrol.js`
+
+- `npm start` (`node tools/sunucu.js [port]`) siteyi `http://localhost:8080`'de açar. `data/yerel/` varsa
+  oradaki yerel bankayı panel ve şablon sayfalarına yalnızca bu sunucu ekler.
+- `npm run kontrol` (`node tools/kontrol.js`) JavaScript sözdizimini, soru bankasının tutarlılığını ve şablon
+  ölçülerini denetler; bir sorun varsa ayrıntısıyla yazar ve 1 koduyla çıkar.
+- `npm test` (`node tests/smoke.js`) ana akışları gerçek bir tarayıcıda dener.

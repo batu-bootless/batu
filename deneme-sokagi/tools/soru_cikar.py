@@ -38,7 +38,7 @@ import zlib
 from pathlib import Path
 
 import pdfplumber
-from PIL import Image, ImageDraw, ImageOps
+from PIL import ImageDraw, ImageOps
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import soru_metin  # noqa: E402
@@ -144,8 +144,6 @@ def graphics_in(page, box, col_w):
     return out
 
 
-def union(boxes):
-    return (min(b[0] for b in boxes), min(b[1] for b in boxes), max(b[2] for b in boxes), max(b[3] for b in boxes))
 
 
 def render(page, box, dpi):
@@ -241,22 +239,6 @@ def parse_konu_table(page):
     return out
 
 
-def split_options(lines):
-    """Option lines -> list of 5 strings (handles 'A) x  B) y' on one line and wrapped options)."""
-    opts = {}
-    last = None
-    for ln in lines:
-        text = ln['text']
-        marks = list(OPT_RE.finditer(text))
-        if not marks:
-            if last:
-                opts[last] += ' ' + text
-            continue
-        for i, m in enumerate(marks):
-            end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
-            opts[m.group(1)] = text[m.end():end].strip()
-            last = m.group(1)
-    return [opts.get(L, '') for L in LETTERS] if opts else []
 
 
 def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A', page_range=None):

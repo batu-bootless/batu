@@ -1,3 +1,4 @@
-# tools/soru_cikar.py
+# tools/soru_cikar.py, tools/soru_metin.py, tools/soru_ekle.py, tools/soru_duzelt.py
 pdfplumber>=0.11   # metin katmanı ve sayfa görüntüsü (pypdfium2 ile birlikte gelir)
 Pillow>=10
+numpy>=1.24        # şekil bulma (sayfa görüntüsünde çizim alanları)

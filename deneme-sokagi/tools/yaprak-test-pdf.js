@@ -48,6 +48,9 @@ function fromBank() {
   const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.addInitScript((t) => { window.__DS_TEST__ = t; }, test);
+  // local-only sources (data/yerel, git-ignored) are not linked from the page; load them here when present
+  const yerelJs = path.join(ROOT, 'data/yerel/soru-bankasi.js');
+  if (fs.existsSync(yerelJs)) await page.addInitScript({ path: yerelJs });
   await page.goto('file://' + path.join(ROOT, 'sablon/yaprak-test.html'), { waitUntil: 'load' });
   await page.waitForFunction(() => window.__DS_READY__ === true, null, { timeout: 30000 });
   const pages = await page.evaluate(() => document.querySelectorAll('.ds-page').length);

@@ -1,62 +1,104 @@
 # Deneme Sokağı
 
-Türkiye'deki tüm sınavlar (YKS, LGS, KPSS, ALES, DGS, YDS, TUS, HMGS…) için online deneme
-platformunun statik ön yüzü. Kurulum gerekmez: dosyaları bir web sunucusundan (veya doğrudan
-tarayıcıda) açın.
+Türkiye'deki sınavlar (YKS, LGS, KPSS, ALES, DGS, YDS, TUS, HMGS…) için online deneme platformu.
+Bu klasör platformun tamamını içerir: ana sayfa, giriş/kayıt, öğrenci paneli, soru bankası, Deneme Sokağı
+PDF şablonu ve soruları kaynaklardan bankaya aktaran araçlar.
 
-## Sayfalar
-- `index.html` — ana sayfa (`styles.css`, `script.js`)
-- `giris.html`, `kayit.html`, `sifre.html` — giriş, kayıt ve şifre yenileme (`auth.css`, `auth-pages.js`)
-- `panel.html` — öğrenci paneli (`panel.css`, `panel.js`); giriş yapılmadan açılırsa giriş sayfasına yönlendirir
+Sunucu kodu yoktur: site statik dosyalardan oluşur ve herhangi bir web sunucusunda çalışır. Hesaplar demo
+modunda tarayıcıda, canlı modda Supabase'te tutulur. Mimari ve sunucuya geçiş için: [`docs/MIMARI.md`](docs/MIMARI.md).
 
-## Yaprak test, soru bankası ve PDF şablonu
-- `sablon/` — Deneme Sokağı yaprak test şablonu (A4, iki sütun, soru bankası dizilimi)
-- `data/` — soru bankası (`tools/soru_cikar.py` ile PDF'ten çıkarılır, `tools/soru_ekle.py` ile yazılı sorulardan eklenir)
-- `icerik/` — Deneme Sokağı için yazılmış özgün sorular (ör. 80 soruluk YDS Denemesi 1)
-- `data/yerel/` — yalnızca bu bilgisayarda deneme amaçlı kullanılan kaynaklar (`soru_cikar.py --yerel`); git'e ve yayına girmez
-- `tools/` — soru çıkarma ve PDF üretme araçları (ayrıntılar: `tools/README.md`)
-- `ornekler/` — şablonla üretilmiş örnek PDF'ler
+## Hızlı başlangıç
 
-## Soru havuzu kuralları
-- Yaprak test iki adımda oluşturulur: **1. Kaynak seç** — sistemdeki bütün denemeler ve soru bankaları kart
-  olarak listelenir (önce denemeler; her grupta önce hedef sınavınkiler), kullanıcı bir ya da birkaçını seçer
-  ("Tümünü seç" de var) ve **Devam et**'e basar. **2. Soru sayısı** — seçilen kaynaklar birden çok test içeriyorsa
-  (ör. TYT: Türkçe, Sosyal, Matematik, Fen) test seçilebilir; sonra soru sayısı ve **Çöz** ya da **PDF indir**.
-- Sorular seçilen kaynaklardan, kaynaktaki sırayla gelir; birden çok kaynak seçildiyse önce soru bankaları,
-  sonra denemeler kullanılır (yaprak testler bir denemeyi erken tüketmesin diye).
-- Paragrafa bağlı sorular (cloze, okuma) bölünmez: paragrafın tüm soruları birlikte gelir.
-- **Denemelerim → Hemen çöz** aynı iki adımlıdır: **1. Deneme seç** — bütün denemeler kart olarak listelenir, kullanıcı
-  bir ya da birkaçını seçip **Devam et**'e basar. **2. Başla** — istenirse tek bir test seçilir (ör. yalnızca Türkçe),
-  toplam soru ve süre görünür; **Başla** ya da **PDF indir**. Birlikte çözülen denemelerin sonucu ayrı ayrı kaydedilir;
-  test test çözülen bir denemenin neti toplanır.
-- Bir deneme, **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
-- Bir kullanıcıya verilmiş (teste eklenmiş, denemede gösterilmiş) ya da çözülmüş soru, o kaynağın bütün soruları
-  görülene kadar **bir daha gösterilmez**. Bütün soruları görülen kaynak kilitlenmez: "yeniden çözülebilir" olur ve
-  seçildiğinde yeni bir tur başlar (turun içinde sorular yine tekrar etmez).
-  Demo modunda bu kayıt tarayıcıda tutulur; canlı sistemde kullanıcı hesabına bağlanmalıdır.
-- Genel Bakış'taki **Geçmiş** kartı en son çözülen, oluşturulan ve indirilen testleri gösterir.
+```bash
+npm install                      # yalnızca test ve PDF araçları için (Playwright)
+npx playwright install chromium  # Playwright'ın tarayıcısı (bir kez)
+npm start                        # http://localhost:8080
+```
+
+Siteyi bir web sunucusundan açın (`npm start` ya da herhangi bir statik sunucu): panelin **PDF indir**
+özelliği şablon dosyalarını okur ve tarayıcılar bunu `file://` adreslerinde engeller.
+
+| Komut | Ne yapar |
+|---|---|
+| `npm start` | Yerel sunucu (`tools/sunucu.js`, bağımlılıksız) |
+| `npm run kontrol` | Bütünlük kontrolü: JavaScript sözdizimi, soru bankası tutarlılığı, PDF şablonu ölçüleri |
+| `npm test` | Uçtan uca test: ana sayfa, kayıt/giriş, bütün panel sayfaları, yaprak test, deneme, PDF indirme, telefon görünümü |
+| `npm run pdf -- …` | Komut satırından PDF (`tools/yaprak-test-pdf.js`, ayrıntılar `tools/README.md`) |
+
+Soru aktarma araçları Python ister: `pip install -r tools/requirements.txt`.
+
+## Klasör yapısı
+
+```
+index.html, styles.css, script.js        Ana sayfa
+giris.html, kayit.html, sifre.html       Giriş, kayıt, şifre yenileme (auth.css, auth-pages.js)
+auth.js, auth-config.js                  Hesap katmanı: window.DSAuth (demo ya da Supabase)
+panel.html, panel.css, panel.js          Öğrenci paneli (tek sayfa, # ile gezinme)
+sablon/                                  Deneme Sokağı PDF şablonu
+  yaprak-test.js / .css                    şablon (window.DSYaprakTest): A4, iki sütun, bölümler, cevap anahtarı
+  pdf-indir.js                             panelde PDF üretip indirme (window.DSPdf)
+  yaprak-test.html                         şablonun tek başına sayfası (yazdırma, komut satırı araçları)
+  fonts/                                   Liberation Sans (SIL OFL), DejaVu Sans alt kümesi
+data/                                    Soru bankası
+  soru-bankasi.json / .js                  birleşik banka (.js panel içindir, .json araçlar içindir; ikisi de üretilir)
+  sorular/<kaynak>/                        her kaynağın soruları, paragrafları ve görselleri
+  yerel/                                   yalnızca yerel deneme içerikleri — git'e ve pakete girmez (aşağıya bakın)
+icerik/                                  Deneme Sokağı için yazılmış özgün sorular (ör. 80 soruluk YDS Denemesi 1)
+tools/                                   İçerik araçları, yerel sunucu, kontroller (tools/README.md)
+tests/smoke.js                           Uçtan uca test
+ornekler/                                Şablonla üretilmiş örnek PDF'ler
+docs/MIMARI.md                           Mimari, veri modeli, saklanan veriler, sunucuya geçiş
+```
 
 ## Öğrenci paneli
-Genel bakış, Denemelerim, Yaprak Test Oluştur, Sonuç Analizi, Konu Eksiklerim, Yanlış Defteri,
-Çalışma Planı (odak zamanlayıcı dahil), Sıralama; Test Geçmişi (Oluşturulan Yaprak Testler,
-Deneme Sınavları); Paketler (Paket Satın Al, Paketlerim, Ödemelerim — ödeme sistemi henüz yok,
-fiyatlar örnek) ve Ayarlar. Mini TYT denemesi panel içinde çözülebilir.
-Açık / koyu tema, mobil uyum ve klavye kısayolları (`/` arama, sınavda A–E ve ← →) vardır.
 
-Paneldeki deneme sonuçları, sıralamalar ve istatistikler **örnek veridir** ("Örnek veri" etiketi).
-Görevler, yanlış defteri, kayıtlar ve profil tercihleri tarayıcıda saklanır.
+Genel Bakış, Denemelerim, Yaprak Test Oluştur, Sonuç Analizi, Konu Eksiklerim, Yanlış Defteri, Çalışma Planı
+(odak zamanlayıcı dahil), Sıralama; açılır-kapanır **Test Geçmişi** (Oluşturulan Yaprak Testler, Deneme Sınavları)
+ve **Paketler** (Paket Satın Al, Paketlerim, Ödemelerim — ödeme sistemi henüz yok, fiyatlar örnek); Ayarlar.
+Açık / koyu tema, mobil uyum, klavye kısayolları (`/` arama, sınavda A–E ve ← →).
+
+Sonuç Analizi, Sıralama, Tamamlanan denemeler ve Genel Bakış istatistikleri **örnek veridir** ("Örnek veri"
+etiketi). Kullanıcının kendi oluşturduğu testler, çözdüğü denemeler, geçmişi, yanlış defteri, planı ve profili
+gerçektir ve hesap başına saklanır.
+
+## Soru havuzu kuralları
+
+- **Yaprak Test Oluştur** iki adımlıdır. **1. Kaynak seç:** bütün denemeler ve soru bankaları kart olarak
+  listelenir (önce denemeler; her grupta önce hedef sınavınkiler); bir ya da birkaçı seçilir. **2. Soru sayısı:**
+  isteğe bağlı branş seçimi (Tüm branşlar ya da Türkçe, Temel Matematik…; birden çok seçilebilir), soru sayısı,
+  sonra **Çöz** ya da **PDF indir**. Birden çok branşta sorular branşlar arasında dengeli paylaştırılır ve testte
+  branş branş sıralanır.
+- **Denemelerim → Hemen çöz** de iki adımlıdır: deneme(ler) seç, isteğe bağlı branş seç, **Başla** ya da **PDF indir**.
+  Birlikte çözülen denemelerin sonucu ayrı ayrı kaydedilir; parça parça çözülen bir denemenin neti toplanır.
+- Sorular kaynaktaki sırayla gelir; birden çok kaynakta önce soru bankaları, sonra denemeler kullanılır.
+- Paragrafa bağlı sorular (cloze, okuma) bölünmez: paragrafın soruları birlikte gelir.
+- Bir deneme **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
+- Kullanıcıya verilmiş ya da çözülmüş soru, o kaynağın bütün soruları görülene kadar **bir daha gösterilmez**.
+  Bütün soruları görülen kaynak kilitlenmez: "yeniden çözülebilir" olur ve yeni bir tur başlar.
+- Sorular metin olarak gösterilir (kalın, altı çizili, üs, kesir işaretlemesiyle); şekiller görseldir. Metne güvenle
+  çevrilemeyen sorular kaynaktan kırpılmış görseliyle gösterilir (`gorsel_goster`).
 
 ## Hesap sistemi
+
 `auth.js` tek bir API (`window.DSAuth`) sunar ve iki modda çalışır:
 
 - **Demo modu** (varsayılan): `auth-config.js` boşken hesaplar yalnızca o tarayıcıda saklanır
   (şifreler tuzlanıp SHA-256 ile özetlenir). Akışı denemek içindir, gerçek bir hesap sistemi değildir.
-- **Canlı mod**: `auth-config.js` içine Supabase proje adresi ve publishable (anon) anahtar
-  yazıldığında Supabase Auth kullanılır: e-posta doğrulama, şifre sıfırlama e-postası, Google ile giriş
-  (Supabase'de Google sağlayıcısı açıldıysa). Supabase panelinde Authentication → URL Configuration
-  altına sitenin adresini ve `panel.html`, `sifre.html` yönlendirme adreslerini ekleyin.
+- **Canlı mod**: `auth-config.js` içine Supabase proje adresi ve publishable (anon) anahtar yazıldığında
+  Supabase Auth kullanılır: e-posta doğrulama, şifre sıfırlama, Google ile giriş (Supabase'de açıldıysa).
+  Supabase panelinde Authentication → URL Configuration altına sitenin adresini ve `panel.html`, `sifre.html`
+  yönlendirme adreslerini ekleyin.
 
-`assets/hero-device.png` eklenirse ana sayfadaki çizilmiş tabletin yerine geçer.
+## İçerik ve telif
 
-Yayından önce: ana sayfadaki "Başarı Hikâyeleri" yorumları örnektir; gerçek kullanıcı yorumlarıyla
-(izin alınarak) değiştirilmelidir. Kullanım Koşulları ve KVKK metni bağlantıları doldurulmalıdır.
+- `data/sorular/` ve `icerik/` içindeki sorular bu proje için yazılmış özgün sorulardır.
+- Yayınevlerinin kitapları ve ÖSYM kitapçıkları izinsiz çoğaltılamaz. Kullanım izni olmayan bir kaynağı yalnızca
+  kendi bilgisayarınızda sistemi denemek için `--yerel` ile aktarın: çıktılar `data/yerel/` altına yazılır, git'e
+  girmez, yayına giden sayfalar onlara başvurmaz; yalnızca `npm start` sunucusu ve PDF aracı, dosyalar varsa kullanır.
+
+## Yayına almadan önce
+
+- `auth-config.js` → Supabase bilgileri (canlı hesaplar).
+- Ana sayfadaki "Başarı Hikâyeleri" yorumları örnektir; gerçek yorumlarla (izin alınarak) değiştirilmelidir.
+- Kullanım Koşulları ve KVKK metni bağlantıları doldurulmalıdır.
+- Kişisel veriler şimdilik tarayıcıda tutulur; çok cihazlı kullanım için sunucuya taşınmalıdır (`docs/MIMARI.md`).

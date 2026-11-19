@@ -215,19 +215,34 @@
   const state = {
     exam: LAST.id, analizSubj: 'mat', eksikFilter: 'all', wrongFilter: 'Tümü', examTab: 'pratik', rankTab: 'tr',
     histFilter: 'Tümü', pkgTab: 'Tümü', billing: 'yillik',
-    b: { kaynak: null, ders: null, konular: null, adet: 10, mod: 'gorsel', sira: 'kaynak', key: true, ogr: true, ad: '', branslar: [] },
+    b: { sec: [], adim: 1, adet: 10, branslar: [] },          // Yaprak Test Oluştur: sources, step, question count, branches
     dn: { sec: [], adim: 1, branslar: [] },   // Denemelerim → Hemen çöz: chosen denemeler and branches (none = all)
   };
   let user = null;
   let charts = [];      // redraw callbacks for the current view
-  let upcomingReg = store.get('ds-reg', Object.fromEntries(UPCOMING.map((u) => [u.id, u.reg])));
-  let wrongs = store.get('ds-wrongs', WRONG_DEFAULT);
-  let profile = store.get('ds-profile', null);
+  // personal data, loaded per account in loadProgress()
+  let upcomingReg = {}, wrongs = [], profile = null, plan = null;
   /* ---------------- per-user progress: created tests, seen questions, activity ---------------- */
   // A question the user has been given (in a test they created or a deneme they started) is never offered again.
   const ukey = (name) => `ds-${name}:${(user && user.email) || 'misafir'}`;
   let ytests = [], seen = { used: {}, solved: {} }, activity = [];
+  // Data that earlier versions kept per browser moves (once) to the account that opens the panel first.
+  function userData(name, fallback) {
+    const own = store.get(ukey(name), undefined);
+    if (own !== undefined) return own;
+    const old = store.get('ds-' + name, undefined);
+    if (old !== undefined) {
+      store.set(ukey(name), old);
+      try { localStorage.removeItem('ds-' + name); } catch (e) { /* storage unavailable */ }
+      return old;
+    }
+    return fallback;
+  }
   function loadProgress() {
+    profile = userData('profile', null);
+    wrongs = userData('wrongs', WRONG_DEFAULT);
+    upcomingReg = userData('reg', Object.fromEntries(UPCOMING.map((u) => [u.id, u.reg])));
+    plan = loadPlan();
     ytests = store.get(ukey('yaprak-tests'), []);
     seen = Object.assign({ used: {}, solved: {} }, store.get(ukey('seen'), {}));
     activity = store.get(ukey('activity'), []);
@@ -243,16 +258,15 @@
     store.set(ukey('activity'), activity);
   }
   function saveHistory(entry) {
-    const h = store.get('ds-history', []);
+    const h = userData('history', []);
     h.unshift({ id: 'h-' + uid(), tarih: new Date().toISOString(), ...entry });
-    store.set('ds-history', h.slice(0, 80));
+    store.set(ukey('history'), h.slice(0, 80));
   }
   // Which question pools belong to the user's target exam (Ayarlar → Hedef sınav).
   const EXAM_POOLS = { YKS: ['TYT', 'AYT'], YDS: ['YDS'], 'YÖKDİL': ['YÖKDİL', 'YDS'], LGS: ['LGS'], KPSS: ['KPSS'], ALES: ['ALES'], DGS: ['DGS'], TUS: ['TUS'], DUS: ['DUS'], HMGS: ['HMGS'], 'MSÜ': ['MSÜ', 'TYT'], 'MEB-AGS': ['MEB-AGS'] };
   const poolSinav = () => EXAM_POOLS[user.exam] || [user.exam];
   const srcOrder = (q) => BANK.kaynaklar.findIndex((k) => k.id === q.kaynak);
   const srcRank = (q) => ((BANK.src[q.kaynak] || {}).tur === 'deneme' ? 1000 : 0) + srcOrder(q);
-  const poolQs = () => BANK.sorular.filter((q) => poolSinav().includes(q.sinav)).sort((a, b) => srcRank(a) - srcRank(b) || a.sira - b.sira);
   // Questions that share a passage (cloze, reading) are taken together or not at all.
   function pickQuestions(fresh, n) {
     const out = [], done = new Set();
@@ -282,15 +296,14 @@
   ];
   function loadPlan() {
     const key = weekStart.toISOString().slice(0, 10);
-    const saved = store.get('ds-plan', null);
+    const saved = userData('plan', null);
     if (saved && saved.week === key) return saved;
     const days = PLAN_TEMPLATE.map((list, di) => list.map(([s, t], ti) => ({ id: uid(), s, t, done: di < todayIdx || (di === todayIdx && ti < 2) })));
     const plan = { week: key, days };
-    store.set('ds-plan', plan);
+    store.set(ukey('plan'), plan);
     return plan;
   }
-  let plan = loadPlan();
-  const savePlan = () => store.set('ds-plan', plan);
+  const savePlan = () => store.set(ukey('plan'), plan);
   const findTask = (id) => { for (const d of plan.days) { const t = d.find((x) => x.id === id); if (t) return t; } return null; };
 
   /* ---------------- UI primitives ---------------- */
@@ -822,7 +835,7 @@
         goalNet: Math.min(120, Math.max(1, parseFloat($('#pr-goal').value) || 100)), goalText: $('#pr-goaltext').value.trim(),
         notif: Object.fromEntries($$('[data-notif]').map((c) => [c.dataset.notif, c.checked])),
       };
-      store.set('ds-profile', profile);
+      store.set(ukey('profile'), profile);
       if (window.DSAuth && window.DSAuth.updateProfile) { try { await window.DSAuth.updateProfile({ name, exam: profile.exam, alan: profile.alan }); } catch (e) { /* keep local copy */ } }
       applyUser(); toast('Profil kaydedildi');
     });
@@ -1126,7 +1139,7 @@
       const t = SK.reduce((acc, k) => { const r = dyb(e[k], SUBJ[k].q); return { D: acc.D + r.D, Y: acc.Y + r.Y, B: acc.B + r.B }; }, { D: 0, Y: 0, B: 0 });
       return { id: e.id, ad: e.name, tur: e.id.startsWith('tg') ? 'Türkiye Geneli' : 'Deneme', d: e.d, soru: 120, ...t, net: e.net, rank: e.rank, analiz: true };
     });
-    const mine = store.get('ds-history', []).map((h) => ({ ...h, d: new Date(h.tarih) }));
+    const mine = userData('history', []).map((h) => ({ ...h, d: new Date(h.tarih) }));
     return [...mine, ...exams].sort((a, b) => b.d - a.d);
   }
   function vDenemeGecmisi() {
@@ -1255,7 +1268,6 @@
       id: 'dn-' + uid(), baslik: dnTitle(groups), ders: [...new Set(groups.map((g) => g.k.sinav))].join(' · '), no: 1, ust: 'DENEME', rozet: 'DENEME', mod: 'metin',
       bolumlu: new Set(qs.map(bolumOf)).size > 1, soruIds: qs.map((q) => q.id), cevapAnahtari: true,
     };
-    try { localStorage.setItem('ds-yaprak-tests-deneme', JSON.stringify([test])); } catch (e) { return toast('Tarayıcı depolaması kapalı; PDF açılamadı'); }
     downloadTest(test, false);
   }
   function saveMini(r) {
@@ -1428,8 +1440,8 @@
       case 'buy': return openBuy(a.dataset.id);
       case 'invoice': return toast('Faturalar, ödeme sistemi aktif olduğunda indirilebilecek');
       case 'video': return openVideo(+a.dataset.q);
-      case 'register': upcomingReg[a.dataset.id] = true; store.set('ds-reg', upcomingReg); toast('Denemeye kaydoldun. Hatırlatma göndereceğiz.'); return render(false);
-      case 'unregister': upcomingReg[a.dataset.id] = false; store.set('ds-reg', upcomingReg); toast('Deneme kaydın iptal edildi'); return render(false);
+      case 'register': upcomingReg[a.dataset.id] = true; store.set(ukey('reg'), upcomingReg); toast('Denemeye kaydoldun. Hatırlatma göndereceğiz.'); return render(false);
+      case 'unregister': upcomingReg[a.dataset.id] = false; store.set(ukey('reg'), upcomingReg); toast('Deneme kaydın iptal edildi'); return render(false);
       case 'open-exam': state.exam = a.dataset.id; location.hash = 'analiz'; return;
       case 'exam-tab': state.examTab = a.dataset.k; return render(true);
       case 'analiz-subj': state.analizSubj = a.dataset.k; return render(false);
@@ -1440,7 +1452,7 @@
       case 'del-task': { e.stopPropagation(); for (const d of plan.days) { const i = d.findIndex((t) => t.id === a.dataset.id); if (i > -1) d.splice(i, 1); } savePlan(); return render(false); }
       case 'learned': {
         const card = a.closest('[data-wrong]');
-        wrongs = wrongs.filter((w) => w.id !== a.dataset.id); store.set('ds-wrongs', wrongs);
+        wrongs = wrongs.filter((w) => w.id !== a.dataset.id); store.set(ukey('wrongs'), wrongs);
         card.style.transition = 'opacity .3s, transform .3s'; card.style.opacity = 0; card.style.transform = 'translateX(16px)';
         setTimeout(() => render(false), 300); return toast('Soru defterden çıkarıldı');
       }
@@ -1574,7 +1586,7 @@
             const exists = wrongs.some((w) => (ref.bank ? w.bank === ref.bank : !w.bank && w.q === ref.q));
             if (!exists) { wrongs.unshift({ id: uid(), ...ref, topic: q.konu || SUBJ[q.s].name, src: title, date: dShort(new Date()), kind: 'Bilgi eksiği', your: st.ans[i] === null ? '—' : L5[st.ans[i]] }); added++; }
           });
-          store.set('ds-wrongs', wrongs); b.remove();
+          store.set(ukey('wrongs'), wrongs); b.remove();
           return toast(added ? `${added} soru yanlış defterine eklendi` : 'Bu sorular zaten defterinde');
         }
       }
@@ -1649,8 +1661,8 @@
   setupMenu('bellBtn', 'notifMenu'); setupMenu('avatarBtn', 'avatarMenu');
   document.addEventListener('click', () => { $$('.menu').forEach((m) => { m.hidden = true; }); $('#searchResults').classList.remove('open'); });
   $('#notifList').innerHTML = NOTIFS.map((n) => `<li><i></i><div><b>${esc(n.t)}</b><span>${esc(n.s)} · ${n.time}</span></div></li>`).join('');
-  if (store.get('ds-notif-read', false)) { $$('#notifList li').forEach((li) => li.classList.add('read')); $('#bellDot').hidden = true; }
-  $('#markRead').addEventListener('click', () => { $$('#notifList li').forEach((li) => li.classList.add('read')); $('#bellDot').hidden = true; store.set('ds-notif-read', true); });
+  const showNotifRead = () => { if (userData('notif-read', false)) { $$('#notifList li').forEach((li) => li.classList.add('read')); $('#bellDot').hidden = true; } };
+  $('#markRead').addEventListener('click', () => { $$('#notifList li').forEach((li) => li.classList.add('read')); $('#bellDot').hidden = true; store.set(ukey('notif-read'), true); });
 
   // theme
   // Light is the default; dark is only used when the user turns it on.
@@ -1724,8 +1736,9 @@
       name: (u && u.name) || 'Ece Yılmaz', email: (u && u.email) || 'ornek@denemesokagi.com',
       city: 'İstanbul', school: 'Örnek Anadolu Lisesi', exam: (u && u.exam) || 'YKS', alan: (u && u.alan) || 'Sayısal',
     };
+    loadProgress();          // per-account data first: the profile can rename the user
     applyUser();
-    loadProgress();
+    showNotifRead();
     document.body.classList.add('ready');
     render(true);
   }
