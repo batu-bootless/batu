@@ -40,7 +40,9 @@ bir IIFE'dir, dışarıya bir şey açmaz.
 - **Açıklamalı çözüm / anlatım videosu:** `solHtml(q)` çözümü (`cozum`) gösterir; `openLesson(q, etiket)` aynı metni
   adım adım oynatan videoyu açar (sınavın üstünde ayrı bir katman; tuşlar videoya gider). Seslendirme tarayıcının
   Web Speech API'siyle, cihazın Türkçe sesiyle yapılır (`speakable()` işaretlemeyi okunur metne çevirir); ses yoksa
-  süreler metin uzunluğundan hesaplanır. Ses tercihi tarayıcıda `ds-video-ses` anahtarında tutulur.
+  süreler metin uzunluğundan hesaplanır. Sesler sıralanır: doğal/sinirsel (Edge "Emel") > ağ/gelişmiş ("Google Türkçe",
+  "Yelda (Gelişmiş)") > eski masaüstü sesleri; kadın sesi önce gelir. Adımlar ses bitince kısa bir nefesle sürer.
+  Tercihler tarayıcıda: `ds-video-ses` (açık/kapalı), `ds-video-voice` (seçilen ses).
 - **PDF:** `downloadTest(test)` → `DSPdf.build()` (sayfa içinde) → `DSPdf.save()` (claude.ai önizlemesinde
   `downloads` izniyle, başka yerde doğrudan indirme).
 

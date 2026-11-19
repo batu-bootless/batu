@@ -82,8 +82,9 @@ gerçektir ve hesap başına saklanır.
   sırasında istenildiği an açılır; açılan soru "Çözüm görüldü" diye işaretlenir. Aynı çözümler sonuç ekranında ve
   Yanlış Defteri'nde de görünür. Bankadaki bütün soruların açıklamalı çözümü vardır.
 - Yanında **Anlatım Videosu** düğmesi vardır: aynı çözüm kısa bir video gibi oynar (soru → adımlar tek tek → doğru
-  cevap; oynat/duraklat, ilerleme çubuğu, 1×–1,5× hız). Cihazda Türkçe bir ses varsa (Windows, macOS, Android, iOS'ta
-  genelde vardır) adımlar sesli okunur, yoksa yazılı ilerler. Videolar çözüm metninden o an üretilir; ayrı dosya
+  cevap; oynat/duraklat, ilerleme çubuğu, 1×–1,5× hız). Adımlar cihazdaki en doğal Türkçe kadın sesiyle okunur
+  (Edge'de "Emel – doğal", Chrome'da "Google Türkçe", Apple cihazlarda "Yelda"); video içinden başka ses seçilebilir,
+  seçim hatırlanır. Türkçe ses yoksa anlatım yazılı ilerler. Videolar çözüm metninden o an üretilir; ayrı dosya
   yoktur, çözüm değişince video da değişir. Kısayollar: boşluk oynat/duraklat, ← → adım, M ses, Esc kapat.
 - Bir deneme **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
 - Kullanıcıya verilmiş ya da çözülmüş soru, o kaynağın bütün soruları görülene kadar **bir daha gösterilmez**.

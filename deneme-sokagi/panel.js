@@ -1688,14 +1688,27 @@
      Every question's explanation played like a short video: the question, the steps one by one on a board, then the
      answer. Narrated with the device's own Turkish voice (Web Speech API) where there is one; the board is the caption. */
   const LSN_RATES = [1, 1.25, 1.5];
-  let trVoice = null;
-  const findVoice = () => {
+  // The device's Turkish voices, most natural female voice first: neural voices (Edge "Emel (Natural)"), then
+  // network / enhanced ones (Chrome "Google Türkçe", Apple "Yelda (Gelişmiş)"); old desktop voices such as "Tolga"
+  // (male, robotic) come last. The viewer can pick another one in the video; the choice is remembered.
+  const V_NEURAL = /natural|neural|doğal/i;
+  const V_GOOD = /google|online|premium|enhanced|gelişmiş|wavenet|siri/i;
+  const V_FEMALE = /emel|yelda|seda|filiz|zeynep|elif|aylin|ece|google\s*türkçe|female|kadın/i;
+  const V_MALE = /tolga|ahmet|cem|kerem|erkek|\bmale\b/i;
+  const voiceScore = (v) => (V_NEURAL.test(v.name) ? 6 : V_GOOD.test(v.name) ? 4 : 0)
+    + (V_FEMALE.test(v.name) ? 5 : V_MALE.test(v.name) ? -5 : 0) + (v.localService === false ? 1 : 0);
+  let trVoices = [];
+  const findVoices = () => {
     const vs = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
-    trVoice = vs.find((v) => /^tr([-_]|$)/i.test(v.lang)) || null;
+    trVoices = vs.filter((v) => /^tr([-_]|$)/i.test(v.lang)).sort((a, b) => voiceScore(b) - voiceScore(a));
   };
+  const pickVoice = () => trVoices.find((v) => v.name === store.get('ds-video-voice', '')) || trVoices[0] || null;
+  const voiceLabel = (v) => v.name.replace(/^Microsoft\s+/i, '').replace(/\s*-\s*Turkish.*$/i, '')
+    .replace(/\s*Online\s*\(Natural\)/i, ' · doğal').replace(/\s+/g, ' ').trim()
+    + (V_FEMALE.test(v.name) ? ' (kadın)' : V_MALE.test(v.name) ? ' (erkek)' : '');
   if (window.speechSynthesis) {
-    findVoice();
-    if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged', findVoice);
+    findVoices();
+    if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged', findVoices);
   }
   const ROMAN = { I: 'bir', II: 'iki', III: 'üç', IV: 'dört', V: 'beş', VI: 'altı' };
   // question markup → words a voice reads well ("3^{2}" → "3 kare", "{a/b}" → "a bölü b", "II." → "iki")
@@ -1710,7 +1723,8 @@
     .replace(/°/g, ' derece').replace(/′/g, ' dakika')
     .replace(/ = /g, ' eşittir ').replace(/ − /g, ' eksi ').replace(/−(?=[\d(])/g, 'eksi ').replace(/ \+ /g, ' artı ')
     .replace(/✓/g, ', doğru.').replace(/✗/g, ', yanlış.')
-    .replace(/[|•●]/g, ' ').replace(/\s+/g, ' ').trim();
+    .replace(/²/g, ' kare').replace(/³/g, ' küp').replace(/;/g, ',').replace(/…/g, '.')
+    .replace(/[|•●()\[\]]/g, ' ').replace(/\s+([,.])/g, '$1').replace(/\s+/g, ' ').trim();
   const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
   function openLesson(q, label) {
@@ -1749,23 +1763,35 @@
         <button class="lsn-btn lsn-rate" data-ls="rate" id="lsnRate" aria-label="Oynatma hızı">1×</button>
         <button class="lsn-btn" data-ls="sound" id="lsnSound" aria-label="Sesli anlatım"></button>
       </div>
-      <p class="lsn-note" id="lsnNote"></p>
+      <div class="lsn-note"><label class="lsn-voice" id="lsnVoiceWrap" hidden>Ses <select id="lsnVoice" aria-label="Anlatım sesi"></select></label><span id="lsnNote"></span></div>
     </div>`;
     document.body.appendChild(el);
 
     const synth = window.speechSynthesis;
-    let cur = 0, t = 0, playing = false, ended = false, spoken = true, timer = null, rateI = 0;
-    let sound = !!(synth && trVoice) && store.get('ds-video-ses', true) !== false;
+    if (!trVoices.length) findVoices();
+    let voice = pickVoice();
+    let cur = 0, t = 0, playing = false, ended = false, spoken = true, since = 0, timer = null, rateI = 0, curU = null;
+    let sound = !!(synth && voice) && store.get('ds-video-ses', true) !== false;
+    const voiced = () => !!(sound && synth && voice);
     const rate = () => LSN_RATES[rateI];
-    const hush = () => { if (synth) synth.cancel(); };
+    const hush = () => { curU = null; if (synth) synth.cancel(); };
     const speak = (i) => {
       hush();
-      if (!sound || !synth || !trVoice) { spoken = true; return; }
+      since = 0;
+      if (!voiced()) { spoken = true; return; }
       spoken = false;
       const u = new SpeechSynthesisUtterance(steps[i].say);
-      u.lang = trVoice.lang; u.voice = trVoice; u.rate = Math.min(1.5, rate());
-      u.onend = u.onerror = () => { if (cur === i) spoken = true; };
+      u.voice = voice; u.lang = voice.lang; u.pitch = 1;
+      u.rate = Math.min(1.5, 0.96 * rate());   // a touch under 1: calmer, closer to a teacher's pace
+      u.onend = u.onerror = () => { if (curU === u) spoken = true; };
+      curU = u;   // kept referenced: some browsers drop onend for collected utterances
       synth.speak(u);
+    };
+    const setVoice = (name) => {
+      voice = trVoices.find((v) => v.name === name) || voice;
+      store.set('ds-video-voice', voice ? voice.name : '');
+      if (playing) speak(cur);
+      paint();
     };
     const paint = () => {
       const s = steps[cur];
@@ -1778,7 +1804,8 @@
       });
       const ans = el.querySelector('.lsn-ans'); if (ans) ans.classList.toggle('on', s.kind === 'ans');
       const now = Math.min(total, startOf(cur) + Math.min(t, s.dur));
-      el.querySelectorAll('.lsn-prog i').forEach((seg, i) => { seg.firstChild.style.width = `${i < cur ? 100 : i > cur ? 0 : Math.min(100, (t / s.dur) * 100)}%`; });
+      const part = voiced() ? (spoken ? 1 : Math.min(0.97, t / s.dur)) : Math.min(1, t / s.dur);
+      el.querySelectorAll('.lsn-prog i').forEach((seg, i) => { seg.firstChild.style.width = `${i < cur ? 100 : i > cur ? 0 : part * 100}%`; });
       el.querySelector('.lsn-prog').setAttribute('aria-valuenow', String(Math.round(now)));
       $('#lsnTime').textContent = `${mmss(now)} / ${mmss(total)}`;
       $('#lsnPlay').innerHTML = icon(playing ? 'pause' : ended ? 'reset' : 'play');
@@ -1789,9 +1816,10 @@
       $('#lsnRate').textContent = `${String(rate()).replace('.', ',')}×`;
       $('#lsnSound').innerHTML = icon(sound ? 'volume' : 'mute');
       $('#lsnSound').setAttribute('aria-pressed', String(sound));
-      $('#lsnSound').disabled = !(synth && trVoice);
-      $('#lsnNote').textContent = synth && trVoice
-        ? (sound ? `Sesli anlatım bu cihazın Türkçe sesiyle yapılıyor (${trVoice.name}).` : 'Sesli anlatım kapalı; anlatım yazılı olarak ilerliyor.')
+      $('#lsnSound').disabled = !(synth && voice);
+      $('#lsnVoiceWrap').hidden = !voiced() || trVoices.length < 2;
+      $('#lsnNote').textContent = synth && voice
+        ? (sound ? (trVoices.length < 2 ? `Sesli anlatım: ${voiceLabel(voice)}` : '') : 'Sesli anlatım kapalı; anlatım yazılı olarak ilerliyor.')
         : 'Bu cihazda Türkçe ses bulunamadı; anlatım yazılı olarak ilerliyor.';
       const line = el.querySelector('.lsn-l.cur');
       if (line) line.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
@@ -1800,7 +1828,9 @@
     const tick = () => {
       const s = steps[cur];
       t = Math.min(s.dur, t + 0.1 * rate());
-      if (t >= s.dur && spoken) {
+      if (spoken) since += 0.1;
+      // narrated: go on a short breath after the voice ends (no waiting for the estimate); silent: by the estimate
+      if (voiced() ? spoken && since >= 0.35 : t >= s.dur) {
         if (cur < steps.length - 1) { cur++; t = 0; speak(cur); } else { stop(); ended = true; }
       }
       paint();
@@ -1828,9 +1858,12 @@
       if (e.key === ' ' || e.key.toLowerCase() === 'k') { e.preventDefault(); return toggle(); }
       if (e.key === 'ArrowRight') { e.preventDefault(); return go(cur + 1); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); return go(cur - 1); }
-      if (e.key.toLowerCase() === 'm' && synth && trVoice) { sound = !sound; store.set('ds-video-ses', sound); if (playing) speak(cur); else hush(); return paint(); }
+      if (e.key.toLowerCase() === 'm' && synth && voice) { sound = !sound; store.set('ds-video-ses', sound); if (playing) speak(cur); else hush(); return paint(); }
     }
     document.addEventListener('keydown', onKey, true);
+    const sel = $('#lsnVoice');
+    sel.innerHTML = trVoices.map((v) => `<option value="${esc(v.name)}"${voice && v.name === voice.name ? ' selected' : ''}>${esc(voiceLabel(v))}</option>`).join('');
+    sel.addEventListener('change', () => setVoice(sel.value));
     el.addEventListener('click', (e) => {
       if (e.target === el) return close();
       const b = e.target.closest('[data-ls]'); if (!b) return;
