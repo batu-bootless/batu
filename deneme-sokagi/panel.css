@@ -515,6 +515,10 @@ table.t { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 56
 .modal.player .pl-body { flex: 1; min-height: 0; }
 .modal.player .pl-q, .modal.player .pl-side { overflow: auto; min-height: 0; }
 .modal.player .result { flex: 1; min-height: 0; overflow: auto; }
+/* full screen exam: the window fills the screen (browser full screen) or the browser window */
+.modal-back.fs { padding: 0; backdrop-filter: none; }
+.modal-back.fs .modal.player { width: 100vw; max-width: none; height: 100vh; height: 100dvh; max-height: none; border-radius: 0; }
+.icon-btn[aria-pressed="true"] { background: var(--surface-2); }
 .pl-q { padding: 24px 26px; border-right: 1px solid var(--border); min-width: 0; }
 .pl-q-top { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 .pl-q-top b { font-size: 14px; }

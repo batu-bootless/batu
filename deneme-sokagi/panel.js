@@ -817,6 +817,7 @@
       <section class="card s-5">
         <div class="card-h"><div><h2>Tercihler</h2><p>Görünüm ve bildirimler</p></div></div>
         <div class="toggle-row"><div><b>Tema</b><span>Varsayılan açık tema; istersen koyu temaya geç</span></div><div class="seg" id="themeSeg">${[['light', 'Açık'], ['dark', 'Koyu']].map(([k, l]) => `<label><input type="radio" name="theme" value="${k}" ${k === theme ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
+        <div class="toggle-row"><div><b>Sınav ekranı</b><span>Testleri ve denemeleri tam ekranda başlat (sınavda F ile de açılıp kapanır)</span></div><span class="switch"><input type="checkbox" id="pr-fullscreen" ${store.get(ukey('tam-ekran'), false) ? 'checked' : ''} aria-label="Testleri ve denemeleri tam ekranda başlat"><i></i></span></div>
         ${[['remind', 'Deneme hatırlatmaları', 'Kayıtlı denemelerden 15 dk önce'], ['results', 'Sonuç bildirimleri', 'Sonuçlar açıklandığında'], ['weekly', 'Haftalık rapor e-postası', 'Her pazartesi gelişim özeti']].map(([k, t, s]) => `<div class="toggle-row"><div><b>${t}</b><span>${s}</span></div><span class="switch"><input type="checkbox" id="nt-${k}" data-notif="${k}" ${p.notif[k] ? 'checked' : ''} aria-label="${t}"><i></i></span></div>`).join('')}
       </section>
       <section class="card s-12">
@@ -841,6 +842,10 @@
     });
     $$('#themeSeg input').forEach((r) => r.addEventListener('change', () => setTheme(r.value)));
     $$('[data-notif]').forEach((c) => c.addEventListener('change', () => toast(c.checked ? 'Bildirim açıldı' : 'Bildirim kapatıldı')));
+    $('#pr-fullscreen').addEventListener('change', (ev) => {
+      store.set(ukey('tam-ekran'), ev.target.checked);
+      toast(ev.target.checked ? 'Testler ve denemeler tam ekranda başlayacak' : 'Testler ve denemeler pencerede başlayacak');
+    });
   }
 
   /* --- Test Oluştur: 1) the user picks the denemeler / soru bankaları, 2) the test and how many questions --- */
@@ -1493,6 +1498,7 @@
     root.innerHTML = `<div class="modal-back"><div class="modal player" role="dialog" aria-modal="true" aria-labelledby="plTitle">
       <div class="pl-head"><div><h2 id="plTitle">${esc(title)}</h2><p>${qs.length} soru · ${Math.round(seconds / 60)} dakika · Net = D − Y/4</p></div>
         <span class="timer" id="plTimer">${icon('clock')}<span>00:00</span></span>
+        <button class="icon-btn" data-pl="fs" id="plFs" aria-label="Tam ekran" aria-pressed="false" title="Tam ekran (F)">${icon('expand')}</button>
         <button class="icon-btn" data-pl="close" aria-label="Kapat">${icon('x')}</button></div>
       <div class="progress-line"><i id="plProg"></i></div>
       <div id="plConfirm"></div>
@@ -1506,6 +1512,32 @@
     };
     $('#plTimer span').textContent = fmtT(st.left);
     st.timer = setInterval(tick, 1000);
+    // Full screen: the browser's own where it is allowed; otherwise (iPhone, embedded pages) the exam window
+    // fills the browser window. Leaving the exam always leaves full screen.
+    const back = $('.modal-back', root), de = document.documentElement;
+    const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
+    const nativeOk = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled) && !!(de.requestFullscreen || de.webkitRequestFullscreen);
+    let fsOn = false, native = false, fsLeftAt = 0;
+    const paintFs = () => {
+      back.classList.toggle('fs', fsOn);
+      const b = $('#plFs', root), label = fsOn ? 'Tam ekrandan çık' : 'Tam ekran';
+      b.innerHTML = icon(fsOn ? 'shrink' : 'expand'); b.setAttribute('aria-label', label); b.setAttribute('aria-pressed', String(fsOn)); b.title = `${label} (F)`;
+    };
+    const enterFs = () => {
+      fsOn = true; paintFs();
+      if (!nativeOk || fsEl()) return;
+      const r = de.requestFullscreen ? de.requestFullscreen({ navigationUI: 'hide' }) : de.webkitRequestFullscreen();
+      if (r && r.then) r.then(() => { native = true; }, () => { native = false; }); else native = true;
+    };
+    const exitFs = () => {
+      fsOn = false; native = false; paintFs();
+      if (fsEl()) { const r = (document.exitFullscreen || document.webkitExitFullscreen).call(document); if (r && r.catch) r.catch(() => {}); }
+    };
+    const toggleFs = () => (fsOn ? exitFs() : enterFs());
+    const onFsChange = () => { if (!fsEl() && native) { native = false; fsOn = false; fsLeftAt = Date.now(); paintFs(); } };
+    document.addEventListener('fullscreenchange', onFsChange);
+    document.addEventListener('webkitfullscreenchange', onFsChange);
+    if (store.get(ukey('tam-ekran'), false)) enterFs();   // Ayarlar → start every test in full screen
     // Questions are shown as text (figures as pictures); the cropped page is only a fallback when there is no text.
     const hasText = (q) => !!(q.t || q.ust || q.alt || (q.o || []).some(Boolean));
     const asImage = (q) => !!q.img && (mode === 'gorsel' || q.imgOnly || !hasText(q));
@@ -1528,7 +1560,7 @@
         <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${q.konu ? `<span class="chip">${esc(q.konu)}</span>` : ''}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}</div>
           ${body(q)}
           <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${L5.map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${richOpt(q.o[i] || '')}</span>`}</button>`).join('')}</div>
-          <p class="small muted" style="margin-top:14px">Klavye: A–E ile işaretle, ← → ile geç. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
+          <p class="small muted" style="margin-top:14px">Klavye: A–E ile işaretle, ← → ile geç, F ile tam ekran. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
         </div>
         <aside class="pl-side"><h3>Optik form</h3>
           <div class="optik">${qs.map((_, qi) => `<div class="optik-row${qi === st.cur ? ' cur' : ''}${st.flag[qi] ? ' flag' : ''}"><button class="n" data-go="${qi}" aria-label="Soru ${qi + 1}">${qi + 1}</button>${L5.map((l, li) => `<button class="bub${st.ans[qi] === li ? ' on' : ''}" data-bub="${qi}-${li}" aria-label="Soru ${qi + 1} şık ${l}">${l}</button>`).join('')}</div>`).join('')}</div>
@@ -1573,13 +1605,23 @@
     }
     function close() {
       clearInterval(st.timer);
+      if (fsOn) exitFs();
+      document.removeEventListener('fullscreenchange', onFsChange);
+      document.removeEventListener('webkitfullscreenchange', onFsChange);
       document.removeEventListener('keydown', onKey);
       root.innerHTML = '';
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
     function onKey(e) {
-      if (e.key === 'Escape') { e.preventDefault(); return st.done ? close() : confirmBar('Testten çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık'); }
-      if (st.done || /input|select|textarea/i.test(e.target.tagName)) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        if (Date.now() - fsLeftAt < 400) return;          // the browser already left full screen on this Esc
+        if (fsOn) return exitFs();                         // Esc leaves full screen first; the next one asks to quit
+        return st.done ? close() : confirmBar('Testten çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık');
+      }
+      if (/input|select|textarea/i.test(e.target.tagName)) return;
+      if (e.key.toUpperCase() === 'F' && !e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault(); return toggleFs(); }
+      if (st.done) return;
       const k = e.key.toUpperCase();
       if (L5.includes(k)) pick(st.cur, L5.indexOf(k));
       else if (e.key === 'ArrowRight' && st.cur < qs.length - 1) { st.cur++; draw(); }
@@ -1597,6 +1639,7 @@
         case 'flag': st.flag[st.cur] = !st.flag[st.cur]; return draw();
         case 'finish': { const empty = st.ans.filter((x) => x === null).length; return empty ? confirmBar(`${empty} soru boş. Yine de bitirmek istiyor musun?`, 'finish-now', 'Bitir') : finish(); }
         case 'finish-now': return finish();
+        case 'fs': return toggleFs();
         case 'cancel': $('#plConfirm').innerHTML = ''; return;
         case 'close': return st.done ? close() : confirmBar('Testten çıkmak istiyor musun? Cevapların kaydedilmeyecek.', 'close-now', 'Çık');
         case 'close-now': return close();

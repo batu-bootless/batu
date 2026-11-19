@@ -35,6 +35,8 @@ bir IIFE'dir, dışarıya bir şey açmaz.
   kuralını, `newRound()` biten kaynağın yeni turunu, `pickQuestions()` paragraf bütünlüğünü,
   `mixBranches()` branşlar arası dengeyi uygular.
 - **Sınav ekranı:** `openPlayer(sorular, başlık, süre, { mode, onFinish })` — sonuç `{ D, Y, B, net, status }`.
+  Tam ekran: Fullscreen API (sayfanın tamamı), izin yoksa `.modal-back.fs` ile pencereyi kaplar; F tuşu açar/kapatır,
+  Esc önce tam ekrandan çıkar; sınav kapanınca tam ekran da kapanır.
 - **PDF:** `downloadTest(test)` → `DSPdf.build()` (sayfa içinde) → `DSPdf.save()` (claude.ai önizlemesinde
   `downloads` izniyle, başka yerde doğrudan indirme).
 
@@ -96,6 +98,7 @@ tarayıcı-geneli kayıtları ilk açan hesaba bir kez taşınır (`userData()`)
 | `profile` | Ayarlar: ad, il, okul, hedef sınav/alan, hedef net, bildirim tercihleri |
 | `notif-read` | Bildirimler okundu mu |
 | `pdf-cevap-anahtari` | PDF cevap anahtarı tercihi: `sona` / `ayri` / `yok` |
+| `tam-ekran` | Sınavları tam ekranda başlat (Ayarlar → Sınav ekranı) |
 
 Tarayıcı tercihleri (hesaptan bağımsız): `ds-theme` (açık/koyu), `ds-sb-groups` (yan menü grupları),
 `ds-pomo-*` (odak zamanlayıcı). Demo hesapları: `ds-demo-users`, `ds-demo-session`. Girişten sonra dönülecek

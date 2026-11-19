@@ -61,11 +61,15 @@ const pdfPages = (file) => (fs.readFileSync(file, 'latin1').match(/\/Type \/Page
     return `${routes.length} sayfa`;
   });
 
-  await step('Yaprak test: kaynak seç → 5 soru → çöz → sonuç', async () => {
+  await step('Yaprak test: kaynak seç → 5 soru → çöz (tam ekran) → sonuç', async () => {
     await go('test-olustur');
     await p.click('.src-card:has-text("Kelime ve Dil Bilgisi")'); await p.click('[data-src-next]'); await p.waitForTimeout(300);
     await p.click('[data-preset="5"]'); await p.click('[data-make="coz"]'); await p.waitForSelector('.pl-q');
     if ((await p.$$('.optik-row')).length !== 5) throw new Error('5 soru gelmedi');
+    await p.keyboard.press('f'); await p.waitForTimeout(200);
+    if (!(await p.$('.modal-back.fs'))) throw new Error('tam ekran açılmadı');
+    await p.keyboard.press('f'); await p.waitForTimeout(200);
+    if (await p.$('.modal-back.fs')) throw new Error('tam ekrandan çıkılmadı');
     await p.keyboard.press('a'); await p.click('[data-pl="finish"]');
     if (await p.$('[data-pl="finish-now"]')) await p.click('[data-pl="finish-now"]');
     await p.waitForSelector('.res-stats');

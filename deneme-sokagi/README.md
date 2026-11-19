@@ -58,6 +58,8 @@ Genel Bakış, Denemelerim, Test Oluştur, Sonuç Analizi, Konu Eksiklerim, Yanl
 (odak zamanlayıcı dahil), Sıralama; açılır-kapanır **Test Geçmişi** (Oluşturulan Yaprak Testler, Deneme Sınavları)
 ve **Paketler** (Paket Satın Al, Paketlerim, Ödemelerim — ödeme sistemi henüz yok, fiyatlar örnek); Ayarlar.
 Açık / koyu tema, mobil uyum, klavye kısayolları (`/` arama, sınavda A–E ve ← →).
+Sınav ekranı (test ve deneme) tam ekrana alınabilir: başlıktaki düğme ya da **F** tuşu; tarayıcı izin vermiyorsa
+(iPhone Safari, gömülü sayfalar) pencereyi kaplar. Ayarlar → Sınav ekranı ile her sınav tam ekranda başlar.
 
 Sonuç Analizi, Sıralama, Tamamlanan denemeler ve Genel Bakış istatistikleri **örnek veridir** ("Örnek veri"
 etiketi). Kullanıcının kendi oluşturduğu testler, çözdüğü denemeler, geçmişi, yanlış defteri, planı ve profili
