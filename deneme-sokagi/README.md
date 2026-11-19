@@ -69,7 +69,7 @@ gerçektir ve hesap başına saklanır.
   sonra **Çöz** ya da **PDF indir**. Birden çok branşta sorular branşlar arasında dengeli paylaştırılır ve testte
   branş branş sıralanır.
 - **Denemelerim → Hemen çöz** de iki adımlıdır: deneme(ler) seç, isteğe bağlı branş seç, **Başla** ya da **PDF indir**.
-- PDF'lerde **kaynakça** isteğe bağlıdır: *Ekleme*, *Sona ekle* (cevap anahtarından sonra) ya da *Ayrı sayfada*.
+- PDF'te **cevap anahtarı** seçilir: *Sona ekle* (varsayılan, soruların ardından), *Ayrı sayfada* ya da *Ekleme*.
   Seçim iki ekranda ve Oluşturulan Yaprak Testler → Önizle penceresinde yapılır, hesap başına hatırlanır.
   Birlikte çözülen denemelerin sonucu ayrı ayrı kaydedilir; parça parça çözülen bir denemenin neti toplanır.
 - Sorular kaynaktaki sırayla gelir; birden çok kaynakta önce soru bankaları, sonra denemeler kullanılır.

@@ -83,20 +83,12 @@
 
 /* ---- answer key ---- */
 .ts-key { break-inside: avoid; margin-top: 1mm; }
-.ts-key h4, .ts-ref h4 { margin: 0 0 2mm; height: 6.2mm; display: flex; align-items: center; padding-left: 1.6mm; border-radius: 1.5mm 0 0 1.5mm;
+.ts-key h4 { margin: 0 0 2mm; height: 6.2mm; display: flex; align-items: center; padding-left: 1.6mm; border-radius: 1.5mm 0 0 1.5mm;
   background: var(--ts-bar); color: #fff; font: 700 9pt/1 "DS Head", sans-serif; letter-spacing: .3pt; }
 .ts-key-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2mm 2mm; font: 400 8.1pt/1.4 "DS Head", sans-serif; color: var(--ts-num); }
 .ts-key-grid b { color: var(--ts-magenta); margin-left: 1mm; }
 .ts-key h5 { margin: 2.6mm 0 1.6mm; font: 700 7.6pt/1.2 "DS Head", sans-serif; color: var(--ts-magenta); letter-spacing: .3pt; }
 .ts-key p { margin: 2mm 0 0; font: 400 6.5pt "DS Head", sans-serif; color: var(--ts-code); }
-
-/* ---- kaynakça (optional: after the answer key or on its own page) ---- */
-.ts-ref { break-inside: avoid; margin-top: 3mm; }
-.ts-ref ol { margin: 0; padding-left: 4.6mm; font: 400 6.6pt/1.45 "DS Head", sans-serif; color: var(--ts-code); }
-.ts-ref li { margin: 0 0 2.2mm; padding-left: .6mm; }
-.ts-ref li::marker { font-weight: 700; color: var(--ts-magenta); }
-.ts-ref li b { display: block; margin-bottom: .4mm; font: 700 7.6pt/1.3 "DS Head", sans-serif; color: var(--ts-num); }
-.ts-ref li span { display: block; }
 
 /* ---- footer ---- */
 .ts-foot { position: absolute; left: 10.2mm; right: 14.7mm; bottom: 8.5mm; height: 6.1mm; display: flex; align-items: center; justify-content: space-between; font: 400 11.5pt/1 "DS Head", sans-serif; }

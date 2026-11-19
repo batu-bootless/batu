@@ -2,7 +2,7 @@
    DSYaprakTest.render(target, test, bank, { base }) lays the questions out on A4 pages:
    column 1 top→bottom, then column 2, then the next page — the same reading order as a
    question bank. A question is never split; it moves to the next column if it does not fit.
-   test.kaynakca: 'sona' adds the source list after the answer key, 'ayri' puts it on a page of its own.
+   test.cevapAnahtari: true = answer key after the questions, 'ayri' = on a page of its own, false = none.
    Used by the panel preview, sablon/yaprak-test.html (print / PDF) and tools/yaprak-test-pdf.js. */
 (function (global) {
   'use strict';
@@ -117,43 +117,6 @@
     return el;
   }
 
-  // "1, 2, 3, 5, 7, 8" → "1–3, 5, 7–8"
-  function ranges(nums) {
-    const out = [];
-    let a = null, p = null;
-    const flush = () => { if (a !== null) out.push(a === p ? `${a}` : `${a}–${p}`); };
-    for (const n of nums) {
-      if (a !== null && n === p + 1) { p = n; continue; }
-      flush(); a = p = n;
-    }
-    flush();
-    return out.join(', ');
-  }
-  const groupBy = (list, key) => {
-    const m = new Map();
-    for (const x of list) { const k = key(x); if (!m.has(k)) m.set(k, []); m.get(k).push(x); }
-    return m;
-  };
-  // Kaynakça: every source the questions come from, which numbers of this test it gave and where they are in it.
-  function kaynakcaEl(qs, numOf, secOfQ, bank) {
-    const src = Object.fromEntries(((bank && bank.kaynaklar) || []).map((k) => [k.id, k]));
-    const items = [...groupBy(qs, (q) => q.kaynak)].map(([id, list]) => {
-      const k = src[id] || {};
-      const here = [...groupBy(list, (q) => secOfQ[q.id].ad)].map(([sec, l]) => (sec ? `${sec} ` : '') + ranges(l.map((q) => numOf[q.id])));
-      const there = [...groupBy(list, (q) => q.test || '')].map(([t, l]) => {
-        const r = ranges(l.map((q) => q.no).filter((n) => n != null).sort((x, y) => x - y));
-        return t ? `Test ${t}${r ? ` (${r})` : ''}` : r;
-      }).filter(Boolean);
-      const info = [k.sinav || list[0].sinav, k.tur === 'deneme' ? 'Deneme' : 'Soru bankası'].filter(Boolean).join(' · ');
-      return `<li><b>${esc(k.ad || list[0].kaynak_ad || id)}</b><span>${esc(info)}</span>` +
-        `<span>Bu testteki sorular: ${esc(here.join(' · '))}</span>${there.length ? `<span>Kaynaktaki yeri: ${esc(there.join(', '))}</span>` : ''}</li>`;
-    });
-    const el = document.createElement('div');
-    el.className = 'ts-ref';
-    el.innerHTML = `<h4>KAYNAKÇA</h4><ol>${items.join('')}</ol>`;
-    return el;
-  }
-
   const bandHtml = (test) => `<header class="ts-band">${LOGO}
       <h1 class="ts-title">${esc(test.ust || 'DENEME')}</h1>
       <div class="ts-subject">${esc(test.baslik || test.ders || '')}</div>
@@ -244,6 +207,7 @@
     }
 
     if (test.cevapAnahtari !== false && qs.length) {
+      if (test.cevapAnahtari === 'ayri') newPage();
       for (const [k, sec] of secs.entries()) {
         const key = document.createElement('div');
         key.className = 'ts-key';
@@ -252,12 +216,6 @@
           (k === secs.length - 1 && qs.some((q) => !q.cevap) ? '<p>— : Kaynakta cevap anahtarı bulunamayan soru.</p>' : '');
         await place(key);
       }
-    }
-
-    const kaynakca = test.kaynakca === true ? 'sona' : test.kaynakca;
-    if ((kaynakca === 'sona' || kaynakca === 'ayri') && qs.length) {
-      if (kaynakca === 'ayri') newPage();
-      await place(kaynakcaEl(qs, numOf, secOfQ, bank));
     }
 
     pages.forEach((p, i) => { p.querySelector('.ts-pg').textContent = String(i + 1); });

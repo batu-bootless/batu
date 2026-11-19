@@ -82,15 +82,15 @@ const pdfPages = (file) => (fs.readFileSync(file, 'latin1').match(/\/Type \/Page
     return `${dl.suggestedFilename()}, ${pdfPages(file)} sayfa`;
   });
 
-  await step('PDF kaynakçası ayrı sayfada', async () => {
+  await step('PDF cevap anahtarı ayrı sayfada', async () => {
     await p.click('.pdf-opt input[value="ayri"] + span'); await p.click('[data-preset="5"]');
     const [dl] = await Promise.all([p.waitForEvent('download', { timeout: 60000 }), p.click('[data-make="indir"]')]);
-    const file = path.join(tmp, 'kaynakca-' + dl.suggestedFilename()); await dl.saveAs(file);
+    const file = path.join(tmp, 'anahtar-' + dl.suggestedFilename()); await dl.saveAs(file);
     const n = pdfPages(file);
     if (await p.$eval('.pdf-opt input:checked', (x) => x.value) !== 'ayri') throw new Error('seçim hatırlanmadı');
-    await p.click('.pdf-opt input[value="yok"] + span');
-    if (n < 2) throw new Error(`kaynakça sayfası yok (${n} sayfa)`);
-    return `${n} sayfa (sorular + kaynakça)`;
+    await p.click('.pdf-opt input[value="sona"] + span');
+    if (n < 2) throw new Error(`cevap anahtarı ayrı sayfada değil (${n} sayfa)`);
+    return `${n} sayfa (sorular + cevap anahtarı)`;
   });
 
   await step('Deneme: seç → başla → yarıda kapat (soru harcanmaz)', async () => {

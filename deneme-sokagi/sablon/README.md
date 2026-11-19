@@ -12,9 +12,8 @@ konu çubuğu, TEST / DENEME rozeti), iki sütun ve aralarında dikey site adres
 numarası, iki yana yaslı metin, kalın soru cümlesi, şıklar (kısa olanlar yan yana), her sorunun altında künye
 (2 harf + 5 rakam, ör. `[#YD48213]`), altta site adresi ve sayfa rozeti, isteğe bağlı cevap anahtarı.
 
-**Kaynakça** (isteğe bağlı, `test.kaynakca`): `'sona'` cevap anahtarından sonra, `'ayri'` ayrı bir sayfada
-**KAYNAKÇA** bölümü ekler; verilmezse eklenmez. Her kaynak için adı, sınavı ve türü, bu testteki soru numaraları
-(denemede branş branş) ve soruların kaynaktaki yeri ("Test 1 (1–10)") yazılır. Panelde kullanıcı seçer.
+**Cevap anahtarı** (`test.cevapAnahtari`): `true` soruların ardından (varsayılan), `'ayri'` ayrı bir sayfada,
+`false` hiç eklenmez. Panelde kullanıcı seçer.
 
 **Deneme düzeni** (`bolumlu`, birden çok testli kaynaklarda kendiliğinden): her test ("TÜRKÇE TESTİ · 40 soru")
 yeni sayfada pembe bir şeritle başlar, numaralar her testte 1'den başlar, cevap anahtarı test test verilir.
