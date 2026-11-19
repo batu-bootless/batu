@@ -990,14 +990,37 @@
     if (action === 'indir') downloadTest(test, false); else solveTest(test.id);
     if (routeKey() === 'test-olustur') render(false);
   }
-  // Opens the print page; it prints itself once (→ "PDF olarak kaydet").
-  function downloadTest(test, log = true) {
-    try { localStorage.setItem('ds-autoprint', test.id); } catch (e) { /* the page still opens */ }
-    const a = document.createElement('a');
-    a.href = `sablon/yaprak-test.html#${test.id}`; a.target = '_blank'; a.rel = 'noopener';
-    document.body.appendChild(a); a.click(); a.remove();
-    if (log) logActivity({ tur: 'indirildi', ad: test.baslik, detay: `Yaprak test ${pad2(test.no)} · ${test.soruIds.length} soru`, ref: test.id });
-    toast('PDF sayfası açıldı. Yazdırma penceresinde "PDF olarak kaydet"i seç.');
+  // PDF is built inside the page (sablon/pdf-indir.js) and saved as a file: no new tab, no print dialog.
+  let pdfBusy = false;
+  function progressToast(msg) {
+    let el = $('#toasts .toast.prog');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'toast prog';
+      el.innerHTML = `${icon('download')}<span></span>`;
+      $('#toasts').appendChild(el);
+    }
+    el.querySelector('span').textContent = msg;
+    return el;
+  }
+  async function downloadTest(test, log = true) {
+    if (pdfBusy) return toast('PDF hazırlanıyor, lütfen bekle');
+    if (!window.DSPdf || !window.DSYaprakTest) return toast('PDF şablonu yüklenemedi');
+    pdfBusy = true;
+    const prog = progressToast('PDF hazırlanıyor…');
+    try {
+      const blob = await window.DSPdf.build(test, BANK, { base: '', onProgress: (i, n) => progressToast(`PDF hazırlanıyor… ${i}/${n} sayfa`) });
+      prog.remove();
+      const r = await window.DSPdf.save(blob, window.DSPdf.fileName(test.baslik));
+      if (log) logActivity({ tur: 'indirildi', ad: test.baslik, detay: `Yaprak test ${pad2(test.no)} · ${test.soruIds.length} soru`, ref: test.id });
+      toast(r && r.status === 'delivered' ? 'PDF gönderildi' : 'PDF indirildi');
+    } catch (e) {
+      prog.remove();
+      const code = e && e.code;
+      toast(code === 'declined' ? 'İndirme iptal edildi' : code === 'rate_limited' ? 'Bir indirme onayı zaten açık' : `PDF oluşturulamadı${e && e.message ? ': ' + e.message : ''}`);
+    } finally {
+      pdfBusy = false;
+    }
   }
 
   async function openTestPreview(test) {
