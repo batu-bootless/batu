@@ -30,7 +30,9 @@ tarayıcıda) açın.
   toplam soru ve süre görünür; **Başla** ya da **PDF indir**. Birlikte çözülen denemelerin sonucu ayrı ayrı kaydedilir;
   test test çözülen bir denemenin neti toplanır.
 - Bir deneme, **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
-- Bir kullanıcıya verilmiş (teste eklenmiş, denemede gösterilmiş) ya da çözülmüş soru ona **bir daha gösterilmez**.
+- Bir kullanıcıya verilmiş (teste eklenmiş, denemede gösterilmiş) ya da çözülmüş soru, o kaynağın bütün soruları
+  görülene kadar **bir daha gösterilmez**. Bütün soruları görülen kaynak kilitlenmez: "yeniden çözülebilir" olur ve
+  seçildiğinde yeni bir tur başlar (turun içinde sorular yine tekrar etmez).
   Demo modunda bu kayıt tarayıcıda tutulur; canlı sistemde kullanıcı hesabına bağlanmalıdır.
 - Genel Bakış'taki **Geçmiş** kartı en son çözülen, oluşturulan ve indirilen testleri gösterir.
 
