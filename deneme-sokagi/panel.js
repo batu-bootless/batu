@@ -918,6 +918,17 @@
     </div>`;
   }
 
+  // PDF option on both builders and in the test preview: no kaynakça, after the answer key, or on a page of its own.
+  const KAYNAKCA = [['yok', 'Ekleme'], ['sona', 'Sona ekle'], ['ayri', 'Ayrı sayfada']];
+  const kaynakcaPref = () => { const v = store.get(ukey('pdf-kaynakca'), 'yok'); return KAYNAKCA.some(([k]) => k === v) ? v : 'yok'; };
+  const kaynakcaSeg = (name, cls = '') => `<div class="seg${cls}" role="radiogroup" aria-label="Kaynakça">${KAYNAKCA.map(([k, l]) =>
+    `<label><input type="radio" name="${name}" value="${k}" ${k === kaynakcaPref() ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div>`;
+  const kaynakcaHtml = () => `<div class="pdf-opt"><div><b>Kaynakça</b><span>PDF'te soruların hangi kaynaktan geldiği listelensin mi?</span></div>${kaynakcaSeg('kaynakca')}</div>`;
+  const bindKaynakca = (name, then) => $$(`input[name="${name}"]`).forEach((x) => x.addEventListener('change', () => {
+    store.set(ukey('pdf-kaynakca'), x.value);
+    if (then) then(x.value);
+  }));
+
   function vBuilderCount() {
     const b = state.b;
     const parts = [...new Set(BANK.sorular.filter((q) => b.sec.includes(q.kaynak) && offered(q)).map(bolumOf))].filter(Boolean);
@@ -949,6 +960,7 @@
         <input type="range" id="b-range" min="1" max="${max}" value="${b.adet}" aria-label="Soru sayısı">
         <div class="presets" role="group" aria-label="Hazır soru sayıları">${presets.map((n) => `<button type="button" class="${n === b.adet ? 'on' : ''}" data-preset="${n}">${n === max ? `Tümü · ${n}` : n}</button>`).join('')}</div>
         <p class="count-sub">Önerilen süre <b id="b-dk">${dkFor(fresh.slice(0, b.adet))} dk</b> · Deneme Sokağı şablonunda, kaynaktaki soru sırasıyla</p>
+        ${kaynakcaHtml()}
         <div class="make-row"><button type="button" class="btn btn-blue btn-lg btn-play" data-make="coz">${icon('play')} Çöz</button><button type="button" class="btn btn-yellow btn-lg" data-make="indir">${icon('download')} PDF indir</button></div>
         <p class="small muted">Oluşturduğun test "Oluşturulan Yaprak Testler" sayfasına kaydedilir. İçindeki sorular sana bir daha gösterilmez.</p>
       </section>
@@ -1013,6 +1025,7 @@
     $$('[data-step]').forEach((x) => x.addEventListener('click', () => set(b.adet + +x.dataset.step)));
     $$('[data-preset]').forEach((x) => x.addEventListener('click', () => set(+x.dataset.preset)));
     $$('[data-make]').forEach((x) => x.addEventListener('click', () => createTest(x.dataset.make)));
+    bindKaynakca('kaynakca');
   }
   function createTest(action) {
     newRound(state.b.sec);
@@ -1056,7 +1069,7 @@
     pdfBusy = true;
     const prog = progressToast('PDF hazırlanıyor…');
     try {
-      const blob = await window.DSPdf.build(test, BANK, { base: '', onProgress: (i, n) => progressToast(`PDF hazırlanıyor… ${i}/${n} sayfa`) });
+      const blob = await window.DSPdf.build({ ...test, kaynakca: kaynakcaPref() }, BANK, { base: '', onProgress: (i, n) => progressToast(`PDF hazırlanıyor… ${i}/${n} sayfa`) });
       prog.remove();
       const r = await window.DSPdf.save(blob, window.DSPdf.fileName(test.baslik));
       if (log) logActivity({ tur: 'indirildi', ad: test.baslik, detay: `Yaprak test ${pad2(test.no)} · ${test.soruIds.length} soru`, ref: test.id });
@@ -1075,7 +1088,8 @@
     root.innerHTML = `<div class="modal-back"><div class="modal wide" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
       <div class="pl-head"><div><h2 id="pvTitle">${esc(test.baslik)}</h2><p>Yaprak test ${String(test.no).padStart(2, '0')} · ${test.soruIds.length} soru · ${test.mod === 'gorsel' ? 'Görsel' : 'Metin'}${test.kaynak ? ' · ' + esc(test.kaynak) : ''}</p></div><span style="margin-left:auto"></span><button class="icon-btn" data-pv="close" aria-label="Kapat">${icon('x')}</button></div>
       <div class="pv-body"><p class="pv-loading">Sayfalar hazırlanıyor…</p><div class="pv-doc ds-doc preview" id="pvDoc"></div></div>
-      <div class="pl-foot"><span class="small muted" id="pvInfo"></span><span class="spacer"></span>
+      <div class="pl-foot pv-foot"><span class="small muted" id="pvInfo"></span><span class="spacer"></span>
+        <span class="pv-opt"><span class="small muted">Kaynakça</span>${kaynakcaSeg('pv-kaynakca', ' seg-sm')}</span>
         <button class="btn btn-ghost btn-sm" data-pv="pdf">${icon('download')} PDF indir</button>
         ${test.sonuc ? `<span class="chip good">Çözüldü · ${fmt(test.sonuc.net)} net</span>` : `<button class="btn btn-yellow btn-sm btn-play" data-pv="solve">${icon('play')} Testi çöz</button>`}</div></div></div>`;
     const close = () => { document.removeEventListener('keydown', onKey); root.innerHTML = ''; };
@@ -1091,10 +1105,14 @@
     };
     if (!window.DSYaprakTest) { $('.pv-loading').textContent = 'Şablon yüklenemedi.'; return; }
     const doc = $('#pvDoc');
-    const r = await window.DSYaprakTest.render(doc, test, BANK, { base: '' });
-    const loading = $('.pv-loading'); if (loading) loading.remove();
-    doc.style.zoom = Math.min(1, (doc.parentElement.clientWidth - 32) / 794);
-    $('#pvInfo').textContent = `${r.pages} sayfa · A4 · Deneme Sokağı şablonu`;
+    const draw = async () => {
+      const r = await window.DSYaprakTest.render(doc, { ...test, kaynakca: kaynakcaPref() }, BANK, { base: '' });
+      const loading = $('.pv-loading'); if (loading) loading.remove();
+      doc.style.zoom = Math.min(1, (doc.parentElement.clientWidth - 32) / 794);
+      $('#pvInfo').textContent = `${r.pages} sayfa · A4 · Deneme Sokağı şablonu`;
+    };
+    bindKaynakca('pv-kaynakca', draw);
+    await draw();
   }
   function solveTest(id) {
     const t = ytests.find((x) => x.id === id);
@@ -1209,6 +1227,7 @@
           <p class="small muted">Bir ya da birkaç branş seç; yalnızca o branşların soruları gelir. Seçmezsen deneme tüm branşlarla çözülür.</p></div>` : ''}
         <div class="dn-stats"><div><b>${qs.length}</b><span>soru</span></div><div><b>${dk}</b><span>dakika</span></div><div><b>${groups.length}</b><span>deneme</span></div></div>
         <ul class="dn-list">${groups.map((g) => `<li><b>${esc(g.k.ad)}</b><span>${g.qs.length} soru · ${esc([...new Set(g.qs.map(bolumOf))].filter(Boolean).join(' · '))}</span></li>`).join('')}</ul>
+        ${kaynakcaHtml()}
         <div class="make-row"><button type="button" class="btn btn-blue btn-lg btn-play" data-dn="basla">${icon('play')} Başla</button><button type="button" class="btn btn-yellow btn-lg" data-dn="pdf">${icon('download')} PDF indir</button></div>
         <p class="small muted">Yarıda kapatırsan sorular harcanmaz; daha sonra yeniden başlayabilirsin. Daha önce gördüğün sorular gelmez.</p>
       </section>
@@ -1230,6 +1249,7 @@
     }));
     $('[data-dn="basla"]').addEventListener('click', startDenemeSel);
     $('[data-dn="pdf"]').addEventListener('click', denemeSelPdf);
+    bindKaynakca('kaynakca');
   }
   const bransAd = () => { const b = state.dn.branslar; return !b.length ? '' : b.length === 1 ? `${b[0]} Branş Denemesi` : b.join(' + '); };
   const dnTitle = (groups) => `${groups.length === 1 ? groups[0].k.ad : `${groups.length} deneme`}${bransAd() ? ` · ${bransAd()}` : ''}`;

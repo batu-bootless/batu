@@ -43,7 +43,8 @@ bir IIFE'dir, dışarıya bir şey açmaz.
 `DSYaprakTest.render(hedef, test, banka, { base })` testi A4 sayfalara dizer: sütun 1 → sütun 2 → sonraki sayfa,
 soru bölünmez, sorular arasında eşit boşluk. `test.bolumlu` ise her branş yeni sayfada şeritle başlar, numaralar
 branş içinde 1'den başlar. `rich()` metin işaretlemesini (`**kalın**`, `__altı çizili__`, `x^{2}`, `a_{1}`,
-`{pay/payda}`) HTML'e çevirir; panelin sınav ekranı da aynı fonksiyonu kullanır. Ölçüler referans PDF'e bağlıdır:
+`{pay/payda}`) HTML'e çevirir; panelin sınav ekranı da aynı fonksiyonu kullanır. `test.kaynakca` (`sona` | `ayri`)
+cevap anahtarından sonra ya da ayrı sayfada kaynakça ekler. Ölçüler referans PDF'e bağlıdır:
 `npm run sablon-kontrol`.
 
 ## Veri modeli — soru bankası
@@ -94,6 +95,7 @@ tarayıcı-geneli kayıtları ilk açan hesaba bir kez taşınır (`userData()`)
 | `reg` | Yaklaşan Türkiye geneli denemelere kayıtlar |
 | `profile` | Ayarlar: ad, il, okul, hedef sınav/alan, hedef net, bildirim tercihleri |
 | `notif-read` | Bildirimler okundu mu |
+| `pdf-kaynakca` | PDF kaynakça tercihi: `yok` / `sona` / `ayri` |
 
 Tarayıcı tercihleri (hesaptan bağımsız): `ds-theme` (açık/koyu), `ds-sb-groups` (yan menü grupları),
 `ds-pomo-*` (odak zamanlayıcı). Demo hesapları: `ds-demo-users`, `ds-demo-session`. Girişten sonra dönülecek

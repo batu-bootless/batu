@@ -117,7 +117,8 @@ node tools/yaprak-test-pdf.js --test test.json --out test.pdf   # paneldeki test
 
 Seçenekler: `--kaynak <id>`, `--adet N`, `--mod gorsel|metin`, `--baslik "…"`, `--no N`,
 `--ust "…"` (bant başlığı, varsayılan DENEME), `--rozet DENEME` (rozet yazısı, varsayılan TEST),
-`--bolumlu` (deneme düzeni; birden çok testli kaynakta kendiliğinden), `--karistir`, `--cevapsiz`.
+`--bolumlu` (deneme düzeni; birden çok testli kaynakta kendiliğinden), `--karistir`, `--cevapsiz`,
+`--kaynakca [sona|ayri]` (kaynakça: cevap anahtarından sonra ya da ayrı bir sayfada).
 Panel aynı şablonu kullanır: "Önizle" ve "PDF indir" (PDF sayfa içinde üretilir, `sablon/pdf-indir.js`).
 
 ## 4. Şablon kontrolü — `sablon-kontrol.js`

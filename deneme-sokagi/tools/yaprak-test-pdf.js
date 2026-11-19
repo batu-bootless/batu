@@ -9,6 +9,7 @@
 // Seçenekler: --kaynak <id>  --konu "a,b"  --adet N  --mod gorsel|metin  --baslik "..."  --no N  --ust "DENEME"  --rozet DENEME
 //             --bolumlu (deneme: her test yeni sayfada, numara her testte 1'den; birden çok test varsa kendiliğinden açılır)
 //             --karistir (kaynak sırası yerine karışık)  --cevapsiz (cevap anahtarı ekleme)
+//             --kaynakca [sona|ayri] (kaynakça: cevap anahtarından sonra ya da ayrı sayfada)
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
@@ -45,6 +46,7 @@ function fromBank() {
   const out = arg('out');
   if (!out) { console.error('Kullanım: node tools/yaprak-test-pdf.js (--test test.json | --konu "...") --out cikti.pdf'); process.exit(1); }
   const test = arg('test') ? JSON.parse(fs.readFileSync(arg('test'), 'utf8')) : fromBank();
+  if (arg('kaynakca')) test.kaynakca = arg('kaynakca') === 'ayri' ? 'ayri' : 'sona';
   const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.addInitScript((t) => { window.__DS_TEST__ = t; }, test);

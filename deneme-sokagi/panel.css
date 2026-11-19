@@ -650,6 +650,9 @@ table.t { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 56
   .pl-side h3 { display: none; }
   .pl-foot { padding: 10px 14px; gap: 8px; flex-wrap: nowrap; }
   .pl-foot .pl-lbl { display: none; }
+  .pv-foot { flex-wrap: wrap; }
+  .pv-foot #pvInfo { display: none; }
+  .pv-foot .pv-opt { order: -1; flex: 1 0 100%; justify-content: space-between; }
   .modal.player .pl-head h2 { font-size: 15.5px; line-height: 1.3; }
   .modal.player .pl-head p { display: none; }
 }
@@ -765,6 +768,11 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
 .presets button.on { border-color: var(--brand); background: var(--brand-50); color: var(--brand); }
 .count-sub { text-align: center; color: var(--muted); font-size: 14px; }
 .make-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pdf-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; padding: 12px 0; border-top: 1px solid var(--border); }
+.pdf-opt b { display: block; font-size: 14px; }
+.pdf-opt > div:first-child > span { font-size: 12.5px; color: var(--muted); }
+.seg-sm span { padding: 5px 10px; font-size: 12.5px; }
+.pv-opt { display: inline-flex; align-items: center; gap: 8px; }
 .btn-lg { height: 54px; font-size: 16px; border-radius: 16px; }
 .btn-lg svg { width: 20px; height: 20px; }
 .b-sum .ring { align-self: center; }
