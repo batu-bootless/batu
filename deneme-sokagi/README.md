@@ -52,7 +52,7 @@ docs/MIMARI.md                           Mimari, veri modeli, saklanan veriler, 
 
 ## Öğrenci paneli
 
-Genel Bakış, Denemelerim, Yaprak Test Oluştur, Sonuç Analizi, Konu Eksiklerim, Yanlış Defteri, Çalışma Planı
+Genel Bakış, Denemelerim, Test Oluştur, Sonuç Analizi, Konu Eksiklerim, Yanlış Defteri, Çalışma Planı
 (odak zamanlayıcı dahil), Sıralama; açılır-kapanır **Test Geçmişi** (Oluşturulan Yaprak Testler, Deneme Sınavları)
 ve **Paketler** (Paket Satın Al, Paketlerim, Ödemelerim — ödeme sistemi henüz yok, fiyatlar örnek); Ayarlar.
 Açık / koyu tema, mobil uyum, klavye kısayolları (`/` arama, sınavda A–E ve ← →).
@@ -63,7 +63,7 @@ gerçektir ve hesap başına saklanır.
 
 ## Soru havuzu kuralları
 
-- **Yaprak Test Oluştur** iki adımlıdır. **1. Kaynak seç:** bütün denemeler ve soru bankaları kart olarak
+- **Test Oluştur** iki adımlıdır. **1. Kaynak seç:** bütün denemeler ve soru bankaları kart olarak
   listelenir (önce denemeler; her grupta önce hedef sınavınkiler); bir ya da birkaçı seçilir. **2. Soru sayısı:**
   isteğe bağlı branş seçimi (Tüm branşlar ya da Türkçe, Temel Matematik…; birden çok seçilebilir), soru sayısı,
   sonra **Çöz** ya da **PDF indir**. Birden çok branşta sorular branşlar arasında dengeli paylaştırılır ve testte

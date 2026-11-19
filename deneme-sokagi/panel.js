@@ -215,7 +215,7 @@
   const state = {
     exam: LAST.id, analizSubj: 'mat', eksikFilter: 'all', wrongFilter: 'Tümü', examTab: 'pratik', rankTab: 'tr',
     histFilter: 'Tümü', pkgTab: 'Tümü', billing: 'yillik',
-    b: { sec: [], adim: 1, adet: 10, branslar: [] },          // Yaprak Test Oluştur: sources, step, question count, branches
+    b: { sec: [], adim: 1, adet: 10, branslar: [] },          // Test Oluştur: sources, step, question count, branches
     dn: { sec: [], adim: 1, branslar: [] },   // Denemelerim → Hemen çöz: chosen denemeler and branches (none = all)
   };
   let user = null;
@@ -434,7 +434,7 @@
     return `<section class="card s-12">
       <div class="card-h"><div><h2>Geçmiş</h2><p>En son çözdüğün, oluşturduğun ve indirdiğin testler</p></div><a class="link-btn" href="#yaprak-testler">Tüm testler</a></div>
       ${list.length ? `<ul class="act">${list.map((a, i) => { const [ic, lbl, cls] = ACT[a.tur] || ACT.olusturuldu; return `<li style="animation-delay:${i * 50}ms"><span class="act-ic ${cls}">${icon(ic)}</span><span class="act-txt"><b>${esc(a.ad)}</b><span>${esc(a.detay || '')}</span></span><span class="act-meta"><span class="chip ${cls}">${lbl}${a.net != null ? ' · ' + fmt(a.net) + ' net' : ''}</span><small>${ago(a.at)}</small></span></li>`; }).join('')}</ul>`
-        : `<div class="act-empty"><p class="muted">Henüz bir test çözmedin. İlk yaprak testini oluşturduğunda burada görünecek.</p><a class="btn btn-yellow btn-sm" href="#test-olustur">${icon('plus')} Yaprak test oluştur</a></div>`}
+        : `<div class="act-empty"><p class="muted">Henüz bir test çözmedin. İlk yaprak testini oluşturduğunda burada görünecek.</p><a class="btn btn-yellow btn-sm" href="#test-olustur">${icon('plus')} Test oluştur</a></div>`}
     </section>`;
   }
 
@@ -843,7 +843,7 @@
     $$('[data-notif]').forEach((c) => c.addEventListener('change', () => toast(c.checked ? 'Bildirim açıldı' : 'Bildirim kapatıldı')));
   }
 
-  /* --- Yaprak Test Oluştur: 1) the user picks the denemeler / soru bankaları, 2) the test and how many questions --- */
+  /* --- Test Oluştur: 1) the user picks the denemeler / soru bankaları, 2) the test and how many questions --- */
   const nextTestNo = () => ytests.reduce((m, t) => Math.max(m, t.no || 0), 0) + 1;
   // Branch (test) of a question; sources that name the same branch differently are joined.
   const BRANS_ALIAS = { TYT: { Matematik: 'Temel Matematik' } };
@@ -889,7 +889,7 @@
     return vBuilderSources();
   }
 
-  // Selectable source card, shared by Yaprak Test Oluştur and Denemelerim. o.chip / o.meta add deneme details.
+  // Selectable source card, shared by Test Oluştur and Denemelerim. o.chip / o.meta add deneme details.
   function srcCard(k, sel, o = {}) {
     const all = srcQs(k.id), round = srcAllSeen(k.id), fresh = all.filter(offered).length, on = sel.includes(k.id);
     const parts = [...new Set(all.map(bolumOf))].filter(Boolean);
@@ -910,7 +910,7 @@
     const group = (title, list) => (list.length ? `<h3 class="src-h">${title}<span>${list.length}</span></h3><div class="src-grid">${list.map((k) => srcCard(k, state.b.sec)).join('')}</div>` : '');
     return `<div class="view">
       <section class="card s-12 qb-src">
-        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Soruların geleceği denemeleri seç, sonra soru sayısını belirle. Birden fazla seçebilirsin.</p></div>${stepsHtml(1)}</div>
+        <div class="card-h"><div><h2>Test oluştur</h2><p>Soruların geleceği denemeleri seç, sonra soru sayısını belirle. Birden fazla seçebilirsin.</p></div>${stepsHtml(1)}</div>
         <div class="src-tools"><button type="button" class="btn btn-ghost btn-sm" data-src-all ${open.length ? '' : 'disabled'}>${icon('check')} Tümünü seç</button><button type="button" class="btn btn-ghost btn-sm" data-src-none>Seçimi temizle</button></div>
         ${group('Denemeler', den)}${group('Soru bankaları', ban)}
         <div class="src-foot"><span id="srcSum" class="small muted"></span><span class="spacer"></span><button type="button" class="btn btn-blue" data-src-next>Devam et ${icon('arrow')}</button></div>
@@ -948,7 +948,7 @@
     const pct = pool.length ? (pool.length - max) / pool.length * 100 : 0;
     return `<div class="view">
       <section class="card s-8 qb-builder">
-        <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Kaç soru istediğini seç. Sorular, daha önce karşına çıkmamış sorulardan gelir.</p></div>${stepsHtml(2)}</div>
+        <div class="card-h"><div><h2>Test oluştur</h2><p>Kaç soru istediğini seç. Sorular, daha önce karşına çıkmamış sorulardan gelir.</p></div>${stepsHtml(2)}</div>
         <div class="sel-row"><span class="sel-chips">${b.sec.map((id) => `<span class="chip blue">${esc(BANK.src[id].ad)}</span>`).join('')}</span><button type="button" class="btn btn-ghost btn-sm" data-src-back>${icon('back')} Kaynakları değiştir</button></div>
         ${parts.length > 1 ? `<div class="brans"><h3 class="src-h">Branş<span>${parts.length}</span></h3>
           <div class="brans-grid" role="group" aria-label="Branş seç">${bransCard('', 'Tüm branşlar')}${parts.map((p) => bransCard(p, p)).join('')}</div>
@@ -1371,7 +1371,7 @@
     plan: { title: 'Çalışma Planı', v: vPlan, after: afterPlan },
     siralama: { title: 'Sıralama', v: vSiralama, after: afterSiralama },
     ayarlar: { title: 'Ayarlar', v: vAyarlar, after: afterAyarlar },
-    'test-olustur': { title: 'Yaprak Test Oluştur', v: vTestOlustur, after: afterTestOlustur },
+    'test-olustur': { title: 'Test Oluştur', v: vTestOlustur, after: afterTestOlustur },
     'yaprak-testler': { title: 'Oluşturulan Yaprak Testler', v: vYaprakTestler },
     'deneme-gecmisi': { title: 'Deneme Sınavları', v: vDenemeGecmisi },
     'paket-al': { title: 'Paket Satın Al', v: vPaketAl },
