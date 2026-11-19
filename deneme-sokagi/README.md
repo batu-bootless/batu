@@ -24,7 +24,7 @@ Siteyi bir web sunucusundan açın (`npm start` ya da herhangi bir statik sunucu
 | `npm run kontrol` | Bütünlük kontrolü: JavaScript sözdizimi, soru bankası tutarlılığı, PDF şablonu ölçüleri |
 | `npm test` | Uçtan uca test: ana sayfa, kayıt/giriş, bütün panel sayfaları, yaprak test, deneme, PDF indirme, telefon görünümü |
 | `npm run pdf -- …` | Komut satırından PDF (`tools/yaprak-test-pdf.js`, ayrıntılar `tools/README.md`) |
-| `npm run video` | Ana sayfadaki tabletin tanıtım videosunu panelden yeniden kaydeder (ffmpeg gerekir) |
+| `npm run tanitim` | Ana sayfanın tanıtım medyası: tablet videosu (ffmpeg gerekir) ve PDF örnek sayfaları |
 
 Soru aktarma araçları Python ister: `pip install -r tools/requirements.txt`.
 
@@ -32,7 +32,7 @@ Soru aktarma araçları Python ister: `pip install -r tools/requirements.txt`.
 
 ```
 index.html, styles.css, script.js        Ana sayfa
-img/                                     Ana sayfa medyası: tabletteki tanıtım videosu (webm, mp4, kapak görseli)
+img/                                     Ana sayfa medyası: tablet videosu (webm, mp4, kapak), PDF örnek sayfaları
 giris.html, kayit.html, sifre.html       Giriş, kayıt, şifre yenileme (auth.css, auth-pages.js)
 auth.js, auth-config.js                  Hesap katmanı: window.DSAuth (demo ya da Supabase)
 panel.html, panel.css, panel.js          Öğrenci paneli (tek sayfa, # ile gezinme)

@@ -1,11 +1,16 @@
-// Deneme Sokağı — ana sayfadaki tabletin tanıtım videosunu üretir (img/tablet-demo.webm, .mp4, .jpg).
+// Deneme Sokağı — ana sayfanın tanıtım medyasını üretir (img/).
 //
-//   npm run video
+//   npm run tanitim                 → ikisi de
+//   npm run tanitim -- --video      → yalnızca tablet videosu (ffmpeg gerekir)
+//   npm run tanitim -- --pdf        → yalnızca PDF örnek sayfaları
 //
-// Panelde gerçek bir oturum kaydedilir: Test Oluştur → kaynak seç → 10 soru → çöz → sonuç → başa dön.
-// Yalnızca projenin özgün örnek içerikleri görünür (data/yerel kullanılmaz). Kare kare 2x çözünürlükte
-// alınır, ekranda bir imleç çizilir; ffmpeg ile WebM (VP9) ve MP4 (H.264) yapılır, döngüde kesintisiz oynar.
-// Gerekenler: Playwright (npm install) ve PATH'te ffmpeg. Panelin görünümü değişince yeniden çalıştırın.
+// Tablet videosu (img/tablet-demo.webm, .mp4, .jpg): panelde gerçek bir oturum kaydedilir — Test Oluştur →
+// kaynak seç → 10 soru → çöz → sonuç → başa dön. Kareler 2x çözünürlükte alınır, ekranda bir imleç çizilir;
+// ffmpeg ile WebM (VP9) ve MP4 (H.264) yapılır, döngüde kesintisiz oynar.
+// PDF örnek sayfaları (img/pdf-yaprak-test.jpg, img/pdf-deneme.jpg): şablonun ilk sayfaları, "Test Oluştur ve
+// PDF" bölümü için. Örnek PDF ornekler/yaprak-test-tyt-temel-kavramlar.pdf ile aynı test.
+// Yalnızca projenin özgün örnek içerikleri kullanılır (data/yerel kullanılmaz). Panelin ya da şablonun
+// görünümü değişince yeniden çalıştırın. Gerekenler: Playwright (npm install), video için PATH'te ffmpeg.
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -49,12 +54,49 @@ function ffmpeg(args) {
   if (r.status !== 0) throw new Error('ffmpeg hata verdi');
 }
 
+// First pages of two template PDFs, as images for the homepage section.
+async function pdfPages(browser, B) {
+  const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/soru-bankasi.json'), 'utf8'));
+  const ids = (keep) => bank.sorular.filter(keep).sort((a, b) => a.sira - b.sira).map((q) => q.id);
+  const tests = [
+    ['pdf-yaprak-test.jpg', { id: 'tanitim-1', baslik: 'Temel Kavramlar', ders: 'TYT · Temel Matematik', no: 1, mod: 'metin',
+      soruIds: ids((q) => q.kaynak === 'ornek' && q.konu === 'Temel Kavramlar').slice(0, 10), cevapAnahtari: true }],
+    ['pdf-deneme.jpg', { id: 'tanitim-2', baslik: 'YDS Denemesi 1', ders: 'YDS · İngilizce', no: 1, ust: 'DENEME', rozet: 'DENEME', mod: 'metin',
+      soruIds: ids((q) => q.kaynak === 'ds-yds-1'), cevapAnahtari: true }],
+  ];
+  for (const [file, test] of tests) {
+    const ctx = await browser.newContext({ viewport: { width: 900, height: 1200 }, deviceScaleFactor: 0.75 });
+    const p = await ctx.newPage();
+    await p.addInitScript((t) => { window.__DS_TEST__ = t; }, test);
+    await p.goto(B + 'sablon/yaprak-test.html');
+    await p.waitForFunction(() => window.__DS_READY__ === true, null, { timeout: 30000 });
+    await p.locator('.ds-page').first().screenshot({ path: path.join(OUT, file), type: 'jpeg', quality: 86 });
+    await ctx.close();
+  }
+  console.log('PDF sayfaları yazıldı: img/pdf-yaprak-test.jpg, img/pdf-deneme.jpg');
+}
+
 (async () => {
+  const only = ['--video', '--pdf'].filter((f) => process.argv.includes(f));
+  const want = (f) => !only.length || only.includes(f);
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'ds-video-'));
   const srv = await start(0, { yerel: false });
   const B = `http://127.0.0.1:${srv.address().port}/`;
   const browser = await chromium.launch();
+  fs.mkdirSync(OUT, { recursive: true });
   try {
+    if (want('--pdf')) await pdfPages(browser, B);
+    if (want('--video')) await tabletVideo(browser, B, tmp);
+  } finally {
+    await browser.close();
+    srv.close();
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+})().catch((e) => { console.error(e.message); process.exit(1); });
+
+// Tablet video: a real panel session, recorded and encoded.
+async function tabletVideo(browser, B, tmp) {
+  {
     const ctx = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 2 });
     const p = await ctx.newPage();
     const errors = [];
@@ -143,7 +185,6 @@ function ffmpeg(args) {
     const end = frames[frames.length - 1].t + 0.7;
     fs.writeFileSync(list, frames.map((f, i) => `file '${f.file}'\nduration ${Math.max(0.001, (i + 1 < frames.length ? frames[i + 1].t : end) - f.t).toFixed(4)}\n`).join('')
       + `file '${frames[frames.length - 1].file}'\n`);
-    fs.mkdirSync(OUT, { recursive: true });
     const vf = `setpts=PTS/${SPEED},fps=30,scale=${SIZE}:flags=lanczos,format=yuv420p`;
     const src = ['-f', 'concat', '-safe', '0', '-i', list, '-vf', vf, '-an'];
     ffmpeg([...src, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '37', '-row-mt', '1', '-deadline', 'good', '-cpu-used', '2', path.join(OUT, 'tablet-demo.webm')]);
@@ -152,9 +193,5 @@ function ffmpeg(args) {
     const kb = (f) => Math.round(fs.statSync(path.join(OUT, f)).size / 1024);
     console.log(`Video yazıldı: img/tablet-demo.webm (${kb('tablet-demo.webm')} KB), .mp4 (${kb('tablet-demo.mp4')} KB), .jpg · `
       + `${((end - frames[0].t) / SPEED).toFixed(1)} sn, ${frames.length} kare`);
-  } finally {
-    await browser.close();
-    srv.close();
-    fs.rmSync(tmp, { recursive: true, force: true });
   }
-})().catch((e) => { console.error(e.message); process.exit(1); });
+}

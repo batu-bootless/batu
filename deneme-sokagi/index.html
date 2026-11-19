@@ -42,7 +42,7 @@
         </li>
         <li class="has-menu">
           <a href="#neden">Neden Biz</a>
-          <div class="mega small"><div><a href="#">Türkiye Geneli Deneme</a><a href="#">Eğitmenlerimiz</a><a href="#yorumlar">Başarı Hikâyeleri</a></div></div>
+          <div class="mega small"><div><a href="#test-olustur">Test Oluştur ve PDF</a><a href="#">Türkiye Geneli Deneme</a><a href="#">Eğitmenlerimiz</a><a href="#yorumlar">Başarı Hikâyeleri</a></div></div>
         </li>
         <li class="has-menu">
           <a href="#">Kaynaklar</a>
@@ -112,7 +112,7 @@
           <div class="tablet-glass">
             <span class="tablet-camera"></span>
             <div class="tablet-screen">
-              <!-- Panelden gerçek bir oturum (tools/tanitim-video.js ile üretilir), sessiz ve sürekli döngüde -->
+              <!-- Panelden gerçek bir oturum (tools/tanitim-medya.js ile üretilir), sessiz ve sürekli döngüde -->
               <video class="tablet-video" autoplay muted loop playsinline preload="auto" poster="img/tablet-demo.jpg" aria-hidden="true">
                 <source src="img/tablet-demo.webm" type="video/webm">
                 <source src="img/tablet-demo.mp4" type="video/mp4">
@@ -287,6 +287,44 @@
         </div>
         <button class="car-btn next" aria-label="Sonraki">›</button>
         <div class="dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEST OLUŞTUR & PDF ============ -->
+<section class="maker" id="test-olustur">
+  <div class="container split">
+    <div class="split-copy">
+      <span class="eyebrow">Test Oluştur</span>
+      <h2>Kendi Testini Oluştur, PDF Olarak İndir</h2>
+      <p>Denemelerden ve soru bankalarından istediğin kaynağı, branşı ve soru sayısını seç; testin saniyeler içinde hazır. İster ekranda süre tutarak çöz, ister Deneme Sokağı şablonunda PDF olarak indirip kâğıt üzerinde çöz.</p>
+      <ol class="maker-steps">
+        <li><b>Kaynağını seç</b><span>Denemeler ve soru bankaları; istersen birkaçı bir arada</span></li>
+        <li><b>Branşı ve soru sayısını belirle</b><span>Tüm branşlar ya da yalnızca Türkçe, Temel Matematik…</span></li>
+        <li><b>Çöz ya da PDF indir</b><span>Netini anında gör ya da testi A4 olarak yazdır</span></li>
+      </ol>
+      <ul class="maker-feats">
+        <li>Gerçek kitapçık düzeni: A4, iki sütun</li>
+        <li>Cevap anahtarı sonda, ayrı sayfada ya da hiç</li>
+        <li>Her sorunun altında kalıcı künye</li>
+        <li>Çözdüğün sorular bir daha karşına çıkmaz</li>
+      </ul>
+      <div class="maker-cta">
+        <a class="btn btn-blue" href="panel.html#test-olustur">Test Oluştur</a>
+        <a class="btn btn-ghost" href="ornekler/yaprak-test-tyt-temel-kavramlar.pdf" target="_blank" rel="noopener">Örnek PDF'i gör</a>
+      </div>
+    </div>
+    <div class="split-media">
+      <!-- Deneme Sokağı şablonunun gerçek sayfaları (tools/tanitim-medya.js ile üretilir) -->
+      <div class="maker-visual" aria-hidden="true">
+        <div class="blob"></div>
+        <img class="sheet back" src="img/pdf-deneme.jpg" alt="" width="595" height="842" loading="lazy">
+        <img class="sheet front" src="img/pdf-yaprak-test.jpg" alt="" width="595" height="842" loading="lazy">
+        <div class="maker-toast">
+          <span class="mt-ic"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span>
+          <div><b>PDF indirildi</b><small>temel-kavramlar.pdf · A4 · cevap anahtarlı</small></div>
+        </div>
       </div>
     </div>
   </div>

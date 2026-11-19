@@ -10,7 +10,7 @@
 | `kontrol.js` | Bütünlük kontrolü (`npm run kontrol`) |
 | `sablon-kontrol.js` | PDF şablonunun referans ölçüleri |
 | `html-pdf.js`, `ornek-kaynak/` | Örnek kaynak PDF'lerini üretir (araçları denemek için) |
-| `tanitim-video.js` | Ana sayfadaki tabletin tanıtım videosu (`npm run video`) |
+| `tanitim-medya.js` | Ana sayfanın tanıtım medyası: tablet videosu, PDF örnek sayfaları (`npm run tanitim`) |
 
 ## 1. Soru bankası PDF'inden soru çıkarma — `soru_cikar.py`
 
@@ -144,16 +144,22 @@ Anahtar `T<test>-<no>`; verilen alanlar sorunun alanlarının yerine yazılır v
   ölçülerini denetler; bir sorun varsa ayrıntısıyla yazar ve 1 koduyla çıkar.
 - `npm test` (`node tests/smoke.js`) ana akışları gerçek bir tarayıcıda dener.
 
-## 7. Ana sayfa videosu — `tanitim-video.js`
+## 7. Ana sayfa tanıtım medyası — `tanitim-medya.js`
 
-Ana sayfadaki tabletin ekranı, panelden kaydedilmiş sessiz bir videodur ve durmadan döngüde oynar
-(`img/tablet-demo.webm` + `.mp4`, kapak `img/tablet-demo.jpg`). Panelin görünümü değişince yeniden üretin:
+- **Tablet videosu** (`img/tablet-demo.webm` + `.mp4`, kapak `img/tablet-demo.jpg`): ana sayfadaki tabletin
+  ekranı, panelden kaydedilmiş sessiz bir videodur ve durmadan döngüde oynar. Araç panelde bir oturum oynatır
+  (Test Oluştur → kaynak → 10 soru → çöz → sonuç → başa dönüş), 2x kareleri ve çizilen imleci WebM (VP9) ve
+  MP4'e (H.264) çevirir. Sistemde "hareketi azalt" açık olanlara kapak görseli gösterilir (`script.js`).
+- **PDF örnek sayfaları** (`img/pdf-yaprak-test.jpg`, `img/pdf-deneme.jpg`): "Kendi Testini Oluştur, PDF Olarak
+  İndir" bölümündeki sayfalar; şablonun gerçek çıktısıdır. Bölümdeki "Örnek PDF'i gör" bağlantısı
+  `ornekler/yaprak-test-tyt-temel-kavramlar.pdf` dosyasını açar.
+
+Panelin ya da şablonun görünümü değişince yeniden üretin:
 
 ```bash
-npm run video        # PATH'te ffmpeg olmalı
+npm run tanitim                # ikisi de (video için PATH'te ffmpeg olmalı)
+npm run tanitim -- --pdf       # yalnızca PDF sayfaları
+npm run tanitim -- --video     # yalnızca video
 ```
 
-Araç kendi sunucusunu `data/yerel/` olmadan açar (videoda yalnızca projenin özgün örnek içerikleri görünür),
-panelde bir oturum oynatır (Test Oluştur → kaynak → 10 soru → çöz → sonuç → başa dönüş), 2x kareleri ve
-çizilen imleci WebM (VP9) ve MP4'e (H.264) çevirir. Sistemde "hareketi azalt" açık olanlara video yerine
-kapak görseli gösterilir (`script.js`).
+Araç kendi sunucusunu `data/yerel/` olmadan açar: yalnızca projenin özgün örnek içerikleri görünür.
