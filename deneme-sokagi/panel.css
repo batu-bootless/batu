@@ -74,10 +74,13 @@ svg { flex-shrink: 0; }
 .app { display: grid; grid-template-columns: 264px minmax(0, 1fr); min-height: 100vh; }
 
 .sidebar {
-  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
   background: var(--sidebar); color: var(--sidebar-fg); border-right: 1px solid var(--border);
   display: flex; flex-direction: column; gap: 22px; padding: 22px 16px 20px;
 }
+/* logo on top and the Pro card at the bottom always stay in view; only the menu between them scrolls */
+.sidebar > .sb-logo, .sidebar > .sb-plan { flex-shrink: 0; }
+.sidebar > .sb-nav { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; margin: 0 -16px; padding: 0 16px; }
 .sb-logo { display: flex; align-items: center; gap: 8px; padding: 2px 8px; color: var(--brand); font-weight: 800; font-size: 21px; letter-spacing: -.4px; }
 .sb-logo b { font-weight: 800; color: var(--logo-b); margin-left: 2px; }
 .sb-mark { width: 34px; height: 34px; }
