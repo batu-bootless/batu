@@ -1355,6 +1355,8 @@
     $('#pageTitle').textContent = r.title;
     document.title = `${r.title} | Deneme Sokağı`;
     $$('.sb-nav a[data-route]').forEach((a) => a.classList.toggle('active', a.dataset.route === key));
+    const activeGroup = $('.sb-nav a.active') && $('.sb-nav a.active').closest('.sb-group');
+    if (activeGroup && activeGroup.classList.contains('closed')) setSbGroup(activeGroup.dataset.grup, true);   // the open page stays visible
     if (r.after) r.after(animate);
     if (animate) animateIn(content);
     else {
@@ -1615,6 +1617,18 @@
   }
 
   /* ---------------- shell: sidebar, menus, search, theme ---------------- */
+  // Sidebar groups that fold away (Test Geçmişi, Paketler); closed unless the viewer opened them.
+  function setSbGroup(g, on, save = true) {
+    const btn = $(`.sb-toggle[data-grup="${g}"]`), box = $(`#sbg-${g}`);
+    if (!btn || !box) return;
+    btn.setAttribute('aria-expanded', String(on));
+    box.classList.toggle('closed', !on);
+    if (save) { const all = store.get('ds-sb-groups', {}); all[g] = on; store.set('ds-sb-groups', all); }
+  }
+  $$('.sb-toggle').forEach((btn) => {
+    setSbGroup(btn.dataset.grup, !!store.get('ds-sb-groups', {})[btn.dataset.grup], false);
+    btn.addEventListener('click', () => setSbGroup(btn.dataset.grup, btn.getAttribute('aria-expanded') !== 'true'));
+  });
   const sidebar = $('#sidebar'), backdrop = $('#sbBackdrop');
   const closeSidebar = () => { sidebar.classList.remove('open'); backdrop.classList.remove('open'); };
   $('#menuBtn').addEventListener('click', () => { sidebar.classList.add('open'); backdrop.classList.add('open'); });

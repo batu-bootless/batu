@@ -86,6 +86,16 @@ svg { flex-shrink: 0; }
 .sb-mark { width: 34px; height: 34px; }
 .sb-nav { display: flex; flex-direction: column; gap: 2px; }
 .sb-label { font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; color: var(--faint); padding: 12px 12px 4px; }
+/* collapsible groups (Test Geçmişi, Paketler) */
+.sb-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; border: 0; background: none; font-family: inherit; text-align: left; cursor: pointer; border-radius: 8px; }
+.sb-toggle:hover { color: var(--muted); }
+.sb-toggle:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+.sb-toggle .chev { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s var(--ease); }
+.sb-toggle[aria-expanded="false"] .chev { transform: rotate(-90deg); }
+.sb-group { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .3s var(--ease); }
+.sb-group > div { min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 2px; margin: 0 -16px; padding: 0 16px; transition: visibility 0s; }
+.sb-group.closed { grid-template-rows: 0fr; }
+.sb-group.closed > div { visibility: hidden; transition: visibility 0s .3s; }
 .sb-nav a {
   position: relative; display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 10px;
   font-weight: 500; font-size: 14.5px; transition: background .2s, color .2s;

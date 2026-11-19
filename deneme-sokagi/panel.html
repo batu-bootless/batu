@@ -86,13 +86,17 @@
       <a href="#yanlislar" data-route="yanlislar"><svg><use href="#i-bookmark"/></svg>Yanlış Defteri</a>
       <a href="#plan" data-route="plan"><svg><use href="#i-calendar"/></svg>Çalışma Planı</a>
       <a href="#siralama" data-route="siralama"><svg><use href="#i-trophy"/></svg>Sıralama</a>
-      <p class="sb-label">Test Geçmişi</p>
-      <a href="#yaprak-testler" data-route="yaprak-testler"><svg><use href="#i-layers"/></svg>Oluşturulan Yaprak Testler</a>
-      <a href="#deneme-gecmisi" data-route="deneme-gecmisi"><svg><use href="#i-history"/></svg>Deneme Sınavları</a>
-      <p class="sb-label">Paketler</p>
-      <a href="#paket-al" data-route="paket-al"><svg><use href="#i-cart"/></svg>Paket Satın Al</a>
-      <a href="#paketlerim" data-route="paketlerim"><svg><use href="#i-box"/></svg>Paketlerim</a>
-      <a href="#odemeler" data-route="odemeler"><svg><use href="#i-card"/></svg>Ödemelerim</a>
+      <button type="button" class="sb-label sb-toggle" data-grup="gecmis" aria-expanded="false" aria-controls="sbg-gecmis">Test Geçmişi<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="sb-group closed" id="sbg-gecmis" data-grup="gecmis"><div>
+        <a href="#yaprak-testler" data-route="yaprak-testler"><svg><use href="#i-layers"/></svg>Oluşturulan Yaprak Testler</a>
+        <a href="#deneme-gecmisi" data-route="deneme-gecmisi"><svg><use href="#i-history"/></svg>Deneme Sınavları</a>
+      </div></div>
+      <button type="button" class="sb-label sb-toggle" data-grup="paketler" aria-expanded="false" aria-controls="sbg-paketler">Paketler<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="sb-group closed" id="sbg-paketler" data-grup="paketler"><div>
+        <a href="#paket-al" data-route="paket-al"><svg><use href="#i-cart"/></svg>Paket Satın Al</a>
+        <a href="#paketlerim" data-route="paketlerim"><svg><use href="#i-box"/></svg>Paketlerim</a>
+        <a href="#odemeler" data-route="odemeler"><svg><use href="#i-card"/></svg>Ödemelerim</a>
+      </div></div>
       <p class="sb-label">Hesap</p>
       <a href="#ayarlar" data-route="ayarlar"><svg><use href="#i-settings"/></svg>Ayarlar</a>
       <a href="#" data-action="support"><svg><use href="#i-help"/></svg>Destek</a>
