@@ -150,8 +150,21 @@ def kulak(is_parcacigi):
         sys.exit('faster-whisper kurulu değil: .ses-venv/bin/pip install faster-whisper')
     model = WhisperModel('small', device='cpu', compute_type='int8', cpu_threads=is_parcacigi or (os.cpu_count() or 2))
 
-    def dinle(x16k):
-        return ' '.join(s.text for s in model.transcribe(x16k, language='tr', beam_size=1)[0]).strip()
+    def yazi(x16k, dil):
+        return ' '.join(s.text for s in model.transcribe(x16k, language=dil, beam_size=1,
+                                                         condition_on_previous_text=False)[0]).strip()
+
+    def dinle(x16k, metin):
+        """(benzerlik, fazla harf, duyulan). İngilizce ifade geçen adım Türkçe dinlenince tanıma uydurabiliyor:
+        zayıf çıkarsa bir de İngilizce dinlenir, iyi olan sayılır."""
+        duyulan = yazi(x16k, 'tr')
+        puan, fazla = benzerlik(metin, duyulan)
+        if zayif(puan, fazla, metin, duyulan) and any(ingilizce(p) for p in re.findall(r"[A-Za-z'][A-Za-z' -]+", metin)):
+            d2 = yazi(x16k, 'en')
+            p2, f2 = benzerlik(metin, d2)
+            if not zayif(p2, f2, metin, d2) or p2 - 0.01 * max(0, f2) > puan - 0.01 * max(0, fazla):
+                duyulan, puan, fazla = d2, p2, f2
+        return puan, fazla, duyulan
     return dinle
 
 
@@ -172,8 +185,7 @@ def denetle(a):
         meta = json.loads((d / 'ses' / f'{qid}.json').read_text(encoding='utf-8'))
         x = oku_pcm(d / 'ses' / f'{qid}.mp3', 16000)
         for i, (bas, son) in enumerate(adim_sinirlari(meta)):
-            duyulan = dinle(np.ascontiguousarray(x[int(bas * 16000):int(son * 16000)]))
-            puan, fazla = benzerlik(cumle[i], duyulan)
+            puan, fazla, duyulan = dinle(np.ascontiguousarray(x[int(bas * 16000):int(son * 16000)]), cumle[i])
             if zayif(puan, fazla, cumle[i], duyulan):
                 zayiflar.append(f'{qid}:{i}')
                 print(f'{qid}:{i}  benzerlik {puan:.2f}, fazla harf {fazla:+d}\n    metin:   {cumle[i]}\n    duyulan: {duyulan}', flush=True)
@@ -305,11 +317,11 @@ def main():
             x = torch.from_numpy(oku_pcm(d / 'ses' / f'{qid}.mp3', sr).copy())[None]
             sesler = [x[:, int(bas * sr):int(son * sr)] for bas, son in adim_sinirlari(meta)]
             for i in sorted(istek[qid]):
-                once = benzerlik(cumle[i], dinle(to16k(sesler[i])))
+                once = dinle(to16k(sesler[i]), cumle[i])[:2]
                 adaylar = []
                 for k in range(3):
                     w = seslendir(cumle[i], tohum=2000 + 1000 * k)
-                    puan, fazla = benzerlik(cumle[i], dinle(to16k(w)))
+                    puan, fazla, _ = dinle(to16k(w), cumle[i])
                     adaylar.append((puan - 0.01 * max(0, fazla), puan, fazla, w))
                 en = max(adaylar, key=lambda c: c[0])
                 if en[0] > once[0] - 0.01 * max(0, once[1]):
