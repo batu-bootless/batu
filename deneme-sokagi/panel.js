@@ -1713,8 +1713,14 @@
     if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged', findVoices);
   }
   const ROMAN = { I: 'bir', II: 'iki', III: 'üç', IV: 'dört', V: 'beş', VI: 'altı' };
-  // question markup → words a voice reads well ("3^{2}" → "3 kare", "{a/b}" → "a bölü b", "II." → "iki")
-  const speakable = (t) => String(t || '')
+  // question markup → words a voice reads well ("3^{2}" → "3 kare", "{a/b}" → "a bölü b", "II." → "iki");
+  // quoted English ("I paid by card") is left as written (same rule as tools/seslendirme_metin.py)
+  const EN_QUOTE = (q) => /[A-Za-z]/.test(q) && !/[çğıöşüÇĞİÖŞÜâîû]/.test(q)
+    && /\b(the|a|an|to|of|is|it|that|and|by|with|from|was|were|be|have|has|had|who|whom|which|at|in|on|for|as|this|not|so|than|until|since|while|although|because|will|would|can|i)\b|th|sh|ch|ph|wh|ing\b|tion|ee|oo|ea|ou|ly\b|[qw]/i.test(q);
+  const speakable = (t) => String(t || '').split(/(["“][^"”\n]+["”])/)
+    .map((p, i) => (i % 2 && EN_QUOTE(p) ? p.replace(/\*\*|__/g, '').replace(/…/g, ' ') : speakTr(p))).join(' ')
+    .replace(/\s+([,.])/g, '$1').replace(/\s+/g, ' ').trim();
+  const speakTr = (t) => String(t || '')
     .replace(/\*\*|__/g, '')
     .replace(/\{([^{}/]+)\/([^{}]+)\}/g, ' $1 bölü $2 ')
     .replace(/\^\{2\}/g, ' kare').replace(/\^\{3\}/g, ' küp').replace(/\^\{([^{}]*)\}/g, ' üssü $1')

@@ -56,9 +56,34 @@ def _sayi(m):
     return f' {yazi}{m.group(2) or ""} '
 
 
+TR_HARF = re.compile(r'[çğıöşüÇĞİÖŞÜâîû]')
+EN_KELIME = re.compile(r"\b(the|a|an|to|of|is|it|that|and|by|with|from|was|were|be|been|have|has|had|who|whom|which|at|in|on|"
+                       r"for|as|this|her|his|them|their|someone|something|not|so|than|until|just|since|while|although|"
+                       r"because|did|do|does|will|would|can|could|should|nor|but|or|its|they|he|she|we|you|i)\b", re.I)
+EN_HECE = re.compile(r'th|sh|ch|ph|wh|ing\b|tion|ee|oo|ea|ou|ly\b|[qw]|\w*x\w', re.I)
+TIRNAK = re.compile(r'(["“][^"”\n]+["”])')
+
+
+def ingilizce(parca):
+    """Tırnak içi ifade İngilizce mi? (Türkçe harf yok; İngilizce bir işlev kelimesi ya da yazım özelliği var)"""
+    ic = parca.strip('"“”')
+    return bool(re.search(r'[A-Za-z]', ic)) and not TR_HARF.search(ic) and bool(EN_KELIME.search(ic) or EN_HECE.search(ic))
+
+
 def okunur(t):
-    """Çözüm satırı (işaretlemeli) → seslendirilecek düz Türkçe metin."""
+    """Çözüm satırı (işaretlemeli) → seslendirilecek düz Türkçe metin. Tırnak içindeki İngilizce ifadeler olduğu gibi
+    (tırnaklarıyla) kalır: seslendirme onları İngilizce okur, sayı / Romen rakamı dönüşümü uygulanmaz."""
     t = str(t or '')
+    if TIRNAK.search(t):
+        parcalar = TIRNAK.split(t)
+        if any(ingilizce(p) for p in parcalar[1::2]):
+            out = [(re.sub(r'\*\*|__', '', p).replace('…', ' ') if i % 2 and ingilizce(p) else _okunur(p))
+                   for i, p in enumerate(parcalar)]
+            return re.sub(r'\s+', ' ', re.sub(r'\s+([,.:?!])', r'\1', ' '.join(x for x in out if x))).strip()
+    return _okunur(t)
+
+
+def _okunur(t):
     t = re.sub(r'\*\*|__', '', t)
     t = re.sub(r'\{([^{}/]+)/([^{}]+)\}', r' \1 bölü \2 ', t)
     t = t.replace('^{2}', ' kare').replace('^{3}', ' küp')

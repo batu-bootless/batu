@@ -40,7 +40,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
-from seslendirme_metin import GIRIS, cumleler, ozet, sayi_yazi  # noqa: E402
+from seslendirme_metin import GIRIS, TIRNAK, cumleler, ingilizce, ozet, sayi_yazi  # noqa: E402
 
 ARA = 0.35        # adımlar arası durak (sn)
 BAS = 0.15        # başta sessizlik (sn)
@@ -93,6 +93,20 @@ def parcala(text, en_fazla=200):
     return parts or [text]
 
 
+def bolumler(text):
+    """[(metin, dil)]: tırnak içindeki İngilizce ifadeler aynı sesle İngilizce okunur, gerisi Türkçe."""
+    out = []
+    for i, p in enumerate(TIRNAK.split(text)):
+        if i % 2 and ingilizce(p):
+            out.append((p.strip('"“”').strip(), 'en'))
+        elif out and out[-1][1] == 'tr':   # Türkçe tırnak içi ifade cümleden ayrılmaz
+            out[-1] = (out[-1][0] + p, 'tr')
+        else:
+            out.append((p, 'tr'))
+    out = [(b.strip(' ,;'), dil) for b, dil in out if re.search(r'\w', b)]
+    return out or [(text, 'tr')]
+
+
 def oku_pcm(mp3, sr=SR):
     """mp3 → float32 dizisi (tek kanal)."""
     import numpy as np
@@ -101,21 +115,31 @@ def oku_pcm(mp3, sr=SR):
     return np.frombuffer(raw, np.int16).astype(np.float32) / 32768
 
 
-def kelimeler(t):
-    """Karşılaştırma için: küçük harf, sayılar yazıyla, noktalama yok."""
+def harfler(t):
+    """Karşılaştırma için: küçük harf, sayılar ve yüzdeler yazıyla, yalnızca harfler (boşluk ve noktalama yok;
+    konuşma tanıma kelimeleri farklı bölebiliyor: "yüz ellinin" / "150'nin")."""
     t = t.replace('İ', 'i').replace('I', 'ı').lower()
-    t = re.sub(r'\d+', lambda m: f' {sayi_yazi(int(m.group()))} ', t)
-    return re.findall(r'[a-zçğıöşüâîû]+', t)
+    t = re.sub(r'%\s?(?=\d)', 'yüzde ', t)
+    t = re.sub(r'\d+', lambda m: sayi_yazi(int(m.group())), t)
+    return ''.join(re.findall(r'[a-zçğıöşüâîû]', t))
 
 
 def benzerlik(metin, duyulan):
-    """(0–1 benzerlik, fazla kelime sayısı) — fazla kelime: model sözü uzatmış ya da tekrarlamış."""
-    a, b = kelimeler(metin), kelimeler(duyulan)
+    """(0–1 benzerlik, fazla harf sayısı) — çok fazla harf: model sözü uzatmış ya da tekrarlamış."""
+    a, b = harfler(metin), harfler(duyulan)
     return difflib.SequenceMatcher(None, a, b).ratio(), len(b) - len(a)
 
 
-def zayif(puan, fazla):
-    return puan < 0.5 or fazla >= 2
+def tekrarli(metin, duyulan):
+    """Sonda tekrar ("… bulunur. Bulunur."): duyulanın son 1–3 kelimesi hemen öncekilerin aynısı, metinde öyle değil."""
+    def son_tekrar(t):
+        k = [harfler(w) for w in t.split() if harfler(w)]
+        return any(len(k) >= 2 * n and k[-n:] == k[-2 * n:-n] for n in (1, 2, 3))
+    return son_tekrar(duyulan) and not son_tekrar(metin)
+
+
+def zayif(puan, fazla, metin, duyulan=''):
+    return puan < 0.6 or fazla > max(8, 0.25 * len(harfler(metin))) or tekrarli(metin, duyulan)
 
 
 def kulak(is_parcacigi):
@@ -150,9 +174,9 @@ def denetle(a):
         for i, (bas, son) in enumerate(adim_sinirlari(meta)):
             duyulan = dinle(np.ascontiguousarray(x[int(bas * 16000):int(son * 16000)]))
             puan, fazla = benzerlik(cumle[i], duyulan)
-            if zayif(puan, fazla):
+            if zayif(puan, fazla, cumle[i], duyulan):
                 zayiflar.append(f'{qid}:{i}')
-                print(f'{qid}:{i}  benzerlik {puan:.2f}, fazla kelime {fazla:+d}\n    metin:   {cumle[i]}\n    duyulan: {duyulan}', flush=True)
+                print(f'{qid}:{i}  benzerlik {puan:.2f}, fazla harf {fazla:+d}\n    metin:   {cumle[i]}\n    duyulan: {duyulan}', flush=True)
         n += 1
     print(f'{n} kayıt dinlendi; sorunlu adım: {len(zayiflar)}')
     if zayiflar:
@@ -230,12 +254,12 @@ def main():
 
     def _seslendir(text, tohum):
         out = []
-        parts = parcala(text)
-        for i, p in enumerate(parts):
+        parts = [(p, dil) for b, dil in bolumler(text) for p in parcala(b)]
+        for i, (p, dil) in enumerate(parts):
             best = None
             for deneme in range(3):   # model sözü erken keserse ya da uzatırsa yeniden dene
                 torch.manual_seed(tohum + deneme)
-                w = model.generate(p, language_id='tr')
+                w = model.generate(p, language_id=dil)
                 oran = (w.shape[-1] / sr) / max(0.9, len(p) / 13.5)
                 puan = abs(math.log(max(oran, 1e-3)))
                 if best is None or puan < best[0]:
@@ -244,7 +268,7 @@ def main():
                     break
             out.append(kirp(best[1]))
             if i < len(parts) - 1:
-                out.append(sessiz(0.18))
+                out.append(sessiz(0.1 if parts[i + 1][1] != dil else 0.18))
         return torch.cat(out, dim=-1)
 
     def kaydet(d, qid, oz, sesler):
@@ -286,11 +310,11 @@ def main():
                 for k in range(3):
                     w = seslendir(cumle[i], tohum=2000 + 1000 * k)
                     puan, fazla = benzerlik(cumle[i], dinle(to16k(w)))
-                    adaylar.append((puan - 0.15 * max(0, fazla), puan, fazla, w))
+                    adaylar.append((puan - 0.01 * max(0, fazla), puan, fazla, w))
                 en = max(adaylar, key=lambda c: c[0])
-                if en[0] > once[0] - 0.15 * max(0, once[1]):
+                if en[0] > once[0] - 0.01 * max(0, once[1]):
                     sesler[i] = en[3]
-                    print(f'{qid}:{i} yeniden kaydedildi — benzerlik {once[0]:.2f} → {en[1]:.2f}, fazla kelime {once[1]:+d} → {en[2]:+d}', flush=True)
+                    print(f'{qid}:{i} yeniden kaydedildi — benzerlik {once[0]:.2f} → {en[1]:.2f}, fazla harf {once[1]:+d} → {en[2]:+d}', flush=True)
                 else:
                     print(f'{qid}:{i} eski kayıt daha iyi, değişmedi ({once[0]:.2f}; denemeler {", ".join(f"{c[1]:.2f}" for c in adaylar)})', flush=True)
             kaydet(d, qid, oz, sesler)
