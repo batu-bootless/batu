@@ -31,7 +31,10 @@ Her soru, kaynaktaki sırası korunarak iki biçimde çıkarılır:
 - **Metin:** soru kökü, varsa şekil (ayrı görsel `…-sekil.png`), A–E seçenekleri ve
   "Cevap Anahtarı" sayfasından okunan doğru cevap.
 
-Sütunlar, soru numaraları, test/ders/konu başlıkları ve cevap anahtarı otomatik bulunur.
+Sütunlar, soru numaraları, test/ders/konu başlıkları ve cevap anahtarı otomatik bulunur. Cevap anahtarı
+"Cevap Anahtarı" sayfasından ya da testin son sayfasının altındaki "1-A 2-B 3-C …" satırından okunur.
+Konu, testin ilk sayfasındaki başlıktan alınır ve testin sonraki sayfalarında sürer; "1. ÜNİTE" gibi ünite
+etiketleri konu sayılmaz.
 `data/sorular/<kaynak-id>/kontrol.html` sayfası her sorunun görselini ve metnini yan yana
 gösterir; yayına almadan önce buradan kontrol edin. Tüm kaynaklar
 `data/soru-bankasi.json` ve `data/soru-bankasi.js` (panelin kullandığı) dosyalarında birleşir.
@@ -54,7 +57,8 @@ Kalın, altı çizili, üs, alt indis ve kesirler işaretlenir (`**kalın**`, `_
 `{pay/payda}`); I-II-III maddeleri, diyalog ve formül satırları ayrı satırda kalır. Şekiller hem çizim nesnelerinden
 hem sayfanın piksel taramasından bulunur; şekil içindeki etiketler görselde kalır, birden çok şekilli soru
 "metin → şekil → metin" parçaları olarak saklanır. Metne güvenle çevrilemeyen soru (ör. kelimelerin altına yazılmış
-Romen rakamları) `tools/soru_duzelt.py` ile `"gorsel_goster": true` yapılır ve kırpılmış görseliyle gösterilir.
+Romen rakamları, karakter karşılığı olmayan yazı tipleri — `(cid:25)`) kendiliğinden, tablo biçimli seçenekler gibi
+durumlar `tools/soru_duzelt.py` ile `"gorsel_goster": true` yapılır ve kırpılmış görseliyle gösterilir.
 
 **`--yerel`**: çıktılar `data/yerel/kaynaklar/<kaynak-id>/` altına, birleşik hâli `data/yerel/soru-bankasi.{json,js}`
 dosyasına yazılır. `data/yerel/` git'e girmez ve yayınlanan sayfalara konmaz; panel ve şablon bu bilgisayarda onu da

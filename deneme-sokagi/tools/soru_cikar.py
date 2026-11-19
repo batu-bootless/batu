@@ -53,6 +53,25 @@ BLOCK_RE = re.compile(r'^(\d{1,3})\s*\.?\s*[-–]\s*(\d{1,3})\s*\.?\s*soru', re.
 SUBDERS_RE = re.compile(r'([A-ZÇĞİÖŞÜ][a-zçğıöşü]+(?: (?:ve|[A-ZÇĞİÖŞÜ][a-zçğıöşü]+)){0,4}) \((\d+)\s*[-–]\s*(\d+)\)')
 BOLUM_RE = re.compile(r'([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜ ]+?)\s+TEST[İI]\b')
 EXAM_CODES = {'TYT', 'AYT', 'YKS', 'LGS', 'KPSS', 'ALES', 'DGS', 'YDS', 'MSÜ'}
+UNIT_RE = re.compile(r'\b(?:ÜN[İI]TE|ünite)\b')   # '1. ÜNİTE' over a test is a unit label, not the konu
+INLINE_PAIR_RE = re.compile(r'(\d{1,3})\s*[-–.)]\s*([A-E])')
+
+
+def inline_key(text):
+    """'1-A 2-B 3-C …' printed at the foot of a test's last page -> {no: letter}, else None."""
+    if not re.fullmatch(r'(?:\s*\d{1,3}\s*[-–.)]\s*[A-E])+\s*', text):
+        return None
+    found = {int(n): letter for n, letter in INLINE_PAIR_RE.findall(text)}
+    return found if len(found) >= 5 else None
+
+
+def needs_image(qa):
+    """Text that does not survive extraction: numbers printed under words (I, II … below underlined words),
+    glyphs without a character map ('(cid:25)')."""
+    text = qa['ust'] + '\n' + qa['alt']
+    if '(cid:' in text + ''.join(qa['secenekler']):
+        return True
+    return any(re.fullmatch(r'(?:\s*(?:I|II|III|IV|V|VI)\s*)+', re.sub(r'[*_]', '', ln)) for ln in text.split('\n') if ln.strip())
 
 
 def src_dir(kaynak_id, yerel=False):
@@ -282,7 +301,7 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
         lines = group_lines([w for w in words if w['top'] > page.height * 0.85])
         tops = [ln['top'] for ln in lines if (not OPT_RE.match(ln['text']) and foot_counts.get((re.sub(r'\d+', '#', ln['text']), round(ln['top'] / 4)), 0) > 1)
                 or re.fullmatch(r'[\d\s/|-]+', ln['text']) or 'www.' in ln['text'].lower()
-                or re.search(r'BİTTİ|GEÇİNİZ|KONTROL EDİNİZ', ln['text'])]
+                or re.search(r'BİTTİ|GEÇİNİZ|KONTROL EDİNİZ', ln['text']) or inline_key(ln['text'])]
         rules = [r['top'] for r in list(page.rects) + list(page.lines)
                  if r['x1'] - r['x0'] > page.width * 0.6 and r['bottom'] - r['top'] < 2.5 and r['top'] > page.height * 0.8]
         if tops and rules:
@@ -299,6 +318,7 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
     brand_lines = {t for t, c in header_counts.items() if c == len(q_pages) and len(q_pages) > 1}
 
     questions, last_no, test_no, order = [], 0, 0, 0
+    inline, last_konu = {}, None
     gruplar, pending, active = {}, {}, None
     bolum, subders = '', []
     for page_index, (page, words) in enumerate(zip(pdf.pages, pages_words)):
@@ -306,6 +326,9 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
             continue
         W, H = page.width, page.height
         footer_top = footer_top_of(page, words)
+        page_key = {}
+        for ln in group_lines([w for w in words if w['top'] > H * 0.85]):
+            page_key.update(inline_key(ln['text']) or {})
         body = [w for w in words if w['top'] < footer_top]
         # deneme booklets open each test with "1. Bu testte … 2. Cevaplarınızı …" — not questions
         intro = [ln for ln in group_lines(body) if re.search(r'Bu testte|Cevaplar[ıi]n[ıi]z[ıi]', ln['text'])]
@@ -377,6 +400,8 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
                 warnings.append(f"Sayfa {page.page_number}: {blk['a']}-{blk['b']} parçası bulunamadı (sütun sonunda olabilir).")
             pending[blk['a']] = blk
         if not kept:
+            if page_key and test_no:
+                inline.setdefault(test_no, {}).update(page_key)
             continue
 
         first_top = min([s['w']['top'] for s in kept] + [b['top'] for b in blocks])
@@ -389,7 +414,13 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
             all_head = group_lines([w for w in body if w['bottom'] < first_top - 2])
             title_lines = sorted([ln for ln in all_head if is_title(ln) and ln['size'] >= 9.5], key=lambda ln: -ln['size'])
         ders = OVERRIDE.get('ders') or (title_lines[0]['text'] if title_lines else '')
-        konu = OVERRIDE.get('konu') or (title_lines[1]['text'] if len(title_lines) > 1 else ders)
+        # konu: the title line nearest the questions — not the ders line itself, not a unit label ('1. ÜNİTE')
+        konu_lines = [ln for ln in (title_lines if OVERRIDE.get('ders') else title_lines[1:])
+                      if not UNIT_RE.search(ln['text']) and tr_lower(ln['text']) != tr_lower(ders)]
+        konu = OVERRIDE.get('konu') or (max(konu_lines, key=lambda ln: ln['bottom'])['text'] if konu_lines else None)
+        if not konu:   # a test's later pages repeat only a short header: keep the test's konu
+            konu = last_konu if last_konu and not any(s['n'] == 1 for s in kept) else ders
+        last_konu = konu
 
         for i, s in enumerate(kept):
             if s['n'] == 1:
@@ -460,12 +491,15 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
                 'gorsel': f'{rel}/{qid}.png', 'sekil': sekil,
                 'sekil_pt': round(fig_box[2] - fig_box[0] + 8, 1) if fig_box else None, 'yazi_pt': yazi_pt,
                 **({'parcalar': parcalar} if parcalar else {}),
-                # numbers printed under words (I, II … below underlined words) do not survive as text
-                **({'gorsel_goster': True} if any(re.fullmatch(r'(?:\s*(?:I|II|III|IV|V|VI)\s*)+', re.sub(r'[*_]', '', ln))
-                                                  for ln in (qa['ust'] + '\n' + qa['alt']).split('\n') if ln.strip()) else {}),
+                **({'gorsel_goster': True} if needs_image(qa) else {}),
                 'bbox': [round(v, 1) for v in box],
             })
+        if page_key:
+            inline.setdefault(test_no, {}).update(page_key)
 
+    for t, found in inline.items():       # a 'CEVAP ANAHTARI' page wins over the inline lines
+        for n, letter in found.items():
+            key.setdefault(t, {}).setdefault(n, letter)
     for q in questions:
         q['cevap'] = key.get(q['test'], {}).get(q['no'])
     return questions, warnings, key, gruplar

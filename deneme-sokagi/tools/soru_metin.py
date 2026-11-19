@@ -193,7 +193,7 @@ def analyze(page, box, words, num_word, col_w):
             # an underline runs through the bottom of the words above it
             num = [wd for wd in words if -0.6 <= o['top'] - wd['bottom'] <= 2.5 and span(wd)]
             den = [wd for wd in words if -0.5 <= wd['top'] - o['bottom'] <= 3 and span(wd)]
-            und = [wd for wd in words if wd['top'] < o['top'] and o['top'] - wd['bottom'] < -0.8 and span(wd)]
+            und = [wd for wd in words if wd['top'] < o['top'] and o['top'] - wd['bottom'] < -0.6 and span(wd)]
             cx = (o['x0'] + o['x1']) / 2
             centred = lambda ws: bool(ws) and abs((min(x['x0'] for x in ws) + max(x['x1'] for x in ws)) / 2 - cx) < 3 \
                 and max(x['x1'] for x in ws) - min(x['x0'] for x in ws) <= w + 2
@@ -381,6 +381,7 @@ def analyze(page, box, words, num_word, col_w):
         s = re.sub(r'-(?:\s+-)+', lambda m: m.group(0).replace(' ', ''), s)        # "- ---" → "----"
         s = re.sub(r'\*\*\*\*|____', '', s)
         s = re.sub(r'\*\*(\s*)\*\*', r'\1', s)
+        s = re.sub(r'(\d)\s?\^\{[ıI\']\}', '\\1′', s)      # 66° 33′ — the arc-minute sign is set as a raised ı / I
         return re.sub(r'[ \t]+\n', '\n', s).strip()
 
     # reading order: each stem line goes before the first figure whose middle lies below the line's middle
