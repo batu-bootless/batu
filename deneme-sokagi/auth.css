@@ -131,3 +131,7 @@
   .auth-box h1 { font-size: 26px; }
   .seg.full span { font-size: 12.5px; }
 }
+
+/* No visible scrollbars (sidebar, answer sheet, passages, page): areas still scroll by wheel, touch and keys. */
+html, body, * { scrollbar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar { display: none; width: 0; height: 0; }
