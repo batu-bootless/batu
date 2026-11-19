@@ -215,7 +215,7 @@
   const state = {
     exam: LAST.id, analizSubj: 'mat', eksikFilter: 'all', wrongFilter: 'Tümü', examTab: 'pratik', rankTab: 'tr',
     histFilter: 'Tümü', pkgTab: 'Tümü', billing: 'yillik',
-    b: { kaynak: null, ders: null, konular: null, adet: 10, mod: 'gorsel', sira: 'kaynak', key: true, ogr: true, ad: '' },
+    b: { kaynak: null, ders: null, konular: null, adet: 10, mod: 'gorsel', sira: 'kaynak', key: true, ogr: true, ad: '', branslar: [] },
     dn: { sec: [], adim: 1, branslar: [] },   // Denemelerim → Hemen çöz: chosen denemeler and branches (none = all)
   };
   let user = null;
@@ -832,7 +832,16 @@
 
   /* --- Yaprak Test Oluştur: 1) the user picks the denemeler / soru bankaları, 2) the test and how many questions --- */
   const nextTestNo = () => ytests.reduce((m, t) => Math.max(m, t.no || 0), 0) + 1;
-  const bolumOf = (q) => q.bolum || q.ders || '';
+  // Branch (test) of a question; sources that name the same branch differently are joined.
+  const BRANS_ALIAS = { TYT: { Matematik: 'Temel Matematik' } };
+  const bolumOf = (q) => { const b = q.bolum || q.ders || ''; return (BRANS_ALIAS[q.sinav] || {})[b] || b; };
+  // Several branches chosen: take questions from them in turn, so each branch gets its share.
+  function mixBranches(list, br) {
+    if (!br || br.length < 2) return list;
+    const buckets = br.map((p) => list.filter((q) => bolumOf(q) === p)), out = [];
+    while (buckets.some((bk) => bk.length)) buckets.forEach((bk) => { if (bk.length) out.push(bk.shift()); });
+    return out;
+  }
   const srcQs = (id) => BANK.sorular.filter((q) => q.kaynak === id);
   // A source is never "used up": once every question of it has been seen, it starts a new round
   // (questions still do not repeat inside a round).
@@ -851,7 +860,7 @@
   }
   // Selected sources (bank sources before denemeler, so a deneme is not used up first), optional test filter.
   const selPool = () => BANK.sorular
-    .filter((q) => (state.b.sec || []).includes(q.kaynak) && (!state.b.bolum || bolumOf(q) === state.b.bolum))
+    .filter((q) => (state.b.sec || []).includes(q.kaynak) && (!(state.b.branslar || []).length || state.b.branslar.includes(bolumOf(q))))
     .sort((a, b) => srcRank(a) - srcRank(b) || a.sira - b.sira);
   const selFresh = () => selPool().filter(offered);
   const stepsHtml = (n, a = 'Kaynak seç', b = 'Soru sayısı') => `<ol class="steps" aria-label="Adımlar"><li class="${n === 1 ? 'on' : 'done'}">${n > 1 ? icon('check') : '<i>1</i>'} ${a}</li><li class="${n === 2 ? 'on' : ''}"><i>2</i> ${b}</li></ol>`;
@@ -899,7 +908,13 @@
   function vBuilderCount() {
     const b = state.b;
     const parts = [...new Set(BANK.sorular.filter((q) => b.sec.includes(q.kaynak) && offered(q)).map(bolumOf))].filter(Boolean);
-    if (b.bolum && !parts.includes(b.bolum)) b.bolum = '';
+    b.branslar = (b.branslar || []).filter((p) => parts.includes(p));
+    if (b.branslar.length === parts.length) b.branslar = [];          // every branch = no filter
+    const inSel = (p) => BANK.sorular.filter((q) => b.sec.includes(q.kaynak) && offered(q) && (!p || bolumOf(q) === p));
+    const bransCard = (key, label) => {
+      const n = inSel(key).length, on = key ? b.branslar.includes(key) : !b.branslar.length;
+      return `<button type="button" class="brans-card${on ? ' on' : ''}${key ? '' : ' all'}" data-brans="${esc(key)}" aria-pressed="${on}"><b>${esc(label)}</b><span>${n} yeni soru</span></button>`;
+    };
     const pool = selPool(), fresh = pool.filter(offered), max = fresh.length;
     b.adet = Math.max(1, Math.min(b.adet || 10, max));
     const presets = [...new Set([5, 10, 20, 40].filter((n) => n < max).concat(max))];
@@ -910,7 +925,9 @@
       <section class="card s-8 qb-builder">
         <div class="card-h"><div><h2>Yaprak test oluştur</h2><p>Kaç soru istediğini seç. Sorular, daha önce karşına çıkmamış sorulardan gelir.</p></div>${stepsHtml(2)}</div>
         <div class="sel-row"><span class="sel-chips">${b.sec.map((id) => `<span class="chip blue">${esc(BANK.src[id].ad)}</span>`).join('')}</span><button type="button" class="btn btn-ghost btn-sm" data-src-back>${icon('back')} Kaynakları değiştir</button></div>
-        ${parts.length > 1 ? `<div class="bolum-row"><span class="small muted">Test</span><div class="presets bolum" role="group" aria-label="Test seç">${['', ...parts].map((p) => `<button type="button" class="${p === b.bolum ? 'on' : ''}" data-bolum="${esc(p)}">${p ? esc(p) : 'Tümü'}</button>`).join('')}</div></div>` : ''}
+        ${parts.length > 1 ? `<div class="brans"><h3 class="src-h">Branş<span>${parts.length}</span></h3>
+          <div class="brans-grid" role="group" aria-label="Branş seç">${bransCard('', 'Tüm branşlar')}${parts.map((p) => bransCard(p, p)).join('')}</div>
+          <p class="small muted">Bir ya da birkaç branş seç; test yalnızca o branşların sorularından oluşur.</p></div>` : ''}
         <div class="count-box">
           <button type="button" class="step" data-step="-1" aria-label="Bir soru azalt">−</button>
           <div class="count-val"><output id="b-count">${b.adet}</output><span>soru</span></div>
@@ -923,7 +940,7 @@
         <p class="small muted">Oluşturduğun test "Oluşturulan Yaprak Testler" sayfasına kaydedilir. İçindeki sorular sana bir daha gösterilmez.</p>
       </section>
       <section class="card s-4 b-sum">
-        <div class="card-h"><div><h2>Seçtiğin havuz</h2><p>${b.sec.length} kaynak${b.bolum ? ` · ${esc(b.bolum)}` : ''}</p></div></div>
+        <div class="card-h"><div><h2>Seçtiğin havuz</h2><p>${b.sec.length} kaynak${b.branslar.length ? ` · ${esc(b.branslar.join(', '))}` : ''}</p></div></div>
         ${ringSvg(pct, `%${fmt(pct, 0)}`, 'gördüğün sorular')}
         <dl class="sum-list">
           <div><dt>Yeni soru</dt><dd>${max}</dd></div>
@@ -964,7 +981,11 @@
     const b = state.b;
     if (b.adim !== 2) return bindPicker(b, builderSources, 'kaynak');
     $('[data-src-back]').addEventListener('click', () => { b.adim = 1; render(false); });
-    $$('[data-bolum]').forEach((x) => x.addEventListener('click', () => { b.bolum = x.dataset.bolum; render(false); }));
+    $$('[data-brans]').forEach((x) => x.addEventListener('click', () => {
+      const k = x.dataset.brans;
+      b.branslar = !k ? [] : b.branslar.includes(k) ? b.branslar.filter((p) => p !== k) : [...b.branslar, k];
+      render(false);
+    }));
     const range = $('#b-range');
     const set = (n) => {
       const max = +range.max;
@@ -982,13 +1003,17 @@
   }
   function createTest(action) {
     newRound(state.b.sec);
-    const qs = pickQuestions(selFresh(), state.b.adet);
+    const br = state.b.branslar || [], pool = selFresh(), at = new Map(pool.map((q, i) => [q.id, i]));
+    const qs = pickQuestions(mixBranches(pool, br), state.b.adet);
+    // in the test the questions stay together by branch, each branch in source order
+    if (br.length > 1) qs.sort((a, b) => br.indexOf(bolumOf(a)) - br.indexOf(bolumOf(b)) || at.get(a.id) - at.get(b.id));
     if (!qs.length) return toast('Bu sayıda soruya uyan yeni soru yok; paragraf soruları bölünmeden verilir. Sayıyı artırmayı dene.');
     if (qs.length < state.b.adet) toast(`Paragraf soruları bölünmediği için test ${qs.length} soru oldu.`);
     const konular = [...new Set(qs.map((q) => q.konu))], bolumler = [...new Set(qs.map(bolumOf))];
     const test = {
       id: 'yt-' + uid(), no: nextTestNo(), mod: 'metin',
-      baslik: konular.length === 1 ? konular[0] : bolumler.length === 1 && bolumler[0] ? `${bolumler[0]} Testi` : `${[...new Set(qs.map((q) => q.sinav))].join(' · ')} Karma Test`,
+      baslik: konular.length === 1 ? konular[0] : bolumler.length === 1 && bolumler[0] ? `${bolumler[0]} Testi`
+        : state.b.branslar.length > 1 && bolumler.length <= 3 ? bolumler.join(' + ') : `${[...new Set(qs.map((q) => q.sinav))].join(' · ')} Karma Test`,
       ders: [...new Set(qs.map((q) => `${q.sinav} · ${q.ders}`))].join(' – '),
       soruIds: qs.map((q) => q.id), cevapAnahtari: true, olusturma: new Date().toISOString(),
       kaynak: [...new Set(qs.map((q) => (BANK.src[q.kaynak] || {}).ad || q.kaynak_ad))].join(', '), konular, dk: dkFor(qs), sonuc: null,
