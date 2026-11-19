@@ -177,6 +177,7 @@
       parts: b.parcalar ? b.parcalar.map((p) => (p.sekil ? { fig: p.sekil, w: b.yazi_pt ? Math.round(p.sekil_pt * 15.5 / b.yazi_pt) : null } : { t: p.metin })) : null,
       a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, yon: b.yonerge || (g && g.yonerge) || null,
       passage: g ? g.metin : null, passageImg: g && g.gorsel ? g.gorsel : null, ref: { bank: b.id },
+      ses: b.ses && Array.isArray(b.ses_adimlar) ? { src: b.ses, at: b.ses_adimlar, dur: b.ses_sure } : null,
     };
   };
   const wq = (w) => (w.bank ? bankItem(BANK.byId[w.bank]) : qItem(QUESTIONS[w.q], w.q));
@@ -1686,7 +1687,8 @@
 
   /* ---------------- anlatım videosu ----------------
      Every question's explanation played like a short video: the question, the steps one by one on a board, then the
-     answer. Narrated with the device's own Turkish voice (Web Speech API) where there is one; the board is the caption. */
+     answer. Narrated by the question's recording (tools/seslendir.py: one audio file + the start time of each step)
+     when it has one, otherwise by the device's own Turkish voice (Web Speech API); the board is the caption. */
   const LSN_RATES = [1, 1.25, 1.5];
   // The device's Turkish voices, most natural female voice first: neural voices (Edge "Emel (Natural)"), then
   // network / enhanced ones (Chrome "Google Türkçe", Apple "Yelda (Gelişmiş)"); old desktop voices such as "Tolga"
@@ -1737,9 +1739,20 @@
     const steps = [{ kind: 'q', say: `${label}. Bu soruyu adım adım çözelim.` }]
       .concat(lines.map((ln) => ({ kind: 'line', html: rich(ln), li: /^[•●]/.test(ln), say: speakable(ln) })))
       .concat(q.a != null ? [{ kind: 'ans', say: `Doğru cevap ${L5[q.a]} şıkkı.` }] : []);
-    steps.forEach((s) => { s.dur = Math.max(2.4, 0.8 + s.say.length * 0.07); });
-    const total = steps.reduce((a, s) => a + s.dur, 0);
-    const startOf = (i) => steps.slice(0, i).reduce((a, s) => a + s.dur, 0);
+    steps.forEach((s) => { s.est = Math.max(2.4, 0.8 + s.say.length * 0.07); });
+    // recorded narration: one start time per step (the recording says the same steps, see tools/seslendirme_metin.py)
+    let rec = q.ses && q.ses.at.length === steps.length && q.ses.dur > q.ses.at[q.ses.at.length - 1] ? q.ses : null;
+    let total = 0;
+    const timeSteps = () => {   // recorded: the board moves on just before the voice does; otherwise by estimate
+      let at = 0;
+      steps.forEach((s, i) => {
+        const next = rec ? (i < steps.length - 1 ? Math.max(at + 0.1, rec.at[i + 1] - 0.12) : rec.dur) : at + s.est;
+        s.start = at; s.dur = next - at; at = next;
+      });
+      total = at;
+    };
+    timeSteps();
+    const startOf = (i) => steps[i].start;
 
     const lastFocus = document.activeElement;
     const el = document.createElement('div');
@@ -1771,14 +1784,41 @@
     if (!trVoices.length) findVoices();
     let voice = pickVoice();
     let cur = 0, t = 0, playing = false, ended = false, spoken = true, since = 0, timer = null, rateI = 0, curU = null;
-    let sound = !!(synth && voice) && store.get('ds-video-ses', true) !== false;
-    const voiced = () => !!(sound && synth && voice);
+    const canSound = () => !!(rec || (synth && voice));
+    let sound = canSound() && store.get('ds-video-ses', true) !== false;
+    const voiced = () => !rec && !!(sound && synth && voice);   // the device's voice is reading
+    let audio = null;
+    if (rec) {
+      audio = new Audio();
+      audio.preload = 'auto';
+      audio.src = rec.src;
+      audio.addEventListener('ended', () => { if (rec) { stop(); cur = steps.length - 1; t = steps[cur].dur; ended = true; paint(); } });
+      audio.addEventListener('error', () => deviceVoice());
+    }
+    // the recording could not be loaded: the device's voice takes over from the same step
+    const deviceVoice = () => {
+      if (!rec || !el.isConnected) return;
+      rec = null;
+      audio.pause();
+      timeSteps();
+      el.querySelectorAll('.lsn-prog i').forEach((seg, i) => { seg.style.flex = steps[i].dur.toFixed(2); });
+      el.querySelector('.lsn-prog').setAttribute('aria-valuemax', String(Math.round(total)));
+      sound = sound && canSound();
+      t = 0;
+      if (playing) speak(cur);
+      paint();
+    };
+    const fromAudio = () => {   // recorded: the step and the time come from the audio's position
+      const now = Math.min(total, audio.currentTime);
+      let i = 0; while (i < steps.length - 1 && steps[i + 1].start <= now) i++;
+      cur = i; t = now - steps[i].start;
+    };
     const rate = () => LSN_RATES[rateI];
     const hush = () => { curU = null; if (synth) synth.cancel(); };
     const speak = (i) => {
       hush();
       since = 0;
-      if (!voiced()) { spoken = true; return; }
+      if (!voiced()) { spoken = true; return; }   // recorded, muted or no voice
       spoken = false;
       const u = new SpeechSynthesisUtterance(steps[i].say);
       u.voice = voice; u.lang = voice.lang; u.pitch = 1;
@@ -1816,16 +1856,22 @@
       $('#lsnRate').textContent = `${String(rate()).replace('.', ',')}×`;
       $('#lsnSound').innerHTML = icon(sound ? 'volume' : 'mute');
       $('#lsnSound').setAttribute('aria-pressed', String(sound));
-      $('#lsnSound').disabled = !(synth && voice);
+      $('#lsnSound').disabled = !canSound();
       $('#lsnVoiceWrap').hidden = !voiced() || trVoices.length < 2;
-      $('#lsnNote').textContent = synth && voice
-        ? (sound ? (trVoices.length < 2 ? `Sesli anlatım: ${voiceLabel(voice)}` : '') : 'Sesli anlatım kapalı; anlatım yazılı olarak ilerliyor.')
-        : 'Bu cihazda Türkçe ses bulunamadı; anlatım yazılı olarak ilerliyor.';
+      $('#lsnNote').textContent = !canSound() ? 'Bu cihazda Türkçe ses bulunamadı; anlatım yazılı olarak ilerliyor.'
+        : !sound ? 'Sesli anlatım kapalı; anlatım yazılı olarak ilerliyor.'
+          : rec || trVoices.length > 1 ? '' : `Sesli anlatım: ${voiceLabel(voice)}`;
       const line = el.querySelector('.lsn-l.cur');
       if (line) line.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     };
-    const go = (i) => { cur = Math.max(0, Math.min(steps.length - 1, i)); t = 0; ended = false; if (playing) speak(cur); else hush(); paint(); };
+    const go = (i) => {
+      cur = Math.max(0, Math.min(steps.length - 1, i)); t = 0; ended = false;
+      if (rec) audio.currentTime = steps[cur].start + 0.02;
+      if (playing) speak(cur); else hush();
+      paint();
+    };
     const tick = () => {
+      if (rec) { fromAudio(); return paint(); }
       const s = steps[cur];
       t = Math.min(s.dur, t + 0.1 * rate());
       if (spoken) since += 0.1;
@@ -1837,15 +1883,28 @@
     };
     function play() {
       if (playing) return;
-      if (ended) { cur = 0; t = 0; ended = false; }
-      playing = true; speak(cur);
+      if (ended) { cur = 0; t = 0; ended = false; if (rec) audio.currentTime = 0; }
+      playing = true;
+      if (rec) {
+        audio.playbackRate = rate(); audio.muted = !sound;
+        const p = audio.play();
+        // blocked until the viewer clicks play: wait paused; unplayable file: the device's voice
+        if (p && p.catch) p.catch((err) => { if (!rec) return; if (err.name === 'NotAllowedError') stop(); else if (err.name === 'NotSupportedError') deviceVoice(); });
+      } else speak(cur);
       timer = setInterval(tick, 100);
       paint();
     }
-    function stop() { playing = false; clearInterval(timer); hush(); paint(); }
+    function stop() { playing = false; clearInterval(timer); hush(); if (audio) audio.pause(); paint(); }
+    const toggleSound = () => {
+      sound = !sound; store.set('ds-video-ses', sound);
+      if (audio) audio.muted = !sound;
+      if (playing) speak(cur); else hush();
+      paint();
+    };
     const toggle = () => (playing ? stop() : play());
     const close = () => {
       stop();
+      if (audio) { rec = null; audio.removeAttribute('src'); audio.load(); }
       document.removeEventListener('keydown', onKey, true);
       el.remove();
       if (lastFocus && lastFocus.focus) lastFocus.focus();
@@ -1858,7 +1917,7 @@
       if (e.key === ' ' || e.key.toLowerCase() === 'k') { e.preventDefault(); return toggle(); }
       if (e.key === 'ArrowRight') { e.preventDefault(); return go(cur + 1); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); return go(cur - 1); }
-      if (e.key.toLowerCase() === 'm' && synth && voice) { sound = !sound; store.set('ds-video-ses', sound); if (playing) speak(cur); else hush(); return paint(); }
+      if (e.key.toLowerCase() === 'm' && canSound()) return toggleSound();
     }
     document.addEventListener('keydown', onKey, true);
     const sel = $('#lsnVoice');
@@ -1870,8 +1929,8 @@
       switch (b.dataset.ls) {
         case 'close': return close();
         case 'toggle': return toggle();
-        case 'rate': rateI = (rateI + 1) % LSN_RATES.length; if (playing) speak(cur); return paint();
-        case 'sound': sound = !sound; store.set('ds-video-ses', sound); if (playing) speak(cur); else hush(); return paint();
+        case 'rate': rateI = (rateI + 1) % LSN_RATES.length; if (audio) audio.playbackRate = rate(); if (playing) speak(cur); return paint();
+        case 'sound': return toggleSound();
         case 'seek': {
           const r = b.getBoundingClientRect(), at = ((e.clientX - r.left) / r.width) * total;
           let i = 0; while (i < steps.length - 1 && startOf(i + 1) <= at) i++;

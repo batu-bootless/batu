@@ -52,6 +52,12 @@ function checkBank(label, jsonFile, jsFile, varName, srcDir, takenCodes) {
     if (q.secenekler && ![0, 5].includes(q.secenekler.length)) problems.push(`${where}: ${q.secenekler.length} seçenek (0 ya da 5 olmalı)`);
     if (q.grup && !(bank.gruplar || {})[q.grup]) problems.push(`${where}: paragraf "${q.grup}" yok`);
     for (const rel of [q.gorsel, q.sekil, ...((q.parcalar || []).map((p) => p.sekil))]) if (!fileOk(rel)) problems.push(`${where}: görsel yok: ${rel}`);
+    if (q.ses) {   // anlatım videosu kaydı: the file, and one start time per step, in order
+      if (!fileOk(q.ses)) problems.push(`${where}: ses kaydı yok: ${q.ses}`);
+      const a = q.ses_adimlar;
+      if (!Array.isArray(a) || !a.length || a.some((x, i) => typeof x !== 'number' || (i && x <= a[i - 1])) || !(q.ses_sure > a[a.length - 1]))
+        problems.push(`${where}: ses adımları hatalı`);
+    }
   }
   for (const [gid, g] of Object.entries(bank.gruplar || {})) if (!fileOk(g.gorsel)) problems.push(`${gid}: paragraf görseli yok: ${g.gorsel}`);
   // the per-source folders hold exactly what the bank holds
@@ -64,10 +70,15 @@ function checkBank(label, jsonFile, jsFile, varName, srcDir, takenCodes) {
       if (!fs.existsSync(f)) continue;
       for (const id of Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')))) if (!ids.has(id)) problems.push(`${path.relative(ROOT, f)}: "${id}" diye bir soru yok`);
     }
+    for (const d of fs.readdirSync(srcDir)) {   // no leftover recordings of deleted questions
+      const sd = path.join(srcDir, d, 'ses');
+      if (!fs.existsSync(sd)) continue;
+      for (const f of fs.readdirSync(sd)) if (/\.mp3$/.test(f) && !ids.has(f.slice(0, -4))) problems.push(`${path.relative(ROOT, path.join(sd, f))}: soru yok, kayıt silinebilir`);
+    }
   }
   for (const c of seenCodes) takenCodes.add(c);
   ok(`${bank.kaynaklar.length} kaynak, ${bank.sorular.length} soru, ${Object.keys(bank.gruplar || {}).length} paragraf, `
-    + `${bank.sorular.filter((q) => q.cozum).length} açıklamalı çözüm`);
+    + `${bank.sorular.filter((q) => q.cozum).length} açıklamalı çözüm, ${bank.sorular.filter((q) => q.ses).length} seslendirilmiş video`);
 }
 const codes = new Set();
 checkBank('Soru bankası', path.join(ROOT, 'data/soru-bankasi.json'), path.join(ROOT, 'data/soru-bankasi.js'), 'DS_SORU_BANKASI', path.join(ROOT, 'data/sorular'), codes);

@@ -11,6 +11,7 @@
 | `sablon-kontrol.js` | PDF şablonunun referans ölçüleri |
 | `html-pdf.js`, `ornek-kaynak/` | Örnek kaynak PDF'lerini üretir (araçları denemek için) |
 | `tanitim-medya.js` | Ana sayfanın tanıtım medyası: tablet videosu, PDF örnek sayfaları (`npm run tanitim`) |
+| `seslendir.py` (+ `seslendirme_metin.py`) | Anlatım videolarını açık kaynak Türkçe sesle seslendirir |
 
 ## 1. Soru bankası PDF'inden soru çıkarma — `soru_cikar.py`
 
@@ -156,6 +157,48 @@ python3 tools/soru_cikar.py --birlestir
 `soru_cikar.py` bir kaynağı yeniden çıkarınca `cozumler.json` olduğu gibi kalır. `npm run kontrol` her kaydın bir soruya
 karşılık geldiğini denetler ve kaç sorunun çözümü olduğunu yazar. Yazılı içeriklerde (`soru_ekle.py`) çözüm, sorunun
 kendi `cozum` alanındadır.
+
+## Anlatım videosu seslendirmesi — `seslendir.py`
+
+Panelin anlatım videosu, sorunun kaydı varsa onu çalar (yoksa cihazın Türkçe sesi okur). Kayıtlar açık kaynak
+[Chatterbox Multilingual](https://github.com/resemble-ai/chatterbox) modeliyle (MIT lisansı, Türkçe, yerleşik ses)
+bu bilgisayarda üretilir; anahtar ya da çevrimiçi hizmet gerekmez. Model, ürettiği sese duyulmayan bir filigran
+(Resemble PerTh) ekler. Her soru için kaynak klasöründe:
+
+- `ses/<soru-id>.mp3` — giriş ("Bu soruyu adım adım çözelim."), çözümün her satırı, doğru cevap; aralarında kısa
+  duraklar (mono, 24 kHz, 40 kbps; soru başına ~100 KB).
+- `ses/<soru-id>.json` — `{"ozet", "adimlar": [her adımın başlangıç saniyesi], "sure"}`.
+
+Okunacak cümleleri `seslendirme_metin.py` hazırlar: işaretlemeyi ve sayıları okunur Türkçeye çevirir (`3^{2}` →
+"üç kare", `{1/4}` → "bir bölü dört", `1.500` → "bin beş yüz", `%20` → "yüzde yirmi", `II.` → "iki"). `ozet`
+bu cümlelerin özetidir: çözüm metni değişince kayıt eskir; birleştirme eski kaydı soruya eklemez, araç da yeniden
+üretir. Okuma kuralları değişince `SES_SURUM`'u artırın.
+
+Kurulum (bir kez, ayrı bir Python ortamında; ~4 GB, `.ses-venv/` git dışıdır):
+
+```bash
+python3 -m venv .ses-venv
+```
+
+```bash
+.ses-venv/bin/pip install torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+```bash
+.ses-venv/bin/pip install chatterbox-tts
+```
+
+Kullanım (eksik ya da eskimiş bütün kayıtlar; kaldığı yerden devam eder):
+
+```bash
+.ses-venv/bin/python tools/seslendir.py
+```
+
+`--kaynak ornek` yalnızca bir kaynağı, `--isci 0 --isci-sayisi 2` (ve ikinci işlemde `--isci 1`) işi iki işleme
+bölerek seslendirir; `--sinir 5` deneme içindir. İşlemcide yavaştır (1 saniye ses ≈ 3–4 saniye); bütün banka birkaç
+saat sürer. Bitince bankayı yeniden birleştirin (`python3 tools/soru_cikar.py --birlestir`). `npm run kontrol`
+dosyaların varlığını, adım sürelerini ve silinmiş sorulara ait artık kayıtları denetler; kaç videonun
+seslendirildiğini yazar. Yerel kaynakların kayıtları `data/yerel/` altında kalır, depoya girmez.
 
 ## 6. Yerel sunucu ve kontroller — `sunucu.js`, `kontrol.js`
 

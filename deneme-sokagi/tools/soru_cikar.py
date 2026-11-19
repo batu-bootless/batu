@@ -42,6 +42,7 @@ from PIL import ImageDraw, ImageOps
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import soru_metin  # noqa: E402
+from seslendirme_metin import cumleler, ozet  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OVERRIDE = {}
@@ -559,6 +560,25 @@ td img{{max-width:380px;border:1px solid #e3e9f1}}td.n{{font-weight:700;width:60
     return merge_bank()
 
 
+def attach_audio(d, q):
+    """Anlatım videosu kaydı (tools/seslendir.py): <kaynak>/ses/<id>.mp3 + .json. Yalnızca kayıt güncelse
+    (çözüm metni kaydedildiğinden beri değişmediyse) soruya eklenir; değilse video cihazın sesiyle anlatır."""
+    if not q.get('cozum'):
+        return
+    meta, mp3 = d / 'ses' / f"{q['id']}.json", d / 'ses' / f"{q['id']}.mp3"
+    if not (meta.exists() and mp3.exists()):
+        return
+    try:
+        m = json.loads(meta.read_text(encoding='utf-8'))
+    except ValueError:
+        return
+    if m.get('ozet') != ozet(cumleler(q['cozum'], q.get('cevap'))):
+        return
+    q['ses'] = mp3.relative_to(ROOT).as_posix()
+    q['ses_adimlar'] = m['adimlar']
+    q['ses_sure'] = m['sure']
+
+
 def _merge(base, out_name, var):
     all_q, gruplar, sources = [], {}, {}
     dirs = sorted(p for p in base.iterdir() if (p / 'sorular.json').exists()) if base.exists() else []
@@ -571,6 +591,7 @@ def _merge(base, out_name, var):
         for q in qs:
             if texts.get(q['id']) and not q.get('cozum'):
                 q['cozum'] = texts[q['id']]
+            attach_audio(d, q)
         all_q.extend(qs)
         if (d / 'gruplar.json').exists():
             gruplar.update(json.loads((d / 'gruplar.json').read_text(encoding='utf-8')))

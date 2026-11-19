@@ -38,11 +38,15 @@ bir IIFE'dir, dışarıya bir şey açmaz.
   Tam ekran: Fullscreen API (sayfanın tamamı), izin yoksa `.modal-back.fs` ile pencereyi kaplar; F tuşu açar/kapatır,
   Esc önce tam ekrandan çıkar; sınav kapanınca tam ekran da kapanır.
 - **Açıklamalı çözüm / anlatım videosu:** `solHtml(q)` çözümü (`cozum`) gösterir; `openLesson(q, etiket)` aynı metni
-  adım adım oynatan videoyu açar (sınavın üstünde ayrı bir katman; tuşlar videoya gider). Seslendirme tarayıcının
-  Web Speech API'siyle, cihazın Türkçe sesiyle yapılır (`speakable()` işaretlemeyi okunur metne çevirir); ses yoksa
-  süreler metin uzunluğundan hesaplanır. Sesler sıralanır: doğal/sinirsel (Edge "Emel") > ağ/gelişmiş ("Google Türkçe",
-  "Yelda (Gelişmiş)") > eski masaüstü sesleri; kadın sesi önce gelir. Adımlar ses bitince kısa bir nefesle sürer.
-  Tercihler tarayıcıda: `ds-video-ses` (açık/kapalı), `ds-video-voice` (seçilen ses).
+  adım adım oynatan videoyu açar (sınavın üstünde ayrı bir katman; tuşlar videoya gider). Adımlar: giriş, çözümün
+  her satırı, doğru cevap. **Kayıtlı anlatım:** soruda `ses` varsa (banka: `ses`, `ses_adimlar`, `ses_sure`;
+  `tools/seslendir.py` üretir, birleştirme yalnızca çözüm metniyle uyuşan kaydı ekler) video bir `<audio>` ile oynar;
+  adım, ilerleme ve süre sesin konumundan okunur; sarma `currentTime`, hız `playbackRate`, ses kapama `muted`.
+  Dosya yüklenemezse aynı adımdan cihaz sesine geçer. **Cihaz sesi:** tarayıcının Web Speech API'si
+  (`speakable()` işaretlemeyi okunur metne çevirir); ses yoksa süreler metin uzunluğundan hesaplanır. Sesler
+  sıralanır: doğal/sinirsel (Edge "Emel") > ağ/gelişmiş ("Google Türkçe", "Yelda (Gelişmiş)") > eski masaüstü
+  sesleri; kadın sesi önce gelir. Adımlar ses bitince kısa bir nefesle sürer. Tercihler tarayıcıda: `ds-video-ses`
+  (açık/kapalı), `ds-video-voice` (seçilen cihaz sesi).
 - **PDF:** `downloadTest(test)` → `DSPdf.build()` (sayfa içinde) → `DSPdf.save()` (claude.ai önizlemesinde
   `downloads` izniyle, başka yerde doğrudan indirme).
 

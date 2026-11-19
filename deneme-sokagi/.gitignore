@@ -3,3 +3,5 @@ __pycache__/
 # yalnızca yerel deneme içindir (izinsiz kaynaklar) — git ve yayına girmez
 data/yerel/
 node_modules/
+# seslendirme aracının Python ortamı (tools/seslendir.py)
+.ses-venv/
