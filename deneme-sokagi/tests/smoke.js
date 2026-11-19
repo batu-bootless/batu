@@ -61,7 +61,7 @@ const pdfPages = (file) => (fs.readFileSync(file, 'latin1').match(/\/Type \/Page
     return `${routes.length} sayfa`;
   });
 
-  await step('Yaprak test: kaynak seç → 5 soru → çöz (tam ekran, açıklamalı çözüm) → sonuç', async () => {
+  await step('Yaprak test: kaynak seç → 5 soru → çöz (tam ekran, açıklamalı çözüm, anlatım videosu) → sonuç', async () => {
     await go('test-olustur');
     await p.click('.src-card:has-text("Kelime ve Dil Bilgisi")'); await p.click('[data-src-next]'); await p.waitForTimeout(300);
     await p.click('[data-preset="5"]'); await p.click('[data-make="coz"]'); await p.waitForSelector('.pl-q');
@@ -73,6 +73,10 @@ const pdfPages = (file) => (fs.readFileSync(file, 'latin1').match(/\/Type \/Page
     await p.click('.sol-btn'); await p.waitForTimeout(200);
     if (!/Doğru cevap/.test((await p.textContent('.sol-box').catch(() => '')) || '')) throw new Error('açıklamalı çözüm açılmadı');
     await p.click('.sol-btn'); await p.waitForTimeout(150);
+    await p.click('.lsn-open'); await p.waitForSelector('.lsn'); await p.waitForTimeout(300);
+    await p.keyboard.press('Escape'); await p.waitForTimeout(200);
+    if (await p.$('.lsn')) throw new Error('anlatım videosu kapanmadı');
+    if (!(await p.$('.pl-q')) || (await p.$('[data-pl="close-now"]'))) throw new Error('videoyu kapatan Esc sınavı da etkiledi');
     await p.keyboard.press('a'); await p.click('[data-pl="finish"]');
     if (await p.$('[data-pl="finish-now"]')) await p.click('[data-pl="finish-now"]');
     await p.waitForSelector('.res-stats');

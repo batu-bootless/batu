@@ -81,6 +81,10 @@ gerçektir ve hesap başına saklanır.
 - Her sorunun altında **Açıklamalı Çözümünü Gör** düğmesi vardır: doğru cevap ve adım adım çözüm, test ya da deneme
   sırasında istenildiği an açılır; açılan soru "Çözüm görüldü" diye işaretlenir. Aynı çözümler sonuç ekranında ve
   Yanlış Defteri'nde de görünür. Bankadaki bütün soruların açıklamalı çözümü vardır.
+- Yanında **Anlatım Videosu** düğmesi vardır: aynı çözüm kısa bir video gibi oynar (soru → adımlar tek tek → doğru
+  cevap; oynat/duraklat, ilerleme çubuğu, 1×–1,5× hız). Cihazda Türkçe bir ses varsa (Windows, macOS, Android, iOS'ta
+  genelde vardır) adımlar sesli okunur, yoksa yazılı ilerler. Videolar çözüm metninden o an üretilir; ayrı dosya
+  yoktur, çözüm değişince video da değişir. Kısayollar: boşluk oynat/duraklat, ← → adım, M ses, Esc kapat.
 - Bir deneme **bitirildiğinde** çözülmüş sayılır; yarıda kapatılan deneme soruları harcamaz.
 - Kullanıcıya verilmiş ya da çözülmüş soru, o kaynağın bütün soruları görülene kadar **bir daha gösterilmez**.
   Bütün soruları görülen kaynak kilitlenmez: "yeniden çözülebilir" olur ve yeni bir tur başlar.

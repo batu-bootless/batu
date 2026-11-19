@@ -683,7 +683,7 @@
         <p>${esc(q.t)}</p>
         <p class="wrong-src">${esc(w.src)} · ${w.date} · Senin cevabın: <b>${w.your}</b> · Doğru cevap: <b style="color:var(--good)">${q.a == null ? '—' : L5[q.a]}</b></p>
         ${solText(q) ? `<details class="wrong-sol"><summary>${icon('bulb')} Açıklamalı Çözümünü Gör</summary><div class="sol-text">${solHtml(q)}</div></details>` : ''}</div>
-        <div class="wrong-actions"><button class="btn btn-blue btn-sm" data-action="retry" ${w.bank ? `data-bank="${w.bank}"` : `data-q="${w.q}"`}>Tekrar çöz</button>${!w.bank && q.sol.length ? `<button class="btn btn-soft btn-sm" data-action="video" data-q="${w.q}">${icon('video')} Video çözüm</button>` : ''}<button class="btn btn-ghost btn-sm" data-action="learned" data-id="${w.id}">${icon('check')} Öğrendim</button></div>
+        <div class="wrong-actions"><button class="btn btn-blue btn-sm" data-action="retry" ${w.bank ? `data-bank="${w.bank}"` : `data-q="${w.q}"`}>Tekrar çöz</button>${solText(q) ? `<button class="btn btn-soft btn-sm" data-action="video" data-id="${w.id}">${icon('play')} Anlatım videosu</button>` : ''}<button class="btn btn-ghost btn-sm" data-action="learned" data-id="${w.id}">${icon('check')} Öğrendim</button></div>
       </article>`; }).join('') : `<section class="card"><p class="muted">Bu filtrede soru yok. Denemelerde yanlış yaptığın sorular buraya otomatik eklenir.</p></section>`}</div>
     </div>`;
   }
@@ -1475,7 +1475,7 @@
       case 'billing': state.billing = a.value; return render(false);
       case 'buy': return openBuy(a.dataset.id);
       case 'invoice': return toast('Faturalar, ödeme sistemi aktif olduğunda indirilebilecek');
-      case 'video': return openVideo(+a.dataset.q);
+      case 'video': { const w = wrongs.find((x) => x.id === a.dataset.id); return w && openLesson(wq(w), 'Yanlış defterindeki soru'); }
       case 'register': upcomingReg[a.dataset.id] = true; store.set(ukey('reg'), upcomingReg); toast('Denemeye kaydoldun. Hatırlatma göndereceğiz.'); return render(false);
       case 'unregister': upcomingReg[a.dataset.id] = false; store.set(ukey('reg'), upcomingReg); toast('Deneme kaydın iptal edildi'); return render(false);
       case 'open-exam': state.exam = a.dataset.id; location.hash = 'analiz'; return;
@@ -1570,7 +1570,8 @@
         <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${q.konu ? `<span class="chip">${esc(q.konu)}</span>` : ''}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}${st.solSeen[st.cur] ? '<span class="chip">Çözüm görüldü</span>' : ''}</div>
           ${body(q)}
           <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${L5.map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${richOpt(q.o[i] || '')}</span>`}</button>`).join('')}</div>
-          ${solText(q) || q.a != null ? `<div class="pl-sol"><button type="button" class="btn btn-soft btn-sm sol-btn" data-pl="sol" aria-expanded="${st.solOpen[st.cur]}">${icon('bulb')} ${st.solOpen[st.cur] ? 'Açıklamalı Çözümü Gizle' : 'Açıklamalı Çözümünü Gör'}</button>`
+          ${solText(q) || q.a != null ? `<div class="pl-sol"><div class="sol-btns"><button type="button" class="btn btn-soft btn-sm sol-btn" data-pl="sol" aria-expanded="${st.solOpen[st.cur]}">${icon('bulb')} ${st.solOpen[st.cur] ? 'Açıklamalı Çözümü Gizle' : 'Açıklamalı Çözümünü Gör'}</button>`
+            + `${solText(q) ? `<button type="button" class="btn btn-soft btn-sm lsn-open" data-pl="video">${icon('play')} Anlatım Videosu</button>` : ''}</div>`
             + `${st.solOpen[st.cur] ? `<div class="sol-box sol-text">${solHtml(q)}</div>` : ''}</div>` : ''}
           <p class="small muted" style="margin-top:14px">Klavye: A–E ile işaretle, ← → ile geç, F ile tam ekran. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
         </div>
@@ -1608,7 +1609,7 @@
           <p>${qs.length} sorunun ${D} tanesini doğru yanıtladın. Süre: ${fmtT(seconds - Math.max(0, st.left))}</p>
           <div class="res-stats"><div class="g"><small>Doğru</small><b>${D}</b></div><div class="b"><small>Yanlış</small><b>${Y}</b></div><div><small>Boş</small><b>${B}</b></div><div><small>Net</small><b>${fmt(net)}</b></div></div>
           ${U ? `<p class="small muted" style="margin-top:8px">${U} sorunun kaynağında cevap anahtarı olmadığı için puanlanmadı.</p>` : ''}</div></div>
-        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t || `${q.konu || 'Paragraf'} · boşluk`)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${solText(q) ? `<div class="sol-text">${solHtml(q)}</div>` : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için açıklamalı çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
+        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t || `${q.konu || 'Paragraf'} · boşluk`)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${solText(q) ? `<div class="sol-text">${solHtml(q)}</div><button type="button" class="btn btn-soft btn-sm rv-video" data-pl="video" data-i="${i}">${icon('play')} Anlatım videosu</button>` : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için açıklamalı çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
       </div>`;
       const oldFoot = $('.pl-foot', root); if (oldFoot) oldFoot.remove();
       main.insertAdjacentHTML('afterend', `<div class="pl-foot"><span class="small muted">${opts.onFinish ? 'Sonucun kaydedildi.' : 'Sonuçlar örnek panelde kaydedilmez.'}</span><span class="spacer"></span>${st.wrong.length ? '<button class="btn btn-soft btn-sm" data-pl="to-notebook">Yanlış ve boşları deftere ekle</button>' : ''}<button class="btn btn-blue btn-sm" data-pl="close-now">Panele dön</button></div>`);
@@ -1652,6 +1653,11 @@
         case 'finish': { const empty = st.ans.filter((x) => x === null).length; return empty ? confirmBar(`${empty} soru boş. Yine de bitirmek istiyor musun?`, 'finish-now', 'Bitir') : finish(); }
         case 'finish-now': return finish();
         case 'fs': return toggleFs();
+        case 'video': {
+          const qi = b.dataset.i != null ? +b.dataset.i : st.cur;
+          if (!st.done) { st.solSeen[qi] = true; draw(); }
+          return openLesson(qs[qi], `Soru ${qi + 1}`);
+        }
         case 'sol': {
           st.solOpen[st.cur] = !st.solOpen[st.cur];
           if (st.solOpen[st.cur]) st.solSeen[st.cur] = true;
@@ -1678,37 +1684,171 @@
     setTimeout(() => { const o = $('.opt', root); if (o) o.focus(); }, 50);
   }
 
-  /* ---------------- video solution (sample player) ---------------- */
-  function openVideo(qi) {
-    const q = QUESTIONS[qi], root = $('#modalRoot'), DUR = 12;
-    let t = 0, timer = null;
-    root.innerHTML = `<div class="modal-back"><div class="modal sm" role="dialog" aria-modal="true" aria-labelledby="vdTitle">
-      <div class="pl-head"><div><h2 id="vdTitle">Video çözüm</h2><p>${SUBJ[q.s].name} · örnek oynatıcı</p></div><span style="margin-left:auto"></span><button class="icon-btn" data-vd="close" aria-label="Kapat">${icon('x')}</button></div>
-      <div class="vid"><div class="vid-frame" id="vdFrame"><div class="vid-board">${q.sol.map((s) => `<p>${esc(s)}</p>`).join('')}</div>
-        <button class="vid-play" data-vd="play" aria-label="Oynat">${icon('play')}</button>
-        <div class="vid-bar"><button data-vd="toggle" aria-label="Oynat / duraklat" id="vdToggle">${icon('play')}</button><div class="vid-prog"><i id="vdProg"></i></div><span id="vdTime">0:00 / 0:${DUR}</span></div></div>
-        <div class="vid-side"><h3>Soru</h3><p class="small">${esc(q.t)}</p><h3>Çözüm adımları</h3><ol>${q.sol.map((s) => `<li>${esc(s)}</li>`).join('')}</ol><p class="small muted">Doğru cevap: <b style="color:var(--good)">${L5[q.a]}) ${esc(q.o[q.a])}</b></p></div></div></div></div>`;
-    const lines = $$('.vid-board p', root);
+  /* ---------------- anlatım videosu ----------------
+     Every question's explanation played like a short video: the question, the steps one by one on a board, then the
+     answer. Narrated with the device's own Turkish voice (Web Speech API) where there is one; the board is the caption. */
+  const LSN_RATES = [1, 1.25, 1.5];
+  let trVoice = null;
+  const findVoice = () => {
+    const vs = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+    trVoice = vs.find((v) => /^tr([-_]|$)/i.test(v.lang)) || null;
+  };
+  if (window.speechSynthesis) {
+    findVoice();
+    if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged', findVoice);
+  }
+  const ROMAN = { I: 'bir', II: 'iki', III: 'üç', IV: 'dört', V: 'beş', VI: 'altı' };
+  // question markup → words a voice reads well ("3^{2}" → "3 kare", "{a/b}" → "a bölü b", "II." → "iki")
+  const speakable = (t) => String(t || '')
+    .replace(/\*\*|__/g, '')
+    .replace(/\{([^{}/]+)\/([^{}]+)\}/g, ' $1 bölü $2 ')
+    .replace(/\^\{2\}/g, ' kare').replace(/\^\{3\}/g, ' küp').replace(/\^\{([^{}]*)\}/g, ' üssü $1')
+    .replace(/_\{([^{}]*)\}/g, ' $1')
+    .replace(/%\s?(\d)/g, 'yüzde $1')
+    .replace(/(?<![\p{L}\d])(VI|IV|V|III|II|I)(?![\p{L}\d])\.?/gu, (m, r) => ROMAN[r])
+    .replace(/√/g, ' kök ').replace(/[·×]/g, ' çarpı ').replace(/⇒|→|➪/g, ', ').replace(/≈/g, ' yaklaşık ')
+    .replace(/°/g, ' derece').replace(/′/g, ' dakika')
+    .replace(/ = /g, ' eşittir ').replace(/ − /g, ' eksi ').replace(/−(?=[\d(])/g, 'eksi ').replace(/ \+ /g, ' artı ')
+    .replace(/✓/g, ', doğru.').replace(/✗/g, ', yanlış.')
+    .replace(/[|•●]/g, ' ').replace(/\s+/g, ' ').trim();
+  const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+
+  function openLesson(q, label) {
+    if (!q) return;
+    const rich = (t) => (window.DSYaprakTest ? window.DSYaprakTest.rich(t) : esc(t));
+    const plain = String(q.t || [q.ust, q.alt].filter(Boolean).join(' ')).replace(/\*\*|__/g, '').replace(/\s+/g, ' ').trim();
+    const stem = plain.length > 200 ? `${plain.slice(0, 200).replace(/\s\S*$/, '')}…` : plain;
+    const pic = q.imgOnly && q.img ? q.img : q.fig || (q.parts || []).map((p) => p.fig).find(Boolean) || (!plain && q.img) || '';
+    const lines = solText(q).split('\n').map((s) => s.trim()).filter(Boolean);
+    const steps = [{ kind: 'q', say: `${label}. Bu soruyu adım adım çözelim.` }]
+      .concat(lines.map((ln) => ({ kind: 'line', html: rich(ln), li: /^[•●]/.test(ln), say: speakable(ln) })))
+      .concat(q.a != null ? [{ kind: 'ans', say: `Doğru cevap ${L5[q.a]} şıkkı.` }] : []);
+    steps.forEach((s) => { s.dur = Math.max(2.4, 0.8 + s.say.length * 0.07); });
+    const total = steps.reduce((a, s) => a + s.dur, 0);
+    const startOf = (i) => steps.slice(0, i).reduce((a, s) => a + s.dur, 0);
+
+    const lastFocus = document.activeElement;
+    const el = document.createElement('div');
+    el.className = 'lsn-root';
+    el.innerHTML = `<div class="lsn" role="dialog" aria-modal="true" aria-label="Anlatım videosu">
+      <div class="lsn-top"><div><b>Anlatım videosu</b><span>${esc(label)}${q.konu ? ` · ${esc(q.konu)}` : ''}</span></div>
+        <button class="lsn-x" data-ls="close" aria-label="Kapat">${icon('x')}</button></div>
+      <div class="lsn-frame">
+        <div class="lsn-screen">
+          <div class="lsn-q"><span class="lsn-tag">SORU</span>${stem ? `<p>${esc(stem)}</p>` : ''}${pic ? `<img src="${esc(pic)}" alt="">` : ''}</div>
+          <div class="lsn-board" aria-live="polite">${steps.map((s, i) => (s.kind === 'line' ? `<p class="lsn-l${s.li ? ' li' : ''}" data-i="${i}">${s.html}</p>` : '')).join('')}</div>
+          ${q.a != null ? `<div class="lsn-ans"><span class="lsn-letter">${L5[q.a]}</span><div><small>Doğru cevap</small>${q.o && q.o[q.a] ? `<b>${rich(q.o[q.a])}</b>` : ''}</div></div>` : ''}
+        </div>
+        <button class="lsn-big" data-ls="toggle" aria-label="Oynat">${icon('play')}</button>
+      </div>
+      <div class="lsn-bar">
+        <button class="lsn-btn fill" data-ls="toggle" id="lsnPlay" aria-label="Duraklat">${icon('pause')}</button>
+        <div class="lsn-prog" data-ls="seek" role="slider" aria-label="Video ilerlemesi" aria-valuemin="0" aria-valuemax="${Math.round(total)}" tabindex="0">
+          ${steps.map((s) => `<i style="flex:${s.dur.toFixed(2)}"><b></b></i>`).join('')}</div>
+        <span class="lsn-time" id="lsnTime">0:00 / ${mmss(total)}</span>
+        <button class="lsn-btn lsn-rate" data-ls="rate" id="lsnRate" aria-label="Oynatma hızı">1×</button>
+        <button class="lsn-btn" data-ls="sound" id="lsnSound" aria-label="Sesli anlatım"></button>
+      </div>
+      <p class="lsn-note" id="lsnNote"></p>
+    </div>`;
+    document.body.appendChild(el);
+
+    const synth = window.speechSynthesis;
+    let cur = 0, t = 0, playing = false, ended = false, spoken = true, timer = null, rateI = 0;
+    let sound = !!(synth && trVoice) && store.get('ds-video-ses', true) !== false;
+    const rate = () => LSN_RATES[rateI];
+    const hush = () => { if (synth) synth.cancel(); };
+    const speak = (i) => {
+      hush();
+      if (!sound || !synth || !trVoice) { spoken = true; return; }
+      spoken = false;
+      const u = new SpeechSynthesisUtterance(steps[i].say);
+      u.lang = trVoice.lang; u.voice = trVoice; u.rate = Math.min(1.5, rate());
+      u.onend = u.onerror = () => { if (cur === i) spoken = true; };
+      synth.speak(u);
+    };
     const paint = () => {
-      $('#vdProg').style.width = `${(t / DUR) * 100}%`;
-      $('#vdTime').textContent = `0:${String(Math.floor(t)).padStart(2, '0')} / 0:${DUR}`;
-      lines.forEach((l, i) => l.classList.toggle('on', t >= (i * DUR) / (lines.length + 0.5)));
-      $('#vdToggle').innerHTML = icon(timer ? 'pause' : 'play');
-      $('#vdFrame').classList.toggle('playing', !!timer || t > 0);
+      const s = steps[cur];
+      el.querySelector('.lsn-frame').classList.toggle('at-q', s.kind === 'q');
+      el.querySelector('.lsn-frame').classList.toggle('paused', !playing);
+      el.querySelectorAll('.lsn-l').forEach((p) => {
+        const i = +p.dataset.i;
+        p.classList.toggle('on', i <= cur && s.kind !== 'q');
+        p.classList.toggle('cur', i === cur);
+      });
+      const ans = el.querySelector('.lsn-ans'); if (ans) ans.classList.toggle('on', s.kind === 'ans');
+      const now = Math.min(total, startOf(cur) + Math.min(t, s.dur));
+      el.querySelectorAll('.lsn-prog i').forEach((seg, i) => { seg.firstChild.style.width = `${i < cur ? 100 : i > cur ? 0 : Math.min(100, (t / s.dur) * 100)}%`; });
+      el.querySelector('.lsn-prog').setAttribute('aria-valuenow', String(Math.round(now)));
+      $('#lsnTime').textContent = `${mmss(now)} / ${mmss(total)}`;
+      $('#lsnPlay').innerHTML = icon(playing ? 'pause' : ended ? 'reset' : 'play');
+      $('#lsnPlay').setAttribute('aria-label', playing ? 'Duraklat' : ended ? 'Tekrar izle' : 'Oynat');
+      $('#lsnPlay').classList.toggle('fill', !ended);   // play / pause are solid shapes, replay is an outline
+      el.querySelector('.lsn-big').classList.toggle('end', ended);
+      el.querySelector('.lsn-big').innerHTML = icon(ended ? 'reset' : 'play');
+      $('#lsnRate').textContent = `${String(rate()).replace('.', ',')}×`;
+      $('#lsnSound').innerHTML = icon(sound ? 'volume' : 'mute');
+      $('#lsnSound').setAttribute('aria-pressed', String(sound));
+      $('#lsnSound').disabled = !(synth && trVoice);
+      $('#lsnNote').textContent = synth && trVoice
+        ? (sound ? `Sesli anlatım bu cihazın Türkçe sesiyle yapılıyor (${trVoice.name}).` : 'Sesli anlatım kapalı; anlatım yazılı olarak ilerliyor.')
+        : 'Bu cihazda Türkçe ses bulunamadı; anlatım yazılı olarak ilerliyor.';
+      const line = el.querySelector('.lsn-l.cur');
+      if (line) line.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     };
-    const play = () => { if (timer) return; if (t >= DUR) t = 0; timer = setInterval(() => { t = Math.min(DUR, t + 0.1); if (t >= DUR) { clearInterval(timer); timer = null; } paint(); }, 100); paint(); };
-    const pause = () => { clearInterval(timer); timer = null; paint(); };
-    const close = () => { pause(); document.removeEventListener('keydown', onKey); root.innerHTML = ''; };
-    const onKey = (e) => { if (e.key === 'Escape') close(); };
-    document.addEventListener('keydown', onKey);
-    root.onclick = (e) => {
-      if (e.target.classList.contains('modal-back')) return close();
-      const b = e.target.closest('[data-vd]'); if (!b) return;
-      if (b.dataset.vd === 'close') close();
-      else if (b.dataset.vd === 'play') play();
-      else (timer ? pause : play)();
+    const go = (i) => { cur = Math.max(0, Math.min(steps.length - 1, i)); t = 0; ended = false; if (playing) speak(cur); else hush(); paint(); };
+    const tick = () => {
+      const s = steps[cur];
+      t = Math.min(s.dur, t + 0.1 * rate());
+      if (t >= s.dur && spoken) {
+        if (cur < steps.length - 1) { cur++; t = 0; speak(cur); } else { stop(); ended = true; }
+      }
+      paint();
     };
+    function play() {
+      if (playing) return;
+      if (ended) { cur = 0; t = 0; ended = false; }
+      playing = true; speak(cur);
+      timer = setInterval(tick, 100);
+      paint();
+    }
+    function stop() { playing = false; clearInterval(timer); hush(); paint(); }
+    const toggle = () => (playing ? stop() : play());
+    const close = () => {
+      stop();
+      document.removeEventListener('keydown', onKey, true);
+      el.remove();
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+    // keys go to the video while it is open (the exam underneath must not answer or close)
+    function onKey(e) {
+      if (e.key === 'Tab') return;
+      e.stopImmediatePropagation();
+      if (e.key === 'Escape') { e.preventDefault(); return close(); }
+      if (e.key === ' ' || e.key.toLowerCase() === 'k') { e.preventDefault(); return toggle(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); return go(cur + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); return go(cur - 1); }
+      if (e.key.toLowerCase() === 'm' && synth && trVoice) { sound = !sound; store.set('ds-video-ses', sound); if (playing) speak(cur); else hush(); return paint(); }
+    }
+    document.addEventListener('keydown', onKey, true);
+    el.addEventListener('click', (e) => {
+      if (e.target === el) return close();
+      const b = e.target.closest('[data-ls]'); if (!b) return;
+      switch (b.dataset.ls) {
+        case 'close': return close();
+        case 'toggle': return toggle();
+        case 'rate': rateI = (rateI + 1) % LSN_RATES.length; if (playing) speak(cur); return paint();
+        case 'sound': sound = !sound; store.set('ds-video-ses', sound); if (playing) speak(cur); else hush(); return paint();
+        case 'seek': {
+          const r = b.getBoundingClientRect(), at = ((e.clientX - r.left) / r.width) * total;
+          let i = 0; while (i < steps.length - 1 && startOf(i + 1) <= at) i++;
+          return go(i);
+        }
+      }
+    });
     paint();
+    play();
+    el.querySelector('#lsnPlay').focus();
   }
 
   /* ---------------- shell: sidebar, menus, search, theme ---------------- */

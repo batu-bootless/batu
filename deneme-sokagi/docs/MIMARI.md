@@ -37,6 +37,10 @@ bir IIFE'dir, dışarıya bir şey açmaz.
 - **Sınav ekranı:** `openPlayer(sorular, başlık, süre, { mode, onFinish })` — sonuç `{ D, Y, B, net, status }`.
   Tam ekran: Fullscreen API (sayfanın tamamı), izin yoksa `.modal-back.fs` ile pencereyi kaplar; F tuşu açar/kapatır,
   Esc önce tam ekrandan çıkar; sınav kapanınca tam ekran da kapanır.
+- **Açıklamalı çözüm / anlatım videosu:** `solHtml(q)` çözümü (`cozum`) gösterir; `openLesson(q, etiket)` aynı metni
+  adım adım oynatan videoyu açar (sınavın üstünde ayrı bir katman; tuşlar videoya gider). Seslendirme tarayıcının
+  Web Speech API'siyle, cihazın Türkçe sesiyle yapılır (`speakable()` işaretlemeyi okunur metne çevirir); ses yoksa
+  süreler metin uzunluğundan hesaplanır. Ses tercihi tarayıcıda `ds-video-ses` anahtarında tutulur.
 - **PDF:** `downloadTest(test)` → `DSPdf.build()` (sayfa içinde) → `DSPdf.save()` (claude.ai önizlemesinde
   `downloads` izniyle, başka yerde doğrudan indirme).
 
