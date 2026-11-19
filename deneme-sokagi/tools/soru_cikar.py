@@ -478,6 +478,9 @@ def extract(pdf_path, kaynak_id, kaynak_ad, sinav, dpi, yerel=False, booklet='A'
                 'gorsel': f'{rel}/{qid}.png', 'sekil': sekil,
                 'sekil_pt': round(fig_box[2] - fig_box[0] + 8, 1) if fig_box else None, 'yazi_pt': yazi_pt,
                 **({'parcalar': parcalar} if parcalar else {}),
+                # numbers printed under words (I, II … below underlined words) do not survive as text
+                **({'gorsel_goster': True} if any(re.fullmatch(r'(?:\s*(?:I|II|III|IV|V|VI)\s*)+', re.sub(r'[*_]', '', ln))
+                                                  for ln in (qa['ust'] + '\n' + qa['alt']).split('\n') if ln.strip()) else {}),
                 'bbox': [round(v, 1) for v in box],
             })
 

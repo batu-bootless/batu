@@ -40,6 +40,8 @@
 .ds-body { position: absolute; left: 15.5mm; top: 31.1mm; width: 178.9mm; bottom: 21mm; display: grid; grid-template-columns: 80.9mm 80.9mm; column-gap: 17.1mm; }
 .ds-page.cont .ds-body { top: 12mm; }
 .ds-col { min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+/* columns that ran full: first question at the top, last at the bottom, equal gaps between them */
+.ds-col.full { justify-content: space-between; }
 .ts-rule { position: absolute; left: 90.6mm; top: -0.6mm; width: 0.6mm; bottom: 0; background: #000; }
 .ts-vurl { position: absolute; left: 89.9mm; top: 50%; width: 2.8mm; padding: 2.2mm 0; background: #fff;
   writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg);
