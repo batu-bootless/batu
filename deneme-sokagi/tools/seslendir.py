@@ -269,15 +269,24 @@ def main():
         parts = [(p, dil) for b, dil in bolumler(text) for p in parcala(b)]
         for i, (p, dil) in enumerate(parts):
             best = None
-            for deneme in range(3):   # model sözü erken keserse ya da uzatırsa yeniden dene
+            # tek kelimelik İngilizce ("that") modelin hizalama denetimini çökertebiliyor: tırnakla verilince sorun yok
+            kisa = dil == 'en' and len(p.split()) == 1
+            for deneme in range(4):   # model sözü erken keserse, uzatırsa ya da hata verirse yeniden dene
                 torch.manual_seed(tohum + deneme)
-                w = model.generate(p, language_id=dil)
+                girdi = f'"{p}"' if kisa or (dil == 'en' and deneme == 3) else p
+                try:
+                    w = model.generate(girdi, language_id=dil)
+                except (IndexError, RuntimeError) as e:
+                    print(f'  uyarı: {girdi!r} üretilemedi ({type(e).__name__}), yeniden deneniyor', flush=True)
+                    continue
                 oran = (w.shape[-1] / sr) / max(0.9, len(p) / 13.5)
                 puan = abs(math.log(max(oran, 1e-3)))
                 if best is None or puan < best[0]:
                     best = (puan, w)
                 if 0.5 <= oran <= 2.2:
                     break
+            if best is None:
+                raise RuntimeError(f'seslendirilemedi: {p!r}')
             out.append(kirp(best[1]))
             if i < len(parts) - 1:
                 out.append(sessiz(0.1 if parts[i + 1][1] != dil else 0.18))
@@ -335,7 +344,11 @@ def main():
     t_all = time.time()
     for n, (d, qid, cumle, oz) in enumerate(todo, 1):
         t0 = time.time()
-        sure = kaydet(d, qid, oz, [seslendir(c) for c in cumle])
+        try:
+            sure = kaydet(d, qid, oz, [seslendir(c) for c in cumle])
+        except RuntimeError as e:   # bir soru takılırsa diğerleri beklemesin
+            print(f'[{n}/{len(todo)}] {qid}: atlandı — {e}', flush=True)
+            continue
         gecen = time.time() - t0
         kalan = (time.time() - t_all) / n * (len(todo) - n)
         print(f'[{n}/{len(todo)}] {qid}: {len(cumle)} adım, {sure:.1f} sn ses, {gecen:.0f} sn · kalan ≈ {kalan / 60:.0f} dk', flush=True)
