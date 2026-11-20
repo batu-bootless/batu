@@ -56,6 +56,9 @@ def _sayi(m):
     return f' {yazi}{m.group(2) or ""} '
 
 
+BIRIM = {'cm': 'santimetre', 'mm': 'milimetre', 'km': 'kilometre', 'kg': 'kilogram', 'mg': 'miligram', 'mL': 'mililitre',
+         'ml': 'mililitre', 'dk': 'dakika', 'sn': 'saniye', 'sa': 'saat', 'm': 'metre', 'g': 'gram', 'L': 'litre'}   # sayıdan sonra
+
 TR_HARF = re.compile(r'[çğıöşüÇĞİÖŞÜâîû]')
 EN_KELIME = re.compile(r"\b(the|a|an|to|of|is|it|that|and|by|with|from|was|were|be|been|have|has|had|who|whom|which|at|in|on|"
                        r"for|as|this|her|his|them|their|someone|something|not|so|than|until|just|since|while|although|"
@@ -93,10 +96,22 @@ def _okunur(t):
     t = re.sub(r'%\s?(?=\d)', 'yüzde ', t)
     t = re.sub(r'(?<![^\W\d_])(VI|IV|V|III|II|I)(?![^\W\d_])\.?', lambda m: ROMA[m.group(1)], t)
     for a, b in (('√', ' kök '), ('·', ' çarpı '), ('×', ' çarpı '), ('⇒', ', '), ('→', ', '), ('➪', ', '),
-                 ('≈', ' yaklaşık '), ('°', ' derece'), ('′', ' dakika'), ('✓', ', doğru.'), ('✗', ', yanlış.'), ('…', '.')):
+                 ('≈', ' yaklaşık '), ('°', ' derece'), ('′', ' dakika'), ('✓', ', doğru.'), ('✗', ', yanlış.'), ('…', '.'),
+                 ('≤', ' küçük eşit '), ('≥', ' büyük eşit '), (' < ', ' küçüktür '), (' > ', ' büyüktür '),
+                 ('∠', ' açı '), ('∥', ' paralel '), ('π', ' pi ')):
         t = t.replace(a, b)
+    t = re.sub(r'(\d)!', r'\1 faktöriyel', t)                                    # 3! → üç faktöriyel
+    t = re.sub(r'\b([01]?\d|2[0-3])\.([0-5]\d)\b(?![.,]\d)', r'\1 \2', t)          # saat 13.24 → on üç yirmi dört
+    t = re.sub(r'(\d)\s*(' + '|'.join(BIRIM) + r')(?=[\'’/]|dir\b|dır\b|de\b|da\b|den\b|dan\b|[^\w]|$)',
+               lambda m: f'{m.group(1)} {BIRIM[m.group(2)]}', t)                   # 5 cm → beş santimetre
+    t = re.sub(r'(?<=\w)/(dk|sa|sn|s)\b', lambda m: ' bölü ' + BIRIM.get(m.group(1), 'saniye'), t)   # km/sa, adım/dk
+    t = re.sub(r'(?<=[\d)])\s*/\s*(?=[\d(])', ' bölü ', t)
+    t = re.sub(r'\s*/\s*', ' ya da ', t)                                          # tek/çift → tek ya da çift
     t = t.replace(' = ', ' eşittir ').replace(' − ', ' eksi ').replace(' + ', ' artı ')
+    t = re.sub(r'\s[–—]\s', ', ', t)                                              # Zamir – Zarf
     t = re.sub(r'[−–](?=[\d(])', ' eksi ', t)
+    t = re.sub(r'(?<!\w)[−–](?=\w)', ' eksi ', t).replace('(+', '( artı ')        # −a → eksi a
+    t = re.sub(r'(?<![\w)])\+(?=\w)', ' artı ', t)
     t = re.sub(r'(\d)(?=[^\W\d_])', r'\1 ', t)                        # 3x → 3 x
     t = re.sub(r'(\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?)(?:[\'’]([^\W\d_]+))?', _sayi, t)
     t = re.sub(r'[\'’]', '', t)                                          # 31’er → otuz birer

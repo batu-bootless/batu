@@ -1712,6 +1712,8 @@
     findVoices();
     if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged', findVoices);
   }
+  const UNITS = { cm: 'santimetre', mm: 'milimetre', km: 'kilometre', kg: 'kilogram', mg: 'miligram', mL: 'mililitre',
+    ml: 'mililitre', dk: 'dakika', sn: 'saniye', sa: 'saat', m: 'metre', g: 'gram', L: 'litre' };   // after a number
   const ROMAN = { I: 'bir', II: 'iki', III: 'üç', IV: 'dört', V: 'beş', VI: 'altı' };
   // question markup → words a voice reads well ("3^{2}" → "3 kare", "{a/b}" → "a bölü b", "II." → "iki");
   // quoted English ("I paid by card") is left as written (same rule as tools/seslendirme_metin.py)
@@ -1729,7 +1731,17 @@
     .replace(/(?<![\p{L}\d])(VI|IV|V|III|II|I)(?![\p{L}\d])\.?/gu, (m, r) => ROMAN[r])
     .replace(/√/g, ' kök ').replace(/[·×]/g, ' çarpı ').replace(/⇒|→|➪/g, ', ').replace(/≈/g, ' yaklaşık ')
     .replace(/°/g, ' derece').replace(/′/g, ' dakika')
-    .replace(/ = /g, ' eşittir ').replace(/ − /g, ' eksi ').replace(/−(?=[\d(])/g, 'eksi ').replace(/ \+ /g, ' artı ')
+    .replace(/≤/g, ' küçük eşit ').replace(/≥/g, ' büyük eşit ').replace(/ < /g, ' küçüktür ').replace(/ > /g, ' büyüktür ')
+    .replace(/∠/g, ' açı ').replace(/∥/g, ' paralel ').replace(/π/g, ' pi ')
+    .replace(/(\d)!/g, '$1 faktöriyel')
+    .replace(/\b([01]?\d|2[0-3])\.([0-5]\d)\b(?![.,]\d)/g, '$1 $2')
+    .replace(new RegExp(`(\\d)\\s*(${Object.keys(UNITS).join('|')})(?=['’/]|dir\\b|dır\\b|de\\b|da\\b|den\\b|dan\\b|[^\\p{L}\\d_]|$)`, 'gu'),
+      (m, d, u) => `${d} ${UNITS[u]}`)
+    .replace(/(?<=[\p{L}\d])\/(dk|sa|sn|s)\b/gu, (m, u) => ` bölü ${UNITS[u] || 'saniye'}`)
+    .replace(/(?<=[\d)])\s*\/\s*(?=[\d(])/g, ' bölü ').replace(/\s*\/\s*/g, ' ya da ')
+    .replace(/ = /g, ' eşittir ').replace(/ − /g, ' eksi ').replace(/ \+ /g, ' artı ').replace(/\s[–—]\s/g, ', ')
+    .replace(/[−–](?=[\d(])/g, ' eksi ').replace(/(?<![\p{L}\d_])[−–](?=[\p{L}\d])/gu, ' eksi ')
+    .replace(/(?<![\p{L}\d_)])\+(?=[\p{L}\d])/gu, ' artı ')
     .replace(/✓/g, ', doğru.').replace(/✗/g, ', yanlış.')
     .replace(/²/g, ' kare').replace(/³/g, ' küp').replace(/;/g, ',').replace(/…/g, '.')
     .replace(/[|•●()\[\]]/g, ' ').replace(/\s+([,.])/g, '$1').replace(/\s+/g, ' ').trim();
