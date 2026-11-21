@@ -88,6 +88,7 @@
       sol: ['Fırat ve Dicle Türkiye sınırları dışına çıkar.', "Kızılırmak (yaklaşık 1.355 km) Türkiye'de doğup Karadeniz'e dökülen en uzun akarsudur."] },
   ];
   const L5 = ['A', 'B', 'C', 'D', 'E'];
+  const LQ = (q) => L5.slice(0, (q && q.n) || 5);   // the question's letters (LGS: A–D)
 
   const WRONG_DEFAULT = [
     { id: 'w1', q: 1, topic: 'Yüzde Problemleri', src: 'Türkiye Geneli TYT 5 · Soru 77', date: '8 Kas', kind: 'Bilgi eksiği', your: 'C' },
@@ -163,7 +164,7 @@
     if (n.includes('türkçe') || n.includes('edebiyat')) return 'tr';
     if (n.includes('matematik') || n.includes('geometri')) return 'mat';
     if (/fen|fizik|kimya|biyoloji/.test(n)) return 'fen';
-    if (/sosyal|tarih|coğrafya|felsefe|din/.test(n)) return 'sos';
+    if (/sosyal|tarih|coğrafya|felsefe|din|psikoloji|sosyoloji|mantık|vatandaşlık|güncel|inkılap/.test(n)) return 'sos';
     return 'all';
   }
   // One question shape for the player: built-in sample questions and bank questions.
@@ -173,6 +174,7 @@
     const g = b.grup && BANK.gruplar ? BANK.gruplar[b.grup] : null;
     return {
       s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [],
+      n: (b.secenekler && b.secenekler.length === 4) || (BANK.src[b.kaynak] || {}).secenek === 4 ? 4 : 5,
       figW: b.sekil_pt && b.yazi_pt ? Math.round(b.sekil_pt * 15.5 / b.yazi_pt) : null, imgOnly: !!b.gorsel_goster,
       parts: b.parcalar ? b.parcalar.map((p) => (p.sekil ? { fig: p.sekil, w: b.yazi_pt ? Math.round(p.sekil_pt * 15.5 / b.yazi_pt) : null } : { t: p.metin })) : null,
       a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, sinav: b.sinav, yon: b.yonerge || (g && g.yonerge) || null,
@@ -1582,14 +1584,14 @@
       main.innerHTML = `<div class="pl-body">
         <div class="pl-q"><div class="pl-q-top"><b>Soru ${st.cur + 1} / ${n}</b>${subjChip(q.s)}${q.konu ? `<span class="chip">${esc(q.konu)}</span>` : ''}${st.flag[st.cur] ? '<span class="chip warn">İşaretli</span>' : ''}${st.solSeen[st.cur] ? '<span class="chip">Çözüm görüldü</span>' : ''}</div>
           ${body(q)}
-          <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${L5.map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${richOpt(q.o[i] || '')}</span>`}</button>`).join('')}</div>
+          <div class="opts${letters ? ' letters' : ''}" role="radiogroup" aria-label="Seçenekler">${LQ(q).map((l, i) => `<button class="opt${st.ans[st.cur] === i ? ' sel' : ''}" role="radio" aria-checked="${st.ans[st.cur] === i}" data-opt="${i}" aria-label="Şık ${l}"><span class="L">${l}</span>${letters ? '' : `<span>${richOpt(q.o[i] || '')}</span>`}</button>`).join('')}</div>
           ${solText(q) || q.a != null ? `<div class="pl-sol"><div class="sol-btns"><button type="button" class="btn btn-soft btn-sm sol-btn" data-pl="sol" aria-expanded="${st.solOpen[st.cur]}">${icon('bulb')} ${st.solOpen[st.cur] ? 'Açıklamalı Çözümü Gizle' : 'Açıklamalı Çözümünü Gör'}</button>`
             + `${solText(q) ? `<button type="button" class="btn btn-soft btn-sm lsn-open" data-pl="video">${icon('play')} Anlatım Videosu</button>` : ''}</div>`
             + `${st.solOpen[st.cur] ? `<div class="sol-box sol-text">${solHtml(q)}</div>` : ''}</div>` : ''}
-          <p class="small muted" style="margin-top:14px">Klavye: A–E ile işaretle, ← → ile geç, F ile tam ekran. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
+          <p class="small muted" style="margin-top:14px">Klavye: ${LQ(q)[0]}–${LQ(q).slice(-1)[0]} ile işaretle, ← → ile geç, F ile tam ekran. Seçili şıkka tekrar tıklarsan boş bırakırsın.</p>
         </div>
         <aside class="pl-side"><h3>Optik form</h3>
-          <div class="optik">${qs.map((_, qi) => `<div class="optik-row${qi === st.cur ? ' cur' : ''}${st.flag[qi] ? ' flag' : ''}"><button class="n" data-go="${qi}" aria-label="Soru ${qi + 1}">${qi + 1}</button>${L5.map((l, li) => `<button class="bub${st.ans[qi] === li ? ' on' : ''}" data-bub="${qi}-${li}" aria-label="Soru ${qi + 1} şık ${l}">${l}</button>`).join('')}</div>`).join('')}</div>
+          <div class="optik">${qs.map((qq, qi) => `<div class="optik-row${qi === st.cur ? ' cur' : ''}${st.flag[qi] ? ' flag' : ''}"><button class="n" data-go="${qi}" aria-label="Soru ${qi + 1}">${qi + 1}</button>${LQ(qq).map((l, li) => `<button class="bub${st.ans[qi] === li ? ' on' : ''}" data-bub="${qi}-${li}" aria-label="Soru ${qi + 1} şık ${l}">${l}</button>`).join('')}</div>`).join('')}</div>
           <div class="optik-legend"><span><i style="--c:var(--text)"></i>Cevaplandı: ${answered}</span><span><i style="--c:var(--warn)"></i>İşaretli: ${st.flag.filter(Boolean).length}</span><span><i style="--c:var(--faint)"></i>Boş: ${n - answered}</span></div>
         </aside></div>
         <div class="pl-foot"><button class="btn ${st.flag[st.cur] ? 'flagged' : 'btn-ghost'} btn-sm" data-pl="flag" aria-label="${st.flag[st.cur] ? 'İşareti kaldır' : 'Sonra bak'}">${icon('flag')} <span class="pl-lbl">${st.flag[st.cur] ? 'İşareti kaldır' : 'Sonra bak'}</span></button><span class="spacer"></span>
@@ -1649,7 +1651,7 @@
       if (e.key.toUpperCase() === 'F' && !e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault(); return toggleFs(); }
       if (st.done) return;
       const k = e.key.toUpperCase();
-      if (L5.includes(k)) pick(st.cur, L5.indexOf(k));
+      if (LQ(qs[st.cur]).includes(k)) pick(st.cur, L5.indexOf(k));
       else if (e.key === 'ArrowRight' && st.cur < qs.length - 1) { st.cur++; draw(); }
       else if (e.key === 'ArrowLeft' && st.cur > 0) { st.cur--; draw(); }
     }

@@ -600,7 +600,8 @@ def _merge(base, out_name, var):
             mf = base / q['kaynak'] / 'kaynak.json'
             m = json.loads(mf.read_text(encoding='utf-8')) if mf.exists() else {}
             sources[q['kaynak']] = {'id': q['kaynak'], 'ad': m.get('ad', q['kaynak_ad']), 'sinav': q['sinav'], 'tur': m.get('tur', 'banka'),
-                                    'dk_soru': m.get('dk_soru', 1.5), 'soru': 0, **({'yerel': True} if m.get('yerel') else {})}
+                                    'dk_soru': m.get('dk_soru', 1.5), 'soru': 0, **({'yerel': True} if m.get('yerel') else {}),
+                                    **({'secenek': m['secenek']} if m.get('secenek') else {})}
         sources[q['kaynak']]['soru'] += 1
     bank = {'surum': 2, 'kaynaklar': list(sources.values()), 'gruplar': gruplar, 'sorular': all_q}
     data = json.dumps(bank, ensure_ascii=False)

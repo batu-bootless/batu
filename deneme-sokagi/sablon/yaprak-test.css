@@ -63,6 +63,8 @@
 .ts-opt b { font-weight: 700; margin-right: 0.5mm; }
 .ts-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 2mm; }
 .ts-opts.row3 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 2mm; }
+.ts-opts.row4 { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 2mm; }
+.ts-opts.row2 { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2mm; }
 .ts-q.img .ts-qc { margin-top: 0.8mm; }
 .ts-q.img .ts-qc img { display: block; width: 100%; height: auto; }
 .ts-code { margin-top: 4.3mm; text-align: right; font: 400 8.1pt/1.2 "DS Head", sans-serif; color: var(--ts-code); }

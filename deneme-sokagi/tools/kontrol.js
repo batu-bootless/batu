@@ -2,7 +2,7 @@
 //
 // 1. Bütün JavaScript dosyaları sözdizimi hatası içermiyor.
 // 2. Soru bankası tutarlı: benzersiz soru kimliği ve künye (2 harf + 5 rakam), var olan kaynak ve paragraf,
-//    A–E cevap, 0 ya da 5 seçenek, diskte bulunan görseller; .js ve .json kopyaları aynı; kaynak klasörleri
+//    A–E cevap, 0, 4 (LGS) ya da 5 seçenek, diskte bulunan görseller; .js ve .json kopyaları aynı; kaynak klasörleri
 //    bankadakiyle aynı sayıda soru içeriyor. Yerel (git dışı) banka varsa o da denetlenir.
 // 3. PDF şablonu referans ölçülerine uyuyor (tools/sablon-kontrol.js).
 // Bir sorun bulunursa ayrıntısıyla yazar ve 1 koduyla çıkar.
@@ -49,7 +49,8 @@ function checkBank(label, jsonFile, jsFile, varName, srcDir, takenCodes) {
     seenCodes.add(q.kod);
     if (!src.has(q.kaynak)) problems.push(`${where}: kaynak "${q.kaynak}" kaynaklar listesinde yok`);
     if (q.cevap != null && !/^[A-E]$/.test(q.cevap)) problems.push(`${where}: cevap A–E değil (${q.cevap})`);
-    if (q.secenekler && ![0, 5].includes(q.secenekler.length)) problems.push(`${where}: ${q.secenekler.length} seçenek (0 ya da 5 olmalı)`);
+    if (q.secenekler && ![0, 4, 5].includes(q.secenekler.length)) problems.push(`${where}: ${q.secenekler.length} seçenek (0, 4 ya da 5 olmalı)`);
+    if (q.secenekler && q.secenekler.length === 4 && q.cevap === 'E') problems.push(`${where}: 4 seçenekli soruda cevap E`);
     if (q.grup && !(bank.gruplar || {})[q.grup]) problems.push(`${where}: paragraf "${q.grup}" yok`);
     for (const rel of [q.gorsel, q.sekil, ...((q.parcalar || []).map((p) => p.sekil))]) if (!fileOk(rel)) problems.push(`${where}: görsel yok: ${rel}`);
     if (q.ses) {   // anlatım videosu kaydı: the file, and one start time per step, in order

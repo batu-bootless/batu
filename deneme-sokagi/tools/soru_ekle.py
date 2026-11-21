@@ -8,6 +8,9 @@ Girdi biçimi (icerik/*.py dosyaları üretir):
   {"kaynak": {"id", "ad", "sinav", "tur": "banka|deneme", "ders", "kod_on", "dk_soru"},
    "gruplar": {"grup-id": "paragraf metni (boşluklar '(17) ----' biçiminde)"},
    "sorular": [{"no", "konu", "yonerge", "grup", "metin", "secenekler": [5], "cevap": "A–E", "cozum"}]}
+  İsteğe bağlı: kaynak "secenek": 4 (LGS: A–D); soruda "ders" (kaynağınkinin yerine), "brans" (denemedeki
+  test, ör. "Sosyal Bilimler"; panelde branş, PDF'te test başlığı olur) ve "test" (kitapçıktaki test sırası);
+  paragraf {"metin", "yonerge"} biçiminde de verilebilir ("soruları aşağıdaki parçaya göre cevaplayınız.").
 
 Her soruya kalıcı künye verilir (2 harf + 5 rakam); künyeler tekrar çalıştırmada değişmez.
 Paragrafa bağlı sorular (cloze, okuma) "grup" alanıyla paragraflarına bağlanır; panel ve PDF şablonu
@@ -34,17 +37,20 @@ def main():
 
     problems = []
     questions = []
+    n_sec = k.get('secenek', 5)
+    harfler = 'ABCDE'[:n_sec]
     for i, s in enumerate(data['sorular'], start=1):
-        if len(s['secenekler']) != 5 or len(set(s['secenekler'])) != 5:
-            problems.append(f"soru {s['no']}: 5 farklı seçenek olmalı")
-        if s['cevap'] not in 'ABCDE' or len(s['cevap']) != 1:
-            problems.append(f"soru {s['no']}: cevap A–E olmalı")
+        if len(s['secenekler']) != n_sec or len(set(s['secenekler'])) != n_sec:
+            problems.append(f"soru {s['no']}: {n_sec} farklı seçenek olmalı")
+        if s['cevap'] not in harfler or len(s['cevap']) != 1:
+            problems.append(f"soru {s['no']}: cevap {harfler[0]}–{harfler[-1]} olmalı")
         if s.get('grup') and s['grup'] not in data.get('gruplar', {}):
             problems.append(f"soru {s['no']}: '{s['grup']}' paragrafı yok")
         gid = f"{k['id']}-{s['grup']}" if s.get('grup') else None
         questions.append({
             'id': f"{k['id']}-s{s['no']:02d}", 'kaynak': k['id'], 'kaynak_ad': k['ad'], 'sinav': k['sinav'],
-            'test': 1, 'no': s['no'], 'sira': i, 'sayfa': None, 'ders': k.get('ders', ''), 'konu': s.get('konu', ''),
+            'test': s.get('test', 1), 'no': s['no'], 'sira': i, 'sayfa': None, 'ders': s.get('ders', k.get('ders', '')),
+            **({'bolum': s['brans']} if s.get('brans') else {}), 'konu': s.get('konu', ''),
             'yonerge': s.get('yonerge'), 'grup': gid,
             'metin': s['metin'], 'metin_ust': '', 'metin_alt': '', 'secenekler': s['secenekler'], 'cevap': s['cevap'],
             'cozum': s.get('cozum'), 'gorsel': None, 'sekil': None, 'sekil_pt': None, 'yazi_pt': None,
@@ -53,8 +59,8 @@ def main():
         sys.exit('Hatalar:\n  ' + '\n  '.join(problems))
 
     assign_codes(questions, k.get('kod_on', 'DS'), out_dir)
-    meta = {key: k[key] for key in ('id', 'ad', 'sinav', 'tur', 'kod_on', 'dk_soru') if key in k}
-    gruplar = {f"{k['id']}-{gid}": {'metin': text} for gid, text in data.get('gruplar', {}).items()}
+    meta = {key: k[key] for key in ('id', 'ad', 'sinav', 'tur', 'kod_on', 'dk_soru', 'secenek') if key in k}
+    gruplar = {f"{k['id']}-{gid}": (g if isinstance(g, dict) else {'metin': g}) for gid, g in data.get('gruplar', {}).items()}
     (out_dir / 'kaynak.json').write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding='utf-8')
     (out_dir / 'gruplar.json').write_text(json.dumps(gruplar, ensure_ascii=False, indent=1), encoding='utf-8')
     (out_dir / 'sorular.json').write_text(json.dumps(questions, ensure_ascii=False, indent=1), encoding='utf-8')

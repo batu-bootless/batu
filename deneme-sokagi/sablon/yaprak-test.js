@@ -62,8 +62,13 @@
   }
   // Short options sit in one row (or 3 + 2), as in printed tests; longer ones one per line.
   const optLen = (o) => String(o || '').replace(/\*\*|__|[{}^_]/g, '').replace(/\/[^ ]*/g, '').length;
+  const optsCls = (opts) => {
+    const m = Math.max(...opts.map(optLen));
+    if (opts.length === 4) return m <= 12 ? ' row4' : m <= 26 ? ' row2' : '';   // LGS: A–D
+    return m <= 9 ? ' row5' : m <= 20 ? ' row3' : '';
+  };
   const optsHtml = (opts) => (opts && opts.length
-    ? `<div class="ts-opts${Math.max(...opts.map(optLen)) <= 9 ? ' row5' : Math.max(...opts.map(optLen)) <= 20 ? ' row3' : ''}">${opts.slice(0, 5).map((o, i) => `<span class="ts-opt"><b>${L5[i]})</b>${rich(o)}</span>`).join('')}</div>` : '');
+    ? `<div class="ts-opts${optsCls(opts)}">${opts.slice(0, 5).map((o, i) => `<span class="ts-opt"><b>${L5[i]})</b>${rich(o)}</span>`).join('')}</div>` : '');
 
   function questionEl(q, n, mode, base) {
     const el = document.createElement('div');
