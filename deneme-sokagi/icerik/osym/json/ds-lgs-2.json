@@ -1,0 +1,2612 @@
+{
+ "kaynak": {
+  "id": "ds-lgs-2",
+  "ad": "Deneme Sokağı LGS Denemesi 2",
+  "sinav": "LGS",
+  "tur": "deneme",
+  "ders": "",
+  "kod_on": "LG",
+  "dk_soru": 1.72,
+  "secenek": 4
+ },
+ "gruplar": {
+  "1-piri": {
+   "metin": "Osmanlı denizcisi Piri Reis, 1513 yılında çizdiği dünya haritasıyla tanınır. Haritada Avrupa ve Afrika'nın batı kıyıları ile Amerika kıtasının doğu kıyıları gösterilmiştir. Piri Reis bu haritayı hazırlarken farklı kaynaklardan yararlanmış, Kolomb'un haritası da dahil olmak üzere pek çok haritayı karşılaştırmıştır. Ayrıca denizcilere yol gösteren \"Kitab-ı Bahriye\" adlı eseri yazmıştır. Bu eserde limanlar, koylar ve rüzgârlar ayrıntılı biçimde anlatılır.",
+   "yonerge": "soruları aşağıdaki parçaya göre cevaplayınız."
+  }
+ },
+ "sorular": [
+  {
+   "no": 1,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde altı çizili sözcük mecaz anlamda kullanılmıştır?**",
+   "secenekler": [
+    "Onun __soğuk__ tavırları hepimizi üzdü.",
+    "Kardeşimin __eli__ kapıya sıkıştı.",
+    "Buzdolabındaki __soğuk__ su içimi ferahlattı.",
+    "Bahçedeki __uzun__ ağaçlar rüzgârla eğildi."
+   ],
+   "cevap": "A",
+   "cozum": "\"Soğuk tavır\", sevgisiz, ilgisiz davranış demektir; sözcük gerçek anlamından uzaklaşmıştır."
+  },
+  {
+   "no": 2,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Deyimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Ayağını yorganına göre uzatmak\" deyiminin anlamı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Her işe karışmak",
+    "Harcamalarını gelirine göre ayarlamak",
+    "Yorgun olduğu için erken uyumak",
+    "Çok rahat bir yaşam sürmek"
+   ],
+   "cevap": "B",
+   "cozum": "Bu deyim, kazancına göre harcama yapmak, gelirini aşmamak anlamındadır."
+  },
+  {
+   "no": 3,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Söz Sanatları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde benzetme yapılmıştır?**",
+   "secenekler": [
+    "Kardeşim tavşan gibi hızlı koşar.",
+    "Seni bin kez aradım.",
+    "Dağlar bize el sallıyordu.",
+    "Ağaçlar rüzgârda dans ediyordu."
+   ],
+   "cevap": "A",
+   "cozum": "Kardeşim hız bakımından tavşana benzetilmiştir (\"gibi\").\nÖteki cümlelerde kişileştirme ve abartma vardır."
+  },
+  {
+   "no": 4,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde koşul anlamı vardır?**",
+   "secenekler": [
+    "Parka gitmek için ödevini çabucak bitirdi.",
+    "Ödevini bitirdiği için parka gitti.",
+    "Ödevini bitirirsen parka gidebilirsin.",
+    "Parkta arkadaşlarıyla saatlerce oynadı."
+   ],
+   "cevap": "C",
+   "cozum": "Parka gitmek, ödevin bitirilmesi koşuluna bağlanmıştır (-sa/-se eki)."
+  },
+  {
+   "no": 5,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde öznel bir yargı vardır?**",
+   "secenekler": [
+    "Film geçen yıl çekildi.",
+    "Filmin yönetmeni senaryoyu da kendisi yazmış.",
+    "Bu film izlediğim en etkileyici yapımdı.",
+    "Film iki saat sürüyor."
+   ],
+   "cevap": "C",
+   "cozum": "\"En etkileyici\" değerlendirmesi kişiden kişiye değişir; yargı özneldir."
+  },
+  {
+   "no": 6,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde neden-sonuç ilişkisi vardır?**",
+   "secenekler": [
+    "Her gece saat onda uyur.",
+    "Erken uyursa sabah dinlenmiş olur.",
+    "Erken uyumak için televizyonu kapattı.",
+    "Çok yorulduğundan erkenden uyudu."
+   ],
+   "cevap": "D",
+   "cozum": "Erken uyumasının nedeni çok yorulmasıdır.\nÖteki cümlelerde amaç ve koşul anlamları vardır ya da bir alışkanlık bildirilir."
+  },
+  {
+   "no": 7,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde abartma vardır?**",
+   "secenekler": [
+    "Ödevimi kütüphanede yaptım.",
+    "Bu hafta üç ödevimiz var.",
+    "Ödevlerimi akşam yemeğinden önce bitirdim.",
+    "Bu kadar ödevi bitirmek için bin yıl gerekir."
+   ],
+   "cevap": "D",
+   "cozum": "\"Bin yıl gerekir\" sözü durumu olduğundan çok büyük gösterir; bu abartmadır."
+  },
+  {
+   "no": 8,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Ana Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Arıların bir kovanda kusursuz bir iş bölümüyle yaşadığını biliyoruz. Kimi arılar bal toplarken kimileri kovanı temizler, kimileri de yavrulara bakar. Her biri kendi görevini yerine getirdiğinde kovan yaşamını sürdürür. İnsanlar da birlikte çalışmanın değerini anladıklarında çok daha büyük işler başarabilir.\n\n**Bu metnin ana düşüncesi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Arılar insanlardan daha çalışkandır.",
+    "Kovanın temizliği arılar için çok önemlidir.",
+    "Bal üretimi zorlu bir süreçtir.",
+    "Görevlerin paylaşılarak birlikte çalışılması başarıyı artırır."
+   ],
+   "cevap": "D",
+   "cozum": "Arı örneği, iş bölümü ve birlikte çalışmanın başarıyı getirdiğini anlatmak için verilmiştir."
+  },
+  {
+   "no": 9,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Yardımcı Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Penguenler uçamayan kuşlardır ama mükemmel yüzücülerdir. Kanatları yüzgeç gibi çalışır. Soğuk sularda yaşayan penguenlerin kalın bir yağ tabakası ve sık tüyleri vardır. Çoğu penguen türünde anne ve baba yumurtaya sırayla bakar.\n\n**Bu metinde penguenlerle ilgili aşağıdakilerden hangisine değinilmemiştir?**",
+   "secenekler": [
+    "Uçamadıklarına",
+    "Hangi yiyeceklerle beslendiklerine",
+    "Yumurtalarına nasıl baktıklarına",
+    "Vücutlarını soğuktan neyin koruduğuna"
+   ],
+   "cevap": "B",
+   "cozum": "Metinde uçamamaları, yağ tabakası ve tüyleri, yumurtaya sırayla bakılması anlatılır; beslenmelerinden söz edilmez."
+  },
+  {
+   "no": 10,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Paragraf Tamamlama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "---- Örneğin kardeşimle ben aynı evde büyüdük ama o resim yapmayı, ben müzik dinlemeyi seviyorum. Bu farklılıklar bizi birbirimizden uzaklaştırmıyor; tersine birbirimizden yeni şeyler öğrenmemizi sağlıyor.\n\n**Bu metnin başına düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?**",
+   "secenekler": [
+    "Resim yapmak sabır isteyen bir uğraştır.",
+    "Müzik dinlemek insanı rahatlatır.",
+    "Kardeşler genellikle aynı okula gider.",
+    "Aynı ortamda büyüyen insanların bile ilgi alanları farklı olabilir."
+   ],
+   "cevap": "D",
+   "cozum": "Kardeş örneği, aynı evde büyüyenlerin ilgi alanlarının farklı olabileceğini gösterir; bu genel yargı başa gelmelidir."
+  },
+  {
+   "no": 11,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Anlatımın Bozulması",
+   "yonerge": null,
+   "grup": null,
+   "metin": "(I) Zeytin ağacı, Akdeniz ikliminin simgelerinden biridir. (II) Akdeniz'de yaz aylarında deniz turizmi çok gelişmiştir. (III) Zeytin ağacı kuraklığa oldukça dayanıklıdır. (IV) Zeytin ağaçlarının bazıları yüzlerce yıl yaşayabilir.\n\n**Bu metinde numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?**",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV"
+   ],
+   "cevap": "B",
+   "cozum": "Metin zeytin ağacının özelliklerini anlatır.\nII. cümle deniz turizminden söz ederek konunun dışına çıkar."
+  },
+  {
+   "no": 12,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Anlatım Biçimleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Küçük kasabanın meydanında yaşlı bir çınar vardı. Gövdesi o kadar kalındı ki üç kişi kollarını açsa ancak sarabilirdi. Yeşil yaprakları arasından süzülen güneş ışığı, altındaki tahta bankları altın sarısına boyuyordu.\n\n**Bu metinde ağırlıklı olarak hangi anlatım biçimi kullanılmıştır?**",
+   "secenekler": [
+    "Açıklama",
+    "Betimleme",
+    "Öyküleme",
+    "Tartışma"
+   ],
+   "cevap": "B",
+   "cozum": "Metin çınarın görünüşünü ayrıntılarla anlatarak okurun gözünde canlandırır; bu betimlemedir."
+  },
+  {
+   "no": 13,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Anlam",
+   "yonerge": null,
+   "grup": "1-piri",
+   "metin": "**Bu metne göre Piri Reis'in dünya haritasıyla ilgili aşağıdakilerden hangisi söylenebilir?**",
+   "secenekler": [
+    "Piri Reis'in tek eseridir.",
+    "Yalnızca Asya kıtasını gösterir.",
+    "Kolomb'un yolculuğundan önce çizilmiştir.",
+    "Hazırlanırken birden çok kaynaktan yararlanılmıştır."
+   ],
+   "cevap": "D",
+   "cozum": "Metinde Piri Reis'in farklı kaynaklardan yararlandığı ve pek çok haritayı karşılaştırdığı söylenir."
+  },
+  {
+   "no": 14,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Anlam",
+   "yonerge": null,
+   "grup": "1-piri",
+   "metin": "**Bu metne göre \"Kitab-ı Bahriye\" ile ilgili aşağıdakilerden hangisi doğrudur?**",
+   "secenekler": [
+    "Denizcilere yol göstermek amacıyla yazılmıştır.",
+    "Kolomb tarafından yazılmıştır.",
+    "Bir dünya haritasıdır.",
+    "Osmanlı sarayının tarihini anlatır."
+   ],
+   "cevap": "A",
+   "cozum": "Metinde \"Kitab-ı Bahriye\"nin denizcilere yol gösteren, limanları ve rüzgârları anlatan bir eser olduğu belirtilir."
+  },
+  {
+   "no": 15,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Görsel ve Grafik Okuma",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir sınıftaki öğrencilerin okula geliş biçimleri şöyledir: okul servisi 12, yürüyerek 10, toplu taşıma 6, özel araç 4 öğrenci.\n\n**Bu bilgilere göre aşağıdakilerden hangisi söylenemez?**",
+   "secenekler": [
+    "En çok tercih edilen geliş biçimi okul servisidir.",
+    "Toplu taşımayı kullananlar, özel araçla gelenlerin üç katıdır.",
+    "Yürüyerek gelenler, özel araçla gelenlerden fazladır.",
+    "Sınıfta 32 öğrenci vardır."
+   ],
+   "cevap": "B",
+   "cozum": "Toplu taşımayı kullanan 6, özel araçla gelen 4 öğrenci vardır; 6, 4'ün üç katı değildir.\nÖteki yargılar doğrudur (12 + 10 + 6 + 4 = 32)."
+  },
+  {
+   "no": 16,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Paragrafın Başlığı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Gece yeterince uyumayan öğrencilerin ertesi gün derslere odaklanmakta zorlandığı biliniyor. Uyku sırasında beynimiz gün içinde öğrendiklerimizi düzenler ve kalıcı hâle getirir. Bu nedenle sınavdan önceki gece sabaha kadar çalışmak yerine erken uyumak daha yararlıdır.\n\n**Bu metne en uygun başlık aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Gece Çalışmanın Faydaları",
+    "Beynimizin Bölümleri",
+    "Başarının Gizli Anahtarı: Uyku",
+    "Sınavda Zamanı İyi Kullanmak"
+   ],
+   "cevap": "C",
+   "cozum": "Metin, uykunun öğrenme ve başarı üzerindeki etkisini anlatır."
+  },
+  {
+   "no": 17,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Fiilimsiler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde sıfat-fiil vardır?**",
+   "secenekler": [
+    "Yüzmeyi yazın öğrendim.",
+    "Koşarak otobüse yetişti.",
+    "Bahçede oynayan çocuklar eve çağrıldı.",
+    "Dersten sonra kütüphaneye gitti."
+   ],
+   "cevap": "C",
+   "cozum": "\"Oynayan\" sözcüğü \"çocuklar\"ı niteleyen bir sıfat-fiildir.\n\"Yüzme\" isim-fiil, \"koşarak\" zarf-fiildir."
+  },
+  {
+   "no": 18,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Fiilimsiler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde fiilimsi yoktur?**",
+   "secenekler": [
+    "Bu sabah okula erken gittim.",
+    "Gülümseyerek selam verdi.",
+    "Dinlenmek için parka gitti.",
+    "Okumayı çok severim."
+   ],
+   "cevap": "A",
+   "cozum": "\"Okumayı\" ve \"dinlenmek\" isim-fiil, \"gülümseyerek\" zarf-fiildir.\nOkulla ilgili cümlede fiilimsi yoktur."
+  },
+  {
+   "no": 19,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Cümlenin Ögeleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"Kardeşim doğum günümde bana bir kitap aldı.\"\n\n**Bu cümlenin nesnesi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kardeşim",
+    "bir kitap",
+    "bana",
+    "doğum günümde"
+   ],
+   "cevap": "B",
+   "cozum": "\"Neyi aldı?\" sorusunun cevabı \"bir kitap\"tır; belirtisiz nesnedir."
+  },
+  {
+   "no": 20,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Cümlenin Ögeleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"Yarın sabah erkenden yola çıkacağız.\"\n\n**Bu cümlede \"yarın sabah\" sözü hangi ögedir?**",
+   "secenekler": [
+    "Nesne",
+    "Özne",
+    "Zarf tümleci",
+    "Dolaylı tümleç"
+   ],
+   "cevap": "C",
+   "cozum": "\"Ne zaman yola çıkacağız?\" sorusunun cevabı olan \"yarın sabah\" zaman bildiren zarf tümlecidir."
+  },
+  {
+   "no": 21,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Fiilde Çatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde yüklem geçişsiz bir fiildir?**",
+   "secenekler": [
+    "Kuşlar ağaçlara kondu.",
+    "Annem çiçekleri suladı.",
+    "Kardeşim kitabını kaybetti.",
+    "Öğretmen soruyu tahtaya yazdı."
+   ],
+   "cevap": "A",
+   "cozum": "\"Konmak\" eylemi nesne almaz; geçişsizdir.\nÖteki yüklemler nesne alan geçişli fiillerdir."
+  },
+  {
+   "no": 22,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Cümle Türleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisi anlamca olumsuzdur?**",
+   "secenekler": [
+    "Soruyu çözmeyen kalmadı.",
+    "Bu soruyu herkes çözdü.",
+    "Hiç kimse bu soruyu çözemedi.",
+    "Bu soruyu çözmeyecek değilim."
+   ],
+   "cevap": "C",
+   "cozum": "\"Çözemedi\" yüklemi soruyu çözme eyleminin gerçekleşmediğini bildirir.\n\"Çözmeyen kalmadı\" ve \"çözmeyecek değilim\" olumsuz yapılı olsa da olumlu anlamlıdır."
+  },
+  {
+   "no": 23,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Yazım Kuralları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde \"de\"nin yazımıyla ilgili bir yanlışlık yapılmıştır?**",
+   "secenekler": [
+    "Okulda yeni bir kulüp kuruldu.",
+    "Sende bizimle gel.",
+    "Ben de seninle geleceğim.",
+    "Kitabı masada unuttum."
+   ],
+   "cevap": "B",
+   "cozum": "\"Dahi, bile\" anlamındaki bağlaç \"de\" ayrı yazılır: Sen de bizimle gel.\nÖteki cümlelerdeki \"-da/-de\" bulunma hâli ekidir ya da bağlaç doğru yazılmıştır."
+  },
+  {
+   "no": 24,
+   "test": 1,
+   "brans": "Türkçe",
+   "ders": "Türkçe",
+   "konu": "Noktalama İşaretleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde soru işareti yanlış kullanılmıştır?**",
+   "secenekler": [
+    "Bu kitabı kimin yazdığını merak ediyorum?",
+    "Bu kalem kimin?",
+    "Yarın bize gelecek misin?",
+    "Kaç yaşındasın?"
+   ],
+   "cevap": "A",
+   "cozum": "İçinde soru anlamı taşıyan bir söz bulunsa da cümle bir soru sormaz; sonuna nokta konmalıdır."
+  },
+  {
+   "no": 25,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Bir Kahraman Doğuyor",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Mustafa Kemal'in kurmay yüzbaşı olarak mezun olduğu okul aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Selanik Askerî Rüştiyesi",
+    "Harp Akademisi",
+    "Manastır Askerî İdadisi",
+    "Şemsi Efendi Okulu"
+   ],
+   "cevap": "B",
+   "cozum": "Mustafa Kemal 1905'te Harp Akademisi'nden kurmay yüzbaşı olarak mezun olmuştur."
+  },
+  {
+   "no": 26,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Bir Kahraman Doğuyor",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Mustafa Kemal'in babası Ali Rıza Efendi'nin isteğiyle gittiği, yeni yöntemlerle eğitim veren okul aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Manastır Askerî İdadisi",
+    "Selanik Askerî Rüştiyesi",
+    "Mahalle Mektebi",
+    "Şemsi Efendi Okulu"
+   ],
+   "cevap": "D",
+   "cozum": "Annesi Zübeyde Hanım'ın isteğiyle mahalle mektebine başlayan Mustafa, babasının isteğiyle modern eğitim veren Şemsi Efendi Okulu'na geçmiştir."
+  },
+  {
+   "no": 27,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Millî Uyanış",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**I. Dünya Savaşı sonunda yenilen devletlerin topraklarında çoğunluğu oluşturan milletlere kendi geleceğini belirleme hakkı tanıyan ilkeler aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Marshall Planı",
+    "Truman Doktrini",
+    "Monroe Doktrini",
+    "Wilson İlkeleri"
+   ],
+   "cevap": "D",
+   "cozum": "ABD Başkanı Wilson'un ilkeleri, çoğunluğu oluşturan milletlere kendi geleceğini belirleme hakkı tanıyordu."
+  },
+  {
+   "no": 28,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Millî Uyanış",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**I. Dünya Savaşı'ndan sonra yenilen devletlerle yapılacak antlaşmaların esaslarının belirlendiği toplantı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Londra Konferansı",
+    "Paris Barış Konferansı",
+    "Yalta Konferansı",
+    "Lozan Konferansı"
+   ],
+   "cevap": "B",
+   "cozum": "Galip devletler 1919'da Paris Barış Konferansı'nda toplanarak yenilen devletlerle yapılacak antlaşmaları belirlemiştir."
+  },
+  {
+   "no": 29,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Millî Uyanış",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İzmir'in işgaline karşı ilk silahlı direnişi başlatarak \"ilk kurşunu atan\" kişi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sütçü İmam",
+    "Hasan Tahsin",
+    "Şahin Bey",
+    "Kara Fatma"
+   ],
+   "cevap": "B",
+   "cozum": "Gazeteci Hasan Tahsin, 15 Mayıs 1919'da İzmir'i işgal eden Yunan askerlerine ilk kurşunu atmıştır."
+  },
+  {
+   "no": 30,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Ya İstiklal Ya Ölüm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Mitingler düzenlenerek işgallerin protesto edilmesini isteyen genelge aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Erzurum Kongresi kararları",
+    "Havza Genelgesi",
+    "Amasya Genelgesi",
+    "Sivas Kongresi kararları"
+   ],
+   "cevap": "B",
+   "cozum": "Havza Genelgesi ile Mustafa Kemal, işgalleri protesto etmek için mitingler düzenlenmesini istemiştir."
+  },
+  {
+   "no": 31,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Ya İstiklal Ya Ölüm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.\" ifadesi aşağıdaki belgelerden hangisinde yer alır?**",
+   "secenekler": [
+    "Havza Genelgesi",
+    "Sevr Antlaşması",
+    "Misak-ı Millî",
+    "Amasya Genelgesi"
+   ],
+   "cevap": "D",
+   "cozum": "Bu ifade Amasya Genelgesi'nde yer alır ve Kurtuluş Savaşı'nın yöntemini belirtir."
+  },
+  {
+   "no": 32,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Ya İstiklal Ya Ölüm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Erzurum Kongresi'nde seçilen, Sivas Kongresi'nde bütün yurdu temsil edecek biçimde genişletilen yürütme kuruluna ne ad verilir?**",
+   "secenekler": [
+    "Meclis Başkanlığı",
+    "Bakanlar Kurulu",
+    "Kuvâ-yı Millîye",
+    "Temsil Heyeti"
+   ],
+   "cevap": "D",
+   "cozum": "Temsil Heyeti, TBMM açılana kadar Millî Mücadele'yi yöneten kuruldur."
+  },
+  {
+   "no": 33,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Ya İstiklal Ya Ölüm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Halkın seçtiği temsilcilerden oluşan TBMM'nin açılmasıyla öne çıkan ilke aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Devletçilik",
+    "İnkılapçılık",
+    "Millî egemenlik",
+    "Laiklik"
+   ],
+   "cevap": "C",
+   "cozum": "TBMM'nin açılmasıyla yönetimde söz sahibinin millet olduğu, yani millî egemenlik ilkesi öne çıkmıştır."
+  },
+  {
+   "no": 34,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Ya İstiklal Ya Ölüm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kahramanca savunması nedeniyle TBMM tarafından \"Gazi\" unvanı verilen şehir aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Antep",
+    "Adana",
+    "Urfa",
+    "Maraş"
+   ],
+   "cevap": "A",
+   "cozum": "Antep'e \"Gazi\", Maraş'a \"Kahraman\", Urfa'ya \"Şanlı\" unvanı verilmiştir."
+  },
+  {
+   "no": 35,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Ya İstiklal Ya Ölüm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Hattı müdafaa yoktur, sathı müdafaa vardır.\" sözü hangi savaşta söylenmiştir?**",
+   "secenekler": [
+    "Büyük Taarruz",
+    "Kütahya-Eskişehir Muharebeleri",
+    "Sakarya Meydan Muharebesi",
+    "I. İnönü Muharebesi"
+   ],
+   "cevap": "C",
+   "cozum": "Mustafa Kemal bu sözü Sakarya Meydan Muharebesi sırasında, vatanın her karışının savunulması gerektiğini vurgulamak için söylemiştir."
+  },
+  {
+   "no": 36,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Ya İstiklal Ya Ölüm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kütahya-Eskişehir Muharebeleri'nden sonra Mustafa Kemal'e TBMM'nin yetkilerini kullanmak üzere verilen görev aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Cumhurbaşkanlığı",
+    "Genelkurmay Başkanlığı",
+    "Başbakanlık",
+    "Başkomutanlık"
+   ],
+   "cevap": "D",
+   "cozum": "Ağustos 1921'de çıkarılan Başkomutanlık Kanunu ile Mustafa Kemal'e Meclis'in yetkilerini kullanma hakkı verilmiştir."
+  },
+  {
+   "no": 37,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürkçülük ve Çağdaşlaşan Türkiye",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Ankara aşağıdaki tarihlerin hangisinde başkent ilan edilmiştir?**",
+   "secenekler": [
+    "23 Nisan 1920",
+    "29 Ekim 1923",
+    "13 Ekim 1923",
+    "3 Mart 1924"
+   ],
+   "cevap": "C",
+   "cozum": "Ankara 13 Ekim 1923'te başkent ilan edilmiştir; Cumhuriyet ise 29 Ekim 1923'te ilan edilmiştir."
+  },
+  {
+   "no": 38,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürkçülük ve Çağdaşlaşan Türkiye",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**3 Mart 1924'te gerçekleştirilen inkılap aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kadınlara seçme hakkı verilmesi",
+    "Harf İnkılabı",
+    "Halifeliğin kaldırılması",
+    "Soyadı Kanunu'nun kabulü"
+   ],
+   "cevap": "C",
+   "cozum": "3 Mart 1924'te halifelik kaldırılmış, Tevhid-i Tedrisat Kanunu kabul edilmiştir.\nSoyadı Kanunu 1934, Harf İnkılabı 1928 yılındadır."
+  },
+  {
+   "no": 39,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürkçülük ve Çağdaşlaşan Türkiye",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aile hayatında ve toplumda kadın-erkek eşitliğini sağlayan ve 1926'da kabul edilen kanun aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Soyadı Kanunu",
+    "Türk Medeni Kanunu",
+    "Teşkilat-ı Esasiye Kanunu",
+    "Tevhid-i Tedrisat Kanunu"
+   ],
+   "cevap": "B",
+   "cozum": "1926'da kabul edilen Türk Medeni Kanunu ile resmî nikâh zorunlu olmuş, kadın-erkek eşitliği hukuken sağlanmıştır."
+  },
+  {
+   "no": 40,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürkçülük ve Çağdaşlaşan Türkiye",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türk kadınına milletvekili seçme ve seçilme hakkı hangi yıl verilmiştir?**",
+   "secenekler": [
+    "1926",
+    "1930",
+    "1934",
+    "1938"
+   ],
+   "cevap": "C",
+   "cozum": "Kadınlar 1930'da belediye, 1934'te milletvekili seçimlerinde seçme ve seçilme hakkı kazanmıştır."
+  },
+  {
+   "no": 41,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürkçülük ve Çağdaşlaşan Türkiye",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Özel girişimin yetersiz kaldığı alanlarda devletin ekonomide etkin rol üstlenmesini öngören Atatürk ilkesi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Halkçılık",
+    "Milliyetçilik",
+    "Devletçilik",
+    "Laiklik"
+   ],
+   "cevap": "C",
+   "cozum": "Devletçilik ilkesine göre özel sektörün yetersiz kaldığı alanlarda devlet yatırım yapar."
+  },
+  {
+   "no": 42,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Demokratikleşme Çabaları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Cumhuriyet döneminde kurulan ilk muhalefet partisi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Cumhuriyet Halk Fırkası",
+    "Terakkiperver Cumhuriyet Fırkası",
+    "Demokrat Parti",
+    "Serbest Cumhuriyet Fırkası"
+   ],
+   "cevap": "B",
+   "cozum": "Terakkiperver Cumhuriyet Fırkası 1924'te kurulan ilk muhalefet partisidir; Serbest Cumhuriyet Fırkası 1930'da kurulmuştur."
+  },
+  {
+   "no": 43,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürk Dönemi Dış Politika",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye Milletler Cemiyeti'ne hangi yıl üye olmuştur?**",
+   "secenekler": [
+    "1923",
+    "1928",
+    "1932",
+    "1936"
+   ],
+   "cevap": "C",
+   "cozum": "Türkiye, barışçı dış politikasının bir sonucu olarak 1932'de Milletler Cemiyeti'ne üye olmuştur."
+  },
+  {
+   "no": 44,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürk Dönemi Dış Politika",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye, Yunanistan, Romanya ve Yugoslavya arasında 1934'te imzalanan ittifak aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Montrö Sözleşmesi",
+    "NATO",
+    "Balkan Antantı",
+    "Sadabat Paktı"
+   ],
+   "cevap": "C",
+   "cozum": "Balkan Antantı, Balkanlarda barışı korumak için 1934'te imzalanmıştır."
+  },
+  {
+   "no": 45,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürk Dönemi Dış Politika",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'nin doğu sınırlarının güvenliği için İran, Irak ve Afganistan ile imzaladığı pakt aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sadabat Paktı",
+    "Balkan Antantı",
+    "Lozan Antlaşması",
+    "Montrö Sözleşmesi"
+   ],
+   "cevap": "A",
+   "cozum": "Sadabat Paktı 1937'de Türkiye, İran, Irak ve Afganistan arasında imzalanmıştır."
+  },
+  {
+   "no": 46,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürk Dönemi Dış Politika",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Atatürk'ün \"şahsi meselem\" dediği dış politika sorunu aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Hatay sorunu",
+    "Nüfus mübadelesi",
+    "Boğazlar sorunu",
+    "Musul sorunu"
+   ],
+   "cevap": "A",
+   "cozum": "Atatürk, Hatay'ın anavatana katılmasını \"şahsi meselem\" olarak görmüş; Hatay 1939'da Türkiye'ye katılmıştır."
+  },
+  {
+   "no": 47,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürk'ün Ölümü ve Sonrası",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Atatürk'ün vefatından sonra TBMM tarafından cumhurbaşkanı seçilen kişi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "İsmet İnönü",
+    "Kazım Karabekir",
+    "Celal Bayar",
+    "Fevzi Çakmak"
+   ],
+   "cevap": "A",
+   "cozum": "Atatürk'ün 10 Kasım 1938'deki ölümünün ardından İsmet İnönü cumhurbaşkanı seçilmiştir."
+  },
+  {
+   "no": 48,
+   "test": 2,
+   "brans": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "ders": "T.C. İnkılap Tarihi ve Atatürkçülük",
+   "konu": "Atatürk'ün Ölümü ve Sonrası",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Atatürk'ün 1927'de okuduğu, Millî Mücadele'yi ve Cumhuriyet'in kuruluşunu anlattığı eseri aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Nutuk",
+    "Geometri",
+    "Onuncu Yıl Nutku",
+    "Zabit ve Kumandan ile Hasbihal"
+   ],
+   "cevap": "A",
+   "cozum": "Nutuk, Atatürk'ün 1927'de CHF Kurultayı'nda okuduğu, 1919'dan 1927'ye kadarki olayları anlattığı eseridir."
+  },
+  {
+   "no": 49,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kader İnancı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Suyun deniz seviyesinde 100 °C'de kaynaması, evrendeki yasalardan hangisine örnektir?**",
+   "secenekler": [
+    "Ahlaki yasalara",
+    "Toplumsal yasalara",
+    "Fiziksel yasalara",
+    "Biyolojik yasalara"
+   ],
+   "cevap": "C",
+   "cozum": "Maddenin hâl değiştirmesi gibi doğa olayları fiziksel yasalara örnektir."
+  },
+  {
+   "no": 50,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Din ve Hayat",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"İnsan için ancak çalıştığının karşılığı vardır.\" (Necm suresi, 39. ayet)\n\n**Bu ayette vurgulanan düşünce aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Bağışlayıcı olmak",
+    "Sabırlı olmak",
+    "Temizliğe dikkat etmek",
+    "Çalışmanın önemi"
+   ],
+   "cevap": "D",
+   "cozum": "Ayet, insanın kazanımlarının çalışmasının karşılığı olduğunu bildirerek çalışmanın önemini vurgular."
+  },
+  {
+   "no": 51,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Hz. Muhammed'in Örnekliği",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Kolaylaştırınız, zorlaştırmayınız; müjdeleyiniz, nefret ettirmeyiniz.\" hadisinde vurgulanan değer aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kolaylık ve hoşgörü",
+    "Çalışkan olmak",
+    "Dürüst olmak",
+    "İsraftan kaçınmak"
+   ],
+   "cevap": "A",
+   "cozum": "Hadis, insanlara karşı kolaylaştırıcı ve hoşgörülü davranmayı öğütler."
+  },
+  {
+   "no": 52,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kader İnancı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İyiliğin karşılığının iyilik, kötülüğün karşılığının kötülük olması evrendeki yasalardan hangisine örnektir?**",
+   "secenekler": [
+    "Ahlaki yasalara",
+    "Toplumsal yasalara",
+    "Biyolojik yasalara",
+    "Fiziksel yasalara"
+   ],
+   "cevap": "A",
+   "cozum": "Davranışların ahlaki sonuçlarını belirleyen yasalar ahlaki yasalardır."
+  },
+  {
+   "no": 53,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Zekât ve Sadaka",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Para ve ticaret mallarından verilen zekâtın miktarı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kırkta bir",
+    "Yirmide bir",
+    "Yüzde bir",
+    "Onda bir"
+   ],
+   "cevap": "A",
+   "cozum": "Para ve ticaret mallarının zekâtı kırkta birdir (%2,5)."
+  },
+  {
+   "no": 54,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Zekât ve Sadaka",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi zekâtla yükümlü olmanın şartlarından biri değildir?**",
+   "secenekler": [
+    "Akıllı ve ergenlik çağında olmak",
+    "Evli olmak",
+    "Nisap miktarı mala sahip olmak",
+    "Müslüman olmak"
+   ],
+   "cevap": "B",
+   "cozum": "Zekâtla yükümlü olmak için Müslüman, akıllı, ergen ve nisap miktarı mala sahip olmak gerekir; evlilik şart değildir."
+  },
+  {
+   "no": 55,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Zekât ve Sadaka",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Cami, okul ya da çeşme yaptırmak gibi, sahibi öldükten sonra da sevabı süren iyiliklere ne ad verilir?**",
+   "secenekler": [
+    "Fitre",
+    "Sadaka-i cariye",
+    "Kefaret",
+    "Zekât"
+   ],
+   "cevap": "B",
+   "cozum": "Yararı sürdükçe sevabı da devam eden kalıcı iyiliklere sadaka-i cariye denir."
+  },
+  {
+   "no": 56,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Din ve Hayat",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi dinin bireye kazandırdıklarından biri değildir?**",
+   "secenekler": [
+    "Hayatı anlamlandırması",
+    "Huzur ve güven vermesi",
+    "Ahlaki değerler kazandırması",
+    "Bencilliği artırması"
+   ],
+   "cevap": "D",
+   "cozum": "Din, bireye hayatın anlamını, ahlaki değerleri, huzur ve güveni kazandırır; bencillik dinin öğütlediği bir davranış değildir."
+  },
+  {
+   "no": 57,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Din ve Hayat",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi dinin kültür üzerindeki etkisine bir örnek değildir?**",
+   "secenekler": [
+    "Bayramlarda büyükleri ziyaret etmek",
+    "Ramazanda iftar sofraları kurmak",
+    "Yaz tatilinde denize gitmek",
+    "Kandil gecelerinde komşulara ikramda bulunmak"
+   ],
+   "cevap": "C",
+   "cozum": "Bayram ziyaretleri, kandil ikramları ve iftar sofraları dinin kültüre etkisini gösterir; yaz tatili ise dinle ilgili bir gelenek değildir."
+  },
+  {
+   "no": 58,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Hz. Muhammed'in Örnekliği",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Hz. Hatice'nin ticaret kervanını Hz. Muhammed'e emanet etmesi onun hangi özelliğine güvendiğini gösterir?**",
+   "secenekler": [
+    "Merhametine",
+    "Cesaretine",
+    "Affediciliğine",
+    "Güvenilirliğine"
+   ],
+   "cevap": "D",
+   "cozum": "Hz. Muhammed dürüst ve güvenilir olduğu için \"el-Emin\" diye anılırdı; Hz. Hatice de bu yüzden ona ticaretini emanet etmiştir."
+  },
+  {
+   "no": 59,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Hz. Muhammed'in Örnekliği",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Hz. Muhammed'in hayvanlara eziyet edilmesini yasaklaması onun hangi özelliğini gösterir?**",
+   "secenekler": [
+    "Çalışkan olmasını",
+    "Cömert olmasını",
+    "Cesur olmasını",
+    "Merhametli olmasını"
+   ],
+   "cevap": "D",
+   "cozum": "Hz. Muhammed bütün canlılara merhamet gösterilmesini istemiş, hayvanlara eziyeti yasaklamıştır."
+  },
+  {
+   "no": 60,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Hz. Muhammed'in Örnekliği",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Arap'ın Arap olmayana, Arap olmayanın Arap'a üstünlüğü yoktur.\" sözünün yer aldığı Veda Hutbesi'nde vurgulanan değer aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Ticaretin önemi",
+    "Yeni bir ibadetin emredilmesi",
+    "İnsanların eşitliği",
+    "Savaş taktikleri"
+   ],
+   "cevap": "C",
+   "cozum": "Veda Hutbesi'nde insanların eşit olduğu, üstünlüğün ancak takva ile olduğu vurgulanmıştır."
+  },
+  {
+   "no": 61,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kur'an-ı Kerim ve Özellikleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kur'an-ı Kerim'in ilk inen ayetlerindeki ilk emir aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sabret!",
+    "Oruç tut!",
+    "Namaz kıl!",
+    "Oku!"
+   ],
+   "cevap": "D",
+   "cozum": "İlk inen ayet \"Yaratan Rabbinin adıyla oku!\" emriyle başlar."
+  },
+  {
+   "no": 62,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kur'an-ı Kerim ve Özellikleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kur'an-ı Kerim'in çoğaltılarak önemli İslam merkezlerine gönderilmesi hangi halife döneminde gerçekleşmiştir?**",
+   "secenekler": [
+    "Hz. Ömer",
+    "Hz. Ali",
+    "Hz. Ebubekir",
+    "Hz. Osman"
+   ],
+   "cevap": "D",
+   "cozum": "Hz. Osman döneminde Kur'an çoğaltılmış ve Mekke, Basra, Kûfe, Şam gibi merkezlere gönderilmiştir."
+  },
+  {
+   "no": 63,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kur'an-ı Kerim ve Özellikleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kur'an-ı Kerim'in en uzun suresi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Bakara",
+    "Fâtiha",
+    "Yâsîn",
+    "Kevser"
+   ],
+   "cevap": "A",
+   "cozum": "Bakara suresi 286 ayetiyle Kur'an'ın en uzun suresidir."
+  },
+  {
+   "no": 64,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kur'an-ı Kerim ve Özellikleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kur'an-ı Kerim'in son suresi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Fâtiha",
+    "Nâs",
+    "Felak",
+    "İhlâs"
+   ],
+   "cevap": "B",
+   "cozum": "Mushaf sıralamasında Kur'an-ı Kerim'in son suresi Nâs suresidir."
+  },
+  {
+   "no": 65,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Peygamber Kıssaları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kur'an'da gemi yaparak tufandan kurtulduğu anlatılan peygamber aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Hz. Nuh",
+    "Hz. İbrahim",
+    "Hz. Yunus",
+    "Hz. Musa"
+   ],
+   "cevap": "A",
+   "cozum": "Hz. Nuh, Allah'ın emriyle gemi yapmış ve inananlarla birlikte tufandan kurtulmuştur."
+  },
+  {
+   "no": 66,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Peygamber Kıssaları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kur'an'da bir balığın karnında kaldığı anlatılan peygamber aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Hz. Nuh",
+    "Hz. Yunus",
+    "Hz. Musa",
+    "Hz. Yusuf"
+   ],
+   "cevap": "B",
+   "cozum": "Hz. Yunus'un balığın karnında kalıp Allah'a dua ederek kurtulduğu Kur'an'da anlatılır."
+  },
+  {
+   "no": 67,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Peygamber Kıssaları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kardeşleri tarafından kuyuya atılan ve daha sonra Mısır'da yönetici olan peygamber aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Hz. Yakup",
+    "Hz. Musa",
+    "Hz. Yusuf",
+    "Hz. İsmail"
+   ],
+   "cevap": "C",
+   "cozum": "Hz. Yusuf'un kıssası Kur'an'da Yusuf suresinde anlatılır."
+  },
+  {
+   "no": 68,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Ahlaki Değerler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Elindekiyle yetinip hırs göstermemeye ne ad verilir?**",
+   "secenekler": [
+    "İsraf",
+    "Cimrilik",
+    "Kanaat",
+    "Tembellik"
+   ],
+   "cevap": "C",
+   "cozum": "Kanaat, sahip olduklarıyla yetinmek ve hırstan uzak durmaktır."
+  },
+  {
+   "no": 69,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Ahlaki Değerler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Gereğinden fazla harcama yaparak nimetleri boşa harcamaya ne ad verilir?**",
+   "secenekler": [
+    "Tasarruf",
+    "İsraf",
+    "İnfak",
+    "Kanaat"
+   ],
+   "cevap": "B",
+   "cozum": "İsraf, nimetleri gereksiz yere ve aşırı biçimde tüketmektir."
+  },
+  {
+   "no": 70,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Ahlaki Değerler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Komşusu açken tok yatan bizden değildir.\" hadisinde aşağıdakilerden hangisi öğütlenmektedir?**",
+   "secenekler": [
+    "Bilgiyi paylaşmak",
+    "Komşunun ihtiyaçlarıyla ilgilenmek",
+    "Doğaya saygı göstermek",
+    "Sabırlı olmak"
+   ],
+   "cevap": "B",
+   "cozum": "Hadis, komşunun hâlini gözetmeyi ve ihtiyacını karşılamayı öğütler."
+  },
+  {
+   "no": 71,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kader İnancı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki davranışlardan hangisi Allah'ın verdiği ömrü sağlıklı geçirmek için yapılması gerekenlere bir örnek değildir?**",
+   "secenekler": [
+    "Sigara içmek",
+    "Düzenli spor yapmak",
+    "Trafik kurallarına uymak",
+    "Dengeli beslenmek"
+   ],
+   "cevap": "A",
+   "cozum": "Sağlığı korumak insanın sorumluluğudur; sigara içmek sağlığa zarar verir."
+  },
+  {
+   "no": 72,
+   "test": 3,
+   "brans": "Din Kültürü ve Ahlak Bilgisi",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Kader İnancı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Deveni bağla, sonra tevekkül et.\" hadisinde vurgulanan düşünce aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Hayvanlara iyi davranmak gerekir.",
+    "Hiçbir tedbir almadan sonucu beklemek gerekir.",
+    "Önce gerekli tedbiri alıp sonra sonucu Allah'a bırakmak gerekir.",
+    "Develer çölde en kullanışlı hayvanlardır."
+   ],
+   "cevap": "C",
+   "cozum": "Tevekkül, tedbiri bırakmak değil; elden geleni yaptıktan sonra sonucu Allah'a bırakmaktır."
+  },
+  {
+   "no": 73,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Friendship",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: We're going to have a picnic on Sunday. Do you want to join us?\nB: ---- ! What should I bring?\n\n**Which of the following best completes the dialogue?**",
+   "secenekler": [
+    "Sure, why not",
+    "Sorry, I'm busy",
+    "No, thanks",
+    "I'm afraid I can't"
+   ],
+   "cevap": "A",
+   "cozum": "B ne getirmesi gerektiğini soruyor; daveti kabul etmiştir: \"Sure, why not!\""
+  },
+  {
+   "no": 74,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Friendship",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Emre is always ready to help others. He is ---- .\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "boring",
+    "jealous",
+    "helpful",
+    "mean"
+   ],
+   "cevap": "C",
+   "cozum": "Herkese yardım etmeye hazır biri yardımseverdir: helpful."
+  },
+  {
+   "no": 75,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Teen Life",
+   "yonerge": null,
+   "grup": null,
+   "metin": "I really enjoy listening to rock music.\n\n**Which of the following has the closest meaning to the sentence above?**",
+   "secenekler": [
+    "I'm not interested in rock music.",
+    "I'm keen on rock music.",
+    "I can't stand rock music.",
+    "I hate rock music."
+   ],
+   "cevap": "B",
+   "cozum": "\"Be keen on\" bir şeye çok ilgi duymak, sevmek anlamındadır."
+  },
+  {
+   "no": 76,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "In the Kitchen",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Making tea:\nI. Pour the hot water into the teapot.\nII. Boil the water.\nIII. Wait for ten minutes and serve.\n\n**Which of the following is the correct order of the steps?**",
+   "secenekler": [
+    "II – I – III",
+    "I – III – II",
+    "III – I – II",
+    "I – II – III"
+   ],
+   "cevap": "A",
+   "cozum": "Önce su kaynatılır (II), sonra demliğe dökülür (I), en son demlenince servis edilir (III)."
+  },
+  {
+   "no": 77,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "On the Phone",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: Hello, is that Kaan?\nB: No, Kaan is out at the moment. ---- ?\nA: It's his friend, Deniz.\n\n**Which of the following best completes the dialogue?**",
+   "secenekler": [
+    "Who is calling, please",
+    "How are you",
+    "What time is it",
+    "When will he come"
+   ],
+   "cevap": "A",
+   "cozum": "A'nın \"Ben onun arkadaşı Deniz.\" cevabı, kimin aradığının sorulduğunu gösterir."
+  },
+  {
+   "no": 78,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "On the Phone",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: Let's meet at the café at five o'clock.\nB: ---- . See you there!\n\n**Which of the following best completes the dialogue?**",
+   "secenekler": [
+    "I don't know her",
+    "It's too expensive",
+    "I'm sorry to hear that",
+    "That's a good idea"
+   ],
+   "cevap": "D",
+   "cozum": "B buluşmayı kabul ediyor (\"See you there!\"): \"That's a good idea.\""
+  },
+  {
+   "no": 79,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "The Internet",
+   "yonerge": null,
+   "grup": null,
+   "metin": "If you want to use this website, you need to ---- first.\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "sign up",
+    "wake up",
+    "give up",
+    "turn off"
+   ],
+   "cevap": "A",
+   "cozum": "Bir siteyi kullanmak için önce üye olmak gerekir: sign up."
+  },
+  {
+   "no": 80,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "The Internet",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Online shopping is popular because it saves time. However, you can't touch or try on products before you buy them.\n\n**According to the text, a disadvantage of online shopping is that ---- .**",
+   "secenekler": [
+    "you can't try on products before buying them",
+    "it is always cheaper",
+    "it saves time",
+    "it is not popular"
+   ],
+   "cevap": "A",
+   "cozum": "Metinde \"However\" ile verilen dezavantaj, ürünleri almadan önce deneyememektir."
+  },
+  {
+   "no": 81,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Adventures",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Mount Everest is ---- mountain in the world.\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "the higher",
+    "higher",
+    "high",
+    "the highest"
+   ],
+   "cevap": "D",
+   "cozum": "Dünyadaki bütün dağlar arasında en yüksek olan anlatıldığı için üstünlük derecesi kullanılır: the highest."
+  },
+  {
+   "no": 82,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Adventures",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Which of the following is an extreme sport?**",
+   "secenekler": [
+    "Bowling",
+    "Bungee jumping",
+    "Chess",
+    "Table tennis"
+   ],
+   "cevap": "B",
+   "cozum": "Bungee jumping tehlikeli ve heyecan verici bir ekstrem spordur."
+  },
+  {
+   "no": 83,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Tourism",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: ---- Rome?\nB: No, I haven't, but I'd like to.\n\n**Which of the following best completes the dialogue?**",
+   "secenekler": [
+    "Do you ever visit",
+    "Did you visit",
+    "Have you ever visited",
+    "Are you visiting"
+   ],
+   "cevap": "C",
+   "cozum": "Cevap \"No, I haven't\" olduğundan soru present perfect ile sorulmuştur: Have you ever visited…?"
+  },
+  {
+   "no": 84,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Tourism",
+   "yonerge": null,
+   "grup": null,
+   "metin": "You need a ---- to travel to another country.\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "towel",
+    "recipe",
+    "passport",
+    "pillow"
+   ],
+   "cevap": "C",
+   "cozum": "Başka bir ülkeye seyahat etmek için pasaport gerekir."
+  },
+  {
+   "no": 85,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Chores",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Which of the following is a household chore?**",
+   "secenekler": [
+    "Playing football",
+    "Doing the laundry",
+    "Watching TV",
+    "Going to the cinema"
+   ],
+   "cevap": "B",
+   "cozum": "Çamaşır yıkamak bir ev işidir."
+  },
+  {
+   "no": 86,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Chores",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: Can you take out the rubbish?\nB: ---- . I'll do it now.\n\n**Which of the following best completes the dialogue?**",
+   "secenekler": [
+    "I hate it",
+    "I don't mind",
+    "I can't stand it",
+    "No way"
+   ],
+   "cevap": "B",
+   "cozum": "B işi hemen yapacağını söylüyor; isteği kabul eden \"I don't mind\" uygundur."
+  },
+  {
+   "no": 87,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Science",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Scientists do ---- in laboratories to test their ideas.\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "chores",
+    "recipes",
+    "experiments",
+    "holidays"
+   ],
+   "cevap": "C",
+   "cozum": "Bilim insanları düşüncelerini sınamak için laboratuvarda deney yapar: do experiments."
+  },
+  {
+   "no": 88,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Science",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Marie Curie was a famous scientist. She won the Nobel Prize twice: in physics in 1903 and in chemistry in 1911.\n\n**Which of the following is true according to the text?**",
+   "secenekler": [
+    "She won both prizes in the same year.",
+    "She won only one Nobel Prize.",
+    "She won the Nobel Prize in medicine.",
+    "Marie Curie won two Nobel Prizes."
+   ],
+   "cevap": "D",
+   "cozum": "Metne göre Marie Curie fizik (1903) ve kimya (1911) dallarında iki kez Nobel ödülü kazanmıştır."
+  },
+  {
+   "no": 89,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Natural Forces",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Which of the following can help reduce air pollution?**",
+   "secenekler": [
+    "Using public transport",
+    "Driving cars everywhere",
+    "Burning plastic",
+    "Cutting down trees"
+   ],
+   "cevap": "A",
+   "cozum": "Toplu taşıma kullanmak araç sayısını ve egzoz gazını azaltır."
+  },
+  {
+   "no": 90,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Natural Forces",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Heavy rain for many days can cause a ---- .\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "drought",
+    "flood",
+    "volcano",
+    "earthquake"
+   ],
+   "cevap": "B",
+   "cozum": "Günlerce süren şiddetli yağmur sele (flood) neden olabilir; drought ise kuraklıktır."
+  },
+  {
+   "no": 91,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Friendship",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Melis and Ece have been friends since primary school. They are very different: Melis is talkative and outgoing, but Ece is quiet and shy. However, they always support each other.\n\n**Which of the following is true according to the text?**",
+   "secenekler": [
+    "Melis is quiet.",
+    "They never help each other.",
+    "They met at university.",
+    "Ece is shy."
+   ],
+   "cevap": "D",
+   "cozum": "Metinde Ece'nin sessiz ve utangaç (quiet and shy) olduğu söylenir."
+  },
+  {
+   "no": 92,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Teen Life",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: Do you prefer reading books or playing computer games?\nB: ---- . I think books are more interesting.\n\n**Which of the following best completes the dialogue?**",
+   "secenekler": [
+    "Neither of them",
+    "I prefer playing computer games",
+    "I don't like books",
+    "I prefer reading books"
+   ],
+   "cevap": "D",
+   "cozum": "B kitapları daha ilginç bulduğunu söylüyor; kitap okumayı tercih eder."
+  },
+  {
+   "no": 93,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "In the Kitchen",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: ---- sugar do you need for the cake?\nB: Two cups.\n\n**Which of the following best completes the dialogue?**",
+   "secenekler": [
+    "How often",
+    "How many",
+    "How much",
+    "How old"
+   ],
+   "cevap": "C",
+   "cozum": "Şeker sayılamayan bir addır; miktar \"How much\" ile sorulur."
+  },
+  {
+   "no": 94,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "On the Phone",
+   "yonerge": null,
+   "grup": null,
+   "metin": "A: I can't hear you very well. ---- ?\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "Could you hang up, please",
+    "Could you turn off your phone",
+    "Could you speak louder, please",
+    "Could you call me yesterday"
+   ],
+   "cevap": "C",
+   "cozum": "Karşısındakini iyi duyamayan biri daha yüksek sesle konuşmasını ister."
+  },
+  {
+   "no": 95,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Tourism",
+   "yonerge": null,
+   "grup": null,
+   "metin": "The Galata Tower is a famous ---- in Istanbul.\n\n**Which of the following best completes the sentence?**",
+   "secenekler": [
+    "password",
+    "landmark",
+    "chore",
+    "recipe"
+   ],
+   "cevap": "B",
+   "cozum": "Bir şehrin simgesi olan ünlü yapılara \"landmark\" denir."
+  },
+  {
+   "no": 96,
+   "test": 4,
+   "brans": "Yabancı Dil",
+   "ders": "İngilizce",
+   "konu": "Chores",
+   "yonerge": null,
+   "grup": null,
+   "metin": "In my family, everyone helps at home. My father does the shopping, my mother cooks, and my brother and I wash the dishes. We all clean the house together at weekends.\n\n**Who washes the dishes?**",
+   "secenekler": [
+    "Nobody",
+    "The father",
+    "The mother",
+    "The writer and the writer's brother"
+   ],
+   "cevap": "D",
+   "cozum": "Metinde \"my brother and I wash the dishes\" deniyor; bulaşığı yazar ve kardeşi yıkıyor."
+  },
+  {
+   "no": 97,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Çarpanlar ve Katlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Ali 6 günde bir, Veli 8 günde bir yüzmeye gitmektedir. İkisi bugün birlikte yüzmeye gitmiştir.\n**En az kaç gün sonra yine birlikte yüzmeye giderler?**",
+   "secenekler": [
+    "14",
+    "24",
+    "32",
+    "48"
+   ],
+   "cevap": "B",
+   "cozum": "Birlikte gidecekleri gün sayısı 6 ve 8'in ortak katıdır; en az EKOK(6, 8) = 24 gün sonra."
+  },
+  {
+   "no": 98,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Çarpanlar ve Katlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki sayı ikililerinden hangisi aralarında asaldır?**",
+   "secenekler": [
+    "12 ve 18",
+    "6 ve 9",
+    "8 ve 15",
+    "10 ve 25"
+   ],
+   "cevap": "C",
+   "cozum": "8 ile 15'in 1'den başka ortak böleni yoktur.\n6 ve 9'un 3; 10 ve 25'in 5; 12 ve 18'in 6 ortak böleni vardır."
+  },
+  {
+   "no": 99,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Üslü İfadeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**(−3)² − 3² işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "−9",
+    "0",
+    "1",
+    "18"
+   ],
+   "cevap": "B",
+   "cozum": "(−3)² = 9 ve 3² = 9 olduğundan 9 − 9 = 0."
+  },
+  {
+   "no": 100,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Üslü İfadeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "a = 2^{30}, b = 3^{20}, c = 5^{10}\n**olduğuna göre, a, b ve c'nin doğru sıralanışı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "b < a < c",
+    "a < b < c",
+    "a < c < b",
+    "c < a < b"
+   ],
+   "cevap": "D",
+   "cozum": "Üsler eşitlenir: a = (2³)^{10} = 8^{10}, b = (3²)^{10} = 9^{10}, c = 5^{10}.\nTabanlar karşılaştırılır: 5 < 8 < 9, yani c < a < b."
+  },
+  {
+   "no": 101,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Kareköklü İfadeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**√1,44 işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "0,72",
+    "1,2",
+    "1,6",
+    "12"
+   ],
+   "cevap": "B",
+   "cozum": "1,44 = {144/100} olduğundan √1,44 = {12/10} = 1,2."
+  },
+  {
+   "no": 102,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Kareköklü İfadeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**√12 · √3 işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "cevap": "D",
+   "cozum": "√12 · √3 = √36 = 6."
+  },
+  {
+   "no": 103,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Veri Analizi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**3, 7, 7, 8, 10 veri grubunun tepe değeri (modu) kaçtır?**",
+   "secenekler": [
+    "3",
+    "7",
+    "8",
+    "10"
+   ],
+   "cevap": "B",
+   "cozum": "Veri grubunda en çok tekrar eden değer 7'dir."
+  },
+  {
+   "no": 104,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Basit Olayların Olma Olasılığı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir zar atıldığında üst yüze asal sayı gelme olasılığı kaçtır?**",
+   "secenekler": [
+    "{1/6}",
+    "{1/3}",
+    "{1/2}",
+    "{2/3}"
+   ],
+   "cevap": "C",
+   "cozum": "Zarda asal sayılar 2, 3 ve 5'tir; olasılık {3/6} = {1/2}."
+  },
+  {
+   "no": 105,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Cebirsel İfadeler ve Özdeşlikler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "a − b = 5 ve a · b = 6\n**olduğuna göre, a² + b² kaçtır?**",
+   "secenekler": [
+    "37",
+    "38",
+    "39",
+    "40"
+   ],
+   "cevap": "A",
+   "cozum": "(a − b)² = a² − 2ab + b² olduğundan 25 = a² + b² − 12.\na² + b² = 37."
+  },
+  {
+   "no": 106,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Cebirsel İfadeler ve Özdeşlikler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**3(x − 2) − 2(x + 1) ifadesinin en sade biçimi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "x − 8",
+    "x + 4",
+    "x − 4",
+    "5x − 8"
+   ],
+   "cevap": "A",
+   "cozum": "3x − 6 − 2x − 2 = x − 8."
+  },
+  {
+   "no": 107,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Doğrusal Denklemler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir sayının 3 katının 5 fazlası 26 ise bu sayı kaçtır?**",
+   "secenekler": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "cevap": "C",
+   "cozum": "3x + 5 = 26 → 3x = 21 → x = 7."
+  },
+  {
+   "no": 108,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Doğrusal Denklemler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yatay uzunluğu 12 m ve yüksekliği 3 m olan bir rampanın eğimi kaçtır?**",
+   "secenekler": [
+    "{1/4}",
+    "{1/3}",
+    "{1/2}",
+    "4"
+   ],
+   "cevap": "A",
+   "cozum": "Eğim = dikey uzunluk : yatay uzunluk = 3 : 12 = {1/4}."
+  },
+  {
+   "no": 109,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Eşitsizlikler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**−2 ≤ x < 3 eşitsizliğini sağlayan tam sayıların toplamı kaçtır?**",
+   "secenekler": [
+    "−2",
+    "−1",
+    "0",
+    "3"
+   ],
+   "cevap": "C",
+   "cozum": "Tam sayılar −2, −1, 0, 1, 2'dir; toplamları 0."
+  },
+  {
+   "no": 110,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Üçgenler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**13 m uzunluğundaki bir merdiven bir duvara dayanmıştır. Merdivenin alt ucu duvardan 5 m uzakta olduğuna göre, üst ucu yerden kaç metre yüksektedir?**",
+   "secenekler": [
+    "12",
+    "14",
+    "16",
+    "20"
+   ],
+   "cevap": "A",
+   "cozum": "Merdiven, duvar ve yer bir dik üçgen oluşturur: h² + 5² = 13².\nh² = 169 − 25 = 144 → h = 12 m."
+  },
+  {
+   "no": 111,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Üçgenler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir üçgenin iki iç açısının ölçüsü 50° ve 70°'dir. Üçüncü açının ölçüsü kaç derecedir?**",
+   "secenekler": [
+    "60",
+    "70",
+    "80",
+    "100"
+   ],
+   "cevap": "A",
+   "cozum": "Üçgenin iç açıları toplamı 180° olduğundan 180 − (50 + 70) = 60°."
+  },
+  {
+   "no": 112,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Eşlik ve Benzerlik",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Eş iki üçgen için aşağıdakilerden hangisi her zaman doğrudur?**",
+   "secenekler": [
+    "İkisi de eşkenar üçgendir.",
+    "Alanları farklıdır.",
+    "Biri ötekinin iki katı büyüklüğündedir.",
+    "Karşılıklı kenar uzunlukları eşittir."
+   ],
+   "cevap": "D",
+   "cozum": "Eş üçgenlerin karşılıklı kenarları ve açıları eşittir; dolayısıyla alanları da eşittir."
+  },
+  {
+   "no": 113,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Dönüşüm Geometrisi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**A(−2, 5) noktasının y eksenine göre yansımasının koordinatları aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "(2, −5)",
+    "(−2, −5)",
+    "(5, −2)",
+    "(2, 5)"
+   ],
+   "cevap": "D",
+   "cozum": "y eksenine göre yansımada ordinat aynı kalır, apsis ters işaret alır: (2, 5)."
+  },
+  {
+   "no": 114,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Geometrik Cisimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir ayrıtının uzunluğu 5 cm olan bir küpün yüzey alanı kaç cm²'dir?**",
+   "secenekler": [
+    "150",
+    "200",
+    "250",
+    "300"
+   ],
+   "cevap": "A",
+   "cozum": "Küpün 6 eş kare yüzü vardır: 6 · 5² = 150 cm²."
+  },
+  {
+   "no": 115,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Geometrik Cisimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Taban yarıçapı 3 cm ve yüksekliği 7 cm olan bir dik dairesel silindirin yanal alanı kaç cm²'dir? (π = 3 alınız.)**",
+   "secenekler": [
+    "126",
+    "132",
+    "138",
+    "180"
+   ],
+   "cevap": "A",
+   "cozum": "Yanal alan = 2 · π · r · h = 2 · 3 · 3 · 7 = 126 cm²."
+  },
+  {
+   "no": 116,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Geometrik Cisimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir üçgen dik prizmanın kaç yüzü vardır?**",
+   "secenekler": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "cevap": "C",
+   "cozum": "Üçgen dik prizmanın 2 üçgen tabanı ve 3 dikdörtgen yan yüzü vardır: 5 yüz."
+  },
+  {
+   "no": 117,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Üslü İfadeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**3,2 · 10⁵ sayısının açık yazılışı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "3.200",
+    "32.000",
+    "320.000",
+    "3.200.000"
+   ],
+   "cevap": "C",
+   "cozum": "10⁵ ile çarpmak virgülü 5 basamak sağa kaydırır: 3,2 · 10⁵ = 320.000."
+  },
+  {
+   "no": 118,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Kareköklü İfadeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**√70 sayısına en yakın tam sayı kaçtır?**",
+   "secenekler": [
+    "6",
+    "7",
+    "8",
+    "9"
+   ],
+   "cevap": "C",
+   "cozum": "√64 = 8 ve √81 = 9; 70, 64'e 81'den daha yakın olduğundan √70'e en yakın tam sayı 8'dir."
+  },
+  {
+   "no": 119,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Basit Olayların Olma Olasılığı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir torbada yalnızca 6 sarı bilye vardır.\n**Bu torbadan rastgele çekilen bir bilyenin sarı olma olasılığı kaçtır?**",
+   "secenekler": [
+    "0",
+    "{1/6}",
+    "{1/2}",
+    "1"
+   ],
+   "cevap": "D",
+   "cozum": "Torbadaki bütün bilyeler sarı olduğundan sarı bilye çekmek kesin olaydır; olasılık 1'dir."
+  },
+  {
+   "no": 120,
+   "test": 5,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Veri Analizi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir manavın dört günlük satış miktarları şöyledir: Pazartesi 20 kg, Salı 35 kg, Çarşamba 25 kg, Perşembe 40 kg.\n**Bu dört günde günlük ortalama satış kaç kilogramdır?**",
+   "secenekler": [
+    "25",
+    "30",
+    "35",
+    "40"
+   ],
+   "cevap": "B",
+   "cozum": "Toplam satış 20 + 35 + 25 + 40 = 120 kg; ortalama 120 : 4 = 30 kg."
+  },
+  {
+   "no": 121,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Mevsimler ve İklim",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**21 Aralık'ta Kuzey Yarım Küre'de aşağıdakilerden hangisi yaşanır?**",
+   "secenekler": [
+    "En uzun gündüz",
+    "Yaz mevsiminin başlangıcı",
+    "En kısa gündüz",
+    "Gece ve gündüz eşitliği"
+   ],
+   "cevap": "C",
+   "cozum": "21 Aralık'ta Güneş ışınları Oğlak Dönencesi'ne dik gelir; Kuzey Yarım Küre'de en kısa gündüz ve kışın başlangıcı yaşanır."
+  },
+  {
+   "no": 122,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Mevsimler ve İklim",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki tarihlerden hangisinde Dünya'nın her yerinde gece ile gündüz süreleri yaklaşık olarak eşittir?**",
+   "secenekler": [
+    "1 Ocak",
+    "21 Aralık",
+    "21 Mart",
+    "21 Haziran"
+   ],
+   "cevap": "C",
+   "cozum": "21 Mart ve 23 Eylül'de (ekinoks) Güneş ışınları Ekvator'a dik gelir; gece ile gündüz eşittir."
+  },
+  {
+   "no": 123,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Mevsimler ve İklim",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Rüzgârın oluşmasının temel nedeni aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Dünya'nın Güneş çevresinde dolanması",
+    "Bulutların hareketi",
+    "İki bölge arasındaki hava basıncı farkı",
+    "Ay'ın çekim kuvveti"
+   ],
+   "cevap": "C",
+   "cozum": "Hava, basıncın yüksek olduğu yerden alçak olduğu yere doğru hareket eder; bu hareket rüzgârdır."
+  },
+  {
+   "no": 124,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "DNA ve Genetik Kod",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**DNA'nın kendini eşlemesi aşağıdaki olaylardan hangisinden önce gerçekleşir?**",
+   "secenekler": [
+    "Sindirim",
+    "Fotosentez",
+    "Boşaltım",
+    "Hücre bölünmesi"
+   ],
+   "cevap": "D",
+   "cozum": "Hücre bölünmeden önce DNA kendini eşler; böylece oluşan yeni hücrelere aynı kalıtsal bilgi aktarılır."
+  },
+  {
+   "no": 125,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "DNA ve Genetik Kod",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kalıtsal özelliklerin oluşmasını sağlayan bilgileri taşıyan DNA parçalarına ne ad verilir?**",
+   "secenekler": [
+    "Ribozom",
+    "Hücre zarı",
+    "Gen",
+    "Nükleotit"
+   ],
+   "cevap": "C",
+   "cozum": "Gen, bir kalıtsal özelliğin bilgisini taşıyan DNA parçasıdır."
+  },
+  {
+   "no": 126,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "DNA ve Genetik Kod",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kutup ayılarının kalın bir yağ tabakasına ve yoğun kürke sahip olması aşağıdakilerden hangisine örnektir?**",
+   "secenekler": [
+    "Adaptasyon",
+    "Mutasyon",
+    "Çaprazlama",
+    "Modifikasyon"
+   ],
+   "cevap": "A",
+   "cozum": "Canlının yaşadığı ortamda hayatta kalmasını sağlayan kalıtsal özelliklere adaptasyon denir."
+  },
+  {
+   "no": 127,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "DNA ve Genetik Kod",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi biyoteknolojik bir uygulamadır?**",
+   "secenekler": [
+    "Gen aktarımıyla hastalıklara dayanıklı bitki elde edilmesi",
+    "Ağaçların budanması",
+    "Toprağın sürülmesi",
+    "Tarlanın sulanması"
+   ],
+   "cevap": "A",
+   "cozum": "Biyoteknoloji, canlıların genetik yapısını kullanarak ürün geliştirmeyi kapsar; gen aktarımı buna örnektir."
+  },
+  {
+   "no": 128,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Basınç",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kar ayakkabılarının tabanlarının geniş yapılmasının amacı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kara yapılan basıncı artırmak",
+    "Kara yapılan basıncı azaltmak",
+    "Sürtünmeyi tamamen ortadan kaldırmak",
+    "Ayakkabıyı ağırlaştırmak"
+   ],
+   "cevap": "B",
+   "cozum": "Ağırlık aynı kalırken yüzey alanı büyüdükçe basınç azalır; böylece kişi kara batmaz."
+  },
+  {
+   "no": 129,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Basınç",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Barajların alt kısımlarının üst kısımlarından daha kalın yapılmasının nedeni aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Suyun yüzeyde daha sıcak olması",
+    "Derinlik arttıkça sıvı basıncının artması",
+    "Suyun buharlaşmasını azaltmak",
+    "Barajın görünüşünü güzelleştirmek"
+   ],
+   "cevap": "B",
+   "cozum": "Sıvı basıncı derinlikle artar; barajın tabanı daha büyük basınca dayanacak biçimde kalın yapılır."
+  },
+  {
+   "no": 130,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Basınç",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Pipetle meyve suyu içebilmemizi sağlayan etken aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Yer çekimi kuvveti",
+    "Açık hava basıncı",
+    "Sıvıların sıkıştırılamaması",
+    "Sürtünme kuvveti"
+   ],
+   "cevap": "B",
+   "cozum": "Pipetin içindeki hava çekilince içerideki basınç azalır; açık hava basıncı meyve suyunu pipete iter."
+  },
+  {
+   "no": 131,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Madde ve Endüstri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Periyodik sistemin 8A (18.) grubunda yer alan elementlere ne ad verilir?**",
+   "secenekler": [
+    "Toprak alkali metaller",
+    "Alkali metaller",
+    "Halojenler",
+    "Soy gazlar"
+   ],
+   "cevap": "D",
+   "cozum": "8A grubundaki helyum, neon, argon gibi elementler soy gazlardır."
+  },
+  {
+   "no": 132,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Madde ve Endüstri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Sodyum elementinin sembolü aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sd",
+    "So",
+    "S",
+    "Na"
+   ],
+   "cevap": "D",
+   "cozum": "Sodyumun sembolü Latince adı \"Natrium\"dan gelen Na'dır; S kükürdün sembolüdür."
+  },
+  {
+   "no": 133,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Madde ve Endüstri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir asit ile bir bazın tepkimeye girerek tuz ve su oluşturmasına ne ad verilir?**",
+   "secenekler": [
+    "Nötrleşme",
+    "Paslanma",
+    "Yanma",
+    "Çözünme"
+   ],
+   "cevap": "A",
+   "cozum": "Asit ve baz tepkimeye girdiğinde tuz ve su oluşur; bu tepkimeye nötrleşme denir."
+  },
+  {
+   "no": 134,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Madde ve Endüstri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi asit yağmurlarının zararlarından biri değildir?**",
+   "secenekler": [
+    "Toprağın verimini artırması",
+    "Ormanlara zarar vermesi",
+    "Tarihî yapıları aşındırması",
+    "Göl ve akarsulardaki canlıları etkilemesi"
+   ],
+   "cevap": "A",
+   "cozum": "Asit yağmurları toprağı asitleştirerek verimini düşürür; yapılara, ormanlara ve su canlılarına zarar verir."
+  },
+  {
+   "no": 135,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Madde ve Endüstri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'nin dünya rezervlerinde ilk sırada yer aldığı maden aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Altın",
+    "Elmas",
+    "Petrol",
+    "Bor"
+   ],
+   "cevap": "D",
+   "cozum": "Türkiye dünya bor rezervlerinin büyük bölümüne sahiptir."
+  },
+  {
+   "no": 136,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Basit Makineler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aynı yüksekliğe ulaşan bir eğik düzlemin uzunluğu artırılırsa yükü çıkarmak için gereken kuvvet nasıl değişir?**",
+   "secenekler": [
+    "Azalır",
+    "Sıfır olur",
+    "Artar",
+    "Değişmez"
+   ],
+   "cevap": "A",
+   "cozum": "Eğik düzlemin boyu uzadıkça eğim azalır; yükü çıkarmak için daha az kuvvet gerekir, ama daha uzun yol alınır."
+  },
+  {
+   "no": 137,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Basit Makineler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Ağırlığı önemsiz tek bir hareketli makarayla 80 N ağırlığındaki bir yük dengede tutulmaktadır. Uygulanan kuvvet kaç N'dur?**",
+   "secenekler": [
+    "20",
+    "40",
+    "80",
+    "160"
+   ],
+   "cevap": "B",
+   "cozum": "Tek hareketli makara kuvvetten iki kat kazanç sağlar: 80 : 2 = 40 N."
+  },
+  {
+   "no": 138,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Basit Makineler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kuyudan su çekmek için kullanılan bir çıkrıkta kolun dönme yarıçapı artırılırsa aşağıdakilerden hangisi gerçekleşir?**",
+   "secenekler": [
+    "Daha az kuvvet gerekir.",
+    "Daha fazla kuvvet gerekir.",
+    "İşten kazanç sağlanır.",
+    "Gereken kuvvet değişmez."
+   ],
+   "cevap": "A",
+   "cozum": "Çıkrıkta kol uzadıkça kuvvet kolu büyür ve daha az kuvvetle aynı yük kaldırılır; işten kazanç yoktur."
+  },
+  {
+   "no": 139,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Enerji Dönüşümleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Rüzgâr türbinlerinde gerçekleşen temel enerji dönüşümü aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Işık enerjisi → kimyasal enerji",
+    "Hareket enerjisi → elektrik enerjisi",
+    "Elektrik enerjisi → hareket enerjisi",
+    "Kimyasal enerji → elektrik enerjisi"
+   ],
+   "cevap": "B",
+   "cozum": "Rüzgârın hareket enerjisi türbin kanatlarını döndürür, jeneratörde elektrik enerjisine dönüşür."
+  },
+  {
+   "no": 140,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Enerji Dönüşümleri ve Çevre Bilimi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Su döngüsünde suyun buharlaşmasını sağlayan temel enerji kaynağı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Rüzgâr",
+    "Güneş",
+    "Ay",
+    "Yer altı ısısı"
+   ],
+   "cevap": "B",
+   "cozum": "Su döngüsünün enerji kaynağı Güneş'tir; Güneş ısısıyla denizlerden ve göllerden su buharlaşır."
+  },
+  {
+   "no": 141,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Enerji Dönüşümleri ve Çevre Bilimi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi fotosentez için gerekli değildir?**",
+   "secenekler": [
+    "Işık",
+    "Su",
+    "Oksijen",
+    "Karbondioksit"
+   ],
+   "cevap": "C",
+   "cozum": "Fotosentezde karbondioksit, su ve ışık kullanılır; oksijen ise fotosentezin ürünüdür."
+  },
+  {
+   "no": 142,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Enerji Dönüşümleri ve Çevre Bilimi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Oksijenli solunumun sonunda aşağıdakilerden hangileri oluşur?**",
+   "secenekler": [
+    "Glikoz ve ışık",
+    "Yalnızca oksijen",
+    "Oksijen ve glikoz",
+    "Karbondioksit, su ve enerji"
+   ],
+   "cevap": "D",
+   "cozum": "Oksijenli solunumda besin oksijenle parçalanır; karbondioksit, su ve enerji (ATP) açığa çıkar."
+  },
+  {
+   "no": 143,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Elektrik Yükleri ve Elektrik Enerjisi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Elektroskop aşağıdakilerden hangisi için kullanılır?**",
+   "secenekler": [
+    "Gerilimi ölçmek için",
+    "Elektrik üretmek için",
+    "Bir cismin elektrikle yüklü olup olmadığını anlamak için",
+    "Akım şiddetini ölçmek için"
+   ],
+   "cevap": "C",
+   "cozum": "Elektroskop, cisimlerin yüklü olup olmadığını ve yükün cinsini belirlemeye yarayan bir araçtır."
+  },
+  {
+   "no": 144,
+   "test": 6,
+   "brans": "Fen Bilimleri",
+   "ders": "Fen Bilimleri",
+   "konu": "Elektrik Yükleri ve Elektrik Enerjisi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi elektrik enerjisini tasarruflu kullanmaya bir örnektir?**",
+   "secenekler": [
+    "Çamaşır makinesini yarı dolu çalıştırmak",
+    "Buzdolabının kapağını uzun süre açık bırakmak",
+    "Bilgisayarı gereksiz yere açık bırakmak",
+    "Kullanılmayan odaların lambalarını kapatmak"
+   ],
+   "cevap": "D",
+   "cozum": "Gereksiz yanan lambaları kapatmak elektrik tasarrufu sağlar; öteki davranışlar enerjiyi boşa harcar."
+  }
+ ]
+}
