@@ -35,6 +35,8 @@ bir IIFE'dir, dışarıya bir şey açmaz.
   kuralını, `newRound()` biten kaynağın yeni turunu, `pickQuestions()` paragraf bütünlüğünü,
   `mixBranches()` branşlar arası dengeyi uygular.
 - **Sınav ekranı:** `openPlayer(sorular, başlık, süre, { mode, onFinish })` — sonuç `{ D, Y, B, net, status }`.
+  Net, soruların sınavına göre hesaplanır (`YANLIS_BOLEN`): YDS ve YÖKDİL'de yanlışlar doğruları götürmez (net = D),
+  LGS'de net = D − Y/3, diğerlerinde (TYT, AYT, KPSS, ALES, DGS…) net = D − Y/4.
   Tam ekran: Fullscreen API (sayfanın tamamı), izin yoksa `.modal-back.fs` ile pencereyi kaplar; F tuşu açar/kapatır,
   Esc önce tam ekrandan çıkar; sınav kapanınca tam ekran da kapanır.
 - **Açıklamalı çözüm / anlatım videosu:** `solHtml(q)` çözümü (`cozum`) gösterir; `openLesson(q, etiket)` aynı metni
