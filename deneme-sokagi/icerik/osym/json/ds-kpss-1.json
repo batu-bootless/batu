@@ -1,0 +1,926 @@
+{
+ "kaynak": {
+  "id": "ds-kpss-1",
+  "ad": "Deneme Sokağı KPSS Denemesi 1",
+  "sinav": "KPSS",
+  "tur": "deneme",
+  "ders": "",
+  "kod_on": "KP",
+  "dk_soru": 1.08
+ },
+ "gruplar": {},
+ "sorular": [
+  {
+   "no": 1,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Kapanmak\" sözcüğü aşağıdaki cümlelerin hangisinde \"faaliyetine son vermek\" anlamında kullanılmıştır?**",
+   "secenekler": [
+    "Yorgunluktan gözleri __kapanıyordu__.",
+    "Yara birkaç günde __kapandı__.",
+    "Rüzgârla kapı birden __kapandı__.",
+    "Gökyüzü kara bulutlarla __kapandı__.",
+    "Mahalledeki fırın geçen ay __kapandı__."
+   ],
+   "cevap": "E",
+   "cozum": "Fırının kapanması, işletmenin çalışmasına son vermesi demektir.\nÖteki cümlelerde örtülmek, bulutla kaplanmak, gözlerin yumulması ve iyileşmek anlamları vardır."
+  },
+  {
+   "no": 2,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Deyimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde \"sonuç vermeyecek bir işle boşuna uğraşmak\" anlamında bir deyim kullanılmıştır?**",
+   "secenekler": [
+    "Yıllardır bu projeyle uğraşıyor ama __havanda su dövüyor__.",
+    "Her konuya __burnunu sokuyor__.",
+    "Bu işin __altından kalkamayacağını__ anladı.",
+    "Toplantıda herkes onun önerisine __kulak verdi__.",
+    "Sonucu duyunca __eli ayağı boşaldı__."
+   ],
+   "cevap": "A",
+   "cozum": "\"Havanda su dövmek\", sonuç alınamayacak bir işle boşuna uğraşmak demektir."
+  },
+  {
+   "no": 3,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde nesnel bir yargı vardır?**",
+   "secenekler": [
+    "Köprüden geçerken insanın içi açılıyor.",
+    "Bence bu köprü gereksiz bir harcamaydı.",
+    "Köprü 2016 yılında trafiğe açıldı.",
+    "Bu köprü şehrin en zarif yapısıdır.",
+    "Köprünün ışıklandırması gerçekten büyüleyici."
+   ],
+   "cevap": "C",
+   "cozum": "Köprünün açılış tarihi doğrulanabilir bir bilgidir; öteki cümleler kişisel değerlendirme içerir."
+  },
+  {
+   "no": 4,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"Yazar, karakterlerini anlatmıyor; onları konuşturarak tanıtıyor.\"\n\n**Bu cümlede eserle ilgili olarak vurgulanan aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Olay örgüsünün karmaşık olduğu",
+    "Karakterlerin diyaloglar aracılığıyla tanıtıldığı",
+    "Yazarın betimlemelere çok yer verdiği",
+    "Karakterlerin gerçek kişilerden alındığı",
+    "Yazarın kendi hayatını anlattığı"
+   ],
+   "cevap": "B",
+   "cozum": "Karakterlerin anlatılmak yerine konuşturularak tanıtılması, diyaloglardan yararlanıldığını gösterir."
+  },
+  {
+   "no": 5,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Ana Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Başarılı insanların ortak özelliği hiç başarısız olmamaları değil, başarısızlıklarından ders çıkarmalarıdır. Bir girişimci batan ilk şirketinin ardından neyi yanlış yaptığını sorgular; bir sporcu kaybettiği maçın kayıtlarını tekrar tekrar izler. Onlar için yenilgi bir son değil, daha iyisine giden yolda bir basamaktır.\n\n**Bu parçada asıl anlatılmak istenen aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Yenilgiler insanın özgüvenini zedeler.",
+    "Sporcular maç kayıtlarını izleyerek gelişir.",
+    "Girişimcilerin çoğu ilk şirketlerinde başarısız olur.",
+    "Başarısızlıklar, ders çıkarıldığında başarıya giden yolun parçası olur.",
+    "Başarılı insanlar hiç hata yapmaz."
+   ],
+   "cevap": "D",
+   "cozum": "Parça, başarılı insanların yenilgiyi bir basamak olarak görüp ondan ders çıkardığını anlatır."
+  },
+  {
+   "no": 6,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Yardımcı Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Arıcılık, bal üretiminin yanında polen, propolis ve arı sütü gibi ürünler de sağlar. Arılar bitkilerin tozlaşmasına yardım ederek tarımsal verimi artırır. Bu yüzden pek çok çiftçi bahçesinin yakınına kovan yerleştirilmesini ister.\n\n**Bu parçada aşağıdakilerden hangisine değinilmemiştir?**",
+   "secenekler": [
+    "Çiftçilerin kovanları neden istediğine",
+    "Arıcılığın bal dışındaki ürünlerine",
+    "Arıcılığın tarıma katkısına",
+    "Arıların hastalıklardan nasıl korunduğuna",
+    "Arıların tozlaşmadaki rolüne"
+   ],
+   "cevap": "D",
+   "cozum": "Parçada arı ürünleri, tozlaşma ve çiftçilerin kovan istemesi anlatılır; arı hastalıklarından söz edilmez."
+  },
+  {
+   "no": 7,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragraf Tamamlama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Dijital çağda bilgiye ulaşmak hiç olmadığı kadar kolay. Ancak her bilgi doğru değil; sosyal medyada yayılan pek çok haber kaynağı belirsiz iddialara dayanıyor. ----\n\n**Bu parça aşağıdakilerden hangisiyle tamamlanırsa düşüncenin akışı korunur?**",
+   "secenekler": [
+    "İnternet ilk kez askerî amaçlarla geliştirilmiştir.",
+    "Sosyal medya kullanıcılarının sayısı her yıl artmaktadır.",
+    "Bu nedenle okuduğumuz bilgiyi paylaşmadan önce kaynağını sorgulamalıyız.",
+    "Gazeteler artık dijital ortamda da yayımlanıyor.",
+    "Bilgisayarlar hayatımızın her alanına girmiştir."
+   ],
+   "cevap": "C",
+   "cozum": "Parça doğruluğu belirsiz bilgilerin yayılmasından söz eder; bunun sonucu olarak kaynağı sorgulama önerisi gelmelidir."
+  },
+  {
+   "no": 8,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Anlatımın Bozulması",
+   "yonerge": null,
+   "grup": null,
+   "metin": "(I) Çay, Türkiye'de en çok tüketilen içeceklerden biridir. (II) Çay bitkisi nemli ve yağışlı iklimlerde yetişir. (III) Bu nedenle Türkiye'de çay tarımı daha çok Doğu Karadeniz'de yapılır. (IV) Kahvenin anavatanının Etiyopya olduğu sanılmaktadır. (V) Rize ve çevresi, ülkemizin çay ihtiyacının büyük bölümünü karşılar.\n\n**Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?**",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "D",
+   "cozum": "Parça Türkiye'de çayın tüketimini ve yetiştirilmesini anlatır.\nIV. cümle kahvenin anavatanından söz ederek konunun dışına çıkar."
+  },
+  {
+   "no": 9,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragraftan Çıkarım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Eskiden mahallelerde herkes birbirini tanır, bir evde düğün olsa bütün sokak sevinirdi. Bugün aynı apartmanda yıllarca oturup komşusunun adını bilmeyen insanlar var. Kalabalık şehirlerde yaşıyoruz ama belki de hiç olmadığı kadar yalnızız.\n\n**Bu parçadan aşağıdaki yargılardan hangisi çıkarılabilir?**",
+   "secenekler": [
+    "Apartmanlarda yaşamak daha güvenlidir.",
+    "Kalabalık şehirlerde iş bulmak kolaydır.",
+    "Mahallelerde artık düğün yapılmamaktadır.",
+    "Eskiden insanlar daha uzun yaşardı.",
+    "Kentleşmeyle birlikte komşuluk ilişkileri zayıflamıştır."
+   ],
+   "cevap": "E",
+   "cozum": "Parça, eskinin sıkı komşuluk ilişkileriyle bugünkü kopukluğu karşılaştırarak komşuluğun zayıfladığını anlatır."
+  },
+  {
+   "no": 10,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Yazım Kuralları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde yazım yanlışı yapılmıştır?**",
+   "secenekler": [
+    "Pek çok soruyu yanıtsız bıraktı.",
+    "Herşeyi zamanında yapmaya çalışıyor.",
+    "Birçok kişi toplantıya katılmadı.",
+    "Hiçbir zaman umudunu kaybetmedi.",
+    "Bu kitabı birkaç kez okudum."
+   ],
+   "cevap": "B",
+   "cozum": "\"Her şey\" ayrı yazılır.\n\"Hiçbir\", \"birçok\" ve \"birkaç\" bitişik; \"pek çok\" ayrı yazılır."
+  },
+  {
+   "no": 11,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Noktalama İşaretleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde ünlem işareti yanlış kullanılmıştır?**",
+   "secenekler": [
+    "Yarın sinemaya gidecek misin!",
+    "Eyvah, otobüsü kaçırdık!",
+    "Ne güzel bir manzara!",
+    "Ah, ne kadar özlemişim!",
+    "Dikkat, yol kaygan!"
+   ],
+   "cevap": "A",
+   "cozum": "Soru bildiren cümlenin sonuna soru işareti konur: Yarın sinemaya gidecek misin?"
+  },
+  {
+   "no": 12,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Ali, Berk, Can ve Deniz bir koşuda ilk dört sırayı paylaşmıştır. Ali, Berk'ten önce; Can, Ali'den önce bitirmiştir. Deniz, Ali'den sonra bitirmiş ama sonuncu olmamıştır.\n\n**Buna göre, koşuyu birinci bitiren kimdir?**",
+   "secenekler": [
+    "Deniz",
+    "Berk",
+    "Ali",
+    "Kesin olarak belirlenemez",
+    "Can"
+   ],
+   "cevap": "E",
+   "cozum": "Sıralama Can → Ali → Berk biçimindedir. Deniz Ali'den sonra gelip sonuncu olmadığına göre Berk sonuncudur.\nSıralama: Can, Ali, Deniz, Berk; birinci Can'dır."
+  },
+  {
+   "no": 13,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Temel Kavramlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "a = 3 ve b = −2\n**olduğuna göre, a² − 2ab + b² ifadesinin değeri kaçtır?**",
+   "secenekler": [
+    "25",
+    "30",
+    "35",
+    "40",
+    "49"
+   ],
+   "cevap": "A",
+   "cozum": "a² − 2ab + b² = (a − b)² = (3 − (−2))² = 5² = 25."
+  },
+  {
+   "no": 14,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Rasyonel Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**{2/3} sayısının {3/4}'ü kaçtır?**",
+   "secenekler": [
+    "{1/4}",
+    "{1/3}",
+    "{1/2}",
+    "{2/3}",
+    "{8/9}"
+   ],
+   "cevap": "C",
+   "cozum": "{2/3} · {3/4} = {6/12} = {1/2}."
+  },
+  {
+   "no": 15,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Ondalık Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1,2 · 0,5 + 0,4 işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "1",
+    "1,2",
+    "1,25",
+    "1,4",
+    "2"
+   ],
+   "cevap": "A",
+   "cozum": "1,2 · 0,5 = 0,6; 0,6 + 0,4 = 1."
+  },
+  {
+   "no": 16,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Basit Eşitsizlikler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "3 < 2x − 1 < 11\n**eşitsizliğini sağlayan x tam sayılarının toplamı kaçtır?**",
+   "secenekler": [
+    "9",
+    "10",
+    "12",
+    "14",
+    "15"
+   ],
+   "cevap": "C",
+   "cozum": "Her tarafa 1 eklenir: 4 < 2x < 12 → 2 < x < 6.\nx; 3, 4, 5 olur; toplam 12."
+  },
+  {
+   "no": 17,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Oran - Orantı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir haritada 3 cm ile gösterilen uzaklık gerçekte 12 km'dir. Aynı haritada 5 cm ile gösterilen uzaklık gerçekte kaç km'dir?**",
+   "secenekler": [
+    "5",
+    "10",
+    "15",
+    "18",
+    "20"
+   ],
+   "cevap": "E",
+   "cozum": "1 cm 4 km'yi gösterir; 5 cm 5 · 4 = 20 km."
+  },
+  {
+   "no": 18,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Yaş Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Ayşe'nin yaşı kardeşinin yaşının 3 katıdır. 5 yıl sonra ikisinin yaşları toplamı 34 olacaktır.\n**Buna göre, Ayşe bugün kaç yaşındadır?**",
+   "secenekler": [
+    "12",
+    "15",
+    "18",
+    "21",
+    "24"
+   ],
+   "cevap": "C",
+   "cozum": "Kardeş k, Ayşe 3k olsun: (3k + 5) + (k + 5) = 34 → 4k = 24 → k = 6.\nAyşe 18 yaşındadır."
+  },
+  {
+   "no": 19,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Yüzde Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir ürünün fiyatına önce %25 zam yapılıyor, ardından yeni fiyat üzerinden %20 indirim yapılıyor.\n**Buna göre, ürünün son fiyatı ilk fiyatına göre nasıl değişmiştir?**",
+   "secenekler": [
+    "%5 azalmıştır.",
+    "Değişmemiştir.",
+    "%5 artmıştır.",
+    "%10 artmıştır.",
+    "%45 artmıştır."
+   ],
+   "cevap": "B",
+   "cozum": "İlk fiyat 100 olsun: %25 zamla 125 olur.\n125'in %20'si 25 olduğundan son fiyat 100; fiyat değişmemiştir."
+  },
+  {
+   "no": 20,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "İşçi Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir havuzu A musluğu tek başına 6 saatte, B musluğu tek başına 3 saatte doldurmaktadır. İki musluk birlikte açılırsa boş havuz kaç saatte dolar?**",
+   "secenekler": [
+    "0,5",
+    "1",
+    "1,5",
+    "2",
+    "2,5"
+   ],
+   "cevap": "D",
+   "cozum": "Bir saatte A havuzun {1/6}'sını, B {1/3}'ünü doldurur: {1/6} + {2/6} = {1/2}.\nHavuz 2 saatte dolar."
+  },
+  {
+   "no": 21,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Hareket Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Saatteki hızı 80 km olan bir araç 240 km'lik yolu kaç saatte alır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "2,5",
+    "3",
+    "3,5"
+   ],
+   "cevap": "D",
+   "cozum": "Süre = yol : hız = 240 : 80 = 3 saat."
+  },
+  {
+   "no": 22,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Sayısal Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "2, 6, 12, 20, 30, ?\n**Yukarıdaki sayı dizisinde soru işareti yerine hangi sayı gelmelidir?**",
+   "secenekler": [
+    "30",
+    "36",
+    "40",
+    "42",
+    "44"
+   ],
+   "cevap": "D",
+   "cozum": "Ardışık terimler arasındaki farklar 4, 6, 8, 10 diye artar; sonraki fark 12'dir: 30 + 12 = 42.\nAyrıca terimler n · (n + 1) biçimindedir: 6 · 7 = 42."
+  },
+  {
+   "no": 23,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Geometri",
+   "konu": "Dörtgenler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Çevresi 36 cm olan bir karenin alanı kaç cm²'dir?**",
+   "secenekler": [
+    "72",
+    "81",
+    "84",
+    "87",
+    "144"
+   ],
+   "cevap": "B",
+   "cozum": "Karenin bir kenarı 36 : 4 = 9 cm; alanı 9² = 81 cm²."
+  },
+  {
+   "no": 24,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Geometri",
+   "konu": "Açılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bütünler iki açıdan biri ötekinin 4 katı olduğuna göre küçük açının ölçüsü kaç derecedir?**",
+   "secenekler": [
+    "30",
+    "36",
+    "42",
+    "45",
+    "60"
+   ],
+   "cevap": "B",
+   "cozum": "Bütünler açıların toplamı 180°'dir: x + 4x = 180 → x = 36°."
+  },
+  {
+   "no": 25,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "İslamiyet Öncesi Türk Tarihi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Türk\" adını resmî devlet adı olarak kullanan ilk Türk devleti aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Avarlar",
+    "Göktürkler",
+    "Asya Hunları",
+    "Hazarlar",
+    "Uygurlar"
+   ],
+   "cevap": "B",
+   "cozum": "Türk adı ilk kez resmî devlet adı olarak Göktürk (Kök Türk) Devleti'nde kullanılmıştır."
+  },
+  {
+   "no": 26,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "İslamiyet Öncesi Türk Tarihi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi Uygurların yerleşik hayata geçtiğinin kanıtlarından biri değildir?**",
+   "secenekler": [
+    "Kalıcı yapılarda kütüphaneler oluşturmaları",
+    "Tarımla uğraşmaları",
+    "Şehirler kurmaları",
+    "Tapınaklar inşa etmeleri",
+    "Hükümdarlık yetkisinin Tanrı tarafından verildiğine inanmaları"
+   ],
+   "cevap": "E",
+   "cozum": "Kut anlayışı bütün eski Türk devletlerinde görülen siyasi bir inançtır; yerleşik yaşamla ilgisi yoktur.\nTapınak, şehir, kütüphane ve tarım ise yerleşik hayatın göstergeleridir."
+  },
+  {
+   "no": 27,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "İslamiyet Öncesi Türk Tarihi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İslamiyet öncesi Türk devletlerinde hükümdarlık yetkisinin Tanrı tarafından verildiğine inanılmasına ne ad verilir?**",
+   "secenekler": [
+    "İkta",
+    "Ülüş",
+    "Töre",
+    "Kurultay",
+    "Kut"
+   ],
+   "cevap": "E",
+   "cozum": "Kut, yönetme yetkisinin Tanrı tarafından verildiği inancıdır.\nTöre yazısız hukuk kurallarını, kurultay danışma meclisini, ülüş ise ülkenin hanedan üyeleri arasında paylaşılmasını anlatır."
+  },
+  {
+   "no": 28,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "İlk Türk-İslam Devletleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İslamiyet'i resmî din olarak kabul eden ilk Türk devleti aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Büyük Selçuklular",
+    "Karahanlılar",
+    "Tolunoğulları",
+    "İhşidiler",
+    "Gazneliler"
+   ],
+   "cevap": "B",
+   "cozum": "Karahanlı hükümdarı Satuk Buğra Han döneminde İslamiyet resmî din olarak kabul edilmiştir."
+  },
+  {
+   "no": 29,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Türk-İslam Kültür ve Medeniyeti",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Karahanlılar döneminde yazılan ve ideal devlet yönetimini anlatan \"Kutadgu Bilig\" adlı eserin yazarı kimdir?**",
+   "secenekler": [
+    "Kaşgarlı Mahmut",
+    "Yusuf Has Hacib",
+    "Nizamülmülk",
+    "Ahmet Yesevi",
+    "Edip Ahmet Yükneki"
+   ],
+   "cevap": "B",
+   "cozum": "Kutadgu Bilig Yusuf Has Hacib'in eseridir.\nDivanü Lügati't-Türk Kaşgarlı Mahmut'a, Atabetü'l-Hakayık Edip Ahmet Yükneki'ye, Divan-ı Hikmet Ahmet Yesevi'ye, Siyasetname Nizamülmülk'e aittir."
+  },
+  {
+   "no": 30,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Türkiye Selçuklu Devleti",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1071 Malazgirt Savaşı'nın en önemli sonucu aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Anadolu'nun kapılarının Türklere açılması",
+    "Haçlı Seferlerinin sona ermesi",
+    "İstanbul'un fethedilmesi",
+    "Büyük Selçuklu Devleti'nin parçalanması",
+    "Bizans İmparatorluğu'nun yıkılması"
+   ],
+   "cevap": "A",
+   "cozum": "Malazgirt zaferiyle Anadolu'ya Türk göçleri hızlanmış, Anadolu Türk yurdu olmaya başlamıştır."
+  },
+  {
+   "no": 31,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devleti Kuruluş Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Osmanlı Devleti'nde ilk düzenli ordu (Yaya ve Müsellem) hangi hükümdar döneminde kurulmuştur?**",
+   "secenekler": [
+    "II. Murat",
+    "I. Murat",
+    "Yıldırım Bayezid",
+    "Orhan Bey",
+    "Osman Bey"
+   ],
+   "cevap": "D",
+   "cozum": "İlk düzenli ordu Orhan Bey döneminde kurulmuştur. Kapıkulu ocakları ise I. Murat döneminde oluşturulmuştur."
+  },
+  {
+   "no": 32,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devlet Teşkilatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi tımar sisteminin Osmanlı Devleti'ne sağladığı yararlardan biri değildir?**",
+   "secenekler": [
+    "Vergilerin yerinde toplanması",
+    "Taşrada güvenliğin sağlanması",
+    "Hazineden para çıkmadan asker beslenmesi",
+    "Saray ve merkez teşkilatı için devlet adamı yetiştirilmesi",
+    "Tarımsal üretimin sürekliliğinin sağlanması"
+   ],
+   "cevap": "D",
+   "cozum": "Tımar sistemi asker yetiştirme, üretim, güvenlik ve vergi toplamada yarar sağlamıştır.\nDevlet adamı yetiştirmek ise Enderun'un görevidir."
+  },
+  {
+   "no": 33,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devleti Duraklama ve Gerileme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi Lale Devri'nde (1718–1730) gerçekleştirilen yeniliklerden biridir?**",
+   "secenekler": [
+    "Yeniçeri Ocağı'nın kaldırılması",
+    "Kanun-ı Esasi'nin ilan edilmesi",
+    "Nizam-ı Cedit ordusunun kurulması",
+    "Tanzimat Fermanı'nın ilan edilmesi",
+    "İlk Türk matbaasının kurulması"
+   ],
+   "cevap": "E",
+   "cozum": "İbrahim Müteferrika ilk Türk matbaasını Lale Devri'nde kurmuştur.\nNizam-ı Cedit III. Selim, Yeniçeri Ocağı'nın kaldırılması II. Mahmut, Tanzimat Abdülmecit, Kanun-ı Esasi II. Abdülhamit dönemindedir."
+  },
+  {
+   "no": 34,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devleti Dağılma Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Osmanlı Devleti'nin ilk anayasası olan Kanun-ı Esasi hangi padişah döneminde ilan edilmiştir?**",
+   "secenekler": [
+    "II. Abdülhamit",
+    "II. Mahmut",
+    "Abdülaziz",
+    "Abdülmecit",
+    "V. Mehmet Reşat"
+   ],
+   "cevap": "A",
+   "cozum": "Kanun-ı Esasi 1876'da II. Abdülhamit döneminde ilan edilmiş, böylece I. Meşrutiyet başlamıştır."
+  },
+  {
+   "no": 35,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Kurtuluş Savaşı Hazırlık Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Milletin istiklalini yine milletin azim ve kararı kurtaracaktır.\" ifadesi aşağıdaki belgelerin hangisinde yer almaktadır?**",
+   "secenekler": [
+    "Misak-ı Millî",
+    "Amasya Genelgesi",
+    "Havza Genelgesi",
+    "Sivas Kongresi Beyannamesi",
+    "Erzurum Kongresi Beyannamesi"
+   ],
+   "cevap": "B",
+   "cozum": "Amasya Genelgesi'nde Kurtuluş Savaşı'nın gerekçesi, amacı ve yöntemi ilk kez açıklanmıştır; bu ifade de genelgede yer alır."
+  },
+  {
+   "no": 36,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Coğrafi Konumu",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi Türkiye'nin matematik konumunun bir sonucudur?**",
+   "secenekler": [
+    "Akarsuların genellikle hızlı akması",
+    "Güneş ışınlarının yıl boyunca hiçbir yere dik açıyla gelmemesi",
+    "Doğu Karadeniz kıyılarının bol yağış alması",
+    "Yükseltinin genel olarak batıdan doğuya artması",
+    "Kıyı ile iç kesimler arasında sıcaklık farkı olması"
+   ],
+   "cevap": "B",
+   "cozum": "Türkiye 36°–42° kuzey paralelleri arasındadır; Yengeç Dönencesi'nin kuzeyinde olduğu için güneş ışınları hiçbir zaman dik gelmez.\nÖteki durumlar yer şekilleri ve denize uzaklık gibi özel konum özellikleriyle ilgilidir."
+  },
+  {
+   "no": 37,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Coğrafi Konumu",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Türkiye 26° ile 45° doğu meridyenleri arasında yer alır.\n**Buna göre, Türkiye'nin en doğu ve en batı uçları arasındaki yerel saat farkı kaç dakikadır?**",
+   "secenekler": [
+    "76",
+    "80",
+    "84",
+    "88",
+    "92"
+   ],
+   "cevap": "A",
+   "cozum": "Meridyen farkı 45 − 26 = 19'dur; her meridyen 4 dakikalık fark yaratır: 19 · 4 = 76 dakika."
+  },
+  {
+   "no": 38,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin İklimi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yazları sıcak ve kurak, kışları ılık ve yağışlı geçen; doğal bitki örtüsü maki olan iklim tipi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Karadeniz iklimi",
+    "Muson iklimi",
+    "Akdeniz iklimi",
+    "Tundra iklimi",
+    "Karasal iklim"
+   ],
+   "cevap": "C",
+   "cozum": "Bu özellikler Akdeniz iklimine aittir. Karadeniz ikliminde her mevsim yağışlıdır, karasal iklimde kışlar soğuktur."
+  },
+  {
+   "no": 39,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Su Kaynakları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Van Gölü oluşumu bakımından aşağıdaki göl türlerinden hangisine örnektir?**",
+   "secenekler": [
+    "Tektonik göl",
+    "Kıyı set gölü",
+    "Buzul gölü",
+    "Volkanik set gölü",
+    "Karstik göl"
+   ],
+   "cevap": "D",
+   "cozum": "Van Gölü, Nemrut Yanardağı'ndan çıkan lavların bir çanağın önünü kapatmasıyla oluşmuş volkanik set gölüdür."
+  },
+  {
+   "no": 40,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Nüfusu",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Doğu Anadolu Bölgesi'nde nüfus yoğunluğunun az olmasının başlıca nedeni aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Akarsuların az olması",
+    "Orman alanlarının çok geniş olması",
+    "Engebeli yer şekilleri ve sert karasal iklim",
+    "Yer altı kaynaklarının hiç bulunmaması",
+    "Deniz seviyesine yakın olması"
+   ],
+   "cevap": "C",
+   "cozum": "Yüksek ve engebeli arazi ile uzun, soğuk kışlar tarımı ve yerleşmeyi kısıtlar; bu da nüfus yoğunluğunu azaltır."
+  },
+  {
+   "no": 41,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'de Tarım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki tarım ürünlerinden hangisi yetişme koşulları bakımından Türkiye'de büyük ölçüde Doğu Karadeniz kıyılarına özgüdür?**",
+   "secenekler": [
+    "Pamuk",
+    "Zeytin",
+    "Çay",
+    "Antep fıstığı",
+    "Ayçiçeği"
+   ],
+   "cevap": "C",
+   "cozum": "Çay, yıl boyu yağış ve nemli iklim ister; Türkiye'de bu koşullar Doğu Karadeniz kıyılarında bulunur."
+  },
+  {
+   "no": 42,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Yer Şekilleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Pamukkale travertenlerinin oluşumunda etkili olan dış kuvvet aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Rüzgârlar",
+    "Dalgalar",
+    "Akarsular",
+    "Yer altı suları",
+    "Buzullar"
+   ],
+   "cevap": "D",
+   "cozum": "Kalsiyum karbonatça zengin sıcak yer altı suları yeryüzüne çıkınca çökelti bırakır; travertenler böyle oluşur."
+  },
+  {
+   "no": 43,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "Yasama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1982 Anayasası'na göre milletvekili seçilebilme yaşı kaçtır?**",
+   "secenekler": [
+    "16",
+    "18",
+    "21",
+    "25",
+    "30"
+   ],
+   "cevap": "B",
+   "cozum": "2017 Anayasa değişikliğiyle milletvekili seçilme yaşı 18 olarak belirlenmiştir."
+  },
+  {
+   "no": 44,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "Yargı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1982 Anayasası'na göre yargı yetkisi kim tarafından kullanılır?**",
+   "secenekler": [
+    "Türk Milleti adına bağımsız ve tarafsız mahkemeler",
+    "Türkiye Büyük Millet Meclisi",
+    "Hâkimler ve Savcılar Kurulu",
+    "Adalet Bakanlığı",
+    "Cumhurbaşkanı"
+   ],
+   "cevap": "A",
+   "cozum": "Anayasa'nın 9. maddesine göre yargı yetkisi Türk Milleti adına bağımsız ve tarafsız mahkemelerce kullanılır."
+  },
+  {
+   "no": 45,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "Temel Hak ve Ödevler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi siyasi haklardan biridir?**",
+   "secenekler": [
+    "Sağlık hakkı",
+    "Haberleşme hürriyeti",
+    "Seçme ve seçilme hakkı",
+    "Konut dokunulmazlığı",
+    "Eğitim hakkı"
+   ],
+   "cevap": "C",
+   "cozum": "Seçme ve seçilme hakkı siyasi haklardandır.\nEğitim ve sağlık hakkı sosyal haklara; konut dokunulmazlığı ve haberleşme hürriyeti kişi haklarına girer."
+  },
+  {
+   "no": 46,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "Hukukun Temel Kavramları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türk Medeni Kanunu'na göre kişilik ne zaman başlar?**",
+   "secenekler": [
+    "On sekiz yaşını doldurduğunda",
+    "Çocuğa ad konulduğunda",
+    "Okula başladığında",
+    "Çocuğun sağ olarak tamamen doğduğu anda",
+    "Nüfus kütüğüne kaydedildiğinde"
+   ],
+   "cevap": "D",
+   "cozum": "Kişilik, çocuğun sağ olarak tamamen doğduğu anda başlar ve ölümle sona erer. On sekiz yaş ise ergin olma yaşıdır."
+  },
+  {
+   "no": 47,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Güncel Bilgiler",
+   "konu": "Uluslararası Kuruluşlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Birleşmiş Milletler'in genel merkezi hangi şehirdedir?**",
+   "secenekler": [
+    "Viyana",
+    "Cenevre",
+    "Paris",
+    "Brüksel",
+    "New York"
+   ],
+   "cevap": "E",
+   "cozum": "Birleşmiş Milletler'in genel merkezi New York'tadır; Cenevre ve Viyana'da ise bölge ofisleri bulunur."
+  },
+  {
+   "no": 48,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Güncel Bilgiler",
+   "konu": "Türkiye ve Uluslararası Kuruluşlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye NATO'ya hangi yıl üye olmuştur?**",
+   "secenekler": [
+    "1939",
+    "1945",
+    "1949",
+    "1952",
+    "1960"
+   ],
+   "cevap": "D",
+   "cozum": "NATO 1949'da kurulmuş, Türkiye 1952'de Yunanistan ile birlikte üye olmuştur."
+  }
+ ]
+}

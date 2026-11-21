@@ -60,6 +60,7 @@ def _sayi(m):
 BIRIM = {'cm': 'santimetre', 'mm': 'milimetre', 'km': 'kilometre', 'kg': 'kilogram', 'mg': 'miligram', 'mL': 'mililitre',
          'ml': 'mililitre', 'dk': 'dakika', 'sn': 'saniye', 'sa': 'saat', 'm': 'metre', 'g': 'gram', 'L': 'litre'}   # sayıdan sonra
 
+UST = '⁰¹²³⁴⁵⁶⁷⁸⁹'
 KESIR = re.compile(r'\{((?:[^{}/]|\{[^{}]*\})+)/((?:[^{}]|\{[^{}]*\})+)\}')   # {pay/payda}, one level of {…} inside
 
 TR_HARF = re.compile(r'[çğıöşüÇĞİÖŞÜâîû]')
@@ -97,7 +98,10 @@ def _okunur(t):
     t = t.replace('^{2}', ' kare ').replace('^{3}', ' küp ')
     t = re.sub(r'\^\{([^{}]*)\}', r' üssü \1', t)
     t = re.sub(r'_\{([^{}]*)\}', r' \1', t)
-    t = t.replace('²', ' kare ').replace('³', ' küp ')
+    # 2⁵ → "2 üssü 5", 10²³ → "10 üssü 23" (a lone ² / ³ is kare / küp); x₁ → "x 1"
+    t = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹]+', lambda m: ' kare ' if m.group() == '²' else ' küp ' if m.group() == '³'
+               else ' üssü ' + ''.join(str(UST.index(c)) for c in m.group()) + ' ', t)
+    t = re.sub('[₀-₉]', lambda m: ' ' + str(ord(m.group()) - 0x2080), t)
     t = re.sub(r'%\s?(?=\d)', 'yüzde ', t)
     # Roman numerals ("II. cümle"), not a letter in a formula ("V = πr²h")
     t = re.sub(r'(?<![^\W\d_])(VI|IV|V|III|II|I)\s*[–-]\s*(VI|IV|V|III|II|I)\.(?=\s+[a-zçğıöşü])',

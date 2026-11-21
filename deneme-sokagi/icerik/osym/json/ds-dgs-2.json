@@ -1,0 +1,935 @@
+{
+ "kaynak": {
+  "id": "ds-dgs-2",
+  "ad": "Deneme Sokağı DGS Denemesi 2",
+  "sinav": "DGS",
+  "tur": "deneme",
+  "ders": "",
+  "kod_on": "DG",
+  "dk_soru": 1.5
+ },
+ "gruplar": {
+  "2-ipek": {
+   "metin": "İpek Yolu, adını Çin'den batıya taşınan en değerli mal olan ipekten alır; ancak bu yol yalnızca bir ticaret güzergâhı değildi. Kervanlarla birlikte baharatın, kâğıdın ve porselenin yanında dinler, bilimsel bilgiler ve sanat anlayışları da yer değiştirdi. Yol üzerindeki kervansaraylar, farklı dillerden tüccarların bir araya geldiği kültür merkezlerine dönüştü. Deniz ticaretinin gelişmesiyle İpek Yolu önemini yitirdi; fakat geride bıraktığı kültürel etkileşim, bugün de yol boyundaki kentlerin mimarisinde ve mutfağında izlenebiliyor.",
+   "yonerge": "soruları aşağıdaki parçaya göre cevaplayınız."
+  },
+  "2-otobus": {
+   "metin": "Bir otobüs firmasının K, L, M ve N şehirlerine giden dört seferi aynı sabah 07.00, 08.00, 09.00 ve 10.00'da kalkmaktadır. Her saatte yalnızca bir sefer kalkar.\n\n• L seferi, K seferinden önce kalkar.\n• M seferi saat 09.00'da kalkar.\n• N seferi ilk ya da son sefer değildir.",
+   "yonerge": "soruları aşağıdaki bilgilere göre cevaplayınız."
+  }
+ },
+ "sorular": [
+  {
+   "no": 1,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Ondalık Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**{0,04/0,2} + {1,5/0,5} işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "3,2",
+    "3,5",
+    "4",
+    "4,8",
+    "5,6"
+   ],
+   "cevap": "A",
+   "cozum": "{0,04/0,2} = 0,2 ve {1,5/0,5} = 3; toplam 3,2."
+  },
+  {
+   "no": 2,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Köklü Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**√0,09 + √0,16 işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "0,7",
+    "0,8",
+    "0,9",
+    "1",
+    "1,2"
+   ],
+   "cevap": "A",
+   "cozum": "√0,09 = 0,3 ve √0,16 = 0,4; toplam 0,7."
+  },
+  {
+   "no": 3,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Üslü Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "a = 2¹⁰ ve b = 4⁶\n**olduğuna göre, {b/a} kaçtır?**",
+   "secenekler": [
+    "2",
+    "3",
+    "4",
+    "8",
+    "16"
+   ],
+   "cevap": "C",
+   "cozum": "4⁶ = 2¹² olduğundan {b/a} = {2¹²/2¹⁰} = 2² = 4."
+  },
+  {
+   "no": 4,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Basamak Kavramı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Rakamları toplamı 12 olan kaç tane iki basamaklı doğal sayı vardır?**",
+   "secenekler": [
+    "6",
+    "7",
+    "8",
+    "9",
+    "10"
+   ],
+   "cevap": "B",
+   "cozum": "Bu sayılar 39, 48, 57, 66, 75, 84 ve 93'tür; 7 tane."
+  },
+  {
+   "no": 5,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Bölünebilme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1'den 50'ye kadar olan doğal sayılardan (50 dahil) kaç tanesi 3 ile tam bölünüp 5 ile tam bölünemez?**",
+   "secenekler": [
+    "10",
+    "11",
+    "13",
+    "14",
+    "16"
+   ],
+   "cevap": "C",
+   "cozum": "3'ün katları 16 tanedir. Bunlardan 15, 30 ve 45 aynı zamanda 5'e bölünür; 16 − 3 = 13."
+  },
+  {
+   "no": 6,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Denklemler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "{x/3} + {x/4} = 14\n**olduğuna göre, x kaçtır?**",
+   "secenekler": [
+    "16",
+    "18",
+    "20",
+    "24",
+    "28"
+   ],
+   "cevap": "D",
+   "cozum": "Payda 12'de eşitlenir: {7x/12} = 14 → x = 24."
+  },
+  {
+   "no": 7,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Fonksiyonlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "f(x) = 3x − 2\n**olduğuna göre, f(4) + f(−1) toplamı kaçtır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "cevap": "E",
+   "cozum": "f(4) = 10 ve f(−1) = −5; toplam 5."
+  },
+  {
+   "no": 8,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Bölme - Kalan",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**4 ile bölündüğünde 3 kalanını veren bir doğal sayının 3 katı 4 ile bölündüğünde kalan kaç olur?**",
+   "secenekler": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "Kesin olarak belirlenemez."
+   ],
+   "cevap": "B",
+   "cozum": "Sayı 4k + 3 biçimindedir; 3 katı 12k + 9 = 4(3k + 2) + 1 olur. Kalan 1'dir."
+  },
+  {
+   "no": 9,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Yaş Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir anne 40, kızı 12 yaşındadır. Kaç yıl sonra annenin yaşı kızının yaşının 2 katı olur?**",
+   "secenekler": [
+    "14",
+    "16",
+    "18",
+    "20",
+    "24"
+   ],
+   "cevap": "B",
+   "cozum": "40 + t = 2(12 + t) → t = 16 yıl."
+  },
+  {
+   "no": 10,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "İşçi Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir işi A tek başına 10 günde, B tek başına 15 günde bitirebilmektedir. İkisi birlikte 4 gün çalıştıktan sonra A işi bırakıyor.\n**Buna göre, kalan işi B kaç günde bitirir?**",
+   "secenekler": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "cevap": "E",
+   "cozum": "Birlikte günde işin {1/10} + {1/15} = {1/6}'sını yaparlar; 4 günde {2/3}'ü biter.\nKalan {1/3}'ü B, günde {1/15} hızla 5 günde bitirir."
+  },
+  {
+   "no": 11,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Hareket Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**300 metre uzunluğundaki bir tren saatte 72 km hızla gitmektedir. Bu tren 500 metre uzunluğundaki bir tüneli kaç saniyede tamamen geçer?**",
+   "secenekler": [
+    "20",
+    "25",
+    "30",
+    "40",
+    "45"
+   ],
+   "cevap": "D",
+   "cozum": "Saatte 72 km, saniyede 20 metredir. Tren 500 + 300 = 800 metre yol alır: 800 : 20 = 40 saniye."
+  },
+  {
+   "no": 12,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Kâr - Zarar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**50 TL'ye alınan bir malın etiket fiyatı alış fiyatının %60 fazlası olarak belirleniyor. Mal, etiket fiyatı üzerinden %25 indirimle satılırsa yüzde kaç kâr edilir?**",
+   "secenekler": [
+    "%20",
+    "%25",
+    "%30",
+    "%35",
+    "%40"
+   ],
+   "cevap": "A",
+   "cozum": "Etiket fiyatı 80 TL, indirimli satış fiyatı 80 · 0,75 = 60 TL'dir.\nKâr 10 TL; {10/50} = %20."
+  },
+  {
+   "no": 13,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Karışım Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Tuz oranı %30 olan 400 gram tuzlu suya kaç gram su eklenirse tuz oranı %20 olur?**",
+   "secenekler": [
+    "150",
+    "200",
+    "250",
+    "300",
+    "350"
+   ],
+   "cevap": "B",
+   "cozum": "Tuz 400 · 0,3 = 120 gramdır: {120/(400 + x)} = 0,2 → 400 + x = 600 → x = 200 gram."
+  },
+  {
+   "no": 14,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Denklem Kurma",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir sınıftaki öğrenciler sıralara üçer oturursa 4 öğrenci ayakta kalıyor; dörder oturursa 2 sıra boş kalıyor. Sınıfta kaç öğrenci vardır?**",
+   "secenekler": [
+    "20",
+    "30",
+    "32",
+    "36",
+    "40"
+   ],
+   "cevap": "E",
+   "cozum": "Sıra sayısı s olsun: 3s + 4 = 4(s − 2) → s = 12. Öğrenci sayısı 3 · 12 + 4 = 40."
+  },
+  {
+   "no": 15,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Denklem Kurma",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir hesap bir grup arkadaş arasında eşit paylaşılınca kişi başına 120 TL düşüyor. Gruba 2 kişi daha katılsaydı kişi başına 100 TL düşecekti. Hesap kaç TL'dir?**",
+   "secenekler": [
+    "1200",
+    "1400",
+    "1500",
+    "1600",
+    "2000"
+   ],
+   "cevap": "A",
+   "cozum": "Kişi sayısı n olsun: 120n = 100(n + 2) → n = 10. Hesap 120 · 10 = 1200 TL."
+  },
+  {
+   "no": 16,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Olasılık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1'den 20'ye kadar numaralanmış 20 karttan rastgele çekilen bir kartın asal sayı olma olasılığı kaçtır?**",
+   "secenekler": [
+    "{1/4}",
+    "{3/10}",
+    "{2/5}",
+    "{9/20}",
+    "{1/2}"
+   ],
+   "cevap": "C",
+   "cozum": "1 ile 20 arasındaki asal sayılar 2, 3, 5, 7, 11, 13, 17 ve 19'dur; 8 tane. Olasılık {8/20} = {2/5}."
+  },
+  {
+   "no": 17,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Sayısal Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir duvar saati her saat başında saatin gösterdiği sayı kadar çalmaktadır (saat 1'de bir kez, saat 12'de on iki kez). Bu saat 12 saat boyunca toplam kaç kez çalar?**",
+   "secenekler": [
+    "54",
+    "60",
+    "66",
+    "72",
+    "78"
+   ],
+   "cevap": "E",
+   "cozum": "1 + 2 + … + 12 = {(12 · 13)/2} = 78."
+  },
+  {
+   "no": 18,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Sayısal Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**30 basamaklı bir merdiveni her adımda 2 basamak çıkan Ali ile her adımda 3 basamak çıkan Ayşe'nin attığı adım sayıları arasındaki fark kaçtır?**",
+   "secenekler": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "10"
+   ],
+   "cevap": "C",
+   "cozum": "Ali 30 : 2 = 15, Ayşe 30 : 3 = 10 adım atar; fark 5."
+  },
+  {
+   "no": 19,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Üçgen Eşitsizliği",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İki kenarının uzunluğu 5 cm ve 9 cm olan bir üçgenin üçüncü kenarı tam sayı olduğuna göre en fazla kaç cm olabilir?**",
+   "secenekler": [
+    "12",
+    "13",
+    "14",
+    "15",
+    "16"
+   ],
+   "cevap": "B",
+   "cozum": "Üçüncü kenar 9 − 5 = 4'ten büyük, 9 + 5 = 14'ten küçük olmalıdır; en büyük tam sayı değeri 13."
+  },
+  {
+   "no": 20,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Doğruda Açılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Paralel iki doğru bir kesenle kesildiğinde oluşan açılardan biri 65°'dir. Bu açının iç ters açısının bütünleri kaç derecedir?**",
+   "secenekler": [
+    "100",
+    "105",
+    "110",
+    "115",
+    "125"
+   ],
+   "cevap": "D",
+   "cozum": "İç ters açılar eşittir, yani 65°'dir. Bütünleri 180° − 65° = 115°."
+  },
+  {
+   "no": 21,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Eşkenar Dörtgen",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Çevresi 40 cm olan bir eşkenar dörtgenin köşegenlerinden biri 12 cm'dir. Bu eşkenar dörtgenin alanı kaç cm²'dir?**",
+   "secenekler": [
+    "80",
+    "88",
+    "90",
+    "96",
+    "100"
+   ],
+   "cevap": "D",
+   "cozum": "Kenar 10 cm'dir. Köşegenler birbirini dik ortaladığından 6 ve x yarı köşegenleriyle 6² + x² = 10² → x = 8; öteki köşegen 16 cm.\nAlan {(12 · 16)/2} = 96 cm²."
+  },
+  {
+   "no": 22,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Daire",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Çevresi 12π cm olan bir dairenin alanı kaç cm²'dir?**",
+   "secenekler": [
+    "12π",
+    "24π",
+    "36π",
+    "48π",
+    "144π"
+   ],
+   "cevap": "C",
+   "cozum": "2πr = 12π → r = 6 cm. Alan πr² = 36π cm²."
+  },
+  {
+   "no": 23,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Katı Cisimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Ayrıtları 2 cm, 3 cm ve 4 cm olan dikdörtgenler prizmasının yüzey alanı kaç cm²'dir?**",
+   "secenekler": [
+    "36",
+    "48",
+    "52",
+    "56",
+    "60"
+   ],
+   "cevap": "C",
+   "cozum": "Yüzey alanı 2(2 · 3 + 2 · 4 + 3 · 4) = 2(6 + 8 + 12) = 52 cm²."
+  },
+  {
+   "no": 24,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Analitik Geometri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Analitik düzlemde A(2, 5) ve B(6, 1) noktalarını birleştiren doğru parçasının orta noktasının koordinatları toplamı kaçtır?**",
+   "secenekler": [
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+   ],
+   "cevap": "C",
+   "cozum": "Orta nokta ({(2 + 6)/2}, {(5 + 1)/2}) = (4, 3); koordinatlar toplamı 7."
+  },
+  {
+   "no": 25,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Sıcak\" sözcüğü aşağıdaki cümlelerin hangisinde \"içten, candan\" anlamında kullanılmıştır?**",
+   "secenekler": [
+    "Köylüler bizi çok __sıcak__ karşıladı.",
+    "Bugün hava çok __sıcak__.",
+    "__Sıcak__ çorba üşüyen herkese iyi geldi.",
+    "Fırından __sıcak__ ekmek aldık.",
+    "Elini __sıcak__ sudan hemen çekti."
+   ],
+   "cevap": "A",
+   "cozum": "\"Sıcak karşılamak\", içtenlikle, candan karşılamak demektir. Öteki cümlelerde sözcük gerçek anlamıyla kullanılmıştır."
+  },
+  {
+   "no": 26,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde anlamca birbirine yakın sözcüklerden oluşmuş bir ikileme vardır?**",
+   "secenekler": [
+    "Toplantıda __ileri geri__ konuştu.",
+    "Sınava __gece gündüz__ çalıştı.",
+    "__Az çok__ herkes bu durumu biliyordu.",
+    "Yolculuk __aşağı yukarı__ bir saat sürdü.",
+    "Bayramda __eşi dostu__ toplayıp bir yemek verdi."
+   ],
+   "cevap": "E",
+   "cozum": "\"Eş\" ile \"dost\" anlamca birbirine yakındır. Öteki ikilemeler karşıt anlamlı sözcüklerle kurulmuştur."
+  },
+  {
+   "no": 27,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Atasözleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Sakla samanı, gelir zamanı.\" atasözünün anlamı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Zamanı geçen fırsat geri gelmez.",
+    "Gereksiz görülen bir şey bir gün işe yarayabilir.",
+    "İşini bilen kimseye muhtaç olmaz.",
+    "Çok çalışan mutlaka kazanır.",
+    "Az olsun, temiz olsun."
+   ],
+   "cevap": "B",
+   "cozum": "Atasözü, değersiz görünen şeylerin saklanması gerektiğini, çünkü bir gün gerekebileceğini anlatır."
+  },
+  {
+   "no": 28,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde olasılık anlamı vardır?**",
+   "secenekler": [
+    "Yağmur yağsın diye dua ettiler.",
+    "Yağmurda sırılsıklam olduk.",
+    "Dün akşam yağmur yağdı.",
+    "Yağmur durunca dışarı çıktık.",
+    "Akşama doğru yağmur yağabilir."
+   ],
+   "cevap": "E",
+   "cozum": "\"-abilir\" eki, yağmurun yağmasının olası olduğunu bildirir."
+  },
+  {
+   "no": 29,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde eleştiri vardır?**",
+   "secenekler": [
+    "Yazar şu sıralar yeni bir roman yazıyor.",
+    "Yazar kitabını iki yılda tamamladı.",
+    "Yazar, konuyu gereksiz ayrıntılarla boğmuş.",
+    "Kitabın kapağında bir deniz resmi var.",
+    "Kitap üç bölümden oluşuyor."
+   ],
+   "cevap": "C",
+   "cozum": "Konuyu gereksiz ayrıntılarla boğmak, eserin bir kusuruna dikkat çeken olumsuz bir değerlendirmedir."
+  },
+  {
+   "no": 30,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümle Yorumlama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"Bir şehri tanımak istiyorsanız haritasına değil, sokaklarına bakın.\"\n\n**Bu sözle anlatılmak istenen aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Turistler haritasız gezmemelidir.",
+    "Haritalar her zaman yanlış bilgi verir.",
+    "Bütün şehirlerin sokakları birbirine benzer.",
+    "Büyük şehirlerde kaybolmak kolaydır.",
+    "Bir yeri gerçekten tanımak için orayı yaşayarak gözlemlemek gerekir."
+   ],
+   "cevap": "E",
+   "cozum": "Harita yalnızca şehrin şemasını verir; şehrin ruhu ise sokaklarda, yaşayarak tanınır."
+  },
+  {
+   "no": 31,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Yazım Kuralları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde sayıların yazımıyla ilgili bir yanlışlık vardır?**",
+   "secenekler": [
+    "Saat 10.30'da buluşalım.",
+    "Toplantıya onbeş kişi katıldı.",
+    "Yarışmada üçüncü oldu.",
+    "Kitabın 5. bölümünü okudum.",
+    "Altışar kişilik gruplar oluşturuldu."
+   ],
+   "cevap": "B",
+   "cozum": "Birden fazla sözcükten oluşan sayılar ayrı yazılır: on beş."
+  },
+  {
+   "no": 32,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Noktalama İşaretleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde soru işaretinin kullanımı yanlıştır?**",
+   "secenekler": [
+    "Onun neden gelmediğini merak ediyorum?",
+    "Sınav hangi gün yapılacak?",
+    "Bu kitabı kim yazdı?",
+    "Yarın bize gelir misin?",
+    "Ne zaman yola çıkacağız?"
+   ],
+   "cevap": "A",
+   "cozum": "Bu cümle soru sormaz, bir merakı bildirir; sonuna nokta konmalıdır."
+  },
+  {
+   "no": 33,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Fiilde Çatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde yüklem edilgen çatılıdır?**",
+   "secenekler": [
+    "Çocuk erkenden uyudu.",
+    "Tarihî köprü geçen yıl onarıldı.",
+    "Kuşlar sonbaharda güneye göçtü.",
+    "İşçiler köprüyü geçen yıl onardı.",
+    "Kardeşim odasını topladı."
+   ],
+   "cevap": "B",
+   "cozum": "\"Onarıldı\" yüklemi \"-l\" ekiyle edilgen yapılmıştır; işi yapan belli değildir ve özne sözde öznedir."
+  },
+  {
+   "no": 34,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf - Anlam",
+   "yonerge": null,
+   "grup": "2-ipek",
+   "metin": "**Bu parçaya göre İpek Yolu için aşağıdakilerden hangisi söylenebilir?**",
+   "secenekler": [
+    "Mallarla birlikte düşünce ve kültürlerin de taşındığı bir yoldur.",
+    "Deniz ticareti geliştikçe daha da önem kazanmıştır.",
+    "Bugün hiçbir izine rastlanmamaktadır.",
+    "Kervansaraylar yalnızca konaklama yeriydi.",
+    "Yalnızca ipek ticaretinin yapıldığı bir yoldur."
+   ],
+   "cevap": "A",
+   "cozum": "Parçaya göre kervanlarla birlikte dinler, bilimsel bilgiler ve sanat anlayışları da yer değiştirmiştir."
+  },
+  {
+   "no": 35,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf - Anlam",
+   "yonerge": null,
+   "grup": "2-ipek",
+   "metin": "**Bu parçada İpek Yolu'nun önemini yitirmesinin nedeni olarak aşağıdakilerden hangisi gösterilmiştir?**",
+   "secenekler": [
+    "Baharat ticaretinin yasaklanması",
+    "İpek üretiminin sona ermesi",
+    "Deniz ticaretinin gelişmesi",
+    "Tüccarların farklı diller konuşması",
+    "Kervansarayların yıkılması"
+   ],
+   "cevap": "C",
+   "cozum": "Parçada \"Deniz ticaretinin gelişmesiyle İpek Yolu önemini yitirdi\" denmektedir."
+  },
+  {
+   "no": 36,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Ana Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Usta bir çini sanatçısı, tek bir deseni kusursuz çizebilmek için yıllarca aynı hareketi tekrarlar. Çırak, ilk yıllarında yalnızca boya hazırlar, fırçaları temizler, ustasını izler. Bu uzun bekleyiş ona sabrı öğretir. Çünkü zanaatta acele, yılların emeğini tek bir hatayla boşa çıkarabilir.\n\n**Bu parçada asıl anlatılmak istenen aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Çini desenleri her zaman aynıdır.",
+    "Çıraklar boya hazırlamayı sevmez.",
+    "Usta sanatçılar hiç hata yapmaz.",
+    "Zanaatta ustalık, sabırla ve uzun bir emekle kazanılır.",
+    "Çini sanatı yalnızca belirli bölgelerde yapılır."
+   ],
+   "cevap": "D",
+   "cozum": "Parça, çıraklıktan ustalığa giden yolun sabır ve yılların emeğini gerektirdiğini vurgular."
+  },
+  {
+   "no": 37,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Yardımcı Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Zeytin ağacı, yüzlerce yıl yaşayabilen dayanıklı bir bitkidir. Kurak ve taşlı topraklarda bile yetişebilir. Meyvesinden elde edilen yağ, Akdeniz mutfağının temel malzemelerindendir. Zeytin dalı ise pek çok kültürde barışın simgesi olarak kabul edilir.\n\n**Bu parçada zeytinle ilgili aşağıdakilerden hangisine değinilmemiştir?**",
+   "secenekler": [
+    "Yağının mutfaktaki yerine",
+    "Ağacının uzun ömürlü olduğuna",
+    "Zeytinin hangi aylarda hasat edildiğine",
+    "Zor koşullarda yetişebildiğine",
+    "Dalının simgesel anlamına"
+   ],
+   "cevap": "C",
+   "cozum": "Parçada ağacın ömrü, yetişme koşulları, yağın önemi ve dalın simgeselliği anlatılır; hasat zamanından söz edilmez."
+  },
+  {
+   "no": 38,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf Tamamlama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Çocuklara kitap okuma alışkanlığı kazandırmanın en etkili yolu, onlara okumayı öğüt olarak vermek değildir. Çocuklar, büyüklerini ne yaparken görürlerse onu taklit eder. ----\n\n**Bu parça aşağıdakilerden hangisiyle tamamlanırsa düşüncenin akışı korunur?**",
+   "secenekler": [
+    "Okullarda her yıl kitap fuarları düzenlenir.",
+    "Bazı çocuklar masalları dinlemeyi sever.",
+    "Çocuk kitaplarının çoğu resimlidir.",
+    "Evde kitap okuyan anne babaların çocukları da okumayı daha kolay benimser.",
+    "Kütüphaneler hafta sonları da açıktır."
+   ],
+   "cevap": "D",
+   "cozum": "Parça çocukların büyüklerini taklit ettiğini söyler; bunun okuma alışkanlığına yansımasını anlatan cümle akışı tamamlar."
+  },
+  {
+   "no": 39,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Boşluk Doldurma",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Deniz kaplumbağaları yumurtalarını kumsallara bırakır. ---- Ne var ki kıyılardaki yapılaşma ve yapay ışıklar yavruların yönünü şaşırtıyor. Bu yüzden bazı kumsallarda yumurtlama döneminde gece aydınlatması sınırlandırılıyor.\n\n**Bu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?**",
+   "secenekler": [
+    "Kaplumbağalar çok uzun yaşayan canlılardır.",
+    "Deniz suyu tuzlu olduğu için içilemez.",
+    "Yumurtadan çıkan yavrular, ay ışığının denizdeki yansımasını izleyerek denize ulaşır.",
+    "Bazı kaplumbağa türleri karada yaşar.",
+    "Kumsallar yaz aylarında kalabalıklaşır."
+   ],
+   "cevap": "C",
+   "cozum": "Sonraki cümle yapay ışıkların yavruların yönünü şaşırttığını söyler; bu yüzden boşluğa yavruların ışığı izleyerek denize ulaştığını anlatan cümle gelmelidir."
+  },
+  {
+   "no": 40,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Anlatımın Bozulması",
+   "yonerge": null,
+   "grup": null,
+   "metin": "(I) Ebru, kitreli suyun üzerine boyaların serpilmesiyle yapılan geleneksel bir süsleme sanatıdır. (II) Boyalar, su yüzeyinde fırça ve bizler yardımıyla biçimlendirilir. (III) Ardından su yüzeyine bir kâğıt kapatılarak desen kâğıda aktarılır. (IV) Hat sanatında kullanılan kamış kalemler özenle yontulur. (V) Her ebru eseri tek olduğu için aynı desen ikinci kez elde edilemez.\n\n**Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?**",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "D",
+   "cozum": "Parça ebru sanatının nasıl yapıldığını anlatır.\nIV. cümle hat sanatındaki kalemlerden söz ederek konunun dışına çıkar."
+  },
+  {
+   "no": 41,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümle Sıralama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "(I) Sonuçta ekip, hedeflenen tarihten bir hafta önce uygulamayı kullanıma açtı.\n(II) Proje başladığında ekipteki herkes farklı bir yöntemle çalışmak istiyordu.\n(III) Bunun üzerine ortak bir çalışma planı hazırlanmasına karar verildi.\n(IV) Plana uyulmaya başlanınca işler hızlandı ve aksaklıklar azaldı.\n\n**Bu cümlelerle anlamlı bir paragraf oluşturulduğunda sıralama nasıl olmalıdır?**",
+   "secenekler": [
+    "III – II – IV – I",
+    "II – IV – III – I",
+    "II – III – IV – I",
+    "II – I – III – IV",
+    "IV – II – III – I"
+   ],
+   "cevap": "C",
+   "cozum": "Önce sorun ortaya konur (II), ardından çözüm kararı alınır (III).\nPlanın etkisi (IV) ve sonuç (I) bunu izler."
+  },
+  {
+   "no": 42,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraftan Çıkarım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Eskiden gemiciler yönlerini bulmak için yıldızlara bakardı. Kuzey Yıldızı, gökyüzünde neredeyse hiç yer değiştirmediği için güvenilir bir rehberdi. Bulutlu gecelerde ise denizciler çoğu zaman kıyıdan uzaklaşmamayı tercih ederdi.\n\n**Bu parçadan aşağıdakilerden hangisi çıkarılabilir?**",
+   "secenekler": [
+    "Denizciler yalnızca gündüz yolculuk yapardı.",
+    "Kuzey Yıldızı gökyüzündeki en parlak yıldızdır.",
+    "Eski gemiciler pusulayı çok iyi kullanırdı.",
+    "Hava koşulları eski denizcilerin yolculuklarını etkilerdi.",
+    "Bulutlu geceler yıldızları daha görünür kılar."
+   ],
+   "cevap": "D",
+   "cozum": "Bulutlu gecelerde yıldızlar görülemediği için denizcilerin kıyıdan uzaklaşmaması, havanın yolculukları etkilediğini gösterir."
+  },
+  {
+   "no": 43,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf - Anlatım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bazıları kentlerde araba kullanımının sınırlandırılmasının ekonomiye zarar vereceğini söylüyor. Oysa araç trafiğinin azaltıldığı pek çok kentte yaya bölgelerindeki dükkânların satışları artmıştır. Üstelik temiz hava ve sessiz sokaklar, kenti turistler için de daha çekici hâle getirmektedir.\n\n**Bu parçada aşağıdaki anlatım biçimlerinden hangisi kullanılmıştır?**",
+   "secenekler": [
+    "Tartışma",
+    "Öyküleme",
+    "Tanımlama",
+    "Lirik anlatım",
+    "Betimleme"
+   ],
+   "cevap": "A",
+   "cozum": "Yazar karşıt bir görüşü aktarıp \"Oysa…\" diyerek kanıtlarla çürütmeye çalışır; bu tartışmacı anlatımdır."
+  },
+  {
+   "no": 44,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": "2-otobus",
+   "metin": "**Buna göre, saat 10.00'da hangi şehre sefer kalkar?**",
+   "secenekler": [
+    "K",
+    "L",
+    "M",
+    "N",
+    "Kesin olarak belirlenemez."
+   ],
+   "cevap": "A",
+   "cozum": "M 09.00'dadır. N ilk ya da son sefer olamayacağı için 08.00'de kalkar.\nGeriye kalan 07.00 ile 10.00'da L, K'den önce kalkacağından L 07.00, K 10.00 seferidir."
+  },
+  {
+   "no": 45,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": "2-otobus",
+   "metin": "**L seferi ile M seferinin kalkış saatleri arasında kaç saat vardır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "Kesin olarak belirlenemez."
+   ],
+   "cevap": "B",
+   "cozum": "L 07.00'de, M 09.00'da kalkar; aralarında 2 saat vardır."
+  },
+  {
+   "no": 46,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": "2-otobus",
+   "metin": "**Aşağıdakilerden hangisi doğrudur?**",
+   "secenekler": [
+    "N seferi 10.00'da kalkar.",
+    "M seferi son seferdir.",
+    "K seferi ilk sefer olarak kalkar.",
+    "N seferi, M seferinden bir saat önce kalkar.",
+    "L seferi 08.00'de kalkar."
+   ],
+   "cevap": "D",
+   "cozum": "Kalkış saatleri L 07.00, N 08.00, M 09.00, K 10.00'dır; N, M'den bir saat önce kalkar."
+  },
+  {
+   "no": 47,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Aslı, Bora, Cem ve Duru'nun meslekleri birbirinden farklıdır; meslekler doktor, mühendis, öğretmen ve avukattır.\n\n• Aslı doktor ya da avukat değildir.\n• Bora mühendistir.\n• Cem avukat değildir.\n\n**Buna göre, Duru'nun mesleği aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Doktor",
+    "Mühendis",
+    "Öğretmen",
+    "Avukat",
+    "Kesin olarak belirlenemez."
+   ],
+   "cevap": "D",
+   "cozum": "Bora mühendistir. Aslı doktor, avukat ya da mühendis olamayacağına göre öğretmendir.\nCem avukat olamayacağı için doktordur; Duru avukattır."
+  },
+  {
+   "no": 48,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Beş katlı bir apartmanın her katında bir kişi oturmaktadır: Ayten, Banu, Ceren, Deniz ve Ekin.\n\n• Ayten, Banu'nun hemen üst katında oturur.\n• Ceren en üst katta oturur.\n• Deniz 1. katta oturur.\n• Ekin, Banu'dan daha alt bir katta oturmaz.\n\n**Buna göre, 3. katta kim oturmaktadır?**",
+   "secenekler": [
+    "Banu",
+    "Ayten",
+    "Ceren",
+    "Ekin",
+    "Deniz"
+   ],
+   "cevap": "B",
+   "cozum": "Deniz 1., Ceren 5. kattadır. Banu–Ayten ikilisi 2–3 ya da 3–4. katlara yerleşebilir.\nBanu 3, Ayten 4 olursa Ekin 2. kata kalır ve Banu'nun altında olur; bu geçersizdir.\nDemek ki Banu 2., Ayten 3., Ekin 4. kattadır."
+  }
+ ]
+}

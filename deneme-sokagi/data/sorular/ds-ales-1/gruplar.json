@@ -1,0 +1,18 @@
+{
+ "ds-ales-1-1-defter": {
+  "metin": "Bir kırtasiyenin bir hafta boyunca beş iş gününde sattığı defter sayıları şöyledir:\n\nPazartesi: 40 · Salı: 55 · Çarşamba: 30 · Perşembe: 60 · Cuma: 55",
+  "yonerge": "soruları aşağıdaki bilgilere göre cevaplayınız."
+ },
+ "ds-ales-1-2-muze": {
+  "metin": "Müzeler uzun süre yalnızca eski eşyaların sergilendiği sessiz mekânlar olarak görüldü. Ziyaretçi camekânların önünden geçer, etiketleri okur ve çoğu zaman gördüklerinin büyük bölümünü birkaç gün içinde unuturdu. Son yıllarda ise pek çok müze bu anlayışı değiştirdi. Dokunmatik ekranlar, canlandırmalar ve atölyeler sayesinde ziyaretçi artık yalnızca bakan değil, deneyen ve soru soran biri hâline geldi. Eleştirmenlerin bir kısmı bu dönüşümün müzeleri eğlence parklarına benzettiğini, eserin kendisinin gölgede kaldığını öne sürüyor. Oysa iyi tasarlanmış bir etkinlik, eseri gölgelemek yerine ona yeniden bakmayı sağlayabilir.",
+  "yonerge": "soruları aşağıdaki parçaya göre cevaplayınız."
+ },
+ "ds-ales-1-2-uyku": {
+  "metin": "Uzun süre uykunun yalnızca bedenin dinlendiği edilgen bir süreç olduğu düşünüldü. Bugün ise uyku sırasında beynin son derece etkin çalıştığını biliyoruz. Gün içinde edinilen bilgiler bu sırada düzenlenir, gereksiz görülenler ayıklanır, önemli olanlar uzun süreli belleğe aktarılır. Bu yüzden sınavdan önceki geceyi uykusuz geçiren öğrenci, çalıştığı konuları pekiştirme fırsatını da kaybetmiş olur. Araştırmalar düzenli uyuyan kişilerin yeni bir beceriyi daha hızlı öğrendiğini de gösteriyor.",
+  "yonerge": "soruları aşağıdaki parçaya göre cevaplayınız."
+ },
+ "ds-ales-1-2-nobet": {
+  "metin": "Bir hastanede Pazartesiden Cumaya kadar her gün yalnızca bir doktor nöbet tutmaktadır. Nöbetçi doktorlar Ahmet, Burcu, Cem, Defne ve Emre'dir ve her biri bu hafta tam bir gün nöbet tutacaktır.\n\n• Burcu, Çarşamba günü nöbet tutmaktadır.\n• Ahmet'in nöbeti, Cem'in nöbetinden hemen önceki gündür.\n• Emre, Pazartesi günü nöbet tutmamaktadır.\n• Defne'nin nöbeti, Emre'nin nöbetinden sonraki bir gündür.",
+  "yonerge": "soruları aşağıdaki bilgilere göre cevaplayınız."
+ }
+}

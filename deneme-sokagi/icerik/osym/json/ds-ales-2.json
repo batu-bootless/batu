@@ -1,0 +1,939 @@
+{
+ "kaynak": {
+  "id": "ds-ales-2",
+  "ad": "Deneme Sokağı ALES Denemesi 2",
+  "sinav": "ALES",
+  "tur": "deneme",
+  "ders": "",
+  "kod_on": "AL",
+  "dk_soru": 1.5
+ },
+ "gruplar": {
+  "1-gelir": {
+   "metin": "Bir şirketin bir yıldaki dört çeyrekte elde ettiği gelirler (milyon TL) şöyledir:\n\n1. çeyrek: 20 · 2. çeyrek: 24 · 3. çeyrek: 30 · 4. çeyrek: 26",
+   "yonerge": "soruları aşağıdaki bilgilere göre cevaplayınız."
+  },
+  "2-kosu": {
+   "metin": "Kısa mesafe koşucuları ile maraton koşucularının bedenleri birbirinden belirgin biçimde ayrılır. Kısa mesafecilerin kasları kalın ve patlayıcı güce göre gelişmiştir; birkaç saniyelik bir çaba için en yüksek kuvveti üretirler. Maratoncular ise daha ince yapılıdır ve kasları oksijeni verimli kullanmaya uyum sağlamıştır. Bu farklılık yalnızca antrenmanla açıklanamaz; kalıtımın da önemli payı vardır. Yine de doğru antrenman, kalıtımın sunduğu olanakları ortaya çıkaran asıl etkendir.",
+   "yonerge": "soruları aşağıdaki parçaya göre cevaplayınız."
+  },
+  "2-sergi": {
+   "metin": "Bir sergide yan yana dizili beş salona K, L, M, N ve P harfleriyle adlandırılmış beş farklı ressamın eserleri yerleştirilecektir. Salonlar soldan sağa 1'den 5'e kadar numaralanmıştır.\n\n• K'nin eserleri 1 numaralı salondadır.\n• M'nin eserleri, N'nin eserlerinin hemen sağındaki salondadır.\n• P'nin eserleri, L'nin eserlerinden daha sağdaki bir salondadır.\n• L'nin eserleri 2 numaralı salonda değildir.",
+   "yonerge": "soruları aşağıdaki bilgilere göre cevaplayınız."
+  }
+ },
+ "sorular": [
+  {
+   "no": 1,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Ondalık Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**0,25 · 0,8 + 1,8 işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "1,5",
+    "1,8",
+    "2",
+    "2,2",
+    "2,5"
+   ],
+   "cevap": "C",
+   "cozum": "0,25 · 0,8 = 0,2; 0,2 + 1,8 = 2."
+  },
+  {
+   "no": 2,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Rasyonel Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**({3/4} − {1/2}) : {1/8} işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "1",
+    "{3/2}",
+    "2",
+    "{5/2}",
+    "3"
+   ],
+   "cevap": "C",
+   "cozum": "{3/4} − {1/2} = {1/4}; {1/4} : {1/8} = {1/4} · 8 = 2."
+  },
+  {
+   "no": 3,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Köklü Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**(√5 − √3) · (√5 + √3) işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "8"
+   ],
+   "cevap": "B",
+   "cozum": "İki kare farkı özdeşliğinden (√5)² − (√3)² = 5 − 3 = 2."
+  },
+  {
+   "no": 4,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Üslü Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "3^{2x − 1} = 27\n**olduğuna göre, x kaçtır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "cevap": "B",
+   "cozum": "27 = 3³ olduğundan 2x − 1 = 3 → x = 2."
+  },
+  {
+   "no": 5,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Denklemler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "4x − 7 = 2x + 9\n**olduğuna göre, x kaçtır?**",
+   "secenekler": [
+    "2",
+    "4",
+    "6",
+    "7",
+    "8"
+   ],
+   "cevap": "E",
+   "cozum": "4x − 2x = 9 + 7 → 2x = 16 → x = 8."
+  },
+  {
+   "no": 6,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Denklem Sistemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "x + y = 10 ve x − y = 4\n**olduğuna göre, x · y çarpımı kaçtır?**",
+   "secenekler": [
+    "21",
+    "24",
+    "25",
+    "27",
+    "28"
+   ],
+   "cevap": "A",
+   "cozum": "Eşitlikler toplanırsa 2x = 14 → x = 7, y = 3; çarpım 21."
+  },
+  {
+   "no": 7,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Mutlak Değer",
+   "yonerge": null,
+   "grup": null,
+   "metin": "|2x − 6| = 8\n**denklemini sağlayan x değerlerinin toplamı kaçtır?**",
+   "secenekler": [
+    "6",
+    "7",
+    "8",
+    "10",
+    "12"
+   ],
+   "cevap": "A",
+   "cozum": "2x − 6 = 8 → x = 7 ya da 2x − 6 = −8 → x = −1. Toplam 7 + (−1) = 6."
+  },
+  {
+   "no": 8,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Faktöriyel",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**{6!/4!} işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "30",
+    "36",
+    "40",
+    "50",
+    "60"
+   ],
+   "cevap": "A",
+   "cozum": "{6!/4!} = 6 · 5 = 30."
+  },
+  {
+   "no": 9,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Hareket Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir otomobil bir yolun {2/5}'ini 2 saatte gidiyor. Aynı hızla yolun tamamını kaç saatte gider?**",
+   "secenekler": [
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+   ],
+   "cevap": "A",
+   "cozum": "Yolun {1/5}'i 1 saatte gidilir; tamamı 5 saat sürer."
+  },
+  {
+   "no": 10,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Havuz Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Boş bir havuzu A musluğu 4 saatte doldurmakta, B musluğu ise dolu havuzu 6 saatte boşaltmaktadır. İki musluk birlikte açılırsa boş havuz kaç saatte dolar?**",
+   "secenekler": [
+    "4",
+    "8",
+    "10",
+    "12",
+    "15"
+   ],
+   "cevap": "D",
+   "cozum": "Bir saatte havuzun {1/4} − {1/6} = {1/12}'si dolar; havuz 12 saatte dolar."
+  },
+  {
+   "no": 11,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Yüzde Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir sınıftaki öğrencilerin %40'ı kızdır. Sınıfa 6 kız öğrenci daha katılınca kızların oranı %50 oluyor.\n**Buna göre, sınıfta başlangıçta kaç öğrenci vardır?**",
+   "secenekler": [
+    "30",
+    "36",
+    "40",
+    "50",
+    "60"
+   ],
+   "cevap": "A",
+   "cozum": "Başlangıçta n öğrenci olsun: 0,4n + 6 = 0,5(n + 6) → 0,1n = 3 → n = 30."
+  },
+  {
+   "no": 12,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Kâr - Zarar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**%25 kârla 500 TL'ye satılan bir mal, %10 zararla satılsaydı kaç TL'ye satılmış olurdu?**",
+   "secenekler": [
+    "300",
+    "340",
+    "350",
+    "360",
+    "375"
+   ],
+   "cevap": "D",
+   "cozum": "Maliyet M olsun: 1,25 · M = 500 → M = 400 TL.\n%10 zararla satış fiyatı 0,9 · 400 = 360 TL."
+  },
+  {
+   "no": 13,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Sayı Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Toplamları 48 olan iki sayıdan biri ötekinin 3 katıdır. Büyük sayı kaçtır?**",
+   "secenekler": [
+    "30",
+    "32",
+    "36",
+    "40",
+    "42"
+   ],
+   "cevap": "C",
+   "cozum": "Küçük sayı x olsun: x + 3x = 48 → x = 12. Büyük sayı 36."
+  },
+  {
+   "no": 14,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Kümeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "40 kişilik bir sınıfta 25 öğrenci İngilizce, 18 öğrenci Almanca bilmektedir. 7 öğrenci ise her iki dili de bilmektedir.\n**Buna göre, bu iki dilden hiçbirini bilmeyen kaç öğrenci vardır?**",
+   "secenekler": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "cevap": "B",
+   "cozum": "En az bir dil bilenler 25 + 18 − 7 = 36 kişidir. Hiçbirini bilmeyen 40 − 36 = 4 kişi vardır."
+  },
+  {
+   "no": 15,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Kombinasyon",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**6 kişilik bir gruptan 3 kişilik bir komisyon kaç farklı biçimde seçilebilir?**",
+   "secenekler": [
+    "15",
+    "18",
+    "20",
+    "24",
+    "30"
+   ],
+   "cevap": "C",
+   "cozum": "C(6, 3) = {(6 · 5 · 4)/(3 · 2 · 1)} = 20."
+  },
+  {
+   "no": 16,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Olasılık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İçinde 4 kırmızı ve 6 mavi bilye bulunan bir torbadan geri atılmamak koşuluyla art arda iki bilye çekiliyor. İki bilyenin de kırmızı olma olasılığı kaçtır?**",
+   "secenekler": [
+    "{1/15}",
+    "{2/15}",
+    "{1/5}",
+    "{4/15}",
+    "{2/5}"
+   ],
+   "cevap": "B",
+   "cozum": "İlk çekilişte {4/10}, ikincide {3/9} olasılık vardır: {4/10} · {3/9} = {12/90} = {2/15}."
+  },
+  {
+   "no": 17,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Sayı Dizileri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "3, 5, 9, 17, 33, ?\n**Yukarıdaki sayı dizisinde soru işareti yerine hangi sayı gelmelidir?**",
+   "secenekler": [
+    "57",
+    "63",
+    "65",
+    "66",
+    "70"
+   ],
+   "cevap": "C",
+   "cozum": "Ardışık terimler arasındaki farklar 2, 4, 8, 16 diye ikiye katlanır; sonraki fark 32'dir: 33 + 32 = 65."
+  },
+  {
+   "no": 18,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Tablo Yorumlama",
+   "yonerge": null,
+   "grup": "1-gelir",
+   "metin": "**Şirketin yıllık gelirinin yüzde kaçı 3. çeyrekte elde edilmiştir?**",
+   "secenekler": [
+    "%10",
+    "%15",
+    "%20",
+    "%25",
+    "%30"
+   ],
+   "cevap": "E",
+   "cozum": "Yıllık gelir 20 + 24 + 30 + 26 = 100 milyon TL'dir; 3. çeyreğin payı {30/100} = %30."
+  },
+  {
+   "no": 19,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Tablo Yorumlama",
+   "yonerge": null,
+   "grup": "1-gelir",
+   "metin": "**Şirketin 3. çeyrekteki geliri, 2. çeyreğe göre yüzde kaç artmıştır?**",
+   "secenekler": [
+    "%20",
+    "%25",
+    "%30",
+    "%35",
+    "%36"
+   ],
+   "cevap": "B",
+   "cozum": "Artış 30 − 24 = 6 milyon TL'dir; {6/24} = %25."
+  },
+  {
+   "no": 20,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Tablo Yorumlama",
+   "yonerge": null,
+   "grup": "1-gelir",
+   "metin": "**Şirketin her çeyrekteki gideri 18 milyon TL olduğuna göre yıllık kârı kaç milyon TL'dir?**",
+   "secenekler": [
+    "12",
+    "16",
+    "20",
+    "24",
+    "28"
+   ],
+   "cevap": "E",
+   "cozum": "Yıllık gider 4 · 18 = 72 milyon TL'dir; kâr 100 − 72 = 28 milyon TL."
+  },
+  {
+   "no": 21,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Matematik",
+   "konu": "Sayısal Akıl Yürütme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir terzi bir gömlek için 2 metre, bir pantolon için 1,5 metre kumaş kullanmaktadır. Elindeki 20 metre kumaşla 4 gömlek diken terzi, kalan kumaşla en fazla kaç pantolon dikebilir?**",
+   "secenekler": [
+    "2",
+    "4",
+    "6",
+    "7",
+    "8"
+   ],
+   "cevap": "E",
+   "cozum": "4 gömlek için 8 metre kumaş harcanır, 12 metre kalır. 12 : 1,5 = 8 pantolon dikilebilir."
+  },
+  {
+   "no": 22,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Eşkenar Üçgen",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Çevresi 24 cm olan eşkenar üçgenin alanı kaç cm²'dir?**",
+   "secenekler": [
+    "8√3",
+    "12√3",
+    "16√3",
+    "24√3",
+    "32√3"
+   ],
+   "cevap": "C",
+   "cozum": "Bir kenar 8 cm'dir. Eşkenar üçgenin alanı {(a²√3)/4} = {(64√3)/4} = 16√3 cm²."
+  },
+  {
+   "no": 23,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Katı Cisimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bütün ayrıtlarının uzunlukları toplamı 48 cm olan bir küpün hacmi kaç cm³'tür?**",
+   "secenekler": [
+    "48",
+    "64",
+    "72",
+    "80",
+    "96"
+   ],
+   "cevap": "B",
+   "cozum": "Küpün 12 ayrıtı vardır; bir ayrıt 48 : 12 = 4 cm. Hacim 4³ = 64 cm³."
+  },
+  {
+   "no": 24,
+   "test": 1,
+   "brans": "Sayısal",
+   "ders": "Geometri",
+   "konu": "Dik Üçgen",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir dar açısı 30° olan dik üçgenin hipotenüsü 10 cm'dir. Bu üçgende 30°'lik açının karşısındaki kenar kaç cm'dir?**",
+   "secenekler": [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "cevap": "D",
+   "cozum": "30-60-90 üçgeninde 30°'nin karşısındaki kenar hipotenüsün yarısıdır: 10 : 2 = 5 cm."
+  },
+  {
+   "no": 25,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Tutmak\" sözcüğü aşağıdaki cümlelerin hangisinde \"toplamı bir miktara ulaşmak\" anlamında kullanılmıştır?**",
+   "secenekler": [
+    "Düşmemek için korkuluğu __tuttu__.",
+    "Yeni kitabı okurlar çok __tuttu__.",
+    "Alışverişin tutarı beş yüz lirayı __tuttu__.",
+    "Bu yıl yağmur bütün yazı __tuttu__.",
+    "Sözünü __tutan__ biridir."
+   ],
+   "cevap": "C",
+   "cozum": "Tutarın beş yüz liraya ulaşması \"toplamı bir miktara varmak\" anlamındadır.\nÖteki cümlelerde elle kavramak, sürmek, yerine getirmek ve beğenilmek anlamları vardır."
+  },
+  {
+   "no": 26,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde altı çizili sözcük soyut anlamlıdır?**",
+   "secenekler": [
+    "Onun __sabrı__ hepimize örnek oldu.",
+    "Bahçedeki __ağaç__ meyve verdi.",
+    "Elindeki __kalem__ kırıldı.",
+    "Pencereden __rüzgâr__ giriyordu.",
+    "__Masadaki__ vazoyu kaldırdı."
+   ],
+   "cevap": "A",
+   "cozum": "Sabır beş duyuyla algılanamaz; soyut bir kavramdır. Vazo, ağaç, rüzgâr ve kalem duyularla algılanır."
+  },
+  {
+   "no": 27,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Deyimler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde \"çok sevinmek\" anlamında bir deyim kullanılmıştır?**",
+   "secenekler": [
+    "İşleri yetiştirmek için __göbeği çatladı__.",
+    "Sınav sonucunu öğrenince __etekleri zil çaldı__.",
+    "Toplantıda __ağzını açmadı__.",
+    "Bu sözlere __kulak asmadı__.",
+    "Kardeşi gelmeyince __içi içini yedi__."
+   ],
+   "cevap": "B",
+   "cozum": "\"Etekleri zil çalmak\" çok sevinmek demektir.\nÖteki deyimler merak ve kaygı, önemsememek, hiç konuşmamak ve çok yorulmak anlamındadır."
+  },
+  {
+   "no": 28,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde karşıt anlamlı sözcükler bir arada kullanılmıştır?**",
+   "secenekler": [
+    "Sessiz sedasız odadan çıktı.",
+    "Uzun bir yolculuktan sonra eve vardı.",
+    "Ak saçlı bir ihtiyar kapıyı açtı.",
+    "İyi günde de kötü günde de yanındaydı.",
+    "Yorgun argın eve döndü."
+   ],
+   "cevap": "D",
+   "cozum": "\"İyi\" ile \"kötü\" karşıt anlamlıdır. \"Sessiz sedasız\" ve \"yorgun argın\" ikilemedir."
+  },
+  {
+   "no": 29,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde neden-sonuç ilişkisi vardır?**",
+   "secenekler": [
+    "Yollar buz tutmasına rağmen okullar açıktı.",
+    "Okullar tatil edilsin diye dua ettik.",
+    "Yollar buz tuttuğu için okullar tatil edildi.",
+    "Okullar tatil edilince çocuklar sevindi.",
+    "Yollar buz tutarsa okullar tatil edilir."
+   ],
+   "cevap": "C",
+   "cozum": "Okulların tatil edilmesinin nedeni yolların buz tutmasıdır."
+  },
+  {
+   "no": 30,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde öznel bir yargı vardır?**",
+   "secenekler": [
+    "Film geçen ay vizyona girdi.",
+    "Film iki saat sürüyor.",
+    "Filmin çekimleri Kapadokya'da yapıldı.",
+    "Bu film, yönetmenin en etkileyici eseri.",
+    "Filmde altı oyuncu rol alıyor."
+   ],
+   "cevap": "D",
+   "cozum": "\"En etkileyici eser\" kişisel bir değerlendirmedir. Öteki cümleler doğrulanabilir bilgiler içerir."
+  },
+  {
+   "no": 31,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümle Yorumlama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"Eleştiriye açık olmayan bir bilim insanı, kendi laboratuvarının duvarlarına hapsolur.\"\n\n**Bu cümleyle anlatılmak istenen aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Eleştiri bilim insanlarının motivasyonunu düşürür.",
+    "Bilim insanları birbirini sürekli eleştirmelidir.",
+    "Laboratuvarlar bilim insanları için yeterli değildir.",
+    "Bilimsel çalışmalar laboratuvar dışında yapılmalıdır.",
+    "Eleştiriyi kabul etmeyen bilim insanı kendini geliştiremez."
+   ],
+   "cevap": "E",
+   "cozum": "\"Duvarlara hapsolmak\" gelişememek, dar bir alanda kalmak anlamındadır; eleştiriye kapalı bilim insanı ilerleyemez."
+  },
+  {
+   "no": 32,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde tahmin anlamı vardır?**",
+   "secenekler": [
+    "Yol sabahtan beri kapalı.",
+    "Yol açılınca yola çıktık.",
+    "Bu gidişle akşama kadar yol açılır herhalde.",
+    "Yolun açılmasını bekliyoruz.",
+    "Keşke yol erken açılsaydı."
+   ],
+   "cevap": "C",
+   "cozum": "\"Herhalde\" sözüyle yolun açılacağı kesin olmayan bir biçimde tahmin edilmiştir."
+  },
+  {
+   "no": 33,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf - Anlam",
+   "yonerge": null,
+   "grup": "2-kosu",
+   "metin": "**Bu parçaya göre kısa mesafe koşucularının kasları için aşağıdakilerden hangisi söylenebilir?**",
+   "secenekler": [
+    "Maratoncularınkinden daha incedir.",
+    "Kısa süreli en yüksek kuvvete göre gelişmiştir.",
+    "Uzun süreli dayanıklılığa uygundur.",
+    "Yalnızca antrenmanla gelişmiştir.",
+    "Oksijeni verimli kullanmaya uyum sağlamıştır."
+   ],
+   "cevap": "B",
+   "cozum": "Parçaya göre kısa mesafecilerin kasları kalındır ve birkaç saniyelik çaba için en yüksek kuvveti üretir."
+  },
+  {
+   "no": 34,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf - Anlam",
+   "yonerge": null,
+   "grup": "2-kosu",
+   "metin": "**Bu parçanın son cümlesinde vurgulanan düşünce aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kısa mesafe koşusu daha zordur.",
+    "Her koşucu maraton koşabilir.",
+    "Antrenmanın kalıtımla bir ilgisi yoktur.",
+    "Antrenman, kalıtımın sağladığı yeteneği ortaya çıkarır.",
+    "Kalıtım, antrenmandan daha önemlidir."
+   ],
+   "cevap": "D",
+   "cozum": "Son cümle, kalıtımın sunduğu olanakları ortaya çıkaran asıl etkenin doğru antrenman olduğunu söyler."
+  },
+  {
+   "no": 35,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Ana Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir çocuğa balık vermek onu bir gün doyurur; balık tutmayı öğretmek ise ömür boyu doyurur. Eğitimin amacı da öğrenciye hazır bilgiler yüklemek değil, bilgiye nasıl ulaşacağını ve onu nasıl kullanacağını öğretmektir. Çünkü bugün öğretilen bilgilerin bir kısmı birkaç yıl içinde eskiyecektir.\n\n**Bu parçanın ana düşüncesi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Ders kitapları her yıl yenilenmelidir.",
+    "Eğitim, öğrenciye bilgiye ulaşma ve onu kullanma becerisi kazandırmalıdır.",
+    "Bilgiler zamanla değerini tamamen yitirir.",
+    "Öğretmenler öğrencilere daha çok bilgi vermelidir.",
+    "Balıkçılık, çocuklara öğretilmesi gereken bir meslektir."
+   ],
+   "cevap": "B",
+   "cozum": "Parça, eğitimin hazır bilgi aktarmak yerine bilgiye ulaşmayı ve onu kullanmayı öğretmesi gerektiğini savunur."
+  },
+  {
+   "no": 36,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf Tamamlama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "---- Kimi zaman bir kokunun, bir şarkının ya da bir sokak köşesinin bizi yıllar öncesine götürmesi bundandır. Beyin, duyularla edindiği izlenimleri anılarla birlikte saklar.\n\n**Bu parça aşağıdakilerden hangisiyle başlatılırsa düşüncenin akışı korunur?**",
+   "secenekler": [
+    "Şehirlerdeki sokaklar sürekli değişiyor.",
+    "İnsanlar yaşlandıkça unutkanlaşır.",
+    "Koku alma duyusu hayvanlarda daha gelişmiştir.",
+    "Anılarımız çoğu zaman duyusal izlenimlerle iç içe kaydedilir.",
+    "Eski şarkılar yeniden popüler oluyor."
+   ],
+   "cevap": "D",
+   "cozum": "Parça, duyuların anıları neden canlandırdığını açıklar; bu açıklamanın dayandığı genel yargı başa gelmelidir."
+  },
+  {
+   "no": 37,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Anlatımın Bozulması",
+   "yonerge": null,
+   "grup": null,
+   "metin": "(I) Gökkuşağı, güneş ışığının yağmur damlalarında kırılmasıyla oluşur. (II) Işık damlaya girerken ve çıkarken kırılır, renklerine ayrılır. (III) Bu yüzden gökkuşağını görebilmek için güneşi arkamıza almamız gerekir. (IV) Kırmızı, mor ve turuncu sıcak renkler olarak bilinir. (V) Gökkuşağının renkleri her zaman aynı sırayla dizilir.\n\n**Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?**",
+   "secenekler": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "cevap": "D",
+   "cozum": "Parça gökkuşağının nasıl oluştuğunu ve nasıl görüldüğünü anlatır.\nIV. cümle renklerin sıcak-soğuk sınıflandırmasına geçerek akışı bozar."
+  },
+  {
+   "no": 38,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümle Sıralama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "(I) Bu nedenle uzmanlar, kahvaltının güne enerjiyle başlamak için atlanmaması gerektiğini söyler.\n(II) Gece boyunca beden saatlerce besin almadan çalışır.\n(III) Sabah uyandığımızda kandaki şeker düzeyi düşmüş olur.\n(IV) Kahvaltı yapmayanlarda dikkat dağınıklığı ve yorgunluk daha sık görülür.\n\n**Bu cümlelerle anlamlı bir paragraf oluşturulduğunda sıralama nasıl olmalıdır?**",
+   "secenekler": [
+    "II – III – IV – I",
+    "III – II – I – IV",
+    "II – I – III – IV",
+    "IV – I – II – III",
+    "III – IV – II – I"
+   ],
+   "cevap": "A",
+   "cozum": "Önce gece boyunca besin alınmadığı (II), bu yüzden sabah şeker düzeyinin düştüğü (III) söylenir.\nArdından kahvaltı yapmamanın etkisi (IV) ve sonuç olarak uzmanların önerisi (I) gelir."
+  },
+  {
+   "no": 39,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraftan Çıkarım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Antik çağda yapılan pek çok köprü bugün hâlâ kullanılmaktadır. Oysa yalnızca birkaç on yıl önce inşa edilen bazı beton köprüler şimdiden onarım bekliyor. Araştırmacılar bu farkın, eski ustaların kullandığı harcın zamanla sertleşen yapısından kaynaklandığını düşünüyor.\n\n**Bu parçadan aşağıdakilerin hangisi çıkarılabilir?**",
+   "secenekler": [
+    "Modern köprüler daha estetiktir.",
+    "Beton köprüler hiç kullanılmamalıdır.",
+    "Eski yapı tekniklerinden bugün de öğrenilecek şeyler vardır.",
+    "Eski köprülerin hiçbiri onarım gerektirmez.",
+    "Antik çağda yalnızca köprü yapılmıştır."
+   ],
+   "cevap": "C",
+   "cozum": "Eski köprülerin dayanıklılığını açıklayan harç yapısının araştırılması, eski tekniklerin bugün de yol gösterebileceğini düşündürür."
+  },
+  {
+   "no": 40,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Yardımcı Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Gezginlerin tuttuğu notlar, tarihçiler için paha biçilmez kaynaklardır. Bir gezgin, gittiği şehrin pazarındaki fiyatları, insanların giyimini, yemeklerini, hatta sokakların temizliğini bile kaydeder. Resmî belgelerde yer almayan bu gündelik ayrıntılar, geçmişin canlı bir resmini çizmemizi sağlar.\n\n**Bu parçaya göre gezgin notlarını değerli kılan aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kısa ve öz yazılmış olmaları",
+    "Resmî belgelerde bulunmayan gündelik yaşam ayrıntılarını içermeleri",
+    "Resmî belgelerle tıpatıp aynı olmaları",
+    "Gezginlerin tarihçi olması",
+    "Yalnızca savaşları anlatmaları"
+   ],
+   "cevap": "B",
+   "cozum": "Parçaya göre gezgin notları, resmî belgelerde yer almayan pazar fiyatları, giyim ve yemek gibi gündelik ayrıntıları kaydeder."
+  },
+  {
+   "no": 41,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf - Anlatım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Kâğıt, MS 2. yüzyılda Çin'de bulundu. Bitki liflerinin suyla ezilip ince bir tabaka hâlinde kurutulmasıyla elde ediliyordu. Bu teknik, yüzyıllar içinde Orta Asya üzerinden İslam dünyasına, oradan da Avrupa'ya ulaştı.\n\n**Bu parçada aşağıdaki anlatım biçimlerinden hangisi kullanılmıştır?**",
+   "secenekler": [
+    "Mizahi anlatım",
+    "Tartışmacı anlatım",
+    "Lirik anlatım",
+    "Betimleyici anlatım",
+    "Bilgilendirici anlatım"
+   ],
+   "cevap": "E",
+   "cozum": "Parça kâğıdın bulunuşunu, yapılışını ve yayılışını nesnel bilgilerle aktarır; bilgilendirici (açıklayıcı) anlatım kullanılmıştır."
+  },
+  {
+   "no": 42,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": "2-sergi",
+   "metin": "**Buna göre, 3 numaralı salonda hangi ressamın eserleri vardır?**",
+   "secenekler": [
+    "L",
+    "M",
+    "N",
+    "P",
+    "Kesin olarak belirlenemez."
+   ],
+   "cevap": "B",
+   "cozum": "K 1 numaralı salondadır. L, 2 numarada olamaz; P'nin sağında yer alması gerektiğinden 5 numarada da olamaz.\nL 3 numarada olsaydı P 4 ya da 5 numaraya, N ile M ise yan yana iki salona yerleşemezdi; çünkü boş kalan salonlar (2 ile 4 ya da 2 ile 5) bitişik değildir.\nDemek ki L 4, P 5 numaradadır; N 2, M 3 numaraya yerleşir: K, N, M, L, P."
+  },
+  {
+   "no": 43,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": "2-sergi",
+   "metin": "**Aşağıdakilerden hangisi kesinlikle doğrudur?**",
+   "secenekler": [
+    "P'nin eserleri 5 numaralı salondadır.",
+    "L'nin eserleri 3 numaralı salondadır.",
+    "K'nin eserleri 2 numaralı salondadır.",
+    "N'nin eserleri 3 numaralı salondadır.",
+    "M'nin eserleri 4 numaralı salondadır."
+   ],
+   "cevap": "A",
+   "cozum": "Tek geçerli yerleşim K, N, M, L, P biçimindedir; P 5 numaralı salondadır."
+  },
+  {
+   "no": 44,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": "2-sergi",
+   "metin": "**N'nin eserlerinin bulunduğu salonun hemen solundaki salonda hangi ressamın eserleri vardır?**",
+   "secenekler": [
+    "K",
+    "L",
+    "M",
+    "P",
+    "Kesin olarak belirlenemez."
+   ],
+   "cevap": "A",
+   "cozum": "Yerleşim K, N, M, L, P biçimindedir. N 2 numaralı salonda olduğundan hemen solundaki 1 numaralı salonda K'nin eserleri vardır."
+  },
+  {
+   "no": 45,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir okulda \"Hiçbir yüzücü sigara içmez.\" ve \"Bütün sporcular yüzücüdür.\" önermeleri doğrudur.\n\n**Buna göre, aşağıdakilerden hangisi kesinlikle doğrudur?**",
+   "secenekler": [
+    "Sigara içenlerin hepsi sporcudur.",
+    "Bazı sporcular sigara içer.",
+    "Hiçbir sporcu sigara içmez.",
+    "Bütün yüzücüler sporcudur.",
+    "Yüzücü olmayan herkes sigara içer."
+   ],
+   "cevap": "C",
+   "cozum": "Bütün sporcular yüzücü olduğuna ve hiçbir yüzücü sigara içmediğine göre hiçbir sporcu sigara içmez.\nÖteki yargılar verilen önermelerden çıkarılamaz."
+  },
+  {
+   "no": 46,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Ece, Fırat, Gül ve Hakan'ın boyları birbirinden farklıdır. Ece, Fırat'tan uzun; Gül, Ece'den uzundur. Hakan ise Fırat'tan kısadır.\n\n**Buna göre, en kısa olan kimdir?**",
+   "secenekler": [
+    "Kesin olarak belirlenemez.",
+    "Hakan",
+    "Gül",
+    "Fırat",
+    "Ece"
+   ],
+   "cevap": "B",
+   "cozum": "Sıralama uzundan kısaya Gül, Ece, Fırat, Hakan'dır; en kısa Hakan'dır."
+  },
+  {
+   "no": 47,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde ön yargı vardır?**",
+   "secenekler": [
+    "Kitap geçen hafta yayımlandı.",
+    "Yazarın önceki kitapları çok satmıştı.",
+    "Kitabı okuyunca çok beğendim.",
+    "Kitabı bitirince arkadaşıma verdim.",
+    "Bu yazarın yeni kitabını okumadım ama sıkıcı olduğundan eminim."
+   ],
+   "cevap": "E",
+   "cozum": "Kitabı okumadan hakkında kesin bir yargıya varmak ön yargıdır."
+  },
+  {
+   "no": 48,
+   "test": 2,
+   "brans": "Sözel",
+   "ders": "Türkçe",
+   "konu": "Paragraf - Anlatım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"Yolculuk boyunca pencereden dışarı baktım. Önce şehrin gri binaları geride kaldı, ardından buğday tarlaları başladı. Bir istasyonda tren durduğunda yaşlı bir kadın elinde sepetle vagonumuza bindi ve karşıma oturdu.\"\n\n**Bu parçada aşağıdakilerden hangisi ağır basmaktadır?**",
+   "secenekler": [
+    "Öyküleme",
+    "Örneklendirme",
+    "Karşılaştırma",
+    "Tartışma",
+    "Tanımlama"
+   ],
+   "cevap": "A",
+   "cozum": "Parçada zaman içinde art arda gelişen olaylar anlatılmaktadır; bu öykülemedir."
+  }
+ ]
+}

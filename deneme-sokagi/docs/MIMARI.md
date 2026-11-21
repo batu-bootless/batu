@@ -70,6 +70,22 @@ soruların ardından, `'ayri'` ayrı sayfada, `false` yok. Ölçüler referans P
 çözümler her kaynağın klasöründeki `cozumler.json` dosyasındadır (`{ "soru-id": "çözüm" }`) ve birleştirmede
 sorulara `cozum` olarak eklenir; kaynak yeniden çıkarılınca kaybolmaz.
 
+**Deneme Sokağı denemeleri (`icerik/osym/`).** `ds-<sınav>-N` kaynakları özgün sorulardan üretilir; elle
+düzenlenen yer branş dosyalarıdır (`tyt_turkce.py`, `kpss_gk.py`, `yds_ingilizce.py`…). Her dosyada `SORULAR` 48
+sorudur: iki denemeli sınavlarda ilk 24'ü 1., son 24'ü 2. denemeye gider; YDS'de dosyanın tamamı tek denemedir
+(`ds-yds-2`). Paragraflar `GRUPLAR`'dadır ve iki denemeye bölünmez.
+
+- `python3 icerik/osym/dogrula.py [modül…]`: soru sayısı, şık sayısı (LGS 4, öteki sınavlar 5), aynı şık, boş çözüm,
+  çözümde şık harfi, paragrafın bölünmesi.
+- `python3 icerik/osym/derle.py tyt ayt lgs kpss ales dgs yds`: sınav düzenini (test sırası, süre, şık sayısı)
+  `SINAVLAR`'dan alır, şıkları sıralar (sayılar küçükten büyüğe, "Yalnız I…" dizileri ÖSYM sırasıyla) ve cevap
+  harflerini her bölümde dengeler. Sözel sorularda doğru şık harfi dengeli bir diziden seçilir; sayısal sorularda
+  doğru cevabın sıradaki yeri, uzak çeldiriciler çıkarılıp yuvarlak adımlarla yenileri eklenerek ayarlanır
+  (`kaydir=False` bunu kapatır). Ardından `tools/soru_ekle.py` ile bankaya yazar.
+
+Bu denemelerin seslendirilmiş anlatımı yoktur; anlatım videosu cihazın Türkçe sesiyle okunur (o da yoksa yazılı
+ilerler).
+
 ```jsonc
 {
   "surum": 2,

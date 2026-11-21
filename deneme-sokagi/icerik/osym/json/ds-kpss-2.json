@@ -1,0 +1,926 @@
+{
+ "kaynak": {
+  "id": "ds-kpss-2",
+  "ad": "Deneme Sokağı KPSS Denemesi 2",
+  "sinav": "KPSS",
+  "tur": "deneme",
+  "ders": "",
+  "kod_on": "KP",
+  "dk_soru": 1.08
+ },
+ "gruplar": {},
+ "sorular": [
+  {
+   "no": 1,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde altı çizili sözcük mecaz anlamda kullanılmıştır?**",
+   "secenekler": [
+    "Onun __kırık__ bir sesle konuşması hepimizi üzdü.",
+    "Pencerenin __kırık__ camı değiştirildi.",
+    "Vazonun __kırık__ parçalarını topladı.",
+    "__Kırık__ sandalyeye oturmayın.",
+    "Kolu __kırık__ olduğu için yazamıyordu."
+   ],
+   "cevap": "A",
+   "cozum": "\"Kırık ses\", hüzünlü, incinmiş bir ses demektir; sözcük gerçek anlamından uzaklaşmıştır."
+  },
+  {
+   "no": 2,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Sözcükte Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde eş anlamlı sözcükler bir arada kullanılmıştır?**",
+   "secenekler": [
+    "Az çok herkes bu durumu biliyor.",
+    "Uzun uzun düşündü.",
+    "Gelen giden bitmiyordu.",
+    "Ak saçları omzuna dökülmüştü.",
+    "Bu yanıt, sorunun cevabı değil."
+   ],
+   "cevap": "E",
+   "cozum": "\"Yanıt\" ile \"cevap\" eş anlamlıdır.\n\"Az çok\" ve \"gelen giden\" karşıt anlamlı sözcüklerle kurulmuştur; \"uzun uzun\" ikilemedir."
+  },
+  {
+   "no": 3,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde amaç-sonuç ilişkisi vardır?**",
+   "secenekler": [
+    "Çalışırsa sınavı kazanır.",
+    "Sınavı kazanmak için gece gündüz çalışıyor.",
+    "Gece gündüz çalıştığı için sınavı kazandı.",
+    "Sınav zor olmasına rağmen kazandı.",
+    "Sınavı kazanınca ailesi çok sevindi."
+   ],
+   "cevap": "B",
+   "cozum": "Gece gündüz çalışmasının amacı sınavı kazanmaktır.\nÖteki cümlelerde neden-sonuç, koşul, zaman ve karşıtlık anlamları vardır."
+  },
+  {
+   "no": 4,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Cümlede Anlam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde öneri vardır?**",
+   "secenekler": [
+    "Yorgunsan biraz dinlenmeni tavsiye ederim.",
+    "Bu kadar çalışırsan yorulursun.",
+    "Yorgun olduğu için erken yattı.",
+    "Dün çok yorgundum.",
+    "Keşke daha erken yatsaydım."
+   ],
+   "cevap": "A",
+   "cozum": "\"Dinlenmeni tavsiye ederim\" sözüyle karşıdakine bir öneride bulunulmuştur."
+  },
+  {
+   "no": 5,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Ana Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir ülkenin gelişmişliği yalnızca yüksek binaları, geniş yollarıyla ölçülmez. Asıl ölçüt, o ülkede yaşayan insanların eğitime, sağlığa ve adalete ne kadar kolay ulaşabildiğidir. Gökdelenler birkaç yılda dikilebilir; ama eğitimli, sağlıklı ve kendini güvende hisseden bir toplum ancak uzun soluklu bir emekle yetişir.\n\n**Bu parçanın ana düşüncesi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Gökdelenler kısa sürede inşa edilebilir.",
+    "Eğitim, sağlıktan daha önemlidir.",
+    "Geniş yollar trafiği azaltır.",
+    "Gelişmiş ülkelerde yüksek binalar çoktur.",
+    "Gerçek gelişmişlik, insanların temel hizmetlere ve adalete erişimiyle ölçülür."
+   ],
+   "cevap": "E",
+   "cozum": "Parçaya göre asıl ölçüt binalar değil, insanların eğitim, sağlık ve adalete ulaşabilmesidir."
+  },
+  {
+   "no": 6,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragrafta Yardımcı Düşünce",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Türk kahvesi, cezvede ağır ateşte pişirilir ve köpüğüyle servis edilir. Yanında genellikle bir bardak su ve lokum ikram edilir. Türk kahvesi kültürü ve geleneği 2013 yılında UNESCO'nun İnsanlığın Somut Olmayan Kültürel Mirası listesine alınmıştır.\n\n**Bu parçada Türk kahvesiyle ilgili aşağıdakilerden hangisine değinilmemiştir?**",
+   "secenekler": [
+    "UNESCO listesine alındığına",
+    "Nasıl pişirildiğine",
+    "Kahve çekirdeklerinin nerede yetiştiğine",
+    "Köpüğüyle servis edildiğine",
+    "Yanında neler ikram edildiğine"
+   ],
+   "cevap": "C",
+   "cozum": "Parçada pişirilme, servis, ikramlar ve UNESCO listesi anlatılır; çekirdeklerin yetiştiği yerden söz edilmez."
+  },
+  {
+   "no": 7,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragraf Tamamlama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "---- Örneğin bir otomobil fabrikası yalnızca otomobil üretmekle kalmaz; çevresinde yedek parça, lojistik ve hizmet alanlarında yüzlerce yeni iş yerinin kurulmasına da yol açar.\n\n**Bu parçanın başına düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?**",
+   "secenekler": [
+    "Otomobil sayısının artması trafiği olumsuz etkiler.",
+    "Lojistik, ürünlerin taşınması ve depolanmasıdır.",
+    "Fabrikalarda çalışanların çoğu teknik eğitim almıştır.",
+    "Yedek parçalar genellikle yurt dışından getirilir.",
+    "Büyük yatırımlar, bulundukları bölgede zincirleme bir ekonomik canlılık yaratır."
+   ],
+   "cevap": "E",
+   "cozum": "Otomobil fabrikası örneği, büyük bir yatırımın çevresinde başka işleri de canlandırdığını gösterir; bu genel yargı başa gelmelidir."
+  },
+  {
+   "no": 8,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragrafın Bölümleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "(I) Kuraklık, yağışların uzun süre normalin altında kalmasıyla ortaya çıkar. (II) Kuraklık döneminde tarımda verim düşer, hayvanlar için yem bulmak zorlaşır. (III) Barajlardaki su seviyesinin azalması kentlerde su kesintilerine yol açabilir. (IV) Kuraklıkla mücadelede ilk adım suyu bilinçli kullanmaktır. (V) Tarımda damla sulama gibi yöntemler su tüketimini önemli ölçüde azaltır. (VI) Evlerde de musluk ve tesisat kayıplarını önlemek tasarruf sağlar.\n\n**Bu parça iki paragrafa ayrılmak istense ikinci paragraf hangi cümleyle başlar?**",
+   "secenekler": [
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI"
+   ],
+   "cevap": "C",
+   "cozum": "İlk üç cümle kuraklığın tanımını ve sonuçlarını anlatır.\nIV. cümleyle kuraklıkla mücadele yollarına geçilir; ikinci paragraf buradan başlar."
+  },
+  {
+   "no": 9,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Paragraftan Çıkarım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bilim insanlarına göre çocuklukta öğrenilen bir yabancı dil, ileriki yaşlarda öğrenilene göre daha doğal bir telaffuzla konuşulur. Ancak yetişkinler dil bilgisi kurallarını daha hızlı kavrayabilir. Yani yaş, dil öğrenmenin her alanında aynı etkiyi göstermez.\n\n**Bu parçadan aşağıdakilerin hangisi çıkarılabilir?**",
+   "secenekler": [
+    "Yaşın dil öğrenmeye etkisi, dilin hangi becerisine bakıldığına göre değişir.",
+    "Yabancı dil öğrenmeye mutlaka çocuklukta başlanmalıdır.",
+    "Yetişkinler yabancı dil öğrenemez.",
+    "Telaffuz, dil öğrenmenin en zor bölümüdür.",
+    "Çocuklar dil bilgisini yetişkinlerden hızlı öğrenir."
+   ],
+   "cevap": "A",
+   "cozum": "Çocuklar telaffuzda, yetişkinler dil bilgisinde avantajlıdır; yaşın etkisi beceriye göre değişir."
+  },
+  {
+   "no": 10,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Ses Bilgisi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki cümlelerin hangisinde ünlü daralması vardır?**",
+   "secenekler": [
+    "Kitabı rafa koydu.",
+    "Yarın okula gidiyorum.",
+    "Ağacın dalı kırıldı.",
+    "Burnu birden kanadı.",
+    "Saatçi dükkânı erken kapattı."
+   ],
+   "cevap": "B",
+   "cozum": "\"Gitmek\" fiili \"-yor\" ekini alırken \"e\" ünlüsü daralarak \"i\" olmuştur: gid-i-yor.\nÖteki cümlelerde ünsüz yumuşaması ya da ünlü düşmesi vardır."
+  },
+  {
+   "no": 11,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Cümlenin Ögeleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "\"Tarihî çarşının dar sokaklarında saatlerce dolaştık.\"\n\n**Bu cümlenin öge dizilişi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Zarf tamlayıcısı – yer tamlayıcısı – yüklem",
+    "Yer tamlayıcısı – nesne – yüklem",
+    "Özne – zarf tamlayıcısı – yüklem",
+    "Yer tamlayıcısı – zarf tamlayıcısı – yüklem",
+    "Nesne – zarf tamlayıcısı – yüklem"
+   ],
+   "cevap": "D",
+   "cozum": "\"Dolaştık\" yüklemdir; özne gizlidir (biz).\n\"Nerede?\" → tarihî çarşının dar sokaklarında (yer tamlayıcısı), \"ne kadar?\" → saatlerce (zarf tamlayıcısı)."
+  },
+  {
+   "no": 12,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Türkçe",
+   "konu": "Sözel Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir rafta soldan sağa beş kitap dizilidir: Tarih, Fizik, Kimya, Biyoloji ve Coğrafya. Tarih en soldadır, Coğrafya en sağdadır. Kimya, Fizik'in hemen sağındadır. Biyoloji ise Fizik'in solundadır.\n\n**Buna göre, Biyoloji kitabı soldan kaçıncı sıradadır?**",
+   "secenekler": [
+    "2.",
+    "3.",
+    "4.",
+    "5.",
+    "Kesin olarak belirlenemez."
+   ],
+   "cevap": "A",
+   "cozum": "1. sırada Tarih, 5. sırada Coğrafya vardır. Biyoloji Fizik'in solunda, Kimya Fizik'in hemen sağında olmalıdır.\nBu yüzden sıra Tarih, Biyoloji, Fizik, Kimya, Coğrafya'dır; Biyoloji 2. sıradadır."
+  },
+  {
+   "no": 13,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Ardışık Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Ardışık üç tek sayının toplamı 63 olduğuna göre en büyüğü kaçtır?**",
+   "secenekler": [
+    "23",
+    "24",
+    "25",
+    "26",
+    "27"
+   ],
+   "cevap": "A",
+   "cozum": "Ortadaki sayı 63 : 3 = 21; sayılar 19, 21, 23'tür. En büyüğü 23."
+  },
+  {
+   "no": 14,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Bölme - Bölünebilme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir doğal sayı 7'ye bölündüğünde bölüm 12, kalan 5 oluyor. Bu sayı kaçtır?**",
+   "secenekler": [
+    "79",
+    "84",
+    "88",
+    "89",
+    "91"
+   ],
+   "cevap": "D",
+   "cozum": "Bölünen = bölen · bölüm + kalan = 7 · 12 + 5 = 89."
+  },
+  {
+   "no": 15,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Üslü Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**{2^{10}/2^{7}} + 3^{0} işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "9",
+    "10",
+    "11",
+    "12",
+    "15"
+   ],
+   "cevap": "A",
+   "cozum": "{2^{10}/2^{7}} = 2³ = 8 ve 3^{0} = 1; toplam 9."
+  },
+  {
+   "no": 16,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Kesir Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir öğrenci harçlığının {1/3}'ünü kitaba, kalan paranın {1/4}'ünü yemeğe harcıyor ve geriye 120 TL kalıyor.\n**Buna göre, öğrencinin harçlığı kaç TL'dir?**",
+   "secenekler": [
+    "200",
+    "240",
+    "300",
+    "320",
+    "360"
+   ],
+   "cevap": "B",
+   "cozum": "Harçlık x olsun: kitaptan sonra {2/3}x kalır; yemeğe {1/4} · {2/3}x = {1/6}x harcanır.\nKalan {2/3}x − {1/6}x = {1/2}x = 120 → x = 240 TL."
+  },
+  {
+   "no": 17,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Kâr - Zarar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir satıcı malını %20 zararla 400 TL'ye satmıştır. Malın maliyeti kaç TL'dir?**",
+   "secenekler": [
+    "480",
+    "500",
+    "520",
+    "600",
+    "700"
+   ],
+   "cevap": "B",
+   "cozum": "%20 zararla satış fiyatı maliyetin %80'idir: 0,8 · M = 400 → M = 500 TL."
+  },
+  {
+   "no": 18,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Karışım Problemleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Tuz oranı %10 olan 200 gramlık tuzlu sudan 100 gram su buharlaştırılıyor.\n**Buna göre, kalan karışımın tuz oranı yüzde kaçtır?**",
+   "secenekler": [
+    "%10",
+    "%15",
+    "%20",
+    "%25",
+    "%30"
+   ],
+   "cevap": "C",
+   "cozum": "Tuz miktarı 200 · 0,1 = 20 g ve değişmez; karışım 100 g kalır.\nTuz oranı {20/100} = %20."
+  },
+  {
+   "no": 19,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Sayısal Mantık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bir saat her 15 dakikada 1 dakika geri kalmaktadır. Bu saat 12.00'de doğru olarak ayarlanmıştır.\n**Buna göre, aynı gün gerçek saat 15.00 olduğunda bu saat kaçı gösterir?**",
+   "secenekler": [
+    "14.36",
+    "14.45",
+    "14.48",
+    "14.52",
+    "15.12"
+   ],
+   "cevap": "C",
+   "cozum": "3 saat = 180 dakikada saat 180 : 15 = 12 dakika geri kalır.\nSaat 15.00 − 12 dakika = 14.48'i gösterir."
+  },
+  {
+   "no": 20,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Olasılık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**18 kız ve 12 erkek öğrencinin bulunduğu bir sınıftan rastgele seçilen bir öğrencinin erkek olma olasılığı kaçtır?**",
+   "secenekler": [
+    "{1/5}",
+    "{1/3}",
+    "{2/5}",
+    "{1/2}",
+    "{3/5}"
+   ],
+   "cevap": "C",
+   "cozum": "Toplam 30 öğrencinin 12'si erkektir: {12/30} = {2/5}."
+  },
+  {
+   "no": 21,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Kümeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "30 kişilik bir grupta 18 kişi çay, 15 kişi kahve içmektedir. 5 kişi ise ikisini de içmemektedir.\n**Buna göre, hem çay hem kahve içen kaç kişi vardır?**",
+   "secenekler": [
+    "6",
+    "7",
+    "8",
+    "10",
+    "12"
+   ],
+   "cevap": "C",
+   "cozum": "En az birini içenler 30 − 5 = 25 kişidir.\n25 = 18 + 15 − x → x = 8."
+  },
+  {
+   "no": 22,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Geometri",
+   "konu": "Dik Üçgen",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Dik kenarlarının uzunlukları 5 cm ve 12 cm olan bir dik üçgenin çevresi kaç cm'dir?**",
+   "secenekler": [
+    "10",
+    "20",
+    "26",
+    "28",
+    "30"
+   ],
+   "cevap": "E",
+   "cozum": "Hipotenüs √(25 + 144) = 13 cm.\nÇevre 5 + 12 + 13 = 30 cm."
+  },
+  {
+   "no": 23,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Geometri",
+   "konu": "Çember",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yarıçapı 5 cm olan bir çemberin çevresi kaç cm'dir? (π = 3 alınız.)**",
+   "secenekler": [
+    "15",
+    "25",
+    "30",
+    "60",
+    "75"
+   ],
+   "cevap": "C",
+   "cozum": "Çember çevresi 2πr = 2 · 3 · 5 = 30 cm."
+  },
+  {
+   "no": 24,
+   "test": 1,
+   "brans": "Genel Yetenek",
+   "ders": "Matematik",
+   "konu": "Denklem Kurma",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir sayının 5 fazlasının yarısı, aynı sayının 3 eksiğine eşittir. Bu sayı kaçtır?**",
+   "secenekler": [
+    "7",
+    "9",
+    "10",
+    "11",
+    "13"
+   ],
+   "cevap": "D",
+   "cozum": "{(x + 5)/2} = x − 3 → x + 5 = 2x − 6 → x = 11."
+  },
+  {
+   "no": 25,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "İslamiyet Öncesi Türk Tarihi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Asya Hun hükümdarı Mete Han'ın kurduğu ve sonraki Türk devletlerince de kullanılan ordu düzeni aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kapıkulu sistemi",
+    "Onlu sistem",
+    "İkta sistemi",
+    "Devşirme sistemi",
+    "Tımar sistemi"
+   ],
+   "cevap": "B",
+   "cozum": "Mete Han orduyu onlar, yüzler, binler ve on binler hâlinde örgütlemiştir; bu düzene onlu sistem denir."
+  },
+  {
+   "no": 26,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "İslamiyet Öncesi Türk Tarihi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi Kavimler Göçü'nün sonuçlarından biri değildir?**",
+   "secenekler": [
+    "İstanbul'un Türkler tarafından fethedilmesi",
+    "Bugünkü Avrupa devletlerinin temellerinin atılması",
+    "Avrupa'da feodalitenin ortaya çıkması",
+    "Roma İmparatorluğu'nun ikiye ayrılması",
+    "Batı Roma'nın zayıflayıp yıkılması"
+   ],
+   "cevap": "A",
+   "cozum": "Kavimler Göçü 375'te başlamış, Avrupa'nın siyasi ve toplumsal yapısını değiştirmiştir.\nİstanbul'un fethi ise 1453'te gerçekleşmiştir ve bu göçle ilgisi yoktur."
+  },
+  {
+   "no": 27,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "İlk Türk-İslam Devletleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**751 Talas Savaşı'nın sonuçlarından biri aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Uygur Devleti'nin yıkılması",
+    "Kâğıt yapım tekniğinin İslam dünyasına geçmesi",
+    "Haçlı Seferlerinin başlaması",
+    "Bizans'ın Anadolu'dan çekilmesi",
+    "Anadolu'nun Türk yurdu hâline gelmesi"
+   ],
+   "cevap": "B",
+   "cozum": "Talas Savaşı'ndan sonra Çinli esirler aracılığıyla kâğıt yapımı İslam dünyasına geçmiş, Türkler arasında İslamiyet hızla yayılmıştır."
+  },
+  {
+   "no": 28,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Büyük Selçuklu Devleti",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Büyük Selçuklu Devleti'nin kuruluşunu sağlayan savaş aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Miryokefalon Savaşı",
+    "Pasinler Savaşı",
+    "Dandanakan Savaşı",
+    "Katvan Savaşı",
+    "Malazgirt Savaşı"
+   ],
+   "cevap": "C",
+   "cozum": "1040 Dandanakan Savaşı'nda Gaznelileri yenen Selçuklular devletlerini resmen kurmuştur."
+  },
+  {
+   "no": 29,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Haçlı Seferleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi Haçlı Seferlerinin Avrupa'ya etkilerinden biridir?**",
+   "secenekler": [
+    "Bizans İmparatorluğu'nun güçlenmesi",
+    "Kavimler Göçü'nün başlaması",
+    "Kilisenin ve papanın otoritesinin sarsılması",
+    "Doğu ile ticaretin tamamen durması",
+    "Feodalitenin güçlenmesi"
+   ],
+   "cevap": "C",
+   "cozum": "Seferlerin başarısızlığı kilisenin otoritesini sarsmış, feodalite zayıflamış, Doğu ile ticaret canlanmıştır."
+  },
+  {
+   "no": 30,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devleti Yükselme Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kanuni Sultan Süleyman döneminde yapılan ve Macaristan'ın büyük bölümünün Osmanlı egemenliğine girmesini sağlayan meydan savaşı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Preveze Deniz Savaşı",
+    "Kosova Savaşı",
+    "Mercidabık Savaşı",
+    "Mohaç Meydan Savaşı",
+    "Çaldıran Savaşı"
+   ],
+   "cevap": "D",
+   "cozum": "Mohaç Meydan Savaşı 1526'da yapılmıştır.\nÇaldıran ve Mercidabık Yavuz Sultan Selim dönemindedir; Preveze bir deniz savaşıdır."
+  },
+  {
+   "no": 31,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devleti Yükselme Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Halifeliğin Osmanlı Devleti'ne geçmesini sağlayan sefer aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Mısır Seferi",
+    "İran Seferi",
+    "Belgrad Seferi",
+    "Viyana Kuşatması",
+    "Rodos Seferi"
+   ],
+   "cevap": "A",
+   "cozum": "Yavuz Sultan Selim'in Mısır Seferi (1516–1517) sonunda halifelik Osmanlı padişahlarına geçmiştir."
+  },
+  {
+   "no": 32,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devleti Duraklama ve Gerileme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Osmanlı Devleti'nin büyük ölçüde toprak kaybettiği ilk antlaşma aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Küçük Kaynarca Antlaşması",
+    "Pasarofça Antlaşması",
+    "Zitvatorok Antlaşması",
+    "Bucaş Antlaşması",
+    "Karlofça Antlaşması"
+   ],
+   "cevap": "E",
+   "cozum": "1699 Karlofça Antlaşması'yla Macaristan'ın büyük bölümü gibi geniş topraklar kaybedilmiştir."
+  },
+  {
+   "no": 33,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devleti Dağılma Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**II. Mahmut döneminde Yeniçeri Ocağı'nın kaldırılmasına verilen ad aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Vaka-i Hayriye",
+    "Patrona Halil İsyanı",
+    "Kabakçı Mustafa İsyanı",
+    "Edirne Vakası",
+    "31 Mart Vakası"
+   ],
+   "cevap": "A",
+   "cozum": "Yeniçeri Ocağı 1826'da kaldırılmış, bu olaya \"hayırlı olay\" anlamında Vaka-i Hayriye denmiştir."
+  },
+  {
+   "no": 34,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Lozan Barış Antlaşması",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Lozan Barış Antlaşması'nda çözüme kavuşturulamayıp ileride ikili görüşmelere bırakılan sorun aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kapitülasyonlar",
+    "Yabancı okulların durumu",
+    "Nüfus mübadelesi",
+    "Savaş tazminatları",
+    "Musul sorunu (Irak sınırı)"
+   ],
+   "cevap": "E",
+   "cozum": "Lozan'da Irak sınırı belirlenemediği için Musul sorunu İngiltere ile ikili görüşmelere bırakılmıştır.\nKapitülasyonlar kaldırılmış, savaş tazminatı ve nüfus mübadelesi gibi konular karara bağlanmıştır."
+  },
+  {
+   "no": 35,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Tarih",
+   "konu": "Atatürk İlke ve İnkılapları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Halifeliğin kaldırıldığı 3 Mart 1924'te kabul edilen ve eğitim-öğretimi tek çatı altında toplayan kanun aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Soyadı Kanunu",
+    "Şapka Kanunu",
+    "Türk Medeni Kanunu",
+    "Tevhid-i Tedrisat Kanunu",
+    "Takrir-i Sükûn Kanunu"
+   ],
+   "cevap": "D",
+   "cozum": "Tevhid-i Tedrisat Kanunu ile bütün eğitim kurumları Maarif Vekâletine bağlanmıştır."
+  },
+  {
+   "no": 36,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Coğrafi Konumu",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi Türkiye'nin jeopolitik önemini artıran özel konum özelliklerinden biridir?**",
+   "secenekler": [
+    "Gece ile gündüz süresinin mevsimlere göre değişmesi",
+    "Kuzey Yarım Küre'de yer alması",
+    "Dört mevsimin belirgin yaşanması",
+    "Karadeniz'i Akdeniz'e bağlayan boğazlara sahip olması",
+    "Ortalama yükseltisinin fazla olması"
+   ],
+   "cevap": "D",
+   "cozum": "İstanbul ve Çanakkale boğazları, Karadeniz ülkelerinin açık denizlere çıkış yolu olduğundan Türkiye'nin stratejik önemini artırır."
+  },
+  {
+   "no": 37,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Yer Şekilleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'de deprem riskinin yüksek olmasının temel nedeni aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Akarsularının kısa olması",
+    "Alp-Himalaya kuşağında, aktif fay hatları üzerinde yer alması",
+    "Üç tarafının denizlerle çevrili olması",
+    "Orta kuşakta bulunması",
+    "Kıyılarının girintili çıkıntılı olması"
+   ],
+   "cevap": "B",
+   "cozum": "Türkiye genç ve aktif bir deprem kuşağında yer alır; Kuzey ve Doğu Anadolu fay hatları bunun örneğidir."
+  },
+  {
+   "no": 38,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin İklimi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'de güneybatıdan esen, kışın sıcaklığı artırarak kar erimelerine yol açan rüzgâr aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Gündoğusu",
+    "Karayel",
+    "Lodos",
+    "Yıldız",
+    "Poyraz"
+   ],
+   "cevap": "C",
+   "cozum": "Lodos güneybatıdan eser ve ılık hava taşır. Poyraz kuzeydoğudan, karayel kuzeybatıdan, yıldız kuzeyden, gündoğusu doğudan eser."
+  },
+  {
+   "no": 39,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'de Madenler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'nin dünya rezervleri içinde ilk sırada yer aldığı maden aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Demir",
+    "Kurşun",
+    "Bor",
+    "Bakır",
+    "Boksit"
+   ],
+   "cevap": "C",
+   "cozum": "Dünya bor rezervlerinin büyük bölümü Türkiye'dedir; başlıca yatakları Balıkesir, Eskişehir ve Kütahya'dadır."
+  },
+  {
+   "no": 40,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'de Enerji",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Güneydoğu Anadolu Projesi (GAP) kapsamındaki Atatürk Barajı hangi akarsu üzerine kurulmuştur?**",
+   "secenekler": [
+    "Seyhan",
+    "Dicle",
+    "Kızılırmak",
+    "Fırat",
+    "Ceyhan"
+   ],
+   "cevap": "D",
+   "cozum": "Atatürk Barajı, Şanlıurfa ile Adıyaman arasında Fırat Nehri üzerindedir."
+  },
+  {
+   "no": 41,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'de Turizm",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki doğal turizm alanlarından hangisinin oluşumunda volkanizma etkili olmuştur?**",
+   "secenekler": [
+    "Kapadokya peribacaları",
+    "Pamukkale travertenleri",
+    "Ölüdeniz lagünü",
+    "Köprülü Kanyon",
+    "Damlataş Mağarası"
+   ],
+   "cevap": "A",
+   "cozum": "Peribacaları, volkanik tüflerin akarsu ve sel sularıyla aşındırılmasıyla oluşmuştur.\nTraverten ve mağara karstik, lagün kıyı, kanyon akarsu aşındırmasıyla oluşur."
+  },
+  {
+   "no": 42,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Su Kaynakları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kaynağını ve döküldüğü yeri Türkiye sınırları içinde bulunduran en uzun akarsu aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sakarya",
+    "Kızılırmak",
+    "Büyük Menderes",
+    "Seyhan",
+    "Yeşilırmak"
+   ],
+   "cevap": "B",
+   "cozum": "Kızılırmak, Sivas'tan doğup Karadeniz'e dökülür ve tamamı Türkiye'de olan en uzun akarsudur."
+  },
+  {
+   "no": 43,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "Yürütme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1982 Anayasası'na göre Cumhurbaşkanının bir görev süresi kaç yıldır?**",
+   "secenekler": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "cevap": "C",
+   "cozum": "Cumhurbaşkanının görev süresi 5 yıldır; bir kişi en fazla iki kez seçilebilir."
+  },
+  {
+   "no": 44,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "Yargı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kanunların ve Cumhurbaşkanlığı kararnamelerinin Anayasa'ya şekil ve esas bakımından uygunluğunu denetleyen kurum aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Yargıtay",
+    "Anayasa Mahkemesi",
+    "Hâkimler ve Savcılar Kurulu",
+    "Sayıştay",
+    "Danıştay"
+   ],
+   "cevap": "B",
+   "cozum": "Anayasaya uygunluk denetimi Anayasa Mahkemesi tarafından yapılır.\nYargıtay adli, Danıştay idari yargının üst mahkemesidir; Sayıştay mali denetim yapar."
+  },
+  {
+   "no": 45,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "İdare Hukuku",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi yerinden yönetim kuruluşudur?**",
+   "secenekler": [
+    "Belediye",
+    "Valilik",
+    "Bakanlık",
+    "İl millî eğitim müdürlüğü",
+    "Kaymakamlık"
+   ],
+   "cevap": "A",
+   "cozum": "Belediyeler, organları seçimle belirlenen mahallî idarelerdir; yani yerinden yönetim kuruluşudur.\nÖteki kurumlar merkezî yönetimin parçasıdır."
+  },
+  {
+   "no": 46,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Vatandaşlık",
+   "konu": "Yasama",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'de kanun koyma, değiştirme ve kaldırma yetkisi aşağıdakilerden hangisine aittir?**",
+   "secenekler": [
+    "Danıştay",
+    "Anayasa Mahkemesi",
+    "Cumhurbaşkanlığı Kabinesi",
+    "Cumhurbaşkanı",
+    "Türkiye Büyük Millet Meclisi"
+   ],
+   "cevap": "E",
+   "cozum": "Yasama yetkisi Türk Milleti adına TBMM'nindir ve bu yetki devredilemez."
+  },
+  {
+   "no": 47,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Güncel Bilgiler",
+   "konu": "Uluslararası Kuruluşlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**UNESCO'nun genel merkezi hangi şehirdedir?**",
+   "secenekler": [
+    "Roma",
+    "Cenevre",
+    "Londra",
+    "New York",
+    "Paris"
+   ],
+   "cevap": "E",
+   "cozum": "Birleşmiş Milletler Eğitim, Bilim ve Kültür Örgütü UNESCO'nun genel merkezi Paris'tedir."
+  },
+  {
+   "no": 48,
+   "test": 2,
+   "brans": "Genel Kültür",
+   "ders": "Güncel Bilgiler",
+   "konu": "Türkiye ve Uluslararası Kuruluşlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**2021 yılında adı \"Türk Devletleri Teşkilatı\" olarak değiştirilen kuruluşun önceki adı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Karadeniz Ekonomik İşbirliği Örgütü",
+    "Ekonomik İşbirliği Teşkilatı",
+    "Türk Dili Konuşan Ülkeler İşbirliği Konseyi",
+    "İslam İşbirliği Teşkilatı",
+    "Şanghay İşbirliği Örgütü"
+   ],
+   "cevap": "C",
+   "cozum": "Türk Konseyi olarak da bilinen Türk Dili Konuşan Ülkeler İşbirliği Konseyi, 2021 İstanbul Zirvesi'nde Türk Devletleri Teşkilatı adını almıştır."
+  }
+ ]
+}

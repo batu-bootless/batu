@@ -1761,7 +1761,8 @@
     .replace(/[−–](?=[\d(])/g, ' eksi ').replace(/(?<![\p{L}\d_])[−–](?=[\p{L}\d])/gu, ' eksi ')
     .replace(/(?<![\p{L}\d_)])\+(?=[\p{L}\d])/gu, ' artı ')
     .replace(/✓/g, ', doğru.').replace(/✗/g, ', yanlış.')
-    .replace(/²/g, ' kare ').replace(/³/g, ' küp ').replace(/;/g, ',').replace(/…/g, '.')
+    .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g, (m) => (m === '²' ? ' kare ' : m === '³' ? ' küp ' : ` üssü ${[...m].map((c) => '⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(c)).join('')} `))
+    .replace(/[₀-₉]/g, (c) => ` ${c.charCodeAt(0) - 0x2080}`).replace(/;/g, ',').replace(/…/g, '.')
     .replace(/[|•●()\[\]]/g, ' ').replace(/\s+([,.])/g, '$1').replace(/\s+/g, ' ').trim();
   const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
