@@ -13,6 +13,7 @@ SES_SURUM = 1   # okuma kuralları ya da ses ayarları değişince artırın: b�
 GIRIS = 'Bu soruyu adım adım çözelim.'
 HARF = {'A': 'A', 'B': 'Be', 'C': 'Ce', 'D': 'De', 'E': 'E'}   # şık harfleri okunduğu gibi
 ROMA = {'I': 'bir', 'II': 'iki', 'III': 'üç', 'IV': 'dört', 'V': 'beş', 'VI': 'altı'}
+SIRA = {'I': 'birinci', 'II': 'ikinci', 'III': 'üçüncü', 'IV': 'dördüncü', 'V': 'beşinci', 'VI': 'altıncı'}
 
 _BIR = ['', 'bir', 'iki', 'üç', 'dört', 'beş', 'altı', 'yedi', 'sekiz', 'dokuz']
 _ON = ['', 'on', 'yirmi', 'otuz', 'kırk', 'elli', 'altmış', 'yetmiş', 'seksen', 'doksan']
@@ -59,6 +60,8 @@ def _sayi(m):
 BIRIM = {'cm': 'santimetre', 'mm': 'milimetre', 'km': 'kilometre', 'kg': 'kilogram', 'mg': 'miligram', 'mL': 'mililitre',
          'ml': 'mililitre', 'dk': 'dakika', 'sn': 'saniye', 'sa': 'saat', 'm': 'metre', 'g': 'gram', 'L': 'litre'}   # sayıdan sonra
 
+KESIR = re.compile(r'\{((?:[^{}/]|\{[^{}]*\})+)/((?:[^{}]|\{[^{}]*\})+)\}')   # {pay/payda}, one level of {…} inside
+
 TR_HARF = re.compile(r'[çğıöşüÇĞİÖŞÜâîû]')
 EN_KELIME = re.compile(r"\b(the|a|an|to|of|is|it|that|and|by|with|from|was|were|be|been|have|has|had|who|whom|which|at|in|on|"
                        r"for|as|this|her|his|them|their|someone|something|not|so|than|until|just|since|while|although|"
@@ -88,13 +91,19 @@ def okunur(t):
 
 def _okunur(t):
     t = re.sub(r'\*\*|__', '', t)
-    t = re.sub(r'\{([^{}/]+)/([^{}]+)\}', r' \1 bölü \2 ', t)
-    t = t.replace('^{2}', ' kare').replace('^{3}', ' küp')
+    t = re.sub(r'\b(cm|mm|km|m)\s*(?:\^\{2\}|²)', lambda m: f' {BIRIM[m.group(1)]} kare ', t)   # cm² → santimetre kare
+    t = re.sub(r'\b(cm|mm|km|m)\s*(?:\^\{3\}|³)', lambda m: f' {BIRIM[m.group(1)]} küp ', t)
+    t = re.sub(KESIR, r' \1 bölü \2 ', t)                                   # {(a^{2} − b^{2})/b^{2}} too
+    t = t.replace('^{2}', ' kare ').replace('^{3}', ' küp ')
     t = re.sub(r'\^\{([^{}]*)\}', r' üssü \1', t)
     t = re.sub(r'_\{([^{}]*)\}', r' \1', t)
-    t = t.replace('²', ' kare').replace('³', ' küp')
+    t = t.replace('²', ' kare ').replace('³', ' küp ')
     t = re.sub(r'%\s?(?=\d)', 'yüzde ', t)
-    t = re.sub(r'(?<![^\W\d_])(VI|IV|V|III|II|I)(?![^\W\d_])\.?', lambda m: ROMA[m.group(1)], t)
+    # Roman numerals ("II. cümle"), not a letter in a formula ("V = πr²h")
+    t = re.sub(r'(?<![^\W\d_])(VI|IV|V|III|II|I)\s*[–-]\s*(VI|IV|V|III|II|I)\.(?=\s+[a-zçğıöşü])',
+               lambda m: f'{SIRA[m.group(1)]} ile {SIRA[m.group(2)]}', t)                      # "I–III. cümleler"
+    t = re.sub(r'(?<![^\W\d_])(VI|IV|V|III|II|I)\.(?=\s+[a-zçğıöşü])', lambda m: SIRA[m.group(1)], t)   # "II. cümlede" → ikinci
+    t = re.sub(r'(?<![^\W\d_])(VI|IV|V|III|II|I)(?![^\W\d_])(?!\s*[=<>≤≥])\.?', lambda m: ROMA[m.group(1)], t)
     for a, b in (('√', ' kök '), ('·', ' çarpı '), ('×', ' çarpı '), ('⇒', ', '), ('→', ', '), ('➪', ', '),
                  ('≈', ' yaklaşık '), ('°', ' derece'), ('′', ' dakika'), ('✓', ', doğru.'), ('✗', ', yanlış.'), ('…', '.'),
                  ('≤', ' küçük eşit '), ('≥', ' büyük eşit '), (' < ', ' küçüktür '), (' > ', ' büyüktür '),

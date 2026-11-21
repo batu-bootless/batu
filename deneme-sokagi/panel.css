@@ -433,6 +433,9 @@ table.t { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 56
 .wrong-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
 .wrong p { font-size: 14.5px; line-height: 1.5; }
 .wrong-src { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.wrong-q.pl-text { font-size: 14.5px; margin-bottom: 0; }
+.wrong-q .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.1; margin: 0 .12em; font-size: .9em; }
+.wrong-q .frac > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 .2em; }
 .wrong-actions { display: flex; flex-direction: column; gap: 8px; }
 
 /* plan */

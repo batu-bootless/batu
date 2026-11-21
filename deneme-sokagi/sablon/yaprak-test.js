@@ -36,7 +36,7 @@
   //   **kalın**  __altı çizili__  10^{-3}  a_{1}  {pay/payda}
   function rich(s) {
     return esc(s)
-      .replace(/\{([^{}/]+)\/([^{}]+)\}/g, '<span class="frac"><span>$1</span><span>$2</span></span>')
+      .replace(/\{((?:[^{}/]|\{[^{}]*\})+)\/((?:[^{}]|\{[^{}]*\})+)\}/g, '<span class="frac"><span>$1</span><span>$2</span></span>')   // {a^{2}/b^{2}} too
       .replace(/\^\{([^{}]*)\}/g, '<sup>$1</sup>')
       .replace(/_\{([^{}]*)\}/g, '<sub>$1</sub>')
       .replace(/\*\*([\s\S]+?)\*\*/g, '<b>$1</b>')

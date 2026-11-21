@@ -175,7 +175,7 @@
       s: dersKey(b.ders), t: b.metin, ust: b.metin_ust, alt: b.metin_alt, fig: b.sekil, img: b.gorsel, o: b.secenekler || [],
       figW: b.sekil_pt && b.yazi_pt ? Math.round(b.sekil_pt * 15.5 / b.yazi_pt) : null, imgOnly: !!b.gorsel_goster,
       parts: b.parcalar ? b.parcalar.map((p) => (p.sekil ? { fig: p.sekil, w: b.yazi_pt ? Math.round(p.sekil_pt * 15.5 / b.yazi_pt) : null } : { t: p.metin })) : null,
-      a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, yon: b.yonerge || (g && g.yonerge) || null,
+      a: b.cevap ? L5.indexOf(b.cevap) : null, sol: b.cozum ? [b.cozum] : [], konu: b.konu, no: b.no, sinav: b.sinav, yon: b.yonerge || (g && g.yonerge) || null,
       passage: g ? g.metin : null, passageImg: g && g.gorsel ? g.gorsel : null, ref: { bank: b.id },
       ses: b.ses && Array.isArray(b.ses_adimlar) ? { src: b.ses, at: b.ses_adimlar, dur: b.ses_sure, off: b.ses_bas || 0 } : null,
     };
@@ -183,6 +183,9 @@
   const wq = (w) => (w.bank ? bankItem(BANK.byId[w.bank]) : qItem(QUESTIONS[w.q], w.q));
   // Açıklamalı çözüm: the correct answer and the explanation (bank "cozum" or the sample questions' steps).
   const solText = (q) => (q && q.sol && q.sol.length ? q.sol.join('\n') : '');
+  // one-line plain text of a question (review lists): no markup, fractions and powers written out
+  const plainQ = (t) => String(t || '').replace(/\*\*|__/g, '').replace(/\{((?:[^{}/]|\{[^{}]*\})+)\/((?:[^{}]|\{[^{}]*\})+)\}/g, '$1/$2')
+    .replace(/\^\{2\}/g, '²').replace(/\^\{3\}/g, '³').replace(/\^\{([^{}]*)\}/g, '^$1').replace(/_\{([^{}]*)\}/g, '$1').replace(/\s+/g, ' ').trim();
   const solHtml = (q) => {
     const rich = (t) => (window.DSYaprakTest ? window.DSYaprakTest.rich(t) : esc(t));
     const lines = solText(q).split('\n').filter((ln) => ln.trim());
@@ -191,6 +194,12 @@
         : '<p class="muted">Bu soru için açıklamalı çözüm henüz eklenmedi.</p>');
   };
   const minutesFor = (n) => Math.max(5, Math.round(n * 1.5));
+  // What a wrong answer costs (ÖSYM / MEB rules): YDS and YÖKDİL take nothing off, LGS takes a third of a correct
+  // answer, the others (TYT, AYT, KPSS, ALES, DGS, …) a quarter.
+  const YANLIS_BOLEN = { YDS: 0, 'YÖKDİL': 0, LGS: 3 };
+  const bolenOf = (sinav) => (Object.prototype.hasOwnProperty.call(YANLIS_BOLEN, sinav) ? YANLIS_BOLEN[sinav] : 4);
+  const netOf = (D, Y, bolen) => (bolen ? D - Y / bolen : D);
+  const netKural = (bolen) => (bolen ? `Net = D − Y/${bolen}` : 'Yanlışlar doğruları götürmez');
 
   /* ---------------- packages (sample prices; payments are not live yet) ---------------- */
   const DAY = 864e5;
@@ -681,7 +690,7 @@
       <div class="toolbar s-12"><div class="tabs">${kinds.map((k) => `<button class="${k === f ? 'on' : ''}" data-action="wrong-filter" data-k="${k}">${k}</button>`).join('')}</div><span class="small muted">${wrongs.length} soru defterde</span></div>
       <div class="wrong-list s-12">${list.length ? list.map((w) => { const q = wq(w); if (!q) return ''; return `<article class="card wrong" data-wrong="${w.id}">
         <div><div class="wrong-meta">${subjChip(q.s)}<span class="chip ${kc[w.kind]}">${w.kind}</span><span class="chip">${esc(w.topic)}</span></div>
-        <p>${esc(q.t)}</p>
+        <div class="pl-text wrong-q">${q.t ? (window.DSYaprakTest ? window.DSYaprakTest.stemHtml(q.t) : esc(plainQ(q.t))) : `<p>${esc(q.konu || 'Paragraf sorusu')} · boşluk doldurma</p>`}</div>
         <p class="wrong-src">${esc(w.src)} · ${w.date} · Senin cevabın: <b>${w.your}</b> · Doğru cevap: <b style="color:var(--good)">${q.a == null ? '—' : L5[q.a]}</b></p>
         ${solText(q) ? `<details class="wrong-sol"><summary>${icon('bulb')} Açıklamalı Çözümünü Gör</summary><div class="sol-text">${solHtml(q)}</div></details>` : ''}</div>
         <div class="wrong-actions"><button class="btn btn-blue btn-sm" data-action="retry" ${w.bank ? `data-bank="${w.bank}"` : `data-q="${w.q}"`}>Tekrar çöz</button>${solText(q) ? `<button class="btn btn-soft btn-sm" data-action="video" data-id="${w.id}">${icon('play')} Anlatım videosu</button>` : ''}<button class="btn btn-ghost btn-sm" data-action="learned" data-id="${w.id}">${icon('check')} Öğrendim</button></div>
@@ -1283,12 +1292,13 @@
         let i0 = 0;
         for (const g of groups) {   // one result per deneme, even when several were solved together
           const s = r.status.slice(i0, i0 + g.qs.length); i0 += g.qs.length;
-          const D = s.filter((x) => x === 'ok').length, Y = s.filter((x) => x === 'no').length, B = s.filter((x) => x === 'empty').length, net = D - Y / 4;
+          const bolen = bolenOf(g.k.sinav);
+          const D = s.filter((x) => x === 'ok').length, Y = s.filter((x) => x === 'no').length, B = s.filter((x) => x === 'empty').length, net = netOf(D, Y, bolen);
           const ad = g.k.ad + (bolum ? ` · ${bolum}` : '');
           // A deneme solved test by test adds up (its questions never repeat, so the parts do not overlap).
           const prev = all[g.k.id], total = srcQs(g.k.id).length;
           const acc = prev && prev.soru != null && prev.soru + g.qs.length <= total ? prev : { D: 0, Y: 0, B: 0, soru: 0 };
-          all[g.k.id] = { D: acc.D + D, Y: acc.Y + Y, B: acc.B + B, net: acc.D + D - (acc.Y + Y) / 4, soru: acc.soru + g.qs.length, tarih: new Date().toISOString() };
+          all[g.k.id] = { D: acc.D + D, Y: acc.Y + Y, B: acc.B + B, net: netOf(acc.D + D, acc.Y + Y, bolen), soru: acc.soru + g.qs.length, tarih: new Date().toISOString() };
           saveHistory({ ad, tur: 'Deneme', soru: g.qs.length, D, Y, B, net });
           logActivity({ tur: 'cozuldu', ad, detay: `${g.k.sinav} denemesi · ${g.qs.length} soru`, net });
         }
@@ -1503,11 +1513,13 @@
   // opts.mode 'gorsel' shows the question image with A–E answer buttons; opts.onFinish(result) receives D/Y/B/net.
   function openPlayer(items, title, seconds, opts = {}) {
     const qs = items, mode = opts.mode || 'metin';
+    const kurallar = new Set(qs.map((q) => q.sinav).filter(Boolean).map(bolenOf));
+    const bolen = kurallar.size === 1 ? [...kurallar][0] : 4;   // sample questions (no exam on them): TYT rule
     const st = { cur: 0, ans: qs.map(() => null), flag: qs.map(() => false), solOpen: qs.map(() => false), solSeen: qs.map(() => false), left: seconds, timer: null, done: false, wrong: [] };
     const root = $('#modalRoot');
     const lastFocus = document.activeElement;
     root.innerHTML = `<div class="modal-back"><div class="modal player" role="dialog" aria-modal="true" aria-labelledby="plTitle">
-      <div class="pl-head"><div><h2 id="plTitle">${esc(title)}</h2><p>${qs.length} soru · ${Math.round(seconds / 60)} dakika · Net = D − Y/4</p></div>
+      <div class="pl-head"><div><h2 id="plTitle">${esc(title)}</h2><p>${qs.length} soru · ${Math.round(seconds / 60)} dakika · ${netKural(bolen)}</p></div>
         <span class="timer" id="plTimer">${icon('clock')}<span>00:00</span></span>
         <button class="icon-btn" data-pl="fs" id="plFs" aria-label="Tam ekran" aria-pressed="false" title="Tam ekran (F)">${icon('expand')}</button>
         <button class="icon-btn" data-pl="close" aria-label="Kapat">${icon('x')}</button></div>
@@ -1601,7 +1613,7 @@
         if (st.ans[i] === q.a) { D++; return 'ok'; }
         Y++; return 'no';
       });
-      const net = D - Y / 4, pct = (Math.max(0, net) / qs.length) * 100;
+      const net = netOf(D, Y, bolen), pct = (Math.max(0, net) / qs.length) * 100;
       st.wrong = qs.map((q, i) => (status[i] === 'no' || status[i] === 'empty' ? i : null)).filter((x) => x !== null);
       $('#plProg').style.width = '100%';
       main.innerHTML = `<div class="result">
@@ -1610,7 +1622,7 @@
           <p>${qs.length} sorunun ${D} tanesini doğru yanıtladın. Süre: ${fmtT(seconds - Math.max(0, st.left))}</p>
           <div class="res-stats"><div class="g"><small>Doğru</small><b>${D}</b></div><div class="b"><small>Yanlış</small><b>${Y}</b></div><div><small>Boş</small><b>${B}</b></div><div><small>Net</small><b>${fmt(net)}</b></div></div>
           ${U ? `<p class="small muted" style="margin-top:8px">${U} sorunun kaynağında cevap anahtarı olmadığı için puanlanmadı.</p>` : ''}</div></div>
-        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(q.t || `${q.konu || 'Paragraf'} · boşluk`)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${solText(q) ? `<div class="sol-text">${solHtml(q)}</div><button type="button" class="btn btn-soft btn-sm rv-video" data-pl="video" data-i="${i}">${icon('play')} Anlatım videosu</button>` : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için açıklamalı çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
+        <div class="review">${qs.map((q, i) => { const s = status[i]; return `<details class="rv"><summary><span class="st ${s === 'unknown' ? 'empty' : s}">${s === 'ok' ? icon('check') : s === 'no' ? icon('x') : '–'}</span><span class="q">${i + 1}. ${esc(plainQ(q.t) || `${q.konu || 'Paragraf'} · boşluk`)}</span><em>Sen: ${st.ans[i] === null ? 'Boş' : L5[st.ans[i]]} · Doğru: ${q.a == null ? '—' : L5[q.a]}</em></summary><div class="rv-body">${solText(q) ? `<div class="sol-text">${solHtml(q)}</div><button type="button" class="btn btn-soft btn-sm rv-video" data-pl="video" data-i="${i}">${icon('play')} Anlatım videosu</button>` : q.img ? `<img class="rv-img" src="${esc(q.img)}" alt="Soru ${i + 1}">` : 'Bu soru için açıklamalı çözüm henüz eklenmedi.'}</div></details>`; }).join('')}</div>
       </div>`;
       const oldFoot = $('.pl-foot', root); if (oldFoot) oldFoot.remove();
       main.insertAdjacentHTML('afterend', `<div class="pl-foot"><span class="small muted">${opts.onFinish ? 'Sonucun kaydedildi.' : 'Sonuçlar örnek panelde kaydedilmez.'}</span><span class="spacer"></span>${st.wrong.length ? '<button class="btn btn-soft btn-sm" data-pl="to-notebook">Yanlış ve boşları deftere ekle</button>' : ''}<button class="btn btn-blue btn-sm" data-pl="close-now">Panele dön</button></div>`);
@@ -1715,6 +1727,7 @@
   const UNITS = { cm: 'santimetre', mm: 'milimetre', km: 'kilometre', kg: 'kilogram', mg: 'miligram', mL: 'mililitre',
     ml: 'mililitre', dk: 'dakika', sn: 'saniye', sa: 'saat', m: 'metre', g: 'gram', L: 'litre' };   // after a number
   const ROMAN = { I: 'bir', II: 'iki', III: 'üç', IV: 'dört', V: 'beş', VI: 'altı' };
+  const SIRA = { I: 'birinci', II: 'ikinci', III: 'üçüncü', IV: 'dördüncü', V: 'beşinci', VI: 'altıncı' };   // "II. cümlede" 
   // question markup → words a voice reads well ("3^{2}" → "3 kare", "{a/b}" → "a bölü b", "II." → "iki");
   // quoted English ("I paid by card") is left as written (same rule as tools/seslendirme_metin.py)
   const EN_QUOTE = (q) => /[A-Za-z]/.test(q) && !/[çğıöşüÇĞİÖŞÜâîû]/.test(q)
@@ -1724,11 +1737,14 @@
     .replace(/\s+([,.])/g, '$1').replace(/\s+/g, ' ').trim();
   const speakTr = (t) => String(t || '')
     .replace(/\*\*|__/g, '')
-    .replace(/\{([^{}/]+)\/([^{}]+)\}/g, ' $1 bölü $2 ')
-    .replace(/\^\{2\}/g, ' kare').replace(/\^\{3\}/g, ' küp').replace(/\^\{([^{}]*)\}/g, ' üssü $1')
+    .replace(/\b(cm|mm|km|m)\s*(?:\^\{2\}|²)/g, (m, u) => ` ${UNITS[u]} kare `).replace(/\b(cm|mm|km|m)\s*(?:\^\{3\}|³)/g, (m, u) => ` ${UNITS[u]} küp `)
+    .replace(/\{((?:[^{}/]|\{[^{}]*\})+)\/((?:[^{}]|\{[^{}]*\})+)\}/g, ' $1 bölü $2 ')
+    .replace(/\^\{2\}/g, ' kare ').replace(/\^\{3\}/g, ' küp ').replace(/\^\{([^{}]*)\}/g, ' üssü $1')
     .replace(/_\{([^{}]*)\}/g, ' $1')
     .replace(/%\s?(\d)/g, 'yüzde $1')
-    .replace(/(?<![\p{L}\d])(VI|IV|V|III|II|I)(?![\p{L}\d])\.?/gu, (m, r) => ROMAN[r])
+    .replace(/(?<![\p{L}\d])(VI|IV|V|III|II|I)\s*[–-]\s*(VI|IV|V|III|II|I)\.(?=\s+[a-zçğıöşü])/gu, (m, a, b) => `${SIRA[a]} ile ${SIRA[b]}`)
+    .replace(/(?<![\p{L}\d])(VI|IV|V|III|II|I)\.(?=\s+[a-zçğıöşü])/gu, (m, r) => SIRA[r])
+    .replace(/(?<![\p{L}\d])(VI|IV|V|III|II|I)(?![\p{L}\d])(?!\s*[=<>≤≥])\.?/gu, (m, r) => ROMAN[r])
     .replace(/√/g, ' kök ').replace(/[·×]/g, ' çarpı ').replace(/⇒|→|➪/g, ', ').replace(/≈/g, ' yaklaşık ')
     .replace(/°/g, ' derece').replace(/′/g, ' dakika')
     .replace(/≤/g, ' küçük eşit ').replace(/≥/g, ' büyük eşit ').replace(/ < /g, ' küçüktür ').replace(/ > /g, ' büyüktür ')
@@ -1743,7 +1759,7 @@
     .replace(/[−–](?=[\d(])/g, ' eksi ').replace(/(?<![\p{L}\d_])[−–](?=[\p{L}\d])/gu, ' eksi ')
     .replace(/(?<![\p{L}\d_)])\+(?=[\p{L}\d])/gu, ' artı ')
     .replace(/✓/g, ', doğru.').replace(/✗/g, ', yanlış.')
-    .replace(/²/g, ' kare').replace(/³/g, ' küp').replace(/;/g, ',').replace(/…/g, '.')
+    .replace(/²/g, ' kare ').replace(/³/g, ' küp ').replace(/;/g, ',').replace(/…/g, '.')
     .replace(/[|•●()\[\]]/g, ' ').replace(/\s+([,.])/g, '$1').replace(/\s+/g, ' ').trim();
   const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
