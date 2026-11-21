@@ -54,9 +54,11 @@ PARAGRAF = 'soruları aşağıdaki parçaya göre cevaplayınız.'
 
 class S(dict):
     """Bir soru. dogru + yanlis (4 çeldirici; LGS 3) ya da sabit sıralı secenekler + cevap."""
-    def __init__(self, ders, konu, kok, dogru=None, yanlis=None, cozum='', grup=None, secenekler=None, cevap=None, yonerge=None):
+    def __init__(self, ders, konu, kok, dogru=None, yanlis=None, cozum='', grup=None, secenekler=None, cevap=None, yonerge=None,
+                 kaydir=True):
+        # kaydir=False: sayısal şıklar dengelenmez (ör. yıllar — uydurma yıl çeldiricisi üretilmez)
         super().__init__(ders=ders, konu=konu, kok=kok, dogru=dogru, yanlis=yanlis, cozum=cozum, grup=grup,
-                         secenekler=secenekler, cevap=cevap, yonerge=yonerge)
+                         secenekler=secenekler, cevap=cevap, yonerge=yonerge, kaydir=kaydir)
 
 
 # ---- şık sırası -------------------------------------------------------------------------------------

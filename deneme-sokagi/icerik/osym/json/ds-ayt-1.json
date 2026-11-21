@@ -1,0 +1,1838 @@
+{
+ "kaynak": {
+  "id": "ds-ayt-1",
+  "ad": "Deneme Sokağı AYT Denemesi 1",
+  "sinav": "AYT",
+  "tur": "deneme",
+  "ders": "",
+  "kod_on": "AY",
+  "dk_soru": 1.125
+ },
+ "gruplar": {},
+ "sorular": [
+  {
+   "no": 1,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Söz Sanatları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki dizelerin hangisinde kişileştirme (teşhis) sanatı vardır?**",
+   "secenekler": [
+    "Ak saçlarıma kara günler düştü",
+    "Gül gibi solarsın, bülbül gibi ağlarsın",
+    "Gözlerin bir deniz gibi derin ve mavi",
+    "Dağlar ağladı, ırmaklar sustu bu acıya",
+    "Bin yıldır bekliyorum yolunu bu köyde"
+   ],
+   "cevap": "D",
+   "cozum": "Ağlamak ve susmak insana özgü davranışlardır; dağlara ve ırmaklara verilmiştir.\nÖteki dizelerde benzetme, abartma ve karşıtlık vardır."
+  },
+  {
+   "no": 2,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Söz Sanatları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki dizelerin hangisinde yalnızca benzeyen ve benzetilen kullanılarak güçlü benzetme (teşbih-i beliğ) yapılmıştır?**",
+   "secenekler": [
+    "Aslan gibi savaştı askerler",
+    "Kar gibi beyaz ellerin üşümesin",
+    "Gözlerin deniz gibi derin",
+    "Gül gibi açtın bahçemizde",
+    "Sen bu bahçenin gülüsün"
+   ],
+   "cevap": "E",
+   "cozum": "Teşbih-i beliğde benzetme edatı ve benzetme yönü kullanılmaz; \"sen\" (benzeyen) doğrudan \"gül\"e (benzetilen) benzetilmiştir.\nÖteki dizelerde \"gibi\" edatı vardır."
+  },
+  {
+   "no": 3,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Halk Edebiyatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki nazım biçimlerinden hangisi halk edebiyatına aittir?**",
+   "secenekler": [
+    "Mesnevi",
+    "Gazel",
+    "Rubai",
+    "Koşma",
+    "Kaside"
+   ],
+   "cevap": "D",
+   "cozum": "Koşma, hece ölçüsüyle ve dörtlüklerle yazılan bir âşık edebiyatı nazım biçimidir.\nGazel, kaside, rubai ve mesnevi divan edebiyatı nazım biçimleridir."
+  },
+  {
+   "no": 4,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Divan Edebiyatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Divan edebiyatında gazelin ilk beytine ne ad verilir?**",
+   "secenekler": [
+    "Makta",
+    "Methiye",
+    "Matla",
+    "Nesib",
+    "Beytü'l-gazel"
+   ],
+   "cevap": "C",
+   "cozum": "Gazelin ilk beytine matla, şairin mahlasının geçtiği son beytine makta, en güzel beytine beytü'l-gazel denir.\nNesib ve methiye kasidenin bölümleridir."
+  },
+  {
+   "no": 5,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Halk Edebiyatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Âşık edebiyatında şairin adının (mahlasının) geçtiği son dörtlüğe ne ad verilir?**",
+   "secenekler": [
+    "Redif",
+    "Ayak",
+    "Tapşırma",
+    "Kavuştak",
+    "Matla"
+   ],
+   "cevap": "C",
+   "cozum": "Âşıkların şiirin son dörtlüğünde adlarını söylemelerine tapşırma (mahlas) denir.\nKavuştak türkülerdeki nakarattır; matla divan şiirinde ilk beyittir."
+  },
+  {
+   "no": 6,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Tanzimat Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türk edebiyatının ilk yerli romanı kabul edilen \"Taaşşuk-ı Talat ve Fitnat\"ın yazarı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Şemsettin Sami",
+    "Recaizade Mahmut Ekrem",
+    "Şinasi",
+    "Namık Kemal",
+    "Ahmet Mithat Efendi"
+   ],
+   "cevap": "A",
+   "cozum": "\"Taaşşuk-ı Talat ve Fitnat\" (1872), Şemsettin Sami'nin eseridir ve ilk yerli roman kabul edilir."
+  },
+  {
+   "no": 7,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Tanzimat Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Agâh Efendi ile ilk özel Türk gazetesi Tercüman-ı Ahval'i çıkaran ve ilk yerli tiyatro eseri \"Şair Evlenmesi\"ni yazan sanatçı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Ahmet Vefik Paşa",
+    "Ziya Paşa",
+    "Şinasi",
+    "Recaizade Mahmut Ekrem",
+    "Namık Kemal"
+   ],
+   "cevap": "C",
+   "cozum": "Şinasi, 1860'ta Tercüman-ı Ahval'i çıkarmış ve ilk yerli tiyatro eseri olan \"Şair Evlenmesi\"ni yazmıştır."
+  },
+  {
+   "no": 8,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Servet-i Fünun Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Mai ve Siyah\" romanının yazarı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Halit Ziya Uşaklıgil",
+    "Mehmet Rauf",
+    "Hüseyin Rahmi Gürpınar",
+    "Tevfik Fikret",
+    "Cenap Şahabettin"
+   ],
+   "cevap": "A",
+   "cozum": "\"Mai ve Siyah\", Servet-i Fünun romanının en önemli temsilcisi Halit Ziya Uşaklıgil'in eseridir."
+  },
+  {
+   "no": 9,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Servet-i Fünun Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Sanat için sanat\" anlayışını benimseyen, ağır ve süslü bir dil kullanan, Edebiyat-ı Cedide adıyla da anılan topluluk aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Millî Edebiyat",
+    "Beş Hececiler",
+    "Fecr-i Âti",
+    "Garip",
+    "Servet-i Fünun"
+   ],
+   "cevap": "E",
+   "cozum": "Servet-i Fünun topluluğu \"Edebiyat-ı Cedide\" (Yeni Edebiyat) olarak da anılır; sanat için sanat anlayışını ve ağır, süslü bir dili benimser."
+  },
+  {
+   "no": 10,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Millî Edebiyat Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Genç Kalemler dergisinde yayımlanan \"Yeni Lisan\" makalesiyle sade Türkçe hareketini başlatan sanatçı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Ömer Seyfettin",
+    "Halide Edib Adıvar",
+    "Mehmet Emin Yurdakul",
+    "Refik Halit Karay",
+    "Yahya Kemal Beyatlı"
+   ],
+   "cevap": "A",
+   "cozum": "1911'de Genç Kalemler'de çıkan \"Yeni Lisan\" makalesi Ömer Seyfettin'in kaleminden çıkmıştır ve Millî Edebiyat'ın dil anlayışını belirlemiştir."
+  },
+  {
+   "no": 11,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Millî Edebiyat Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Türkçe Şiirler\" kitabıyla hece ölçüsünü yaygınlaştıran ve \"Ben bir Türk'üm, dinim, cinsim uludur\" dizesinin şairi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Mehmet Emin Yurdakul",
+    "Ziya Gökalp",
+    "Mehmet Akif Ersoy",
+    "Yahya Kemal Beyatlı",
+    "Tevfik Fikret"
+   ],
+   "cevap": "A",
+   "cozum": "Mehmet Emin Yurdakul, 1899'da yayımlanan \"Türkçe Şiirler\" ile hece ölçüsünü ve sade dili şiirde kullanmıştır."
+  },
+  {
+   "no": 12,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Cumhuriyet Dönemi Şiiri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdaki şairlerden hangisi İkinci Yeni şiirinin temsilcilerindendir?**",
+   "secenekler": [
+    "Necip Fazıl Kısakürek",
+    "Faruk Nafiz Çamlıbel",
+    "Ahmet Kutsi Tecer",
+    "Cemal Süreya",
+    "Orhan Veli Kanık"
+   ],
+   "cevap": "D",
+   "cozum": "Cemal Süreya, imgeci ve anlamı zorlayan İkinci Yeni şiirinin önde gelen şairidir.\nOrhan Veli Garip akımının kurucusudur; Faruk Nafiz Beş Hececilerdendir."
+  },
+  {
+   "no": 13,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Cumhuriyet Dönemi Romanı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Saatleri Ayarlama Enstitüsü\" romanının yazarı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sait Faik Abasıyanık",
+    "Oğuz Atay",
+    "Ahmet Hamdi Tanpınar",
+    "Peyami Safa",
+    "Yusuf Atılgan"
+   ],
+   "cevap": "C",
+   "cozum": "\"Saatleri Ayarlama Enstitüsü\", Ahmet Hamdi Tanpınar'ın Doğu-Batı arasında kalan toplumu ironik bir dille anlattığı romanıdır."
+  },
+  {
+   "no": 14,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Türk Dili ve Edebiyatı",
+   "konu": "Cumhuriyet Dönemi Hikâyesi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türk edebiyatında durum (kesit) hikâyesinin en önemli temsilcilerinden olan ve hikâyelerinde İstanbul'un küçük insanlarını anlatan yazar aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Reşat Nuri Güntekin",
+    "Halide Edib Adıvar",
+    "Ömer Seyfettin",
+    "Refik Halit Karay",
+    "Sait Faik Abasıyanık"
+   ],
+   "cevap": "E",
+   "cozum": "Sait Faik, olaydan çok bir anı, bir durumu anlatan durum hikâyesinin usta temsilcisidir.\nÖmer Seyfettin ise olay (Maupassant tarzı) hikâyesinin temsilcisidir."
+  },
+  {
+   "no": 15,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Tarih",
+   "konu": "İlk Çağ ve Orta Çağ",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**375 yılında başlayan Kavimler Göçü'nün sonuçlarından biri aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Osmanlı Devleti'nin kurulması",
+    "Coğrafi Keşiflerin yapılması",
+    "Haçlı Seferlerinin başlaması",
+    "Avrupa'da feodalite rejiminin ortaya çıkması",
+    "İstanbul'un fethedilmesi"
+   ],
+   "cevap": "D",
+   "cozum": "Kavimler Göçü sonrası Avrupa'da güvenlik ortamı bozulmuş, halk korunmak için senyörlere sığınmış ve feodalite doğmuştur."
+  },
+  {
+   "no": 16,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Tarih",
+   "konu": "Türk-İslam Devletleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İslamiyet'i resmî din olarak kabul eden ilk Türk devleti aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Gazneliler",
+    "Büyük Selçuklular",
+    "İhşidiler",
+    "Tolunoğulları",
+    "Karahanlılar"
+   ],
+   "cevap": "E",
+   "cozum": "Karahanlılar, Satuk Buğra Han döneminde İslamiyet'i resmî din olarak kabul eden ilk Türk devletidir."
+  },
+  {
+   "no": 17,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Tarih",
+   "konu": "Türk-İslam Kültürü",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Karahanlılar döneminde yazılan, devlet yönetimine dair öğütler içeren \"Kutadgu Bilig\" adlı eserin yazarı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kaşgarlı Mahmut",
+    "Yusuf Has Hacib",
+    "Nizamülmülk",
+    "Edip Ahmet Yükneki",
+    "Ahmet Yesevi"
+   ],
+   "cevap": "B",
+   "cozum": "\"Kutadgu Bilig\" (Mutluluk Veren Bilgi) Yusuf Has Hacib'in eseridir; ilk siyasetname örneklerindendir."
+  },
+  {
+   "no": 18,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devlet Teşkilatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Osmanlı Devleti'nde Hristiyan ailelerin çocuklarının belirli bir eğitimden geçirilerek devlet hizmetinde yetiştirilmesi sistemine ne ad verilir?**",
+   "secenekler": [
+    "Müsadere",
+    "Devşirme",
+    "Mukataa",
+    "İltizam",
+    "Tımar"
+   ],
+   "cevap": "B",
+   "cozum": "Devşirme sistemiyle alınan çocuklar Türk-İslam kültürüyle yetiştirilir, Kapıkulu ordusunda ya da saray hizmetinde görevlendirilirdi."
+  },
+  {
+   "no": 19,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Tarih",
+   "konu": "Osmanlı Devlet Teşkilatı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Osmanlı Devleti'nde toprağın vergi gelirinin, asker yetiştirme karşılığında devlet görevlilerine bırakıldığı sistem aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "İltizam sistemi",
+    "Vakıf sistemi",
+    "Tımar sistemi",
+    "Devşirme sistemi",
+    "Malikâne sistemi"
+   ],
+   "cevap": "C",
+   "cozum": "Tımar sisteminde dirlik sahipleri topraktan topladıkları vergi karşılığında cebelü denen atlı asker yetiştirirdi.\nİltizamda ise vergi toplama hakkı açık artırmayla satılırdı."
+  },
+  {
+   "no": 20,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Tarih",
+   "konu": "Osmanlı Kültür ve Medeniyeti",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İbrahim Müteferrika tarafından ilk Türk matbaasının kurulduğu dönem aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Lale Devri",
+    "Kuruluş Dönemi",
+    "Tanzimat Dönemi",
+    "Meşrutiyet Dönemi",
+    "Islahat Dönemi"
+   ],
+   "cevap": "A",
+   "cozum": "İlk Türk matbaası Lale Devri'nde (1718–1730), Sadrazam Nevşehirli Damat İbrahim Paşa döneminde kurulmuştur."
+  },
+  {
+   "no": 21,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'de Nüfus",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'de nüfus yoğunluğunun en fazla olduğu bölge aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Doğu Anadolu Bölgesi",
+    "Marmara Bölgesi",
+    "İç Anadolu Bölgesi",
+    "Güneydoğu Anadolu Bölgesi",
+    "Karadeniz Bölgesi"
+   ],
+   "cevap": "B",
+   "cozum": "Sanayi, ticaret ve ulaşım olanaklarının gelişmiş olması Marmara Bölgesi'ni nüfus yoğunluğunun en fazla olduğu bölge yapar."
+  },
+  {
+   "no": 22,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'de Tarım",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'de çay tarımının başlıca yapıldığı yöre aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Ege kıyıları",
+    "Trakya",
+    "Çukurova",
+    "Doğu Karadeniz kıyıları",
+    "Konya Ovası"
+   ],
+   "cevap": "D",
+   "cozum": "Çay, her mevsim yağışlı ve nemli bir iklim ister; Türkiye'de Doğu Karadeniz kıyılarında (özellikle Rize) yetiştirilir."
+  },
+  {
+   "no": 23,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Coğrafya",
+   "konu": "Ekosistemler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yağışın en fazla ve tür çeşitliliğinin en yüksek olduğu biyom aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Tayga",
+    "Tropikal yağmur ormanları",
+    "Çöl",
+    "Tundra",
+    "Savan"
+   ],
+   "cevap": "B",
+   "cozum": "Ekvator çevresindeki tropikal yağmur ormanlarında yıl boyu sıcak ve yağışlı iklim görülür; tür çeşitliliği en fazladır."
+  },
+  {
+   "no": 24,
+   "test": 1,
+   "brans": "Türk Dili ve Edebiyatı-Sosyal Bilimler-1",
+   "ders": "Coğrafya",
+   "konu": "Doğal Kaynaklar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'nin dünya rezervlerinde ilk sırada yer aldığı maden aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Demir",
+    "Bor",
+    "Bakır",
+    "Altın",
+    "Petrol"
+   ],
+   "cevap": "B",
+   "cozum": "Türkiye, dünya bor rezervlerinin büyük bölümüne sahiptir ve bu alanda ilk sıradadır."
+  },
+  {
+   "no": 25,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Tarih",
+   "konu": "Osmanlı Dünya Gücü",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**1538 Preveze Deniz Savaşı'nın en önemli sonucu aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Osmanlı donanmasının yakılması",
+    "Mısır'ın Osmanlı topraklarına katılması",
+    "Rodos'un fethedilmesi",
+    "Akdeniz'de Osmanlı deniz üstünlüğünün kurulması",
+    "Kıbrıs'ın fethedilmesi"
+   ],
+   "cevap": "D",
+   "cozum": "Barbaros Hayreddin Paşa'nın Haçlı donanmasını yendiği Preveze zaferiyle Akdeniz bir Türk gölü hâline gelmiştir."
+  },
+  {
+   "no": 26,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Tarih",
+   "konu": "Osmanlı Arayış Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Osmanlı Devleti'nin ilk kez büyük çapta toprak kaybettiği antlaşma aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Pasarofça Antlaşması",
+    "Zitvatorok Antlaşması",
+    "Karlofça Antlaşması",
+    "Küçük Kaynarca Antlaşması",
+    "Belgrad Antlaşması"
+   ],
+   "cevap": "C",
+   "cozum": "1699 Karlofça Antlaşması ile Macaristan, Mora ve Podolya gibi geniş topraklar kaybedilmiş, Osmanlı'nın Batı'daki ilerleyişi sona ermiştir."
+  },
+  {
+   "no": 27,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Tarih",
+   "konu": "Osmanlı Gerileme Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kırım'ın bağımsız sayıldığı ve Osmanlı Devleti'nin ilk kez savaş tazminatı ödemeyi kabul ettiği antlaşma aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Bükreş Antlaşması",
+    "Küçük Kaynarca Antlaşması",
+    "Yaş Antlaşması",
+    "Edirne Antlaşması",
+    "Karlofça Antlaşması"
+   ],
+   "cevap": "B",
+   "cozum": "1774 Küçük Kaynarca Antlaşması ile Kırım bağımsız olmuş, Osmanlı ilk kez savaş tazminatı ödemiştir."
+  },
+  {
+   "no": 28,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Tarih",
+   "konu": "I. Dünya Savaşı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Çanakkale Cephesi'nde kazanılan zaferin sonuçlarından biri aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Rusya'ya yardım ulaştırılamaması ve Bolşevik İhtilali'nin kolaylaşması",
+    "Mondros Ateşkes Antlaşması'nın imzalanması",
+    "Arap topraklarının kaybedilmesi",
+    "Kafkasya'nın kaybedilmesi",
+    "Osmanlı Devleti'nin savaştan çekilmesi"
+   ],
+   "cevap": "A",
+   "cozum": "Boğazlar geçilemediği için İtilaf Devletleri Rusya'ya yardım ulaştıramamış; Rusya'daki ekonomik çöküş Bolşevik İhtilali'ni kolaylaştırmıştır."
+  },
+  {
+   "no": 29,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Tarih",
+   "konu": "I. Dünya Savaşı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Mondros Ateşkes Antlaşması'nın İtilaf Devletlerine \"güvenliklerini tehdit eden bir durumda herhangi bir stratejik noktayı işgal etme\" hakkı veren ve işgallere zemin hazırlayan maddesi kaçıncı maddedir?**",
+   "secenekler": [
+    "5",
+    "7",
+    "10",
+    "16",
+    "24"
+   ],
+   "cevap": "B",
+   "cozum": "Mondros'un 7. maddesi, İtilaf Devletlerine güvenlik gerekçesiyle istedikleri yeri işgal etme hakkı vermiştir."
+  },
+  {
+   "no": 30,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Tarih",
+   "konu": "II. Dünya Savaşı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye'nin II. Dünya Savaşı'ndaki tutumuyla ilgili aşağıdakilerden hangisi doğrudur?**",
+   "secenekler": [
+    "Savaşın sonlarına doğru Almanya ve Japonya'ya savaş ilan etmiş, ancak çatışmalara girmemiştir.",
+    "Savaşın başında Mihver Devletleri'nin yanında savaşa girmiştir.",
+    "Savaştan yeni topraklar kazanarak çıkmıştır.",
+    "Birleşmiş Milletlerin kurucu üyeleri arasında yer almamıştır.",
+    "Savaş boyunca Balkanlarda bir cephe açmıştır."
+   ],
+   "cevap": "A",
+   "cozum": "Türkiye savaş boyunca tarafsız kalmış, Şubat 1945'te Almanya ve Japonya'ya savaş ilan ederek Birleşmiş Milletlerin kurucu üyesi olmuştur."
+  },
+  {
+   "no": 31,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Tarih",
+   "konu": "Soğuk Savaş Dönemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türkiye NATO'ya hangi yıl üye olmuştur?**",
+   "secenekler": [
+    "1945",
+    "1949",
+    "1952",
+    "1960",
+    "1974"
+   ],
+   "cevap": "C",
+   "cozum": "NATO 1949'da kurulmuş, Türkiye Kore Savaşı'ndaki katkısının da etkisiyle 1952'de NATO üyesi olmuştur."
+  },
+  {
+   "no": 32,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Coğrafya",
+   "konu": "Uluslararası Örgütler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Petrol ihraç eden ülkelerin ortak politika belirlemek amacıyla kurduğu örgüt aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "OPEC",
+    "OECD",
+    "UNESCO",
+    "FAO",
+    "NATO"
+   ],
+   "cevap": "A",
+   "cozum": "OPEC, petrol ihraç eden ülkelerin üretim ve fiyat politikalarını belirlemek için kurdukları örgüttür."
+  },
+  {
+   "no": 33,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Coğrafya",
+   "konu": "Uluslararası Örgütler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Avrupa Ekonomik Topluluğu'nu (AET) kuran antlaşma aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Londra Antlaşması",
+    "Roma Antlaşması",
+    "Lizbon Antlaşması",
+    "Maastricht Antlaşması",
+    "Vestfalya Antlaşması"
+   ],
+   "cevap": "B",
+   "cozum": "Avrupa Ekonomik Topluluğu 1957 Roma Antlaşması ile kurulmuştur; Maastricht (1992) ise Avrupa Birliği'ni kurmuştur."
+  },
+  {
+   "no": 34,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Coğrafya",
+   "konu": "Kültür Bölgeleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Ganj Nehri'nin kutsal sayıldığı ve tarihsel olarak kast sisteminin görüldüğü kültür bölgesi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Mezopotamya kültür bölgesi",
+    "Maya kültür bölgesi",
+    "Çin kültür bölgesi",
+    "Mısır kültür bölgesi",
+    "Hint kültür bölgesi"
+   ],
+   "cevap": "E",
+   "cozum": "Hint kültür bölgesinde Ganj kutsal kabul edilir; toplum yapısında kast sistemi uzun süre etkili olmuştur."
+  },
+  {
+   "no": 35,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Coğrafya",
+   "konu": "Küresel İklim",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yaz aylarında okyanustan esen nemli rüzgârlarla bol yağış alan, kışları kurak geçen muson ikliminin en belirgin görüldüğü yer aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Antarktika",
+    "Sahra Çölü",
+    "Kuzey Avrupa",
+    "Güney ve Güneydoğu Asya",
+    "Orta Avrupa"
+   ],
+   "cevap": "D",
+   "cozum": "Mevsimlik rüzgârların (musonların) etkisindeki Güney ve Güneydoğu Asya'da yazlar çok yağışlı, kışlar kurak geçer."
+  },
+  {
+   "no": 36,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Coğrafya",
+   "konu": "Doğal Afetler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Okyanus tabanında meydana gelen depremler sonucunda oluşan dev dalgalara ne ad verilir?**",
+   "secenekler": [
+    "Hortum",
+    "Tsunami",
+    "Heyelan",
+    "Çığ",
+    "Tayfun"
+   ],
+   "cevap": "B",
+   "cozum": "Deniz tabanındaki deprem ve volkanik patlamaların oluşturduğu, kıyılara ulaştığında yıkıcı olan dev dalgalara tsunami denir."
+  },
+  {
+   "no": 37,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Coğrafya",
+   "konu": "Enerji Kaynakları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi yenilenebilir bir enerji kaynağıdır?**",
+   "secenekler": [
+    "Rüzgâr",
+    "Kömür",
+    "Petrol",
+    "Doğal gaz",
+    "Uranyum"
+   ],
+   "cevap": "A",
+   "cozum": "Rüzgâr tükenmeyen, kendini yenileyen bir enerji kaynağıdır.\nDoğal gaz, kömür, petrol ve uranyum tükenebilir kaynaklardır."
+  },
+  {
+   "no": 38,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Coğrafya",
+   "konu": "Türkiye'nin Jeopolitik Konumu",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Türk Boğazlarındaki geçiş rejimini belirleyen ve 1936'da imzalanan sözleşme aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sevr Antlaşması",
+    "Montrö Boğazlar Sözleşmesi",
+    "Paris Antlaşması",
+    "Londra Antlaşması",
+    "Lozan Barış Antlaşması"
+   ],
+   "cevap": "B",
+   "cozum": "1936 Montrö Boğazlar Sözleşmesi ile boğazlar üzerindeki tam egemenlik Türkiye'ye geçmiştir."
+  },
+  {
+   "no": 39,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Mantık",
+   "konu": "Önermeler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Bütün metaller iletkendir.\" önermesi nicelik ve nitelik bakımından aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Tümel olumsuz",
+    "Tekil olumlu",
+    "Tümel olumlu",
+    "Tikel olumsuz",
+    "Tikel olumlu"
+   ],
+   "cevap": "C",
+   "cozum": "\"Bütün\" sözü önermeyi tümel yapar; yüklem konuya bağlandığı için önerme olumludur."
+  },
+  {
+   "no": 40,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Mantık",
+   "konu": "Kıyas",
+   "yonerge": null,
+   "grup": null,
+   "metin": "Bütün kuşlar omurgalıdır.\nSerçe bir kuştur.\n**Bu öncüllerden zorunlu olarak çıkan sonuç aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Bütün omurgalılar kuştur.",
+    "Serçe omurgalıdır.",
+    "Serçe kuş değildir.",
+    "Bazı serçeler kuş değildir.",
+    "Omurgalıların hepsi serçedir."
+   ],
+   "cevap": "B",
+   "cozum": "Bütün kuşlar omurgalı olduğuna ve serçe bir kuş olduğuna göre serçe de omurgalıdır; bu geçerli bir tasım (kıyas) sonucudur."
+  },
+  {
+   "no": 41,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Psikoloji",
+   "konu": "Öğrenme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Pavlov'un köpeklerle yaptığı deneylerle açıkladığı öğrenme türü aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Klasik koşullanma",
+    "Gözlem yoluyla öğrenme",
+    "Deneme-yanılma yoluyla öğrenme",
+    "Kavrayış yoluyla öğrenme",
+    "Edimsel koşullanma"
+   ],
+   "cevap": "A",
+   "cozum": "Pavlov, zil sesini yiyecekle eşleştirerek köpeklerin zil sesine salya salgılamayı öğrendiğini göstermiş; bu klasik koşullanmadır."
+  },
+  {
+   "no": 42,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Psikoloji",
+   "konu": "Güdüler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Maslow'un ihtiyaçlar hiyerarşisinin en alt basamağında yer alan ihtiyaçlar aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kendini gerçekleştirme ihtiyacı",
+    "Güvenlik ihtiyacı",
+    "Sevgi ve ait olma ihtiyacı",
+    "Fizyolojik ihtiyaçlar",
+    "Saygınlık ihtiyacı"
+   ],
+   "cevap": "D",
+   "cozum": "Maslow'a göre açlık, susuzluk ve uyku gibi fizyolojik ihtiyaçlar karşılanmadan üst basamaklardaki ihtiyaçlar ortaya çıkmaz."
+  },
+  {
+   "no": 43,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Sosyoloji",
+   "konu": "Toplumsal Kurumlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi temel toplumsal kurumlardan biri değildir?**",
+   "secenekler": [
+    "Ekonomi",
+    "Eğitim",
+    "Aile",
+    "Arkadaş grubu",
+    "Din"
+   ],
+   "cevap": "D",
+   "cozum": "Aile, eğitim, din, ekonomi ve siyaset temel toplumsal kurumlardır.\nArkadaş grubu bir toplumsal gruptur, kurum değildir."
+  },
+  {
+   "no": 44,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Sosyoloji",
+   "konu": "Toplumsal Hareketlilik",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir öğretmenin okul müdürlüğüne atanması hangi toplumsal hareketlilik türüne örnektir?**",
+   "secenekler": [
+    "Coğrafi hareketlilik",
+    "Kültürel yayılma",
+    "Kuşaklar arası hareketlilik",
+    "Yatay hareketlilik",
+    "Dikey hareketlilik"
+   ],
+   "cevap": "E",
+   "cozum": "Bireyin toplumsal konumunun yükselmesi ya da düşmesi dikey hareketliliktir; öğretmenin müdür olması yükselmedir."
+  },
+  {
+   "no": 45,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Felsefe",
+   "konu": "MÖ 6. Yüzyıl – MS 2. Yüzyıl Felsefesi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Evrenin ana maddesinin (arkhe) su olduğunu savunan filozof aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Anaksimenes",
+    "Pythagoras",
+    "Thales",
+    "Herakleitos",
+    "Anaksimandros"
+   ],
+   "cevap": "C",
+   "cozum": "Thales arkheyi su olarak görmüştür.\nAnaksimenes havayı, Herakleitos ateşi, Anaksimandros apeironu, Pythagoras sayıyı ilk ilke saymıştır."
+  },
+  {
+   "no": 46,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Yahudilik ve Hristiyanlık",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yahudiliğin kutsal kitabı aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Tripitaka",
+    "İncil",
+    "Avesta",
+    "Tevrat",
+    "Vedalar"
+   ],
+   "cevap": "D",
+   "cozum": "Tevrat Yahudiliğin kutsal kitabıdır; İncil Hristiyanlığın, Vedalar Hinduizmin, Avesta Zerdüştlüğün, Tripitaka Budizmin kutsal metinleridir."
+  },
+  {
+   "no": 47,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Hint ve Çin Dinleri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Budizm'in kurucusu aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Mahavira",
+    "Zerdüşt",
+    "Konfüçyüs",
+    "Lao Tzu",
+    "Siddhartha Gautama (Buda)"
+   ],
+   "cevap": "E",
+   "cozum": "Budizm, aydınlanmaya ulaştığına inanılan Siddhartha Gautama (Buda) tarafından kurulmuştur."
+  },
+  {
+   "no": 48,
+   "test": 2,
+   "brans": "Sosyal Bilimler-2",
+   "ders": "Din Kültürü ve Ahlak Bilgisi",
+   "konu": "Anadolu'da İslam",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**\"Makâlât\" adlı eseri bulunan ve Anadolu'da Alevi-Bektaşi geleneğinin önemli şahsiyeti olan düşünür aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Ahi Evran",
+    "Hacı Bayram-ı Veli",
+    "Hacı Bektaş-ı Veli",
+    "Mevlana",
+    "Yunus Emre"
+   ],
+   "cevap": "C",
+   "cozum": "\"Makâlât\", Hacı Bektaş-ı Veli'nin tasavvufi düşüncelerini anlattığı eseridir."
+  },
+  {
+   "no": 49,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Polinomlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "P(x) = x³ − 2x² + ax + 4 polinomu (x − 2) ile tam bölünebilmektedir.\n**Buna göre, a kaçtır?**",
+   "secenekler": [
+    "−4",
+    "−3",
+    "−2",
+    "0",
+    "2"
+   ],
+   "cevap": "C",
+   "cozum": "Tam bölünme için P(2) = 0 olmalıdır: 8 − 8 + 2a + 4 = 0.\n2a = −4 → a = −2."
+  },
+  {
+   "no": 50,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Polinomlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**P(x) = x⁴ + 3x² − 5 polinomunun (x + 1) ile bölümünden kalan kaçtır?**",
+   "secenekler": [
+    "−1",
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "cevap": "A",
+   "cozum": "Kalan P(−1) değeridir: 1 + 3 − 5 = −1."
+  },
+  {
+   "no": 51,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "İkinci Dereceden Denklemler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "x² − 7x + 10 = 0 denkleminin kökleri x_{1} ve x_{2}'dir.\n**Buna göre, x_{1}² + x_{2}² toplamı kaçtır?**",
+   "secenekler": [
+    "19",
+    "25",
+    "29",
+    "39",
+    "49"
+   ],
+   "cevap": "C",
+   "cozum": "Kökler toplamı 7, kökler çarpımı 10'dur.\nx_{1}² + x_{2}² = (x_{1} + x_{2})² − 2x_{1}x_{2} = 49 − 20 = 29."
+  },
+  {
+   "no": 52,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Karmaşık Sayılar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "i² = −1 olmak üzere\n**(2 + 3i)(2 − 3i) çarpımının sonucu kaçtır?**",
+   "secenekler": [
+    "−5",
+    "5",
+    "9",
+    "12",
+    "13"
+   ],
+   "cevap": "E",
+   "cozum": "Eşlenik çarpımı: (2 + 3i)(2 − 3i) = 4 − 9i² = 4 + 9 = 13."
+  },
+  {
+   "no": 53,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Parabol",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**y = x² − 6x + 5 parabolünün tepe noktasının ordinatı kaçtır?**",
+   "secenekler": [
+    "−7",
+    "−6",
+    "−5",
+    "−4",
+    "−2"
+   ],
+   "cevap": "D",
+   "cozum": "Tepe noktasının apsisi r = 6 : 2 = 3.\nOrdinat: 9 − 18 + 5 = −4."
+  },
+  {
+   "no": 54,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Eşitsizlikler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**x² − 5x + 6 < 0 eşitsizliğinin çözüm kümesi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "(−∞, 2) ∪ (3, ∞)",
+    "(−∞, 2)",
+    "(3, ∞)",
+    "(2, 3)",
+    "(−3, −2)"
+   ],
+   "cevap": "D",
+   "cozum": "x² − 5x + 6 = (x − 2)(x − 3); kökler 2 ve 3.\nBaş katsayı pozitif olduğundan ifade kökler arasında negatiftir: (2, 3)."
+  },
+  {
+   "no": 55,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Fonksiyonlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "f(x) = {(2x + 1)/3}\n**olduğuna göre, f^{−1}(5) kaçtır?**",
+   "secenekler": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "cevap": "E",
+   "cozum": "f^{−1}(5) = a ise f(a) = 5'tir: {(2a + 1)/3} = 5.\n2a + 1 = 15 → a = 7."
+  },
+  {
+   "no": 56,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Fonksiyonlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "f(x) = x + 2 ve g(x) = 2x − 1\n**olduğuna göre, (g∘f)(3) kaçtır?**",
+   "secenekler": [
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
+   ],
+   "cevap": "B",
+   "cozum": "Önce f uygulanır: f(3) = 5.\nSonra g: g(5) = 2 · 5 − 1 = 9."
+  },
+  {
+   "no": 57,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Logaritma",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**log_{2} 32 + log_{3} 9 işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "cevap": "D",
+   "cozum": "32 = 2⁵ olduğundan log_{2} 32 = 5; 9 = 3² olduğundan log_{3} 9 = 2.\nToplam 7."
+  },
+  {
+   "no": 58,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Logaritma",
+   "yonerge": null,
+   "grup": null,
+   "metin": "log_{3}(x − 1) = 2\n**olduğuna göre, x kaçtır?**",
+   "secenekler": [
+    "7",
+    "8",
+    "9",
+    "10",
+    "11"
+   ],
+   "cevap": "D",
+   "cozum": "Logaritma tanımından x − 1 = 3² = 9; x = 10."
+  },
+  {
+   "no": 59,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Üstel Fonksiyonlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "3^{2x − 1} = 27\n**olduğuna göre, x kaçtır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "cevap": "B",
+   "cozum": "27 = 3³ olduğundan 2x − 1 = 3.\nx = 2."
+  },
+  {
+   "no": 60,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Trigonometri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**sin 30° + cos 60° + tan 45° işleminin sonucu kaçtır?**",
+   "secenekler": [
+    "1",
+    "{3/2}",
+    "2",
+    "{5/2}",
+    "3"
+   ],
+   "cevap": "C",
+   "cozum": "sin 30° = {1/2}, cos 60° = {1/2}, tan 45° = 1.\n{1/2} + {1/2} + 1 = 2."
+  },
+  {
+   "no": 61,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Trigonometri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "x bir dar açı ve sin x = {3/5}\n**olduğuna göre, tan x kaçtır?**",
+   "secenekler": [
+    "{3/5}",
+    "{3/4}",
+    "{4/5}",
+    "{4/3}",
+    "{5/3}"
+   ],
+   "cevap": "B",
+   "cozum": "Dik üçgende karşı kenar 3, hipotenüs 5 ise komşu kenar 4'tür.\ntan x = {3/4}."
+  },
+  {
+   "no": 62,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Diziler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İlk terimi 3 ve ortak farkı 4 olan aritmetik dizinin 10. terimi kaçtır?**",
+   "secenekler": [
+    "35",
+    "37",
+    "39",
+    "41",
+    "43"
+   ],
+   "cevap": "C",
+   "cozum": "a_{n} = a_{1} + (n − 1) · d formülüyle a_{10} = 3 + 9 · 4 = 39."
+  },
+  {
+   "no": 63,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Diziler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İlk terimi 2 ve ortak çarpanı 3 olan geometrik dizinin ilk dört teriminin toplamı kaçtır?**",
+   "secenekler": [
+    "62",
+    "72",
+    "80",
+    "86",
+    "100"
+   ],
+   "cevap": "C",
+   "cozum": "Terimler 2, 6, 18, 54'tür.\nToplam 2 + 6 + 18 + 54 = 80."
+  },
+  {
+   "no": 64,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Limit",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**lim_{x→2} {(x² − 4)/(x − 2)} limitinin değeri kaçtır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "4",
+    "5",
+    "8"
+   ],
+   "cevap": "C",
+   "cozum": "x² − 4 = (x − 2)(x + 2) olduğundan ifade x + 2'ye sadeleşir.\nx → 2 iken limit 2 + 2 = 4."
+  },
+  {
+   "no": 65,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Türev",
+   "yonerge": null,
+   "grup": null,
+   "metin": "f(x) = 3x² − 4x + 1\n**olduğuna göre, f'(2) kaçtır?**",
+   "secenekler": [
+    "6",
+    "8",
+    "10",
+    "12",
+    "14"
+   ],
+   "cevap": "B",
+   "cozum": "f'(x) = 6x − 4.\nf'(2) = 12 − 4 = 8."
+  },
+  {
+   "no": 66,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Türev",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**f(x) = x³ − 3x fonksiyonunun yerel minimum noktasının apsisi kaçtır?**",
+   "secenekler": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "cevap": "B",
+   "cozum": "f'(x) = 3x² − 3 = 0 → x = −1 ya da x = 1.\nf''(x) = 6x; f''(1) = 6 > 0 olduğundan x = 1'de yerel minimum vardır."
+  },
+  {
+   "no": 67,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "İntegral",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**∫_{0}^{2} (3x² + 2) dx integralinin değeri kaçtır?**",
+   "secenekler": [
+    "4",
+    "8",
+    "10",
+    "12",
+    "14"
+   ],
+   "cevap": "D",
+   "cozum": "Bir ilkel fonksiyon x³ + 2x'tir.\n(8 + 4) − (0 + 0) = 12."
+  },
+  {
+   "no": 68,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Kombinasyon",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**8 kişilik bir gruptan 3 kişilik bir ekip kaç farklı biçimde seçilebilir?**",
+   "secenekler": [
+    "56",
+    "64",
+    "72",
+    "112",
+    "336"
+   ],
+   "cevap": "A",
+   "cozum": "Sıra önemli olmadığından kombinasyon kullanılır: C(8, 3) = {(8 · 7 · 6)/(3 · 2 · 1)} = 56."
+  },
+  {
+   "no": 69,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Matematik",
+   "konu": "Binom Açılımı",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**(x + 2)⁵ ifadesinin açılımında x³'lü terimin katsayısı kaçtır?**",
+   "secenekler": [
+    "10",
+    "20",
+    "30",
+    "35",
+    "40"
+   ],
+   "cevap": "E",
+   "cozum": "x³'lü terim C(5, 2) · x³ · 2² biçimindedir.\nKatsayı 10 · 4 = 40."
+  },
+  {
+   "no": 70,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Geometri",
+   "konu": "Analitik Geometri",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Analitik düzlemde A(1, 2) ve B(5, 5) noktaları arasındaki uzaklık kaç birimdir?**",
+   "secenekler": [
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+   ],
+   "cevap": "A",
+   "cozum": "|AB| = √((5 − 1)² + (5 − 2)²) = √(16 + 9) = 5."
+  },
+  {
+   "no": 71,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Geometri",
+   "konu": "Doğrunun Analitik İncelenmesi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**A(0, 3) ve B(2, 7) noktalarından geçen doğrunun eğimi kaçtır?**",
+   "secenekler": [
+    "{1/2}",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "cevap": "C",
+   "cozum": "Eğim = {(7 − 3)/(2 − 0)} = 2."
+  },
+  {
+   "no": 72,
+   "test": 3,
+   "brans": "Matematik",
+   "ders": "Geometri",
+   "konu": "Çemberin Analitik İncelenmesi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**x² + y² − 6x + 8y = 0 çemberinin yarıçapı kaç birimdir?**",
+   "secenekler": [
+    "4",
+    "5",
+    "6",
+    "7",
+    "10"
+   ],
+   "cevap": "B",
+   "cozum": "Tam kareye tamamlanır: (x − 3)² + (y + 4)² = 9 + 16 = 25.\nYarıçap √25 = 5."
+  },
+  {
+   "no": 73,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "Serbest Düşme",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Serbest bırakılan bir cisim 3 saniye sonra yere çarpıyor. Cismin bırakıldığı yükseklik kaç metredir? (g = 10 m/s², hava direnci önemsiz)**",
+   "secenekler": [
+    "15",
+    "30",
+    "45",
+    "60",
+    "90"
+   ],
+   "cevap": "C",
+   "cozum": "h = {1/2} · g · t² = {1/2} · 10 · 3² = 45 m."
+  },
+  {
+   "no": 74,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "Atışlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**20 m yükseklikten 15 m/s hızla yatay olarak atılan bir cisim, atıldığı noktanın düşey doğrultusundan kaç metre uzağa düşer? (g = 10 m/s², hava direnci önemsiz)**",
+   "secenekler": [
+    "30",
+    "40",
+    "50",
+    "60",
+    "70"
+   ],
+   "cevap": "A",
+   "cozum": "Düşme süresi: 20 = {1/2} · 10 · t² → t = 2 s.\nYatay yol: 15 · 2 = 30 m."
+  },
+  {
+   "no": 75,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "İtme ve Momentum",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**6 m/s hızla giden 2 kg kütleli bir cisim, durmakta olan 4 kg kütleli bir cisme çarpıp yapışıyor. Cisimlerin çarpışmadan sonraki ortak hızı kaç m/s'dir?**",
+   "secenekler": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "cevap": "B",
+   "cozum": "Momentum korunur: 2 · 6 = (2 + 4) · v.\nv = 12 : 6 = 2 m/s."
+  },
+  {
+   "no": 76,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "İş ve Enerji",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**4 kg kütleli bir cismin hızı 2 m/s'den 6 m/s'ye çıkarılıyor. Cisim üzerinde yapılan net iş kaç J'dür?**",
+   "secenekler": [
+    "64",
+    "72",
+    "80",
+    "88",
+    "128"
+   ],
+   "cevap": "A",
+   "cozum": "Net iş, kinetik enerjideki değişime eşittir: {1/2} · 4 · (6² − 2²) = 2 · 32 = 64 J."
+  },
+  {
+   "no": 77,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "Tork",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir anahtarın dönme ekseninden 0,5 m uzaktaki ucuna, anahtara dik olarak 30 N büyüklüğünde kuvvet uygulanıyor. Oluşan torkun büyüklüğü kaç N·m'dir?**",
+   "secenekler": [
+    "5",
+    "7,5",
+    "10",
+    "15",
+    "30"
+   ],
+   "cevap": "D",
+   "cozum": "Tork = kuvvet · dik uzaklık = 30 · 0,5 = 15 N·m."
+  },
+  {
+   "no": 78,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "Çembersel Hareket",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yarıçapı 2 m olan çembersel bir yörüngede 4 m/s sabit süratle dolanan bir cismin merkezcil ivmesi kaç m/s²'dir?**",
+   "secenekler": [
+    "2",
+    "4",
+    "6",
+    "8",
+    "16"
+   ],
+   "cevap": "D",
+   "cozum": "Merkezcil ivme = v² : r = 16 : 2 = 8 m/s²."
+  },
+  {
+   "no": 79,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "Elektriksel Kuvvet",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Yükleri 2 μC ve 3 μC olan iki noktasal yük arasındaki uzaklık 3 m'dir. Yükler arasındaki elektriksel kuvvetin büyüklüğü kaç N'dur? (k = 9 · 10⁹ N·m²/C²)**",
+   "secenekler": [
+    "2 · 10^{−3}",
+    "3 · 10^{−3}",
+    "6 · 10^{−3}",
+    "9 · 10^{−3}",
+    "1,8 · 10^{−2}"
+   ],
+   "cevap": "C",
+   "cozum": "F = k · {(q_{1} · q_{2})/d²} = 9 · 10⁹ · {(2 · 10^{−6} · 3 · 10^{−6})/9}.\nF = 6 · 10^{−3} N."
+  },
+  {
+   "no": 80,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Fizik",
+   "konu": "Manyetizma ve İndüksiyon",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Bir iletkende oluşan indüksiyon akımının, kendisini oluşturan manyetik akı değişimine karşı koyacak yönde olduğunu ifade eden yasa aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Coulomb yasası",
+    "Lenz yasası",
+    "Ohm yasası",
+    "Snell yasası",
+    "Hooke yasası"
+   ],
+   "cevap": "B",
+   "cozum": "Lenz yasasına göre indüksiyon akımı, onu oluşturan akı değişimine karşı koyacak yönde oluşur."
+  },
+  {
+   "no": 81,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Gazlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Sabit sıcaklıkta 4 L hacim kaplayan bir gazın basıncı 2 atm'dir. Gazın hacmi 8 L'ye çıkarılırsa basıncı kaç atm olur?**",
+   "secenekler": [
+    "0,5",
+    "0,625",
+    "0,75",
+    "0,875",
+    "1"
+   ],
+   "cevap": "E",
+   "cozum": "Boyle-Mariotte yasası: P₁ · V₁ = P₂ · V₂ → 2 · 4 = P₂ · 8.\nP₂ = 1 atm."
+  },
+  {
+   "no": 82,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Gazlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Normal koşullarda 11,2 L hacim kaplayan ideal bir gaz kaç moldür?**",
+   "secenekler": [
+    "0,5",
+    "0,6",
+    "1",
+    "2",
+    "4"
+   ],
+   "cevap": "A",
+   "cozum": "Normal koşullarda 1 mol gaz 22,4 L hacim kaplar.\n11,2 : 22,4 = 0,5 mol."
+  },
+  {
+   "no": 83,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Çözeltiler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**0,4 mol NaOH kullanılarak hazırlanan 2 L sulu çözeltinin molar derişimi kaç M'dir?**",
+   "secenekler": [
+    "0,1",
+    "0,15",
+    "0,2",
+    "0,4",
+    "0,8"
+   ],
+   "cevap": "C",
+   "cozum": "Molarite = mol sayısı : hacim (L) = 0,4 : 2 = 0,2 M."
+  },
+  {
+   "no": 84,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Çözeltiler",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**20 g tuz ile 80 g su karıştırılarak hazırlanan çözeltinin kütlece yüzde derişimi kaçtır?**",
+   "secenekler": [
+    "%20",
+    "%25",
+    "%30",
+    "%40",
+    "%80"
+   ],
+   "cevap": "A",
+   "cozum": "Çözelti kütlesi 20 + 80 = 100 g.\nKütlece yüzde = {20/100} · 100 = %20."
+  },
+  {
+   "no": 85,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Kimyasal Tepkimelerde Enerji",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Entalpi değişimi (ΔH) sıfırdan küçük olan tepkimelerle ilgili aşağıdakilerden hangisi doğrudur?**",
+   "secenekler": [
+    "Sıcaklık artırılınca denge daima ürünler yönüne kayar.",
+    "Ortamdan ısı alırlar.",
+    "Ortama ısı verirler.",
+    "Kendiliğinden hiçbir zaman gerçekleşmezler.",
+    "Ürünlerin potansiyel enerjisi girenlerinkinden büyüktür."
+   ],
+   "cevap": "C",
+   "cozum": "ΔH < 0 olan tepkimeler ekzotermiktir; ürünlerin enerjisi girenlerden düşüktür ve aradaki fark ısı olarak ortama verilir."
+  },
+  {
+   "no": 86,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Kimyasal Tepkimelerde Hız",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Aşağıdakilerden hangisi bir tepkimenin hızını artırmaz?**",
+   "secenekler": [
+    "Sıcaklığın artırılması",
+    "Tepkimeye giren maddelerin derişiminin artırılması",
+    "Ortama katalizör eklenmesi",
+    "Sıcaklığın düşürülmesi",
+    "Katı tepkenin toz hâline getirilmesi"
+   ],
+   "cevap": "D",
+   "cozum": "Sıcaklık düşünce taneciklerin kinetik enerjisi ve etkin çarpışma sayısı azalır; tepkime yavaşlar."
+  },
+  {
+   "no": 87,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Kimyasal Denge",
+   "yonerge": null,
+   "grup": null,
+   "metin": "N_{2}(g) + 3H_{2}(g) ⇌ 2NH_{3}(g)    ΔH < 0\n**Dengedeki bu sistemde NH_{3} miktarını artırmak için aşağıdakilerden hangisi yapılmalıdır?**",
+   "secenekler": [
+    "Kabın hacmini büyütmek",
+    "Kabın hacmini küçülterek basıncı artırmak",
+    "Ortama katalizör eklemek",
+    "Ortamdan N_{2} gazı çekmek",
+    "Sıcaklığı artırmak"
+   ],
+   "cevap": "B",
+   "cozum": "Basınç artınca denge gaz mol sayısının az olduğu tarafa (ürünlere) kayar; NH_{3} artar.\nTepkime ekzotermik olduğundan sıcaklık artışı NH_{3}'ü azaltır; katalizör dengeyi kaydırmaz."
+  },
+  {
+   "no": 88,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Kimya",
+   "konu": "Asitler ve Bazlar",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**25 °C'de 0,01 M HCl çözeltisinin pH değeri kaçtır?**",
+   "secenekler": [
+    "1",
+    "2",
+    "7",
+    "12",
+    "13"
+   ],
+   "cevap": "B",
+   "cozum": "HCl kuvvetli asittir, tamamen iyonlaşır: [H⁺] = 10^{−2} M.\npH = −log 10^{−2} = 2."
+  },
+  {
+   "no": 89,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Sinir Sistemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Nöronlar arasında uyartının iletilmesini sağlayan kimyasal maddelere ne ad verilir?**",
+   "secenekler": [
+    "Hormon",
+    "Nörotransmitter",
+    "Enzim",
+    "Vitamin",
+    "Antikor"
+   ],
+   "cevap": "B",
+   "cozum": "Sinapslarda akson ucundan salgılanan nörotransmitterler, uyartıyı sonraki hücreye iletir."
+  },
+  {
+   "no": 90,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Endokrin Sistem",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Kandaki glikoz düzeyini düşüren hormon aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Kortizol",
+    "İnsülin",
+    "Adrenalin",
+    "Glukagon",
+    "Tiroksin"
+   ],
+   "cevap": "B",
+   "cozum": "Pankreastan salgılanan insülin, glikozun hücrelere alınmasını sağlayarak kan şekerini düşürür.\nGlukagon ise kan şekerini yükseltir."
+  },
+  {
+   "no": 91,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Endokrin Sistem",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Büyüme hormonunu salgılayan bez aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Pankreas",
+    "Tiroit bezi",
+    "Eşeysel bezler",
+    "Böbrek üstü bezi",
+    "Hipofiz bezi"
+   ],
+   "cevap": "E",
+   "cozum": "Büyüme hormonu ön hipofizden salgılanır."
+  },
+  {
+   "no": 92,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Duyu Organları",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Gözde ışığa duyarlı reseptörlerin (çubuk ve koni hücreleri) bulunduğu tabaka aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Koroid",
+    "İris",
+    "Göz merceği",
+    "Kornea",
+    "Retina"
+   ],
+   "cevap": "E",
+   "cozum": "Çubuk ve koni hücreleri gözün en iç tabakası olan retinada (ağ tabaka) bulunur."
+  },
+  {
+   "no": 93,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Sindirim Sistemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**İnsanda proteinlerin kimyasal sindiriminin başladığı yer aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Yemek borusu",
+    "Kalın bağırsak",
+    "Ağız",
+    "Mide",
+    "İnce bağırsak"
+   ],
+   "cevap": "D",
+   "cozum": "Proteinlerin kimyasal sindirimi midede pepsin enzimiyle başlar, ince bağırsakta tamamlanır."
+  },
+  {
+   "no": 94,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Dolaşım Sistemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Vücuttan gelen ve oksijeni azalmış kanın kalbe ilk girdiği bölüm aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Sağ karıncık",
+    "Sol karıncık",
+    "Aort",
+    "Sağ kulakçık",
+    "Sol kulakçık"
+   ],
+   "cevap": "D",
+   "cozum": "Üst ve alt ana toplardamarlar vücuttan gelen kanı sağ kulakçığa getirir."
+  },
+  {
+   "no": 95,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Solunum Sistemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Akciğerlerde gaz alışverişinin gerçekleştiği yapılar aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Soluk borusu",
+    "Bronşlar",
+    "Bronşçuklar",
+    "Gırtlak",
+    "Alveoller"
+   ],
+   "cevap": "E",
+   "cozum": "Gaz alışverişi, etrafı kılcal damarlarla sarılı ince duvarlı alveollerde difüzyonla gerçekleşir."
+  },
+  {
+   "no": 96,
+   "test": 4,
+   "brans": "Fen Bilimleri",
+   "ders": "Biyoloji",
+   "konu": "Boşaltım Sistemi",
+   "yonerge": null,
+   "grup": null,
+   "metin": "**Böbreğin yapı ve görev birimi aşağıdakilerden hangisidir?**",
+   "secenekler": [
+    "Nefron",
+    "Nöron",
+    "Sarkomer",
+    "Villus",
+    "Alveol"
+   ],
+   "cevap": "A",
+   "cozum": "Kanın süzüldüğü ve idrarın oluştuğu yapı ve görev birimi nefrondur."
+  }
+ ]
+}
